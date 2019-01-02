@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui';
-import Head from '../../components/Head.vue'
-import Footer from '../../components/Footer.vue'
+import Head from '../../components/Head/Head.vue'
+import Footer from '../../components/Footer/Footer.vue'
 
 import App from './Index.vue'
 import '../common'

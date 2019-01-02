@@ -15,4 +15,10 @@ export default {
     storageKey:'JKCYXTPC',
     requestRetry:4,
     requestRetryDelay:800,
+    nav:{
+        study:'学习',
+        learningTopic:'习题集',
+        exam:'考试',
+        message:'消息'
+    }
 }
