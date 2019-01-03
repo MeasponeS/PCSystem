@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <Head activeUrl="study"></Head>
+        <img style="width: 100%" src="./img/banner.jpg" alt="">
         <div class="container main-body">
 
             <el-button>默认按钮</el-button>
