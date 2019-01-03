@@ -6,6 +6,7 @@ import Footer from '../../components/Footer/Footer.vue'
 import App from './Index.vue'
 import '../common'
 import './index.scss'
+
 Vue.use(ElementUI);
 
 Vue.component('Head', Head);
