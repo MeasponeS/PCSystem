@@ -1,3 +1,86 @@
-#app{
+@import "../../assets/css/var.scss";
 
+.main-body{
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .login-c {
+    width: 405px;
+    padding: 38px 26px;
+    height: 524px;
+    background: #fff;
+    .top {
+      height: 70px;
+      width: 100%;
+      border-bottom: 1px solid rgba(43, 96, 255, 1);;
+      display: flex;
+      margin-bottom: 12px;
+      .tab {
+        text-align: center;
+        line-height: 70px;
+        height: 100%;
+        flex: 1;
+        span {
+          display: inline-block;
+          height: 100%;
+          font-size: 20px;
+          color: #333;
+          cursor: pointer;
+          &.active, &:hover {
+            color: $--color-primary;
+            border-bottom: 2px solid $--color-primary;
+          }
+        }
+      }
+    }
+    .login-input {
+      .el-input {
+        margin-top: 26px;
+      }
+      .get-mag {
+        position: relative;
+        top: 13px;
+        cursor: pointer;
+        color: $--color-primary;
+      }
+    }
+    .forget-password{
+      margin-top: 15px;
+      float: right;
+      font-size: 13px;
+      color: #333;
+    }
+    .protocol{
+      text-align: center;
+      margin-top: 120px;
+      .radio{
+        width:14px;
+        height:14px;
+        display: inline-block;
+        box-shadow: 0 0 8px rgba(43,96,255,.8);
+        margin-right: 6px;
+        cursor: pointer;
+        background:rgba(43,96,255,1);
+        border-radius:50%;
+        position: relative;
+        top: 2px;
+        &.active:before{
+          content: '';
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          position: absolute;
+          background: #eee;
+          top: 4px;
+          left: 4px;
+        }
+      }
+      span{
+        color: #222;
+        font-size: 10px;
+      }
+    }
+  }
 }
+
