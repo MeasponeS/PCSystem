@@ -4,9 +4,27 @@ module.exports = {
         title:'登录'
     },
     index:{
-        title:'首页'
+        title:'学习'
     },
     template:{
         title:'Template'
+    },
+    exam:{
+        title:'考试'
+    },
+    message:{
+        title:'消息首页'
+    },
+    topic:{
+        title:'习题集'
+    },
+    register:{
+        title:'注册'
+    },
+    info:{
+        title:'个人信息'
+    },
+    study:{
+        title:'课程详情'
     }
 }
