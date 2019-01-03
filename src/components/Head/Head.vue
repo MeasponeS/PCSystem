@@ -1,10 +1,14 @@
 <template>
     <div class="head">
         <div class="container">
-            <img class="logo" src="./img/logo.jpg" alt="">
+            <img class="logo" :src="logoUrl" alt="">
             <ul class="nav">
-                <li v-for="(title,url) in nav"><a :class="{active:activeUrl == url}" :href="'./'+url+'.html'">{{ title }}</a></li>
+                <li v-for="(title,url) in nav"><a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a></li>
             </ul>
+            <div class="no-login">
+                <el-button type="primary">登录</el-button>
+                <el-button class="primary-btn">注册</el-button>
+            </div>
         </div>
     </div>
 </template>
@@ -17,6 +21,13 @@
             activeUrl: {
                 type:String,
                 default:'',
+            },
+            logoUrl:{
+                type:String,
+                default:'./img/logo.jpg',
+            },
+            info:{
+                type:Object,
             }
         },
         data: function () {
@@ -57,6 +68,14 @@
                            border-bottom: 2px solid $--color-primary;
                        }
                    }
+               }
+           }
+           .no-login{
+               .el-button{
+                   padding: 8px 30px;
+               }
+               .primary-btn{
+                   margin-left:24px;
                }
            }
        }

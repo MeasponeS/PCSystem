@@ -17,7 +17,7 @@ export default {
     requestRetryDelay:800,
     nav:{
         study:'学习',
-        learningTopic:'习题集',
+        topic:'习题集',
         exam:'考试',
         message:'消息'
     }

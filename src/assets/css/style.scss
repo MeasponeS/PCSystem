@@ -6,7 +6,18 @@
 body{
 
 }
+.primary-btn{
+  color: $--color-primary;
+  border-color: $--color-primary;
+}
+.el-button--primary:hover, .el-button--primary:focus,.primary-btn:hover,.primary-btn:focus {
+  background: $--color-primary-light;
+  border-color: $--color-primary-light;
+  color: #fff;
+}
+.primary-btn:hover{
 
+}
 a:hover {
   cursor: pointer;
   color: inherit;
