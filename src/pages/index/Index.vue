@@ -2,7 +2,8 @@
     <div id="app">
         <Head></Head>
         <div class="container main-body">
-            <el-button>默认按钮</el-button>
+            <a href="./info.html"><el-button>默认按钮</el-button></a>
+            
             <el-button type="primary">主要按钮</el-button>
             <el-button type="success">成功按钮</el-button>
             <el-button type="info">信息按钮</el-button>
