@@ -23,5 +23,6 @@ login 登录页面
 topic 习题集首页
 register 注册页面
 info 个人信息修改页面
+study 学习->课程详情页面
 
 
