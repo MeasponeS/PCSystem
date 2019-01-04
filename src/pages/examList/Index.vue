@@ -7,6 +7,8 @@
                 <li>未开放</li>
                 <li>已过期</li>
             </ul>
+            <i class="el-icon-arrow-left"></i>
+            <i class="el-icon-arrow-right"></i>
             <div class="courseListOne">
                 <h1>健康管理师课程类</h1>
                 <span>当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>
