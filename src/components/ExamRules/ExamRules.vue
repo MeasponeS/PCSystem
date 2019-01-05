@@ -39,7 +39,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import '../../assets/css/var.scss';
     .exam-rules{
         .el-dialog__wrapper{
@@ -48,53 +48,55 @@
             justify-content: center;
             align-items: center;
             .el-dialog__header{
-               height: 0;
+            padding: 0;
+                height: 0;
             }
-            .el-dialog__body{
-                padding: 0;
-                .rules{
+            .exam-rules-dialog{
+                margin-top: 0!important;
+                margin: 0;
                 width: 746px;
                 height: 684px;
-                margin:0;
-                .rules-header{
-                    width: 100%;
+                .el-dialog__body{
+                padding: 0;
+                .rules{
+                    margin:0;
                     text-align: center;
-                    font-size: 24px;
-                    line-height: 80px;
-                    font-weight:bold;
-                    margin-top: 0;
-                    color:$--color-default;
-                    background: url(./img/考试通知.png) ;
-                }
-                .rules-content{
+                    .rules-header{
+                        width: 100%;
+                        text-align: center;
+                        font-size: 24px;
+                        line-height: 80px;
+                        font-weight:bold;
+                        margin-top: 0;
+                        color:$--color-default;
+                        background: url(./img/考试通知.png) ;
+                    }
+                    .rules-content{
+                        width: 668px;
+                        height: 449px;
+                        margin: 0 auto;
+                        padding:39px 35px;
+                        line-height: 30px;
+                        overflow:auto;
+                    }
+                    .btn{
+                        width: 200px;
+                        height: 50px;
+                        margin-top: 46px;
+                    }
                     
-                    width: 668px;
-                    height: 449px;
-                    margin: 0 auto;
-                    padding:39px 35px;
-                    line-height: 30px;
-                    overflow:auto;
-                }
-                .btn{
-                    width: 200px;
-                    height: 50px;
-                    margin-top: 46px;
-                    margin-left: 40px;
-                }
-
-                .close{
-                    cursor: pointer;
-                    width: 40px;
-                    height: 40px;
-                    position: absolute;
-                    bottom: -56px;
+                    .close{
+                        cursor: pointer;
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        bottom: -56px;
+                        right:353px;
+                    }
                 }
             }
-            
-            }
-            
         }
-        
+    }
     }
 
 </style>
