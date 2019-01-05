@@ -3,6 +3,7 @@
     .content{
         width: 1200px;
         margin: 0 auto;
+        position: relative;
         .examHeader{
             list-style: none;
             width:1200px;
@@ -17,12 +18,45 @@
                 font-weight: bold;
                 padding: 6px 0;
                 margin: 18px 16px 0 16px;
+                cursor: pointer;
+                &:hover{
+                    color:$--color-primary;
+                }
             }
             .active{
                 color:$--color-primary;
                 border-bottom: 2px solid $--color-primary;
             }
         }
+        .el-icon-arrow-left,.el-icon-arrow-right{
+            position: absolute;
+            top: 328px;
+            width: 44px;
+            font-size: 22px;
+            height: 44px;
+            color:#969FA9;
+            border:1px solid #969FA9;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+        }
+        .el-icon-arrow-left{
+            left:-84px;
+        }
+        .el-icon-arrow-right{
+            right:-69px;
+        }
+        .el-icon-arrow-left:before {
+            content: "\E600";
+            display: block;
+            margin-top: 12px;
+        }
+        .el-icon-arrow-right:before {
+            content: "\E604";
+            display: block;
+            margin-top: 12px;
+        }
+        
         .courseListOne{
             h1{
                 color:#26292F;
