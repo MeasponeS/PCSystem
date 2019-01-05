@@ -19,12 +19,14 @@
                     </div>
                 </div>
                 <div class="down">
-                    <ul class="title">
-                        <li class="active">全部</li>
-                        <li>只看正确</li>
-                        <li>只看错误</li>
-                    </ul>
-                    <ul class="answer">
+                    <div class="title">
+                        <div :class="{active:status=='all'}" @click="status='all'">全部</div>
+                        <div class="mid"></div>
+                        <div @click="status='right'" :class="{active:status=='right'}">只看正确</div>
+                        <div class="mid"></div>
+                        <div @click="status='wrong'" :class="{active:status=='wrong'}">只看错误</div>
+                    </div>
+                    <ul class="all" v-show="status=='all'">
                         <li><span  class="done">已答</span>第1题</li>
                         <li ><span class="done">已答</span>第2题</li>
                         <li ><span class="done">已答</span>第3题</li>
@@ -36,6 +38,33 @@
                         <li ><span class="done">已答</span>第9题</li>
                         <li><span class="done">已答</span>第10题</li>
                         <li ><span class="done">已答</span>第11题</li>
+                        <li><span class="undone">未答</span>第12题</li>
+                        <li><span class="undone">未答</span>第13题</li>
+                        <li><span class="undone">未答</span>第14题</li>
+                        <li><span class="undone">未答</span>第15题</li>
+                        <li><span class="undone">未答</span>第16题</li>
+                        <li><span class="undone">未答</span>第12题</li>
+                        <li><span class="undone">未答</span>第13题</li>
+                        <li><span class="undone">未答</span>第14题</li>
+                        <li><span class="undone">未答</span>第15题</li>
+                        <li><span class="undone">未答</span>第16题</li>
+                        <li><span class="undone">未答</span>第17题</li>
+                        <li><span class="undone">未答</span>第18题</li>
+                    </ul>
+                    <ul class="all" v-show="status=='right'">
+                        <li><span  class="done">已答</span>第1题</li>
+                        <li ><span class="done">已答</span>第2题</li>
+                        <li ><span class="done">已答</span>第3题</li>
+                        <li ><span class="done">已答</span>第4题</li>
+                        <li ><span class="done">已答</span>第5题</li>
+                        <li ><span class="done">已答</span>第6题</li>
+                        <li><span class="done">已答</span>第7题</li>
+                        <li ><span class="done">已答</span>第8题</li>
+                        <li ><span class="done">已答</span>第9题</li>
+                        <li><span class="done">已答</span>第10题</li>
+                        <li ><span class="done">已答</span>第11题</li>
+                    </ul>
+                    <ul class="all" v-show="status=='wrong'">
                         <li><span class="undone">未答</span>第12题</li>
                         <li><span class="undone">未答</span>第13题</li>
                         <li><span class="undone">未答</span>第14题</li>
@@ -75,6 +104,7 @@
         name: 'app',
         data: function () {
             return {
+                status:'all'
             }
         },
         methods: {},
