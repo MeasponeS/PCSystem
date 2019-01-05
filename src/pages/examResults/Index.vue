@@ -1,7 +1,8 @@
 <template>
     <div id="app">
         <Head></Head>
-        <div class="container main-body">
+        <div class="wrapper">
+            <div class="container main-body">
             <h2 class="top">考试 > 20181221模拟考试 > <span>考试结果</span></h2>
             <div class="content">
                 <div class="left">
@@ -61,6 +62,8 @@
                 <el-button type="primary" class="btn">完成</el-button>
             </div>
         </div>
+        </div>
+        
         <Footer></Footer>
     </div>
             </div>
