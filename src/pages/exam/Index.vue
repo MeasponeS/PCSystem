@@ -121,15 +121,18 @@
             <div v-show="status=='opened'"></div>
         </div>
         <Footer></Footer>
+        <ExamRules v-model="ExamRules"></ExamRules>
     </div>
 </template>
 
 <script>
+    import ExamRules from '../../components/ExamRules/ExamRules.vue'
     export default {
         name: 'app',
         data: function () {
             return {
-                status:'opening'
+                status:'opening',
+                ExamRules:true
             }
         },
         methods: {},
@@ -139,7 +142,7 @@
         beforeDestroy: function () {
 
         },
-        components: {}
+        components: {ExamRules}
     }
 </script>
 
