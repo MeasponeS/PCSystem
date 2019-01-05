@@ -25,11 +25,11 @@
                         </div>
                     </div>
                     <div class="answer">
-                        <h3><i>A</i>面具脸</h3>
-                        <h3><i>B</i>流涎</h3>
-                        <h3><i>C</i>上视困难</h3>
-                        <h3><i>D</i>运动迟缓</h3>
-                        <h3><i>E</i>面部皮脂腺分泌亢进</h3>
+                        <div class="option"><span class="option-val active">A</span>面具脸</div>
+                        <div class="option"><span class="option-val">B</span>流涎</div>
+                        <div class="option"><span class="option-val">C</span>上视困难</div>
+                        <div class="option"><span class="option-val">D</span>运动迟缓</div>
+                        <div class="option"><span class="option-val">E</span>面部皮脂腺分泌亢进</div>
                     </div>
                 </div>
             </div>
