@@ -173,18 +173,20 @@
         </div>
         <Footer></Footer>
         <NoLearningCard v-model="NoLearningCard" :phone="12345678901"></NoLearningCard>
+        <OpenLearningCard v-model="OpenLearningCard" :phone="12345678901"></OpenLearningCard>
     </div>
 </template>
 
 <script>
     import NoLearningCard from '../../components/NoLearningCard/NoLearningCard.vue'
-
+    import OpenLearningCard from '../../components/OpenLearningCard/OpenLearningCard.vue'
     export default {
         name: 'app',
         data: function () {
             return {
                 value1: '',
-                NoLearningCard: true
+                NoLearningCard: true,
+                OpenLearningCard: true,
             }
         },
         methods: {},
@@ -194,7 +196,7 @@
         beforeDestroy: function () {
 
         },
-        components: {NoLearningCard}
+        components: {NoLearningCard,OpenLearningCard}
     }
 </script>
 
