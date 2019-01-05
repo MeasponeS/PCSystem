@@ -169,6 +169,12 @@
                         </div>
                     </li>
                 </ul>
+                <div class="no-course">
+                    <div style="text-align: center">
+                        <img src="./img/noc.png" alt="">
+                        <p>当前学堂还没有安排任何课程</p>
+                    </div>
+                </div>
             </div>
         </div>
         <Footer></Footer>

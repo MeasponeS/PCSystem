@@ -9,11 +9,21 @@
 }
 
 .main-body {
-    margin-bottom: 30px;
     .index-content {
         margin-top: 10px;
+        margin-bottom: 30px;
         background: #fff;
         box-shadow: 0 0 6px 0 rgba(174, 174, 174, 0.14);
+        .no-course{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            p{
+                font-size: 18px;
+                color: #222;
+            }
+        }
         .top {
             width: 100%;
             height: 62px;
