@@ -1,3 +1,130 @@
 #app{
-
+    @import '../../assets/css/var.scss';
+    .wrapper{
+        padding: 14px 0;
+        background: #F3F5F7;
+        .main-body{
+            display: flex;
+            justify-content: center;
+            background: #fff;
+            align-items: center;
+            flex-wrap: wrap;
+            align-content: flex-start; 
+            .leftTop{
+                width:830px;
+                height:62px;
+                background:rgba(255,255,255,1);
+                box-shadow:0px 0px 6px 0px rgba(174,174,174,0.14);
+                font-size: 18px;
+                font-weight: bold;
+                color:#222;
+                line-height: 62px;
+                padding-left: 16px;
+                span{
+                    color:$--color-primary;
+                }
+            }
+            .rightTop{
+                width: 367px;
+                height: 62px;
+                background:rgba(255,255,255,1);
+                box-shadow:0px 0px 6px 0px rgba(174,174,174,0.14);
+                font-size: 18px;
+                line-height: 62px;
+                font-weight: bold;
+                padding-left: 22px;
+                color:#222;
+            }
+            .leftBottom{
+                width: 830px;
+                min-height: 562px;
+                background:rgba(255,255,255,1);
+                box-shadow:0px 0px 6px 0px rgba(174,174,174,0.14);
+                padding: 14px 13px 0 15px;
+                .all{
+                    width:802px;
+                    min-height:240px;
+                    display: flex;
+                    background:rgba(252,252,252,1);
+                    border:1px solid rgba(238, 238, 238, 1);
+                    padding:38px 20px 32px 19px;
+                    img{
+                        width: 44px;
+                        height: 44px;
+                    }
+                    .content{
+                        height: 240px;
+                        margin-left: 14px;
+                        padding-left: 18px; 
+                        border-left:1px solid rgba(238, 238, 238, 1);
+                        strong{
+                            font-size: 20px;
+                            color: #222;
+                            margin: 0;
+                        }
+                        span{
+                            float:right;
+                            line-height: 26px;
+                            font-size: 14px;
+                            color:#666;
+                        }
+                        p{
+                            line-height: 30px;
+                            font-size: 18px;
+                            color:#222;
+                            margin: 26px 0;
+                        }
+                        a{
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: $--color-primary;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                
+            }
+            .rightBottom{
+                width: 367px;
+                height: 562px;
+                background:rgba(255,255,255,1);
+                box-shadow:0px 0px 6px 0px rgba(174,174,174,0.14);
+                ul{
+                    padding-left: 23px;
+                    list-style: none;
+                    li{
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        height: 75px;
+                        border-bottom:1px solid rgba(229,229,229,1);
+                        span{
+                            font-size: 12px;
+                            padding: 2px 7px;
+                            color:#fff;
+                            border-radius: 2px;
+                        }
+                        .unread{
+                            background: #FF5555;
+                        }
+                        .read{
+                            background: $--color-ending;
+                        }
+                        strong{
+                            font-size: 16px;
+                            margin-left: 22px;
+                        }
+                        h4{
+                            font-size: 14px;
+                            font-weight: normal;
+                            margin: 0;
+                            color:#666;
+                            margin-left: 60px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
