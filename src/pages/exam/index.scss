@@ -3,6 +3,7 @@
     .content{
         width: 1200px;
         margin: 0 auto;
+        margin-top: 21px;
         position: relative;
         .examHeader{
             list-style: none;
@@ -58,12 +59,13 @@
         }
         
         .courseListOne{
+            margin-top: 22px;
             h1{
                 color:#26292F;
                 font-size: 18px;
                 display: inline;
             }
-            span{
+            .flag{
                 margin-left: 12px;
                 color:$--color-attention;
                 font-size: 16px;
@@ -129,29 +131,32 @@
                             line-height: 47px;
                             margin-left: 16px;
                         }
+                        .el-button{
+                            width: 90px;
+                            height: 32px;
+                            float: right;
+                            margin-top: 7px;
+                            margin-right: 16px;
+                            padding: 0;
+                            span{
+                                line-height: 32px;
+                            }
+                        }
                     }
-                    button{
-                        position: absolute;
-                        left: 259px;
-                        top: 146px;
-                        width: 90px;
-                        height: 32px;
-                        background: $--color-primary;
-                        border-radius: 3px;
-                        color: $--color-default;
-                        font-size: 16px;
-                    }
+                    
+                    
                 }
                 
             }
         }
         .courseListTwo,.courseListThree{
+            margin-top: 22px;
             h1{
                 color:$--color-ending;
                 font-size: 18px;
                 display: inline;
             }
-            span{
+            .flag{
                 margin-left: 12px;
                 color:$--color-attention;
                 font-size: 16px;
@@ -216,28 +221,26 @@
                             margin-left: 16px;
                         }
                     }
-                    .detail{
-                        position: absolute;
-                        left: 259px;
-                        top: 146px;
+                    .el-button{
                         width: 90px;
                         height: 32px;
-                        background: $--color-primary;
-                        border-radius: 3px;
-                        color: $--color-default;
-                        font-size: 16px;
+                        float: right;
+                        padding: 0;
+                        margin-top: 7px;
+                        margin-right: 16px;
+                        span{
+                            line-height: 32px;
+                        }
                     }
-                    .no{
-                        position: absolute;
-                        left: 181px;
-                        top: 146px;
-                        width: 168px;
-                        height: 32px;
-                        background: $--color-ending;
-                        border-radius: 3px;
-                        color: $--color-default;
-                        font-size: 16px;
+                    .not{
+                        width: 157px;
+                        margin-top: 7px;
+                        margin-right: 16px;
+                        background-color:$--color-ending;
+                        border-color: $--color-ending;
+                        padding: 0 12px;
                     }
+                    
                 }
             }
         }
