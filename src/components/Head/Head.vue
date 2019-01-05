@@ -6,8 +6,13 @@
                 <li v-for="(title,url) in nav"><a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a></li>
             </ul>
             <div class="no-login">
-                <el-button type="primary">登录</el-button>
-                <el-button class="primary-btn">注册</el-button>
+                <a href="./login.html">
+                    <el-button type="primary">登录</el-button>
+                </a>
+                <a href="./register.html">
+                    <el-button class="primary-btn">注册</el-button>
+                </a>
+
             </div>
         </div>
     </div>

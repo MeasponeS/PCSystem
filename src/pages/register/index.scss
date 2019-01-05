@@ -2,9 +2,8 @@
     @import '../../assets/css/var.scss';
     .back{
         background: #333;
-        opacity:0.5;
         padding-top: 120px;
-        padding-bottom:76px; 
+        padding-bottom:76px;
     }
     .content{
         background: $--color-default;
@@ -32,7 +31,7 @@
             background:rgba(255,255,255,1);
             border:1px solid rgba(229,229,229,1);
             border-radius:4px;
-            margin-top: 20px; 
+            margin-top: 20px;
             &:focus{
             outline: none;
             border: 1px solid $--color-primary;
@@ -54,9 +53,9 @@
         .button{
             margin-top: 37px;
             width: 355px;
-            height: 48px;
-            color: $--color-default;
-            background: $--color-primary;
+            //height: 48px;
+            //color: $--color-default;
+            //background: $--color-primary;
         }
     }
 }

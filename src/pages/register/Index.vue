@@ -9,10 +9,10 @@
                 <input type="text" placeholder="验证码" class="input1">
                 <a href="##">获取验证码</a>
                 <input type="password" placeholder="设置密码不少于8位" class="input2">
-                <button class="button">保存密码</button>
+                <el-button type="primary" class="button">注册</el-button>
             </div>
         </div>
-        
+
         <Footer></Footer>
     </div>
 </template>
