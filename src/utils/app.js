@@ -1,5 +1,4 @@
 
-
 export function currentUrlToParams(key = null) {
     let paramsUrl = (window.location.href).split('?');
     if(paramsUrl.length<2)return key ? null : {};
@@ -13,5 +12,7 @@ export function currentUrlToParams(key = null) {
     return paramsData;
 }
 
-
+export function initUrlParams() {
+    window.URlPARAMS = currentUrlToParams();
+}
 
