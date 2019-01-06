@@ -19,7 +19,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=fn() >进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -27,7 +27,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=fn()>进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -35,7 +35,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=fn()>进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -43,7 +43,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=fn() >进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -51,7 +51,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=fn()>进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -59,7 +59,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=fn()>进入考场</el-button></h5>
                             
                         </li>
                     </ul>
@@ -73,7 +73,7 @@
                             <i>已结束</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道(答对18道)</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">查看详情</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><a href="examResults.html"><el-button type="primary" >考试详情</el-button></a></h5>
                             
                         </li>
                         <li>
@@ -89,7 +89,7 @@
                             <i>已结束</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道(答对18道)</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">查看详情</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><a href="examResults.html"><el-button type="primary" >考试详情</el-button></a></h5>
                             
                         </li>
                         <li>
@@ -132,10 +132,14 @@
         data: function () {
             return {
                 status:'opening',
-                ExamRules:true
+                ExamRules:false
             }
         },
-        methods: {},
+        methods: {
+            fn(){
+                this.ExamRules = !this.ExamRules
+            }
+        },
         mounted() {
 
         },

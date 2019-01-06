@@ -48,12 +48,12 @@
                     <li class="done"><span>已答</span>第10题</li>
                     <li class="done"><span>已答</span>第11题</li>
                     <li class="undone"><span>未答</span>第12题</li>
-                    <li class="undone"><span>未达</span>第13题</li>
-                    <li class="undone"><span>未达</span>第14题</li>
-                    <li class="undone"><span>未达</span>第15题</li>
-                    <li class="undone"><span>未达</span>第16题</li>
-                    <li class="undone"><span>未达</span>第17题</li>
-                    <li class="undone"><span>未达</span>第18题</li>
+                    <li class="undone"><span>未答</span>第13题</li>
+                    <li class="undone"><span>未答</span>第14题</li>
+                    <li class="undone"><span>未答</span>第15题</li>
+                    <li class="undone"><span>未答</span>第16题</li>
+                    <li class="undone"><span>未答</span>第17题</li>
+                    <li class="undone"><span>未答</span>第18题</li>
                 </ul>
                 <el-button type="primary" class="btn">提交试卷</el-button>
             </div>
