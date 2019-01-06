@@ -10,9 +10,12 @@ ul{
 body{
 
 }
-.el-button{
-  border-radius: 2px;
-}
+//.el-button{
+//  border-radius: 2px;
+//}
+//.el-input__inner{
+//  border-radius: 2px;
+//}
 .primary-btn{
   color: $--color-primary;
   border-color: $--color-primary;
@@ -98,6 +101,12 @@ select:-webkit-autofill {
 }
 .container-fluid{
   width: 100%;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
 }
 .main-body{
   min-height: calc(100vh - 176px);

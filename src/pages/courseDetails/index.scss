@@ -1,83 +1,238 @@
-#app{
-  @import '../../assets/css/var.scss';
-  background-color: #F5F7F9;
-  .main-body{
-    margin-top: 20px;
-    .left{
-      float: left;
-      width: 826px;
-      padding:0 21px;
-      background-color: #fff;
-      nav{
-        position: relative;
-        height:62px;
-        line-height: 62px;
-        border-bottom: 3px solid  #F5F7F9;
-        .lessson{
-          display: inline-block;
-          font-size: 18px;
-          .native{
-            cursor: pointer;
-            color: $--color-primary;
-          }
+#app {
+    @import '../../assets/css/var.scss';
+    background-color: #F5F7F9;
+    .main-body {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .left {
+            float: left;
+            width: 826px;
+            padding: 0 21px;
+            background-color: #fff;
+            .nav {
+                position: relative;
+                height: 62px;
+                line-height: 62px;
+                border-bottom: 3px solid #F5F7F9;
+                .lessson {
+                    display: inline-block;
+                    font-size: 18px;
+                    .native {
+                        cursor: pointer;
+                        color: $--color-primary;
+                    }
+                }
+                p {
+                    position: absolute;
+                    top: 0px;
+                    right: 14px;
+                    font-size: 14px;
+                    margin: 0;
+                    a {
+                        margin: 0 14px;
+                    }
+                    span {
+                        display: inline-block;
+                        width: 1px;
+                        height: 9px;
+                        background-color: #969FA9;
+                    }
+                }
+            }
+            .letf-content {
+                .title {
+                    color: #333;
+                    font-size: 18px;
+                    font-weight: normal;
+                }
+                .html-info {
+                    font-size: 16px;
+                    line-height: 36px;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+
         }
-        p{
-          position: absolute;
-          top: 0px;
-          right: 14px;
-          font-size: 14px;
-          margin: 0;
-          a{
-            margin: 0 14px;
-          }
-          span{
-            display: inline-block;
-            width: 1px;
-            height: 9px;
-            background-color: #969FA9;
-          }
+        .right {
+            float: right;
+            width: 366px;
+            background-color: #fff;
+            p {
+                font-size: 18px;
+                font-weight: bold;
+                margin-left: 26px;
+                span {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #969FA9;
+                    margin-left: 6px;
+                }
+            }
+            .accordion {
+                border: none;
+                .select-course {
+                    width: 100%;
+                    padding: 0 27px;
+                    height: 36px;
+                    .el-input__inner {
+                        height: 36px;
+                    }
+                }
+                .now {
+                    margin-top: 7px;
+                    padding-left: 26px;
+                    height: 60px;
+                    line-height: 60px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    border-bottom: 1px solid #E5E5E5;
+                    border-top: 1px solid #E5E5E5;
+                }
+                .chapter-list {
+                    width: 100%;
+                    >ul{
+                        margin: 0;
+                        padding: 0;
+                        >li{
+                            list-style-type: none;
+                            //overflow: hidden;
+                            border-bottom: 1px solid #E5E5E5;
+                            &.active .chapter{
+                                color: $--color-primary;
+                            }
+                            .chapter{
+                                cursor: pointer;
+                                width: 100%;
+                                height: 55px;
+                                line-height: 55px;
+                                color: #333;
+                                overflow: hidden;
+                                text-overflow:ellipsis;
+                                white-space: nowrap;
+                                padding: 0 23px 0 53px;
+                                font-size: 16px;
+                                position: relative;
+                                &:hover{
+                                    color: $--color-primary;
+                                }
+                                &:after{
+                                    content: ' ';
+                                    position: absolute;
+                                    left: 20px;
+                                    top: 20px;
+                                    width: 18px;
+                                    height: 18px;
+                                    background-size: 100% 100%;
+                                }
+                            }
+                            &.open .chapter:before{
+                                content: ' ';
+                                position: absolute;
+                                left: 28px;
+                                top: 38px;
+                                width: 2px;
+                                height: 20px;
+                                background: #9BB4FF;
+                            }
+                            &.close .chapter:after{
+                                background-image: url("./img/close.png");
+                            }
+                            &.open .chapter:after{
+                                background-image: url("./img/open.png");
+                            }
+                            .sub-chapter-list{
+                                //width: 100%;
+                                margin: 0;
+                                padding: 0;
+                                overflow: hidden;
+                                >ul{
+                                    height: 300px;
+                                    overflow: auto;
+                                    padding: 0;
+                                    margin: 0;
+                                    >li{
+
+                                        //width: 100%;
+                                        list-style-type: none;
+                                        position: relative;
+                                        cursor: pointer;
+                                        &:hover,&.active{
+                                            background: #F2F8FF;
+                                        }
+                                        .sub-chapter{
+                                            border-left: 2px solid #9BB4FF;
+                                            height: 75px;
+                                            margin-left: 28px;
+                                            position: relative;
+                                            &:before{
+                                                content: ' ';
+                                                position: absolute;
+                                                left: -8px;
+                                                top: 22px;
+                                                width: 14px;
+                                                height: 14px;
+                                                border-radius: 50%;
+                                                background: #9BB4FF;
+                                            }
+                                            .sub-chapter-content{
+                                                height: 100%;
+                                                padding: 18px 24px;
+                                                margin-left: 30px;
+                                                border-top: 1px solid #E5E5E5;
+                                                .top{
+                                                    display: flex;
+                                                    .free{
+                                                        width: 40px;
+                                                        height: 16px;
+                                                        color: #fff;
+                                                        text-align: center;
+                                                        line-height: 16px;
+                                                        border-radius: 2px;
+                                                        font-size: 12px;
+                                                        background: #FF5555;
+                                                    }
+                                                    .title{
+                                                        flex: 1;
+                                                        overflow: hidden;
+                                                        text-overflow:ellipsis;
+                                                        white-space: nowrap;
+                                                        font-size:14px;
+                                                        color: #333;
+                                                    }
+                                                }
+                                                .info{
+                                                    margin-top: 12px;
+                                                    width: 100%;
+                                                    span{
+                                                        color: #666;
+                                                        font-size: 12px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &.active .sub-chapter .sub-chapter-content .top .title{
+                                            color: #2961FF;
+                                        }
+
+                                    }
+                                }
+                            }
+                            &.close .sub-chapter-list{
+                                height: 0;
+                            }
+                        }
+
+
+                    }
+                }
+
+            }
         }
-      }
     }
-    .right{
-      float: right;
-      width: 366px;
-      background-color: #fff;
-      p{
-        font-size:18px;
-        font-weight:bold;
-        margin-left: 26px;
-        span{
-          font-size:14px;
-          font-weight:500;
-          color:#969FA9;
-          margin-left: 6px;
-        }
-      }
-      .accordion{
-        border: none;
-        .el-collapse-item__header{
-          font-size: 14px;
-          font-weight:bold;
-          width:322px;
-          height:36px;
-          background:rgba(245,247,249,1);
-          border:1px solid rgba(213,224,255,1);
-          border-radius:3px; 
-          margin: 0 auto;
-          padding-left: 14px;
-        }
-        .now{
-            margin-top: 7px;
-            padding-left:26px;
-            height: 60px;
-            line-height: 60px;
-            font-size: 18px;
-            font-weight:bold;
-            border-bottom: 1px solid #E5E5E5;
-            border-top: 1px solid #E5E5E5;
-        }
-      }
-    }
-  }
+}
+
+.el-select-dropdown.el-popper {
+    min-width: 312px !important;
 }
