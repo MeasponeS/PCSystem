@@ -1,0 +1,83 @@
+#app{
+  @import '../../assets/css/var.scss';
+  background-color: #F5F7F9;
+  .main-body{
+    margin-top: 20px;
+    .left{
+      float: left;
+      width: 826px;
+      padding:0 21px;
+      background-color: #fff;
+      nav{
+        position: relative;
+        height:62px;
+        line-height: 62px;
+        border-bottom: 3px solid  #F5F7F9;
+        .lessson{
+          display: inline-block;
+          font-size: 18px;
+          .native{
+            cursor: pointer;
+            color: $--color-primary;
+          }
+        }
+        p{
+          position: absolute;
+          top: 0px;
+          right: 14px;
+          font-size: 14px;
+          margin: 0;
+          a{
+            margin: 0 14px;
+          }
+          span{
+            display: inline-block;
+            width: 1px;
+            height: 9px;
+            background-color: #969FA9;
+          }
+        }
+      }
+    }
+    .right{
+      float: right;
+      width: 366px;
+      background-color: #fff;
+      p{
+        font-size:18px;
+        font-weight:bold;
+        margin-left: 26px;
+        span{
+          font-size:14px;
+          font-weight:500;
+          color:#969FA9;
+          margin-left: 6px;
+        }
+      }
+      .accordion{
+        border: none;
+        .el-collapse-item__header{
+          font-size: 14px;
+          font-weight:bold;
+          width:322px;
+          height:36px;
+          background:rgba(245,247,249,1);
+          border:1px solid rgba(213,224,255,1);
+          border-radius:3px; 
+          margin: 0 auto;
+          padding-left: 14px;
+        }
+        .now{
+            margin-top: 7px;
+            padding-left:26px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 18px;
+            font-weight:bold;
+            border-bottom: 1px solid #E5E5E5;
+            border-top: 1px solid #E5E5E5;
+        }
+      }
+    }
+  }
+}
