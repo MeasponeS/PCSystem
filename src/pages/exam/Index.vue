@@ -2,11 +2,13 @@
     <div id="app">
         <Head></Head>
         <div class="content">
-            <ul class="examHeader">
-                <li @click="status='opening'" :class="{active:status=='opening'}">开放中</li>
-                <li @click="status='notOpened'" :class="{active:status=='notOpened'}">未开放</li>
-                <li @click="status='opened'" :class="{active:status=='opened'}">已过期</li>
-            </ul>
+            <div class="examHeader">
+                <div @click="status='opening'" :class="{active:status=='opening'}">开放中</div>
+                <div class="mid"></div>
+                <div @click="status='notOpened'" :class="{active:status=='notOpened'}">未开放</div>
+                <div class="mid"></div>
+                <div @click="status='opened'" :class="{active:status=='opened'}">已过期</div>
+            </div>
             <i class="el-icon-arrow-left"></i>
             <i class="el-icon-arrow-right"></i>
             <div v-show="status=='opening'">
