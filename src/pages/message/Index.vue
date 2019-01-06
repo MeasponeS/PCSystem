@@ -55,20 +55,15 @@
 </template>
 
 <script>
-    export default {
-        name: 'app',
-        data: function () {
-            return {
-            }
-        },
-        methods: {},
-        mounted() {
-
-        },
-        beforeDestroy: function () {
-
-        },
-        components: {}
-    }
+export default {
+  name: "app",
+  data: function() {
+    return {};
+  },
+  methods: {},
+  mounted() {},
+  beforeDestroy: function() {},
+  components: {}
+};
 </script>
 

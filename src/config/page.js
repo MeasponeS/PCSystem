@@ -26,5 +26,8 @@ module.exports = {
     },
     study:{
         title:'课程详情'
+    },
+    courseDetails:{
+        title:'课程学习页'
     }
 }
