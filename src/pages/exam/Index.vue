@@ -2,11 +2,13 @@
     <div id="app">
         <Head></Head>
         <div class="content">
-            <ul class="examHeader">
-                <li @click="status='opening'" :class="{active:status=='opening'}">开放中</li>
-                <li @click="status='notOpened'" :class="{active:status=='notOpened'}">未开放</li>
-                <li @click="status='opened'" :class="{active:status=='opened'}">已过期</li>
-            </ul>
+            <div class="examHeader">
+                <div @click="status='opening'" :class="{active:status=='opening'}">开放中</div>
+                <div class="mid"></div>
+                <div @click="status='notOpened'" :class="{active:status=='notOpened'}">未开放</div>
+                <div class="mid"></div>
+                <div @click="status='opened'" :class="{active:status=='opened'}">已过期</div>
+            </div>
             <i class="el-icon-arrow-left"></i>
             <i class="el-icon-arrow-right"></i>
             <div v-show="status=='opening'">
@@ -118,6 +120,12 @@
             </div>
             <div v-show="status=='notOpened'"></div>
             <div v-show="status=='opened'"></div>
+            <div class="no-exam">
+                    <div style="text-align: center">
+                        <img src="./img/暂无开放中的考试.png" alt="">
+                        <p>暂无开放中的考试</p>
+                    </div>
+                </div>
         </div>
         <Footer></Footer>
         <ExamRules v-model="ExamRules"></ExamRules>
