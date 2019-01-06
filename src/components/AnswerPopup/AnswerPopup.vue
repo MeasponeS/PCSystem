@@ -62,6 +62,7 @@
             }
             .answer-content{
                 padding: 32px 22px;
+                width: 100%;
                 .title{
                     font-size: 24px;
                     color: #333333;
