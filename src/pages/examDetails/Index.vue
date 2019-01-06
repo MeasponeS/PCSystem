@@ -55,7 +55,7 @@
                     <li class="undone"><span>未答</span>第17题</li>
                     <li class="undone"><span>未答</span>第18题</li>
                 </ul>
-                <el-button type="primary" class="btn">提交试卷</el-button>
+                <el-button type="primary" class="btn" @click='open'>提交试卷</el-button>
             </div>
         </div>
         <Footer></Footer>
@@ -69,7 +69,25 @@
             return {
             }
         },
-        methods: {},
+        methods: {
+            open() {
+                this.$confirm('是否确认交卷', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+                }).then(() => {
+                this.$message({
+                    type: 'success',
+                    message: '提交成功!'
+                });
+                }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消交卷'
+                });          
+                });
+            }
+        },
         mounted() {
 
         },
