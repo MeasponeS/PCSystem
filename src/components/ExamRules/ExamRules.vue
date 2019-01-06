@@ -21,8 +21,8 @@
                         北京位于华北平原北部，背靠燕山，毗邻天津市和河北省。北京的气候为典型的北温带半湿润大陆性季风气候。
                     北京是首批国家历史文化名城和世界上拥有世界文化遗产数最多的城市，三千多年的历史孕育了故宫、天坛、八达岭长城、颐和园等众多名胜古迹。早在七十万年前，北京周口店地区就出现了原始人群部落“北京人”。公元前1045年，北京成为蓟、燕等诸侯国的都城。公元938年以来，北京先后成为辽陪都、金中都、元大都、明、清国都。明清时期，北京成为“天下四聚”之一，中华民国时期曾是北洋政府首都，1949年10月1日成为中华人民共和国首都。
                 </div>
-                <el-button plain class="primary-btn btn btnLeft">取消</el-button>
-                <el-button type="primary" class="btn btnRight">开始考试</el-button>
+                <el-button  @click="$emit('input',false)" plain class="primary-btn btn btnLeft">取消</el-button>
+                <a href="examDetails.html"><el-button type="primary" class="btn btnRight">开始考试</el-button></a>
                 <img @click="$emit('input',false)" class="close" src="../../assets/img/close.png" alt="">
             </div>
         </el-dialog>
@@ -82,9 +82,15 @@
                     .btn{
                         width: 200px;
                         height: 50px;
+                        margin: 5px;
                         margin-top: 46px;
                     }
-                    
+                    .btnLeft{
+                        &:hover{
+                            background: $--color-primary;
+                            color: $--color-default;
+                        }
+                    }
                     .close{
                         cursor: pointer;
                         width: 40px;

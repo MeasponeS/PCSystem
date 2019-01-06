@@ -19,7 +19,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -27,7 +27,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -35,7 +35,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -43,7 +43,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -51,7 +51,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
                             
                         </li>
                         <li>
@@ -59,8 +59,7 @@
                             <i>进行中</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">进入考场</el-button></h5>
-                            
+                            <h5><em>考试时长：10分钟</em><el-button class="not" type="primary" @click=open()>未开放</el-button></h5>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +72,7 @@
                             <i>已结束</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道(答对18道)</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">查看详情</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><a href="examResults.html"><el-button type="primary" >考试详情</el-button></a></h5>
                             
                         </li>
                         <li>
@@ -89,7 +88,7 @@
                             <i>已结束</i>
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道(答对18道)</h4>
-                            <h5><em>考试时长：10分钟</em><el-button type="primary">查看详情</el-button></h5>
+                            <h5><em>考试时长：10分钟</em><el-button type="primary" @click=open2()>考试详情</el-button></h5>
                             
                         </li>
                         <li>
@@ -132,10 +131,26 @@
         data: function () {
             return {
                 status:'opening',
-                ExamRules:true
+                ExamRules:false
             }
         },
-        methods: {},
+        methods: {
+            alertFn(){
+                this.ExamRules = !this.ExamRules
+            },
+            open(){
+                this.$alert('还没有到考试时间', '提示', {
+                confirmButtonText: '确定',
+                type: 'warning'
+                });
+            },
+            open2(){
+                this.$alert('为保证公平公正，请于考试结束时间之后查看成绩', '提示', {
+                confirmButtonText: '确定',
+                type: 'info'
+                });
+            }
+        },
         mounted() {
 
         },
