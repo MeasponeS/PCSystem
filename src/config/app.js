@@ -12,7 +12,7 @@ export default {
     apiUrl : nodeDevEnv ? devApiUrl : proApiUrl,
     apiPrefix : "",
     timeout:1000,
-    storageKey:'JKCYXTPC',
+    storageUserKey:'JKCYXTPC_USER_STORAGE',
     requestRetry:4,
     requestRetryDelay:800,
     nav:{
@@ -20,5 +20,6 @@ export default {
         topic:'习题集',
         exam:'考试',
         message:'消息'
-    }
+    },
+
 }

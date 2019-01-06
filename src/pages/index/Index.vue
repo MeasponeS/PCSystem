@@ -172,20 +172,19 @@
                 <div class="no-course">
                     <div style="text-align: center">
                         <img src="./img/noc.png" alt="">
-                        <p>当前学堂还没有安排任何课程</p>
+                        <p @click="open5">当前学堂还没有安排任何课程</p>
                     </div>
                 </div>
             </div>
         </div>
         <Footer></Footer>
-        <NoLearningCard v-model="NoLearningCard" :phone="12345678901"></NoLearningCard>
-        <OpenLearningCard v-model="OpenLearningCard" :phone="12345678901"></OpenLearningCard>
+
     </div>
 </template>
 
 <script>
-    import NoLearningCard from '../../components/NoLearningCard/NoLearningCard.vue'
-    import OpenLearningCard from '../../components/OpenLearningCard/OpenLearningCard.vue'
+    import popupAnswer from '../../components/AnswerPopup/index.js'
+    import {getUrlInfo} from '../../utils/dataStorage.js'
     export default {
         name: 'app',
         data: function () {
@@ -195,14 +194,18 @@
                 OpenLearningCard: true,
             }
         },
-        methods: {},
+        methods: {
+            open5() {
+                popupAnswer(this,'ABC','<h1>hsads</h1>');
+            }
+        },
         mounted() {
-
+            console.log(getUrlInfo())
         },
         beforeDestroy: function () {
 
         },
-        components: {NoLearningCard,OpenLearningCard}
+        components: {}
     }
 </script>
 

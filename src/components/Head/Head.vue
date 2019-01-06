@@ -1,7 +1,7 @@
 <template>
     <div class="head">
         <div class="container">
-            <img class="logo" :src="logoUrl" alt="">
+            <img class="logo" src="./img/logo.jpg" alt="">
             <ul class="nav">
                 <li v-for="(title,url) in nav"><a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a></li>
             </ul>
@@ -29,7 +29,7 @@
             },
             logoUrl:{
                 type:String,
-                default:'./img/logo.jpg',
+                default:'',
             },
             info:{
                 type:Object,
