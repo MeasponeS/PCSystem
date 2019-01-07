@@ -2,7 +2,7 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item v-for="item in nav">
-        <a :style="'max-width:'+ (item.hasOwnProperty('width')?item.width:'168px') " class="breadcrumb-a" :href="item.url">{{ item.name }}</a>
+        <a :style="'max-width:'+ (item.hasOwnProperty('width')?item.width:'168px') " class="breadcrumb-a" :href="item.url" :title="item.name">{{ item.name }}</a>
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
