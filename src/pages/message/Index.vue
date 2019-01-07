@@ -4,10 +4,12 @@
         <div class="wrapper">
             <div class="container main-body">
                 <div class="leftTop">
-                    <el-breadcrumb separator-class="el-icon-arrow-right">
-                        <el-breadcrumb-item ><a href="message.html">消息列表</a></el-breadcrumb-item>
-                        <el-breadcrumb-item class="active"><a href="message.html">消息详情</a></el-breadcrumb-item>
-                    </el-breadcrumb> 
+                    <Breadcrumb class="message"
+                        :nav="[
+                            {url:'./message.html',name:'消息列表'},
+                            {url:'javascript:;',name:'消息详情'}
+                        ]"
+                    ></Breadcrumb>
                 </div>
                 <div class="rightTop">消息列表</div>
                 <div class="leftBottom">
@@ -93,6 +95,7 @@
 </template>
 
 <script>
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 export default {
   name: "app",
   data: function() {
@@ -103,7 +106,7 @@ export default {
   methods: {},
   mounted() {},
   beforeDestroy: function() {},
-  components: {}
+  components: {Breadcrumb}
 };
 </script>
 

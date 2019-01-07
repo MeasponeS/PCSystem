@@ -4,10 +4,12 @@
         <div class="container main-body">
             <div class="left">
                 <div class="header">
-                    <el-breadcrumb separator-class="el-icon-arrow-right">
-                        <el-breadcrumb-item class="exam"><a href="exam.html">考试</a></el-breadcrumb-item>
-                        <el-breadcrumb-item class="now"><a href="examDetails.html">20181221 模拟考试</a></el-breadcrumb-item>
-                    </el-breadcrumb>  
+                    <Breadcrumb
+                        :nav="[
+                            {url:'./exam.html',name:'考试'},
+                            {url:'javascript:;',name:'20181221 模拟考试'}
+                        ]"
+                    ></Breadcrumb>  
                     <em>23:59:59</em>
                 </div>
                 <div class="content">
@@ -65,6 +67,7 @@
 </template>
 
 <script>
+    import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
     export default {
         name: 'app',
         data: function () {
@@ -96,7 +99,7 @@
         beforeDestroy: function () {
 
         },
-        components: {}
+        components: {Breadcrumb}
     }
 </script>
 
