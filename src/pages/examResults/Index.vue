@@ -3,7 +3,13 @@
         <Head></Head>
         <div class="wrapper">
             <div class="container main-body">
-            <h2 class="top">考试 > 20181221模拟考试 > <span>考试结果</span></h2>
+            <div class="top">
+                 <Breadcrumb class="head">
+                    <a href="exam.html" slot="header">考试</a>
+                    <a href="examDetails.html">20181221模拟考试</a>
+                    <a href="examResults.html" slot="footer" class="active">考试结果</a>
+                </Breadcrumb>
+            </div>
             <div class="content">
                 <div class="left">
                 <div class="up">
@@ -100,6 +106,7 @@
 </template>
 
 <script>
+    import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
     export default {
         name: 'app',
         data: function () {
@@ -114,7 +121,7 @@
         beforeDestroy: function () {
 
         },
-        components: {}
+        components: {Breadcrumb}
     }
 </script>
 

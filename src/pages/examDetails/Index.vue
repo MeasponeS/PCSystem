@@ -4,9 +4,11 @@
         <div class="container main-body">
             <div class="left">
                 <div class="header">
-                    <h1>考试 > </h1>
-                    <span>20181221 模拟考试</span>
-                    <i>23:59:59</i>
+                    <el-breadcrumb separator-class="el-icon-arrow-right">
+                        <el-breadcrumb-item class="exam"><a href="exam.html">考试</a></el-breadcrumb-item>
+                        <el-breadcrumb-item class="now"><a href="examDetails.html">20181221 模拟考试</a></el-breadcrumb-item>
+                    </el-breadcrumb>  
+                    <em>23:59:59</em>
                 </div>
                 <div class="content">
                     <h1>第 1 题 / 共 32 题</h1>

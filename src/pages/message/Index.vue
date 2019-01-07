@@ -4,8 +4,10 @@
         <div class="wrapper">
             <div class="container main-body">
                 <div class="leftTop">
-                    消息列表 > 
-                    <span>消息详情</span>
+                    <el-breadcrumb separator-class="el-icon-arrow-right">
+                        <el-breadcrumb-item ><a href="message.html">消息列表</a></el-breadcrumb-item>
+                        <el-breadcrumb-item class="active"><a href="message.html">消息详情</a></el-breadcrumb-item>
+                    </el-breadcrumb> 
                 </div>
                 <div class="rightTop">消息列表</div>
                 <div class="leftBottom">
@@ -38,12 +40,12 @@
                         </li>
                         <li>
                             <span class="read">已读</span>
-                            <strong>这里是消息标题</strong>
+                            <strong>这里是消息标题哈哈哈哈哈哈哈哈哈哈或或或或或或</strong>
                             <h4>2018.12.19 13:00:02</h4>
                         </li>
                         <li>
                             <span class="read">已读</span>
-                            <strong>不知道放这里合不合适啊</strong>
+                            <strong>不知道放这里合不合适啊我也不知道啊你问我干什么我真的不知道</strong>
                             <h4>2018.12.19 13:00:01</h4>
                         </li>
                     </ul>
