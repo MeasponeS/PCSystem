@@ -10,12 +10,15 @@
             <el-button type="danger">危险按钮</el-button> -->
             <div class="left">
                 <div class="nav">
-                    <Breadcrumb class="lessson">
-                        <a href="./index.html" slot="header">健康管理师</a>
-                        <a href="./message.html">健康管理概论</a>
-                        <a href="./login.html" slot="footer" class="native">本章节的学习目标</a>
-                    </Breadcrumb>
-                    <p>
+                    <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
+                    <Breadcrumb class="lessson"
+                        :nav="[
+                            {url:'./index.html',name:course.name},
+                            {url:'./index.html',name:currentCourseName},
+                            {url:'javascript:;',name:'本章节的学习目标'}
+                        ]"
+                    ></Breadcrumb>
+                    <p class="nav-act">
                         <a href="javascript:;">收藏</a>
                         <span></span>
                         <a href="javascript:;">上一节</a>
@@ -49,12 +52,12 @@
                     <!--<span>一. 健康管理通用课程<i class="header-icon el-icon-caret-right"></i></span>-->
                     <!--</template>-->
 
-                    <el-select v-model="value" class="select-course" placeholder="请选择">
+                    <el-select v-model="currentCourseId" class="select-course" placeholder="请选择课程">
                         <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                                v-for="item in chapters"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
                         </el-option>
                     </el-select>
 
@@ -371,18 +374,32 @@
 </template>
 
 <script>
-    import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-
+    import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
+    import {course,chapters} from './data.js'
     export default {
         name: "app",
         data: function () {
             return {
-                options: [{
-                    value: '选项1',
-                    label: '一. 健康管理通用课程'
-                }],
-                value: ''
+                chapters:chapters,
+                course:course,//课程包信息
+                currentCourseId: ''
             };
+        },
+        // currentCourseName
+        computed: {
+            currentCourseName: function () {
+                if(this.chapters.length == 0 || !this.currentCourseId){
+                    return '';
+                }
+                let name = '';
+                this.chapters.forEach(r=>{
+                    if(r.id == this.currentCourseId){
+                        name = r.name;
+                        return ;
+                    }
+                });
+                return name;
+            }
         },
         methods: {},
         mounted() {

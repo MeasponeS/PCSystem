@@ -13,17 +13,15 @@
                 position: relative;
                 height: 62px;
                 line-height: 62px;
+                display: flex;
+                align-items: center;
                 border-bottom: 3px solid #F5F7F9;
                 .lessson {
-                    display: inline-block;
+                    flex: 1;
                     font-size: 18px;
-                    .native {
-                        cursor: pointer;
-                        color: $--color-primary;
-                    }
                 }
-                p {
-                    position: absolute;
+                .nav-act {
+                    width: 194px;
                     top: 0px;
                     right: 14px;
                     font-size: 14px;
