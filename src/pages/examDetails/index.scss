@@ -76,6 +76,11 @@
                     &:last-child{
                         border:none
                     }
+                    a{
+                        &:hover{
+                            color:$--color-primary;
+                        }
+                    }
                 }
             }
             .question{
