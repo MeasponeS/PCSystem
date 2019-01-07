@@ -29,5 +29,14 @@ module.exports = {
     },
     courseDetails:{
         title:'课程学习页'
+    },
+    examDetails:{
+        title:'考试中'
+    },
+    examResults:{
+        title:'考试详情'
+    },
+    collection:{
+        title:'我的收藏'
     }
 }
