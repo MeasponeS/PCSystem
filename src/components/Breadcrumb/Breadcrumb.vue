@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-    name: 'AnswerPopup',
+    name: 'Breadcrumb',
     props: {
         nav: Array,
     }

@@ -1,296 +1,30 @@
 
 <template>
-   <div class="course-details-sidebar chapter-list">
+   <div id="sidebar" class="course-details-sidebar chapter-list">
        <ul>
-           <li class="open">
-               <div class="chapter">
-                   1. 健康保险与健康管理健康保险与健康管理健康保康管理
+           <li
+                   :class="collapseIndex== index ? 'open' : 'close'"
+                   v-for="(item,index) in chapters"
+
+           >
+               <div
+                   :class="{active : activeChapterIndex.chapter == index}"
+                    class="chapter" @click="collapseIndex = index"
+               >
+                   {{ index+1 }}. {{ item.name }}
                </div>
                <div class="sub-chapter-list">
                    <ul>
-                       <li>
+                       <li
+                               v-for="(sub,subIndex) in item.sub"
+                               :class="{active : (activeChapterIndex.chapter == index)&&(activeChapterIndex.subChapter == subIndex) }"
+                               @click="selectChapter(index,subIndex,item.id,sub.id)"
+                       >
                            <div class="sub-chapter">
                                <div class="sub-chapter-content">
                                    <div class="top">
-                                       <div class="free">免费</div>
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li class="active">
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                   </ul>
-               </div>
-           </li>
-           <li class="close active">
-               <div class="chapter">
-                   1. 健康保险与健康管理健康保险与健康管理健康保康管理
-               </div>
-               <div class="sub-chapter-list">
-                   <ul>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="free">免费</div>
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li class="active">
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                   </ul>
-               </div>
-           </li>
-           <li class="close">
-               <div class="chapter">
-                   1. 健康保险与健康管理健康保险与健康管理健康保康管理
-               </div>
-               <div class="sub-chapter-list">
-                   <ul>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="free">免费</div>
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li class="active">
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                   </ul>
-               </div>
-           </li>
-           <li class="close">
-               <div class="chapter">
-                   1. 健康保险与健康管理健康保险与健康管理健康保康管理
-               </div>
-               <div class="sub-chapter-list">
-                   <ul>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="free">免费</div>
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li class="active">
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
-                                   </div>
-                                   <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
-                                   </div>
-                               </div>
-                           </div>
-                       </li>
-                       <li>
-                           <div class="sub-chapter">
-                               <div class="sub-chapter-content">
-                                   <div class="top">
-                                       <div class="title">1.1.啊实打实大师多个梵蒂冈难解难分动动手啊实打实大师多个梵蒂冈难解难分动动手</div>
+                                       <div class="free" v-if="sub.vipType == 0">免费</div>
+                                       <div class="title">{{ index+1 }}.{{ subIndex+1 }}.{{ sub.name }}</div>
                                    </div>
                                    <div class="info">
                                        <span class="fl">30303人学过</span>
@@ -309,8 +43,99 @@
     export default {
         name: 'Sidebar',
         props: {
-            nav: Array,
-        }
+            chapters: Array,
+        },
+        data: function () {
+            return {
+                collapseIndex:0,//当前展开的章节索引
+                activeChapterIndex:{
+                    chapter:0,//当前激活的章节索引
+                    subChapter:0,//当前激活的子章节索引
+                },
+            };
+        },
+        //
+        methods: {
+            lastChapter(){//上
+                let currentCI = this.activeChapterIndex.chapter;
+                let currentSCI = this.activeChapterIndex.subChapter;
+                let collapseIndex = this.collapseIndex;
+
+                if(currentCI == 0 &&  currentSCI == 0){
+                    this.$message('已经是第一章了');
+                    return;
+                }
+
+                if(currentSCI == 0){
+                    currentCI --;
+                    collapseIndex--;
+                    currentSCI = ((this.chapters[currentCI].sub).length)-1;
+                }else {
+                    if(collapseIndex != currentCI){
+                        collapseIndex = currentCI;
+                    }
+                    currentSCI --;
+                }
+
+                let chapterId = this.chapters[currentCI].id;
+                let subChapterId =this.chapters[currentCI].sub[currentSCI].id;
+                this.selectChapter(currentCI,currentSCI,chapterId,subChapterId,collapseIndex);
+            },
+            nextChapter(){//下
+                let currentCI = this.activeChapterIndex.chapter;
+                let currentSCI = this.activeChapterIndex.subChapter;
+                let collapseIndex = this.collapseIndex;
+
+                if(
+                    currentCI + 1 == this.chapters.length &&
+                    currentSCI + 1 == (this.chapters[currentCI].sub).length
+                ){
+                    this.$message('已经是最后一章了');
+                    return;
+                }
+
+                if(currentSCI == ((this.chapters[currentCI].sub).length)-1){
+                    currentCI ++;
+                    collapseIndex++;
+                    currentSCI = 0;
+                }else {
+                    if(collapseIndex != currentCI){
+                        collapseIndex = currentCI;
+                    }
+                    currentSCI ++;
+                }
+
+                let chapterId = this.chapters[currentCI].id;
+                let subChapterId =this.chapters[currentCI].sub[currentSCI].id;
+                this.selectChapter(currentCI,currentSCI,chapterId,subChapterId,collapseIndex);
+            },
+            //用于切换章节
+            //collapseIndex决定展开的章节和滚动条的位置。所以除了用户点击上一节和下一节之外，其他不应该传collapseIndex过来
+            selectChapter(chapterIndex,subChapterIndex,chapterId,subChapterId,collapseIndex=null){
+                let currentCI = this.activeChapterIndex.chapter;
+                let currentSCI = this.activeChapterIndex.subChapter;
+                if(currentCI == chapterIndex && currentSCI == subChapterIndex){
+                    return;
+                }
+
+
+                this.$emit('selectChapter',{chapterId:chapterId,subChapterId:subChapterId},_=>{
+                    this.activeChapterIndex.chapter = chapterIndex;
+                    this.activeChapterIndex.subChapter = subChapterIndex;
+                    if(collapseIndex == null)return;
+
+                    this.collapseIndex = collapseIndex;
+                    //滚动条
+                    setTimeout(_=>{
+
+                        let sidebarLi = document.querySelectorAll('#sidebar>ul>li');
+                        let activeSidebar = sidebarLi[chapterIndex].querySelectorAll('ul');
+                        activeSidebar[0].scroll(0,(subChapterIndex)*75);
+                    },200)
+
+                });
+            }
+        },
     }
 </script>
 <style lang="scss" scoped>
@@ -325,9 +150,7 @@
                     list-style-type: none;
                     //overflow: hidden;
                     border-bottom: 1px solid #E5E5E5;
-                    &.active .chapter{
-                        color: $--color-primary;
-                    }
+
                     .chapter{
                         cursor: pointer;
                         width: 100%;
@@ -340,8 +163,11 @@
                         padding: 0 23px 0 53px;
                         font-size: 16px;
                         position: relative;
-                        &:hover{
+                        &.active{
                             color: $--color-primary;
+                        }
+                        &:hover{
+                            //color: $--color-primary;
                         }
                         &:after{
                             content: ' ';
@@ -369,7 +195,6 @@
                         background-image: url("./img/open.png");
                     }
                     .sub-chapter-list{
-                        //width: 100%;
                         margin: 0;
                         padding: 0;
                         overflow: hidden;
@@ -378,6 +203,7 @@
                             overflow: auto;
                             padding: 0;
                             margin: 0;
+                            transition: height ease-in-out .45s;
                             >li{
 
                                 //width: 100%;
@@ -445,7 +271,7 @@
                             }
                         }
                     }
-                    &.close .sub-chapter-list{
+                    &.close .sub-chapter-list>ul{
                         height: 0;
                     }
                 }
