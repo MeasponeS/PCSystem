@@ -4,11 +4,11 @@
         <div class="wrapper">
             <div class="container main-body">
             <div class="top">
-                 <Breadcrumb class="head">
-                    <a href="exam.html" slot="header">考试</a>
-                    <a href="examDetails.html">20181221模拟考试</a>
-                    <a href="examResults.html" slot="footer" class="active">考试结果</a>
-                </Breadcrumb>
+                <el-breadcrumb separator-class="el-icon-arrow-right" class="head">
+                    <el-breadcrumb-item><a href="exam.html">考试</a></el-breadcrumb-item>
+                    <el-breadcrumb-item><a href="examDetails.html">20181221模拟考试</a></el-breadcrumb-item>
+                    <el-breadcrumb-item><a href="examResults.html" class="active">考试结果</a></el-breadcrumb-item>
+                </el-breadcrumb>
             </div>
             <div class="content">
                 <div class="left">
@@ -106,7 +106,6 @@
 </template>
 
 <script>
-    import Breadcrumb from '../../components/Breadcrumb/Breadcrumb'
     export default {
         name: 'app',
         data: function () {
@@ -121,7 +120,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Breadcrumb}
+        components: {}
     }
 </script>
 
