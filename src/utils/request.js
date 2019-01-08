@@ -12,6 +12,22 @@ const service = Axios.create({
 service.defaults.retry = Config.requestRetry;
 service.defaults.retryDelay = Config.requestRetryDelay;
 
+// service.interceptors.request.use(
+//     config => {
+//         let noParameters = config.url.indexOf('?')  == -1;
+//         if (store.getters.token) {
+//             //config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+//             config.url = noParameters ? config.url+'?access_token='+ getToken(): config.url+'&token='+ getToken()
+//         }
+//         return config
+//     },
+//     error => {
+//         Promise.reject(error)
+//     }
+// )
+
+
+
 service.interceptors.response.use(
     response => {//Grade
         const res = response
