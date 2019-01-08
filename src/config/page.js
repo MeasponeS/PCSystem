@@ -18,6 +18,9 @@ module.exports = {
     topic:{
         title:'习题集'
     },
+    topicList:{
+        title:'习题集列表'
+    },
     register:{
         title:'注册'
     },

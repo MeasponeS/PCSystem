@@ -1,0 +1,120 @@
+@import '../../assets/css/var.scss';
+.main-body{
+    overflow: hidden;
+    background: #F3F5F7;
+    padding-bottom: 36px;
+    .content{
+        box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
+        .nav{
+            background:#fff;
+            height:62px;
+            margin: 8px 0 2px;
+            display: flex;
+            align-items: center;
+            padding-left: 22px;
+            color: #26292F;
+            font-size: 18px;
+        }
+        .topic-list{
+            display: flex;
+            .top{
+                width: 100%;
+                height: 66px;
+                color: #26292F;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                padding: 0 28px;
+                border-bottom: 1px solid #F6F6F6;
+            }
+            .topic-list-l{
+                width: 830px;
+                min-height: 562px;
+                background:#fff;
+                margin-right: 2px;
+                .top{
+                    ul{
+                        flex: 1;
+                        margin: 0;
+                        padding: 0;
+                        li{
+                            list-style-type: none;
+                            float: left;
+                            padding: 4px 0;
+                            margin-right: 34px;
+                            cursor: pointer;
+                            position: relative;
+                            &.active,&:hover{
+                                color: $--color-primary;
+                                border-bottom: 2px solid $--color-primary;
+                            }
+                            &:after{
+                                content: '';
+                                position: absolute;
+                                right: -16px;
+                                top: 10px;
+                                width: 1px;
+                                height: 10px;
+                                background: #969FA9;
+                            }
+                            &:last-child:after{
+                                width: 0;
+                            }
+                        }
+                    }
+                }
+                .checkpoint{
+                    display: flex;
+                    flex-wrap: wrap;
+                    .li{
+                        width: 166px;
+                        height: 52px;
+                        align-items: center;
+                        display: flex;
+                        padding: 0 26px;
+                        font-size: 16px;
+                        color: #222222;
+                        border-bottom: 1px solid #F6F6F6;
+                        &:hover{
+                            color: $--color-primary;
+                        }
+                        span{
+                            color: #fff;
+                            width: 40px;
+                            height: 16px;
+                            margin-right: 12px;
+                            background: #969FA9;
+                            border-radius:2px;
+                            line-height: 16px;
+                            font-size: 12px;
+                            text-align: center;
+                        }
+                        &.pass{
+                            span{
+                                background: #52AD30;
+                            }
+                        }
+                        &.unpass{
+                            span{
+                                background: #FF5555;
+                            }
+                        }
+                    }
+                }
+            }
+            .topic-list-r{
+                background:#fff;
+                flex: 1;
+                height: 562px;
+                .li{
+                    height: 52px;
+                    line-height: 52px;
+                    font-size: 16px;
+                    color: #222222;
+                    padding: 0 28px;
+                    border-bottom: 1px solid #F6F6F6;
+                }
+            }
+        }
+    }
+}

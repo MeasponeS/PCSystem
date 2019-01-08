@@ -14,7 +14,10 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+    .el-breadcrumb__separator[class*=icon]{
+        font-size: 18px;
+    }
     .breadcrumb-a{
         display: inline-block;
         overflow: hidden;
@@ -26,5 +29,6 @@ export default {
         &:hover,&[href='javascript:;']{
             color: #4F7FFB!important;
         }
+
     }
 </style>
