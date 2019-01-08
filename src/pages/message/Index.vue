@@ -2,7 +2,7 @@
     <div id="app">
         <Head activeUrl="message"></Head>
         <div class="wrapper">
-            <div class="container main-body">
+            <div class="container main-body" v-if="show">
                 <div class="leftTop">
                     <Breadcrumb class="message"
                         :nav="[
@@ -90,23 +90,26 @@
                 </div>
             </div>
         </div>
+        <EmptyTemplate v-if="!show" msg="暂无任何消息" imgKey="Msg"></EmptyTemplate>
         <Footer></Footer>
     </div>
 </template>
 
 <script>
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
 export default {
   name: "app",
   data: function() {
     return {
-        message:'message1'
+        message:'message1',
+        show:true
     };
   },
   methods: {},
   mounted() {},
   beforeDestroy: function() {},
-  components: {Breadcrumb}
+  components: {Breadcrumb,EmptyTemplate}
 };
 </script>
 

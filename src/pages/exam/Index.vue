@@ -171,12 +171,7 @@
             </div>
             <div v-show="status=='notOpened'"></div>
             <div v-show="status=='opened'"></div>
-            <div class="no-exam">
-                    <div style="text-align: center">
-                        <img src="./img/暂无开放中的考试.png" alt="">
-                        <p>暂无开放中的考试</p>
-                    </div>
-                </div>
+            <EmptyTemplate v-if="status != 'opening'" msg="暂无开放中的考试" imgKey="Exam" ></EmptyTemplate>
         </div>
         <Footer></Footer>
         <ExamRules v-model="ExamRules"></ExamRules>
@@ -185,6 +180,7 @@
 
 <script>
     import ExamRules from '../../components/ExamRules/ExamRules.vue'
+    import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     export default {
         name: 'app',
         data: function () {
@@ -237,7 +233,7 @@
         beforeDestroy: function () {
 
         },
-        components: {ExamRules}
+        components: {ExamRules,EmptyTemplate}
     }
 </script>
 
