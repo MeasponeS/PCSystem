@@ -123,7 +123,7 @@
             //
             // },
             selectChapter(data,done){
-                
+
                 let loadingInstance = Loading.service();
 
                 setTimeout(_=>{

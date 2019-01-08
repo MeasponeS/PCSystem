@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="study"></Head>
+        <Head activeUrl="index"></Head>
         <div class="container-fluid main-body">
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container index-content">

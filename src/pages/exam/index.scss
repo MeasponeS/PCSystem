@@ -1,5 +1,5 @@
 #app{
-    
+
     overflow: hidden;
     @import '../../assets/css/var.scss';
     .content{
@@ -60,7 +60,7 @@
             cursor: pointer;
             z-index: 999;
         }
-        
+
         .el-icon-arrow-left:before {
             content: "\E600";
             display: block;
@@ -100,7 +100,7 @@
             .left-enter-active, .left-leave-active {
                 transition: all  .5s;
             }
-            .left-enter,  /* .fade-leave-active below version 2.1.8 */ {
+            .left-enter  /* .fade-leave-active below version 2.1.8 */ {
                 margin-left: -1200px;
                 opacity: 0;
             }
@@ -113,7 +113,7 @@
             .right-enter-active, .right-leave-active {
                 transition: all  .5s;
             }
-            .right-enter,  /* .fade-leave-active below version 2.1.8 */ {
+            .right-enter  /* .fade-leave-active below version 2.1.8 */ {
                 margin-left: 1200px;
                 opacity: 0;
             }
@@ -199,7 +199,7 @@
                         }
                     }
                 }
-                
+
             }
             .examListExtra{
                 position: absolute;
