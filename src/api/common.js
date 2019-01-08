@@ -1,8 +1,8 @@
 import request from '../utils/request.js'
 
-export function getSMSCode(params) {
+export function getOrgCodeByDomain(params) {
     return request({
-        url: '/open/getSMSCode',
+        url: '/pc/getOrgCodeByDomain',
         method: 'get',
         params: params
     })
