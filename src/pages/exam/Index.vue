@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head></Head>
+        <Head activeUrl="exam"></Head>
         <div class="content">
             <div class="examHeader">
                 <div @click="status='opening'" :class="{active:status=='opening'}">开放中</div>

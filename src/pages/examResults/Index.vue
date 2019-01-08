@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head></Head>
+        <Head activeUrl="exam"></Head>
         <div class="wrapper">
             <div class="container main-body">
             <div class="top">

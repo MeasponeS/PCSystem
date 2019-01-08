@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head></Head>
+        <Head activeUrl="message"></Head>
         <div class="wrapper">
             <div class="container main-body">
                 <div class="leftTop">
