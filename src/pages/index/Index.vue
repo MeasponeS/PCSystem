@@ -183,10 +183,12 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     import popupAnswer from '../../components/AnswerPopup/index.js'
     import {getUrlInfo} from '../../utils/dataStorage.js'
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
                 value1: '',

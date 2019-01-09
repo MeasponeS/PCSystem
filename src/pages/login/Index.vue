@@ -43,8 +43,10 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
                 active:'password',

@@ -134,9 +134,11 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
                 tabActiveIndex:1,

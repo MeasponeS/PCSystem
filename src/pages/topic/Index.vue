@@ -71,17 +71,19 @@
 </template>
 
 <script>
-    import echarts from './echarts.js'
+    import CommonMixin from '../commonMixin.js'
+    import Echarts from './echarts.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
             }
         },
         methods: {
             setChartOption(chart){
-                chart.setOption({
+                Echarts.setOption({
                     color:['#31B68F','#F77352','#2B60FF'],
                     tooltip: {
                         trigger: 'item',
@@ -110,9 +112,9 @@
             }
         },
         mounted() {
-            let myChart = echarts.init(document.getElementById('echarts'));
+            let myChart = Echarts.init(document.getElementById('echarts'));
             this.setChartOption(myChart);
-            let myChart2 = echarts.init(document.getElementById('echarts2'));
+            let myChart2 = Echarts.init(document.getElementById('echarts2'));
             this.setChartOption(myChart2);
 
         },

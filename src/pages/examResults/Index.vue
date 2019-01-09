@@ -100,17 +100,19 @@
             </div>
         </div>
         </div>
-        
+
         <Footer></Footer>
     </div>
             </div>
-            
+
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
                 status:'all'

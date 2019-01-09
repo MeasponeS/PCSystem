@@ -53,14 +53,14 @@
                             <el-option label="主任护师" value="chiefNurse"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="参加工作时间" > 
+                    <el-form-item label="参加工作时间" >
                         <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" class="inputBox"></el-date-picker>
                     </el-form-item>
                     <el-row>
                         <el-button type="primary" class="button">保存</el-button>
                     </el-row>
                 </el-form>
-                
+
             </div>
         </div>
         <Footer></Footer>
@@ -68,8 +68,10 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
                 form:{

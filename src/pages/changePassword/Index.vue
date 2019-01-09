@@ -17,19 +17,20 @@
 </template>
 
 <script>
-export default {
-name: 'app',
-data: function () {
-return {
-}
-},
-methods: {},
-mounted() {
+    import CommonMixin from '../commonMixin.js'
+    export default {
+        name: 'app',
+        mixins: [CommonMixin],
+        data: function () {
+            return {}
+        },
+        methods: {},
+        mounted() {
 
-},
-beforeDestroy: function () {
+        },
+        beforeDestroy: function () {
 
-},
-components: {}
-}
+        },
+        components: {}
+    }
 </script>

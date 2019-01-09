@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import Config from '../config/app.js'
 import { Notification  } from 'element-ui';
+import {getToken} from '../utils/dataStorage.js'
 
 const service = Axios.create({
     baseURL: Config.apiUrl + '/' + Config.apiPrefix,
@@ -12,19 +13,19 @@ const service = Axios.create({
 service.defaults.retry = Config.requestRetry;
 service.defaults.retryDelay = Config.requestRetryDelay;
 
-// service.interceptors.request.use(
-//     config => {
-//         let noParameters = config.url.indexOf('?')  == -1;
-//         if (store.getters.token) {
-//             //config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
-//             config.url = noParameters ? config.url+'?access_token='+ getToken(): config.url+'&token='+ getToken()
-//         }
-//         return config
-//     },
-//     error => {
-//         Promise.reject(error)
-//     }
-// )
+service.interceptors.request.use(
+    config => {
+        let noParameters = config.url.indexOf('?')  == -1;
+
+        //config.headers['X-Token'] = getToken() //
+        config.url = noParameters ? config.url+'?access_token=' + getToken(): config.url+'&access_token='+ getToken();
+
+        return config
+    },
+    error => {
+        Promise.reject(error)
+    }
+)
 
 
 

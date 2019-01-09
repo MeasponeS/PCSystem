@@ -5,7 +5,7 @@
             <div class="container main-body" v-if="show">
                 <div class="leftTop">
                     <Breadcrumb class="message"
-                        :nav="[
+                                :nav="[
                             {url:'./message.html',name:'消息列表'},
                             {url:'javascript:;',name:'消息详情'}
                         ]"
@@ -18,7 +18,8 @@
                         <div class="content">
                             <strong>这里是消息标题</strong>
                             <span>2018.12.19 13:00:00</span>
-                            <p>这是正文正文文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
+                            <p>
+                                这是正文正文文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
                             <a href="##">这里是可能出现的考场链接、课程链接</a>
                         </div>
                     </div>
@@ -27,7 +28,8 @@
                         <div class="content">
                             <strong>这里是消息标题</strong>
                             <span>2018.12.19 13:00:00</span>
-                            <p>这是正文正文文这是2正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
+                            <p>
+                                这是正文正文文这是2正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
                             <a href="##">这里是可能出现的考场链接、课程链接</a>
                         </div>
                     </div>
@@ -36,7 +38,8 @@
                         <div class="content">
                             <strong>这里是消息标题</strong>
                             <span>2018.12.19 13:00:00</span>
-                            <p>这是正文正文文这是正文正3文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
+                            <p>
+                                这是正文正文文这是正文正3文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
                             <a href="##">这里是可能出现的考场链接、课程链接</a>
                         </div>
                     </div>
@@ -54,7 +57,8 @@
                         <div class="content">
                             <strong>这里是消息标题</strong>
                             <span>2018.12.19 13:00:00</span>
-                            <p>这是正文5正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
+                            <p>
+                                这是正文5正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
                             <a href="##">这里是可能出现的考场链接、课程链接</a>
                         </div>
                     </div>
@@ -96,20 +100,25 @@
 </template>
 
 <script>
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
-import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-export default {
-  name: "app",
-  data: function() {
-    return {
-        message:'message1',
-        show:true
+    import CommonMixin from '../commonMixin.js'
+    import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+    import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
+
+    export default {
+        name: "app",
+        mixins: [CommonMixin],
+        data: function () {
+            return {
+                message: 'message1',
+                show: true
+            };
+        },
+        methods: {},
+        mounted() {
+        },
+        beforeDestroy: function () {
+        },
+        components: {Breadcrumb, EmptyTemplate}
     };
-  },
-  methods: {},
-  mounted() {},
-  beforeDestroy: function() {},
-  components: {Breadcrumb,EmptyTemplate}
-};
 </script>
 

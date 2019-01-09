@@ -17,9 +17,11 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     import { getDictionaryList } from '../../api/personal.js';
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
             }
@@ -28,9 +30,9 @@
             fn(){
                 getDictionaryList({}).then((data)=>{
                     console.log(data);
-                    
+
                 }).catch(_=>{alert(111)})
-                
+
             }
         },
         mounted() {

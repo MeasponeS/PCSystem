@@ -15,7 +15,7 @@
                     <i class="el-icon-arrow-right" @click="show=nextPage()"></i>
                     <h1>健康管理师课程类</h1>
                     <span class="flag">当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>
-                    <transition 
+                    <transition
                         :name='direction'
                         >
                         <ul class="examList" v-if="show=='page1'">
@@ -25,7 +25,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
-                                
+
                             </li>
                             <li >
                                 <h1>1220 模拟考试</h1>
@@ -33,7 +33,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -41,7 +41,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -49,7 +49,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -57,7 +57,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -65,7 +65,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-                                
+
                             </li>
                         </ul>
                     </transition>
@@ -77,7 +77,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1221 模拟考试</h1>
@@ -85,7 +85,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1221 模拟考试</h1>
@@ -93,7 +93,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1221 模拟考试</h1>
@@ -101,7 +101,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -112,7 +112,7 @@
                             </li>
                         </ul>
                         </transition>
-                        
+
                     </div>
                     <div class="courseListTwo">
                         <i class="el-icon-arrow-left" @click="show=prevPage()"></i>
@@ -126,7 +126,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道(答对18道)</h4>
                                 <h5><em>考试时长：10分钟</em><a href="examResults.html"><el-button type="primary" >考试详情</el-button></a></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -134,7 +134,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" class="not">您没有参与这场考试</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -142,7 +142,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道(答对18道)</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" @click=open2()>考试详情</el-button></h5>
-                                
+
                             </li>
                             <li>
                                 <h1>1220 模拟考试</h1>
@@ -150,7 +150,7 @@
                                 <h4>开始时间：2018.12.29-2019.01.03</h4>
                                 <h4>试题数量：20道</h4>
                                 <h5><em>考试时长：10分钟</em><el-button type="primary" class="not">您没有参与这场考试</el-button></h5>
-                                
+
                             </li>
                         </ul>
                 </div>
@@ -164,7 +164,7 @@
                             <h4>开始时间：2018.12.29-2019.01.03</h4>
                             <h4>试题数量：20道</h4>
                             <h5><em>考试时长：10分钟</em><el-button type="primary" class="not">您没有参与这场考试</el-button></h5>
-                            
+
                         </li>
                     </ul>
                 </div>
@@ -179,10 +179,12 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     import ExamRules from '../../components/ExamRules/ExamRules.vue'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
                 status:'opening',

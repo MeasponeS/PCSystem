@@ -9,7 +9,7 @@
                             {url:'./exam.html',name:'考试'},
                             {url:'javascript:;',name:'20181221 模拟考试'}
                         ]"
-                    ></Breadcrumb>  
+                    ></Breadcrumb>
                     <em>23:59:59</em>
                 </div>
                 <div class="content">
@@ -67,9 +67,11 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
             }
@@ -89,7 +91,7 @@
                 this.$message({
                     type: 'info',
                     message: '已取消交卷'
-                });          
+                });
                 });
             }
         },

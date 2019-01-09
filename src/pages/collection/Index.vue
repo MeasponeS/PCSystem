@@ -69,7 +69,7 @@
                             <span>取消收藏</span>
                             <img src="./img/jiantouyou.png" alt="">
                         </li>
-                        
+
                     </ul>
                 </div>
                 <div class="content" v-show="lessons=='lessonTwo'">
@@ -116,8 +116,10 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     export default {
         name: 'app',
+        mixins: [CommonMixin],
         data: function () {
             return {
                 status:'lesson',

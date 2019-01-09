@@ -71,12 +71,14 @@
 </template>
 
 <script>
+    import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     import Sidebar from './Sidebar.vue'
     import { Loading } from 'element-ui';
     import {course,chapters} from './data.js'
     export default {
         name: "app",
+        mixins: [CommonMixin],
         data: function () {
             return {
                 chapters:chapters,
