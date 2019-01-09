@@ -46,6 +46,7 @@
     import CommonMixin from '../commonMixin.js'
     import Config from '../../config/app.js'
     import {sendSMS,login} from '../../api/auth.js'
+    import {setToken,saveUserInfo} from '../../utils/dataStorage.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -68,12 +69,17 @@
         methods: {
             handlerLogin(type,phone,password,code){
                 login({
-                    loginType:type,
+                    type:type,
                     phone:phone,
                     password:password,
                     code:code
                 }).then(r=>{
-                    console.log(r);
+                    setToken(r.token)
+                    saveUserInfo(r.user_info);
+
+                    setTimeout(_=>{
+                        window.location.href = './index.html'
+                    },200)
 
                 }).catch(_=>{})
             },

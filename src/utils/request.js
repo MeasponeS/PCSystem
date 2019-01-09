@@ -32,7 +32,9 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
     response => {//Grade
-        window.loadingInstance.close();
+        setTimeout(_=>{
+            window.loadingInstance.close();
+        },300)
 
         const res = response
         if (res.status !== 200) {
