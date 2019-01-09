@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import Config from '../config/app.js'
-import { Notification  } from 'element-ui';
+import { Notification,Loading  } from 'element-ui';
 import {getToken} from '../utils/dataStorage.js'
 
 const service = Axios.create({
@@ -15,8 +15,9 @@ service.defaults.retryDelay = Config.requestRetryDelay;
 
 service.interceptors.request.use(
     config => {
-        let noParameters = config.url.indexOf('?')  == -1;
+        window.loadingInstance = Loading.service();
 
+        let noParameters = config.url.indexOf('?')  == -1;
         //config.headers['X-Token'] = getToken() //
         config.url = noParameters ? config.url+'?access_token=' + getToken(): config.url+'&access_token='+ getToken();
 
@@ -31,6 +32,8 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
     response => {//Grade
+        window.loadingInstance.close();
+
         const res = response
         if (res.status !== 200) {
             Notification({
