@@ -1,9 +1,9 @@
 #app{
     @import '../../assets/css/var.scss';
-    .back{
-        background: red;
-        height: 620px;
-        padding-top: 33px;
+    .main-body{
+        background: #EAEFFF;
+        display: flex;
+        align-items: center;
     }
     .content{
         background: $--color-default;
@@ -12,7 +12,7 @@
         margin: 0 auto;
         text-align: center;
         position: relative;
-        padding-top: 63px;
+        padding-top: 46px;
         h1{
             font-size: 20px;
             color: #333;
@@ -31,7 +31,7 @@
             background:rgba(255,255,255,1);
             border:1px solid rgba(229,229,229,1);
             border-radius:4px;
-            margin-top: 20px; 
+            margin-top: 20px;
         &:focus{
             outline: none;
             border: 1px solid $--color-primary;

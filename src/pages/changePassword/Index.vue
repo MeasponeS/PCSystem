@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <Head></Head>
-        <div class="back">
+        <Head :logoUrl="ORGINFO.logo" :info="USERINFO"></Head>
+        <div class="main-body">
             <div class="content">
                 <h1>修改密码</h1>
                 <h2></h2>
@@ -9,7 +9,7 @@
                 <input type="text" placeholder="验证码">
                 <a href="##">获取验证码</a>
                 <input type="password" placeholder="设置密码">
-                <button class="button">保存密码</button>
+                <el-button class="button"  type="primary">保存密码</el-button>
             </div>
         </div>
         <Footer></Footer>

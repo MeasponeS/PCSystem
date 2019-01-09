@@ -41,5 +41,8 @@ module.exports = {
     },
     collection:{
         title:'我的收藏'
+    },
+    changePassword:{
+        title:'修改密码'
     }
 }
