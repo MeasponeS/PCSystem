@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="index" :logoUrl="ORGINFO.logo"></Head>
+        <Head activeUrl="index" :logoUrl="ORGINFO.logo" :info="USERINFO"></Head>
         <div class="container-fluid main-body">
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container index-content">

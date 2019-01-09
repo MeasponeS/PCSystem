@@ -1,5 +1,5 @@
 
-const devApiUrl = 'https://testxtapi.hulian120.com';
+const devApiUrl = 'http://192.168.48.98:10003';
 
 //正式环境变量,注意修改
 const proApiUrl = 'https://testxtapi.hulian120.com';
@@ -13,6 +13,7 @@ export default {
     apiPrefix : "",
     timeout:1600,
     cookiesExpires:7,
+    countDown:60,//短信验证码倒计时
     tokenKey:'ACCESS_TOKEN',
     storageUserKey:'JKCYXTPC_USER_STORAGE',
     storageOrgInfoKey:'JKCYXTPC_ORGINFO_STORAGE',
