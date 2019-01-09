@@ -96,8 +96,8 @@
                         this.$message('请填写正确的手机号');
                         return;
                     }
-                    if(pass.length<6){
-                        this.$message('密码必须大于等于6位数');
+                    if(pass.length<Config.shortLength){
+                        this.$message(`密码长度必须不少于${Config.shortLength}位`);
                         return;
                     }
 

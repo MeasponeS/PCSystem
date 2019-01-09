@@ -19,6 +19,7 @@ export default {
     storageOrgInfoKey:'JKCYXTPC_ORGINFO_STORAGE',
     requestRetry:4,
     requestRetryDelay:800,
+    shortLength:6, // 密码最小长度
     nav:{
         index:'学习',
         topic:'习题集',

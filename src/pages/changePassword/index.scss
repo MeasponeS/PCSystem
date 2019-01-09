@@ -22,8 +22,18 @@
             height:1px;
             background:rgba(43,96,255,1);
             opacity:0.2;
+            margin-bottom: 10px;
             margin-left:26px;
         }
+        .login-input {
+            .get-mag {
+              position: relative;
+              top: 36px;
+              right: 35px;
+              cursor: pointer;
+              color: $--color-primary;
+            }
+          }
         input{
             width:355px;
             height:48px;
