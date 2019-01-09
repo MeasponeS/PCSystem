@@ -25,7 +25,7 @@
                                 v-model="msgInfo.phone"
                                 placeholder="手机号"
                         >
-                            <span class="get-mag" slot="suffix">获取验证码</span>
+                            <span class="get-mag" @click="getCode" slot="suffix">{{ this.countDown != initCountDown ? this.countDown : '获取验证码' }}</span>
                         </el-input>
                         <el-input v-model="msgInfo.msg" placeholder="验证码"></el-input>
                     </div>
@@ -45,6 +45,7 @@
 <script>
     import CommonMixin from '../commonMixin.js'
     import Config from '../../config/app.js'
+    import {sendSMS,login} from '../../api/auth.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -60,10 +61,22 @@
                     msg:'',
                 },
                 countDown:Config.countDown,
+                initCountDown:Config.countDown,
                 protocolActive:true,
             }
         },
         methods: {
+            handlerLogin(type,phone,password,code){
+                login({
+                    loginType:type,
+                    phone:phone,
+                    password:password,
+                    code:code
+                }).then(r=>{
+                    console.log(r);
+
+                }).catch(_=>{})
+            },
             clickLogin(){
                 if(!this.protocolActive){
                     this.$message('请阅读并接受《用户协议》');
@@ -82,8 +95,7 @@
                         return;
                     }
 
-                    this.$message('ok');
-
+                    this.handlerLogin(1,phone,pass,'');
 
                 }
                 if('msg' == this.active){
@@ -99,31 +111,32 @@
                         return;
                     }
 
-                    this.$message('ok');
+                    this.handlerLogin(0,phone,"",msg);
 
                 }
 
             },
 
             getCode() {
-                if(this.countDown < 60) return;
+
                 if((this.msgInfo.phone).length != 11) {
                     this.$message('请填写正确的手机号');
                     return;
                 }
+                if(this.countDown < 60) return;
 
-                getSMSCode(this.telNumber,smsType).then((res) => {
-                    this.countDown --
-                    this.timer = setInterval(() => {
-                        if(this.countDown > 0) {
-                            this.countDown --
-                        }else {
-                            this._initCountDown()
+                sendSMS({phone:this.msgInfo.phone,type:2}).then((r) => {
+                    console.log(r);
+                    window.SMS = setInterval(() => {
+                        if(this.countDown <= 0) {
+                            clearInterval(window.SMS);
+                            this.countDown = Config.countDown;
+                            return;
                         }
+                        this.countDown --
                     }, 1000)
-                }).catch((err) => {
-                    this._initCountDown()
-                })
+
+                }).catch((err) => {})
 
             },
         },
