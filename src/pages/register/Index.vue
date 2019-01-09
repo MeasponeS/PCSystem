@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head></Head>
+        <Head :logoUrl="ORGINFO.logo" :info="USERINFO"></Head>
         <div class="back container-fluid main-body ">
             <div class="content">
                 <h1>注册</h1>
