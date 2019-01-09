@@ -1,7 +1,7 @@
 <template>
     <div class="head">
         <div class="container">
-            <img class="logo" src="./img/logo.jpg" alt="">
+            <img class="logo" :src="logoUrl" alt="">
             <ul class="nav">
                 <li v-for="(title,url) in nav"><a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a></li>
             </ul>
@@ -31,9 +31,7 @@
                 type:String,
                 default:'',
             },
-            info:{
-                type:Object,
-            }
+
         },
         data: function () {
             return {
@@ -56,7 +54,7 @@
            height: 100%;
            align-items: center;
            .logo{
-               width: 184px;
+               /*width: 184px;*/
                height: 44px;
            }
            .nav{

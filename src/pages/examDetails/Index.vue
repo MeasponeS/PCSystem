@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="exam"></Head>
+        <Head activeUrl="exam" :logoUrl="ORGINFO.logo"></Head>
         <div class="container main-body">
             <div class="left">
                 <div class="header">

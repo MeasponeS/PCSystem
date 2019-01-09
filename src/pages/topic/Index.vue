@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="topic"></Head>
+        <Head activeUrl="topic" :logoUrl="ORGINFO.logo"></Head>
         <div class="main-body">
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container">
@@ -83,7 +83,7 @@
         },
         methods: {
             setChartOption(chart){
-                Echarts.setOption({
+                chart.setOption({
                     color:['#31B68F','#F77352','#2B60FF'],
                     tooltip: {
                         trigger: 'item',

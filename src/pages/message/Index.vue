@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="message"></Head>
+        <Head activeUrl="message" :logoUrl="ORGINFO.logo"></Head>
         <div class="wrapper">
             <div class="container main-body" v-if="show">
                 <div class="leftTop">

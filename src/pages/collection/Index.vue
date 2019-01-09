@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head></Head>
+        <Head :logoUrl="ORGINFO.logo"></Head>
         <div class="container main-body">
             <div class="header">
                 <div @click="status='lesson'" :class="{active:status=='lesson'}" >课程</div>

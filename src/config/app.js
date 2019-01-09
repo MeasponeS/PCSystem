@@ -1,9 +1,8 @@
-import Cookies from "js-cookie";
 
-const devApiUrl = 'http://192.168.48.133:10003';
+const devApiUrl = 'https://testxtapi.hulian120.com';
 
 //正式环境变量,注意修改
-const proApiUrl = 'https://pro.web.com';
+const proApiUrl = 'https://testxtapi.hulian120.com';
 
 
 const nodeDevEnv = process.env.NODE_ENV=='development' ? true : false;
@@ -12,7 +11,7 @@ export default {
     nodeDevEnv:nodeDevEnv,
     apiUrl : nodeDevEnv ? devApiUrl : proApiUrl,
     apiPrefix : "",
-    timeout:1000,
+    timeout:1600,
     cookiesExpires:7,
     tokenKey:'ACCESS_TOKEN',
     storageUserKey:'JKCYXTPC_USER_STORAGE',

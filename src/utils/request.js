@@ -35,9 +35,10 @@ service.interceptors.response.use(
         if (res.status !== 200) {
             Notification({
                 title:'数据返回出错',
+                message:"请稍后重试",
                 type:'error'
             });
-            return Promise.reject('error')
+            //return Promise.reject('error')
         } else {
             if(res.data.resultCode != 200){
                 Notification({
@@ -52,9 +53,10 @@ service.interceptors.response.use(
     error => {
         Notification({
             title:"请求未响应",
+            message:"服务器可能出了点问题",
             type:'error'
         });
-        return Promise.reject(error)
+        //return Promise.reject(error)
     }
 )
 
