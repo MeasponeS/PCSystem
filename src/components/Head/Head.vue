@@ -11,13 +11,13 @@
                   <ul class="dropdown">
                     <!--<li>15117875524</li>-->
                       <li>
-                          <a href="">个人资料</a>
+                          <a href="./personal.html">个人资料</a>
                       </li>
                       <li>
-                          <a href="">修改密码</a>
+                          <a href="./changePassword.html">修改密码</a>
                       </li>
                       <li>
-                          <a href="">我的收藏</a>
+                          <a href="./collection.html">我的收藏</a>
                       </li>
                       <li @click="outLogin">退出账号</li>
                   </ul>
@@ -64,7 +64,7 @@
         methods: {
             outLogin() {
                 removeToken();
-                window.location.reload();
+                window.location.href = './index.html';
             }
         },
     }
@@ -78,11 +78,12 @@
         height: 100px;
         width: 100%;
         background-color: #fff;
-        border-bottom: 1px solid #DFDFDF;
+        box-shadow:-2px 3px 5px 0px rgba(174,174,174,0.14);
         .container {
             display: flex;
             height: 100%;
             align-items: center;
+            
             .logo {
                 /*width: 184px;*/
                 height: 44px;

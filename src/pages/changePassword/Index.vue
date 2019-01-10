@@ -57,8 +57,8 @@
                 this.savePassword(mobile,password,msg)
             },
 
-            savePassword(phone,newPassword,code){
-                forgotPassword({phone:phone,newPassword:newPassword,code:code}).then(r=>{
+            savePassword(phone,password,code){
+                forgotPassword({phone:phone,password:password,code:code}).then(r=>{
                     this.$message('密码设置成功');
                     removeToken()
                     window.setTimeout(()=>{
