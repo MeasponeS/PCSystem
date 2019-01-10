@@ -40,141 +40,9 @@
 
                         </div>
                     </li>
-                    <li>
-                        <img src="../../assets/img/temp/index.jpg" alt="">
-                        <div class="li-r">
-
-                            <h2>2019初级护师畅通无忧班</h2>
-                            <div class="info">
-                                <el-popover
-                                        title=""
-                                        width="474"
-                                        placement="bottom-end"
-                                        trigger="click"
-                                >
-                                    <div class="info-content">
-                                        健康管理师国家职业资格考试课程是依据最新健康管理师考试大纲而设计开发的课程，涵盖基础知识及实操技能两大主题，7个课程模块。为了健康管理师从业人员奠定理论基础。
-                                    </div>
-                                    <div class="info-block" slot="reference">简介</div>
-                                </el-popover>
-                            </div>
-                            <div class="course">
-                                共180课时 <span>|</span> 13000人已学
-                            </div>
-                            <div class="progress">
-                                <span>目前已完成1个课时，加油！</span>
-                                <el-progress class="val" :percentage="70" :show-text="false"></el-progress>
-                            </div>
-                            <div class="list-btn">
-                                <el-button type="primary">开始学习</el-button>
-                                <el-button class="primary-btn">进入习题集</el-button>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../assets/img/temp/index.jpg" alt="">
-                        <div class="li-r">
-
-                            <h2>2019初级护师畅通无忧班</h2>
-                            <div class="info">
-                                <el-popover
-                                        title=""
-                                        width="474"
-                                        placement="bottom-end"
-                                        trigger="click"
-                                >
-                                    <div class="info-content">
-                                        健康管理师国家职业资格考试课程是依据最新健康管理师考试大纲而设计开发的课程，涵盖基础知识及实操技能两大主题，7个课程模块。为了健康管理师从业人员奠定理论基础。
-                                    </div>
-                                    <div class="info-block" slot="reference">简介</div>
-                                </el-popover>
-                            </div>
-                            <div class="course">
-                                共180课时 <span>|</span> 13000人已学
-                            </div>
-                            <div class="progress">
-                                <span>目前已完成1个课时，加油！</span>
-                                <el-progress class="val" :percentage="70" :show-text="false"></el-progress>
-                            </div>
-                            <div class="list-btn">
-                                <el-button type="primary">开始学习</el-button>
-                                <el-button class="primary-btn">进入习题集</el-button>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../assets/img/temp/index.jpg" alt="">
-                        <div class="li-r">
-
-                            <h2>2019初级护师畅通无忧班</h2>
-                            <div class="info">
-                                <el-popover
-                                        title=""
-                                        width="474"
-                                        placement="bottom-end"
-                                        trigger="click"
-                                >
-                                    <div class="info-content">
-                                        健康管理师国家职业资格考试课程是依据最新健康管理师考试大纲而设计开发的课程，涵盖基础知识及实操技能两大主题，7个课程模块。为了健康管理师从业人员奠定理论基础。
-                                    </div>
-                                    <div class="info-block" slot="reference">简介</div>
-                                </el-popover>
-                            </div>
-                            <div class="course">
-                                共180课时 <span>|</span> 13000人已学
-                            </div>
-                            <div class="progress">
-                                <span>目前已完成1个课时，加油！</span>
-                                <el-progress class="val" :percentage="70" :show-text="false"></el-progress>
-                            </div>
-                            <div class="list-btn">
-                                <el-button type="primary">开始学习</el-button>
-                                <el-button class="primary-btn">进入习题集</el-button>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <img src="../../assets/img/temp/index.jpg" alt="">
-                        <div class="li-r">
-
-                            <h2>2019初级护师畅通无忧班</h2>
-                            <div class="info">
-                                <el-popover
-                                        title=""
-                                        width="474"
-                                        placement="bottom-end"
-                                        trigger="click"
-                                >
-                                    <div class="info-content">
-                                        健康管理师国家职业资格考试课程是依据最新健康管理师考试大纲而设计开发的课程，涵盖基础知识及实操技能两大主题，7个课程模块。为了健康管理师从业人员奠定理论基础。
-                                    </div>
-                                    <div class="info-block" slot="reference">简介</div>
-                                </el-popover>
-                            </div>
-                            <div class="course">
-                                共180课时 <span>|</span> 13000人已学
-                            </div>
-                            <div class="progress">
-                                <span>目前已完成1个课时，加油！</span>
-                                <el-progress class="val" :percentage="70" :show-text="false"></el-progress>
-                            </div>
-                            <div class="list-btn">
-                                <el-button type="primary">开始学习</el-button>
-                                <el-button class="primary-btn">进入习题集</el-button>
-                            </div>
-
-                        </div>
-                    </li>
                 </ul>
-                <div class="no-course">
-                    <div style="text-align: center">
-                        <img src="./img/noc.png" alt="">
-                        <p @click="open5">当前学堂还没有安排任何课程</p>
-                    </div>
-                </div>
+                <!--<EmptyTemplate img-key="Course" msg="当前学堂还没有安排任何课程"></EmptyTemplate>-->
+                <DoTopic style="width: 784px"></DoTopic>
             </div>
         </div>
         <Footer></Footer>
@@ -184,8 +52,8 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import popupAnswer from '../../components/AnswerPopup/index.js'
-    import {getUrlInfo} from '../../utils/dataStorage.js'
+    import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
+    import DoTopic from '../../components/DoTopic/Dotopic.vue'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -197,9 +65,7 @@
             }
         },
         methods: {
-            open5() {
-                popupAnswer(this,'ABC','<h1>hsads</h1>');
-            }
+
         },
         mounted() {
 
@@ -207,7 +73,7 @@
         beforeDestroy: function () {
 
         },
-        components: {}
+        components: {EmptyTemplate,DoTopic}
     }
 </script>
 
