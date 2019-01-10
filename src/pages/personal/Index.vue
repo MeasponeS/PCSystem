@@ -32,7 +32,7 @@
                         </el-form-item>
                     <el-form-item label="学历" class="f2">
                         <el-select v-model="form.education" placeholder="请选择学历" class="inputBox">
-                            <el-option v-for="item in eduType" :key="item.id" :label="item.description" :value="item.id"></el-option>
+                            <el-option v-for="item in eduType" :key="item.id" :label="item.description" :value="item.name"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="单位" class="f2">
@@ -93,7 +93,7 @@
             formData.location = String(That.form.location[1]);
             updateUserInfo(formData).then(function(res){
               That.$message('信息修改成功!');
-            })
+            }).catch(_=>{})
           }
         },
         mounted() {
@@ -101,7 +101,7 @@
           getUserInfo().then(function(res){
             This.form = res;
             This.form.location = [res.code.split('-')[0],res.code];
-          }),
+          }).catch(_=>{}),
           getDictionaryList().then(function(res){
             This.eduType = res.eduType;
             This.jobNames = res.jobNames;
@@ -111,7 +111,7 @@
                 This.options[index].children.push({'value' : list.code,'label' : list.name});
               })
             })
-          })
+          }).catch(_=>{})
         },
         beforeDestroy: function () {
 
