@@ -1,0 +1,65 @@
+#app{
+    @import '../../assets/css/var.scss';
+    .main-body{
+        background: #EAEFFF;
+        display: flex;
+        align-items: center;
+    }
+    .content{
+        background: $--color-default;
+        width: 405px;
+        height: 524px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        padding-top: 46px;
+        h1{
+            font-size: 20px;
+            color: #333;
+        }
+        h2{
+            width:354px;
+            height:1px;
+            background:rgba(43,96,255,1);
+            opacity:0.2;
+            margin-bottom: 10px;
+            margin-left:26px;
+        }
+        .login-input {
+            .get-mag {
+              position: relative;
+              top: 36px;
+              right: 35px;
+              cursor: pointer;
+              color: $--color-primary;
+            }
+          }
+        input{
+            width:355px;
+            height:48px;
+            padding-left: 17px;
+            background:rgba(255,255,255,1);
+            border:1px solid rgba(229,229,229,1);
+            border-radius:4px;
+            margin-top: 20px;
+        &:focus{
+            outline: none;
+            border: 1px solid $--color-primary;
+        }
+        }
+        a{
+            position: absolute;
+            font-size: 14px;
+            color: $--color-primary;
+            left:295px;
+            top: 176px;
+        }
+        .button{
+            margin-top: 20px;
+            width: 355px;
+            height: 48px;
+            color: $--color-default;
+            background: $--color-primary;
+        }
+    }
+}

@@ -3,7 +3,7 @@
         <Head :logoUrl="ORGINFO.logo" :info="USERINFO"></Head>
         <div class="main-body">
             <div class="content">
-                <h1>修改密码</h1>
+                <h1>找回密码</h1>
                 <h2></h2>
                 <div class="login-input">
                         <el-input placeholder="手机号" v-model="mobile">
@@ -24,7 +24,6 @@
     import CommonMixin from '../commonMixin.js'
     import Config from '../../config/app.js'
     import {sendSMS,forgotPassword} from '../../api/auth.js'
-    import { removeToken } from '../../utils/dataStorage.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -60,9 +59,8 @@
             savePassword(phone,newPassword,code){
                 forgotPassword({phone:phone,newPassword:newPassword,code:code}).then(r=>{
                     this.$message('密码设置成功');
-                    removeToken()
                     window.setTimeout(()=>{
-                        window.location.href = './index.html'
+                        window.location.href = './login.html'
                     },1000)
                 }).catch(_=>{})
             },
