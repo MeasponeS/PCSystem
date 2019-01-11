@@ -61,42 +61,40 @@
             }
         }
         .content{
-            ul{
-                list-style: none;
-                padding: 0;
-                li{
-                    position: relative;
-                    height: 36px;
-                    line-height: 36px;
-                    font-size: 16px;
-                    color:#222;
-                    background:rgba(245,247,249,1);
-                    border:1px solid rgba(43,96,255,1);
-                    border-radius:3px;
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                    padding-left: 17px;
-                    margin-bottom: 14px;
-                    em{
-                        position: absolute;
-                        right:153px;
-                        width:1px;
-                        height:9px;
-                        background:rgba(150,159,169,1);
-                    }
-                    span{
-                        position: absolute;
-                        right:86px;
-                        color:#969FA9;
-                        font-size: 14px;
-                        cursor: pointer;
-                    }
-                    img{
-                        position: absolute;
-                        right:16px;
-                        cursor: pointer;
-                    }
+            list-style: none;
+            padding: 0;
+            li{
+                position: relative;
+                height: 36px;
+                line-height: 36px;
+                font-size: 16px;
+                color:#222;
+                background:rgba(245,247,249,1);
+                border:1px solid rgba(43,96,255,1);
+                border-radius:3px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-left: 17px;
+                margin-bottom: 14px;
+                em{
+                    position: absolute;
+                    right:153px;
+                    width:1px;
+                    height:9px;
+                    background:rgba(150,159,169,1);
+                }
+                span{
+                    position: absolute;
+                    right:86px;
+                    color:#969FA9;
+                    font-size: 14px;
+                    cursor: pointer;
+                }
+                img{
+                    position: absolute;
+                    right:16px;
+                    cursor: pointer;
                 }
             }
         }
