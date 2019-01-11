@@ -27,7 +27,7 @@ module.exports = {
     register:{
         title:'注册'
     },
-    info:{
+    personal:{
         title:'个人信息'
     },
     study:{

@@ -7,7 +7,7 @@
             </ul>
             <div v-if="info" class="login">
               <div class="user-phone">
-                15117875524<i class="el-icon-arrow-down el-icon--right"></i>
+                {{ info.username }}<i class="el-icon-arrow-down el-icon--right"></i>
                   <ul class="dropdown">
                     <!--<li>15117875524</li>-->
                       <li>
@@ -64,12 +64,10 @@
         },
         methods: {
             outLogin() {
-
                 logOut().then(r=>{
                     removeToken();
                     window.location.href = './index.html';
                 }).catch(_=>{});
-
             }
         },
     }

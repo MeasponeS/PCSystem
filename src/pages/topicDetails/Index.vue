@@ -24,7 +24,6 @@
                                     <li>下一题</li>
                                 </ul>
                             </div>
-
                             <DoTopic></DoTopic>
                         </div>
                     </div>
@@ -67,7 +66,7 @@
                                     第一题
                                 </li>
                                 <li class="li">
-                                    <span>已答</span>
+                                    <span class="part">已答</span>
                                     第一题
                                 </li>
                             </ul>
