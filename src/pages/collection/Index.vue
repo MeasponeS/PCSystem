@@ -19,8 +19,8 @@
                     >
                         {{item.name}}
                     </div>
-                    <EmptyTemplate v-show="!lessonShow" msg="暂无收藏的课程"  ></EmptyTemplate>
                 </div>
+                <EmptyTemplate v-show="!lessonShow" msg="暂无收藏的课程" style="box-shadow:0 0 0" ></EmptyTemplate>
                 <ul 
                     v-for="(item,index) in lesson.packageType"
                     :key="index"
@@ -49,8 +49,8 @@
                     >
                         {{item.name}}
                     </div>
-                    <EmptyTemplate v-show="!topicsShow" msg="暂无收藏的习题"></EmptyTemplate>
                 </div>
+                <EmptyTemplate v-show="!topicsShow" msg="暂无收藏的习题"  style="box-shadow:0 0 0"></EmptyTemplate>
                 <ul 
                     v-for="(item,index) in topics.packageType"
                     :key="index"

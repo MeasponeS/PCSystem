@@ -47,15 +47,25 @@
             font-weight: bold;
             color:#222;
             margin-bottom: 27px;
-            cursor: pointer;
-            .mid{
-                padding: 0;
-                width: 2px;
-                height: 9px;
-                background:#969FA9;
-                margin-left: 20px;
-                margin-right: 14px;
+            div{
+                &:after{
+                    content:'';
+                    display: inline-block;
+                    padding: 0;
+                    width: 2px;
+                    height: 9px;
+                    background:#969FA9;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                }
+                &:last-child{
+                    &:after{
+                        content:'';
+                        display: none;
+                    }
+                }
             }
+            cursor: pointer;
             .active{
                 color:$--color-primary;
             }
