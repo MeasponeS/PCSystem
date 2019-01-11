@@ -103,7 +103,7 @@
     import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-
+    import { getNotices } from '../../api/other.js'
     export default {
         name: "app",
         mixins: [CommonMixin],
@@ -115,6 +115,10 @@
         },
         methods: {},
         mounted() {
+            getNotices({page:1}).then(r=>{
+                console.log(r);
+                
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
         },
