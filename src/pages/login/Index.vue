@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <el-button type="primary" style="width:100%;border-radius: 0;margin-top: 30px" @click="clickLogin">登录</el-button>
-                <a href="./changePassword.html" class="forget-password">忘记密码</a>
+                <a href="./forgotPassword.html" class="forget-password">忘记密码</a>
                 <div class="protocol">
                     <span class="radio" :class="{active:protocolActive}" @click="protocolActive = !protocolActive"></span>
                     <span>我已阅读并接受《用户协议》</span>

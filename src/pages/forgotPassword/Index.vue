@@ -43,21 +43,21 @@
                 let password = this.password;
                 if(mobile.length != 11){
                     this.$message('请填写正确的手机号');
-                        return;
+                    return;
                 }
                 if(password.length < Config.shortLength){
                     this.$message(`密码长度必须不少于${Config.shortLength}位`);
-                        return;
+                    return;
                 }
                 if(!msg){
-                        this.$message('请填写验证码');
-                        return;
+                    this.$message('请填写验证码');
+                    return;
                 }
                 this.savePassword(mobile,password,msg)
             },
 
-            savePassword(phone,newPassword,code){
-                forgotPassword({phone:phone,newPassword:newPassword,code:code}).then(r=>{
+            savePassword(phone,password,code){
+                forgotPassword({phone:phone,password:password,code:code}).then(r=>{
                     this.$message('密码设置成功');
                     window.setTimeout(()=>{
                         window.location.href = './login.html'
