@@ -1,59 +1,73 @@
 <template>
     <div class="do-topic">
         <div class="do-topic-top">
-            <div class="l">【单选】</div>
+            <div class="l">【{{ topic.questionType }}】</div>
             <div class="r">
-                李某，男，56岁。近来出现动作缓慢和双手抖动，到医院检查后诊断为帕金森病，该
-                病临床表现中一般不会出现的是：
-                <p>a.多种训练交替进行，有所侧重，在不引起异常反应和过度疲劳的情况下，组建加大
-                    活动量</p>
-                <p>b.的方式多福多寿发生的股份的</p>
+                <template v-if="topic.newType == 5">
+                    {{ topic.name }}
+                    <br/> <br/>
+                    <span class="question-result" v-for="a in topic.questionResult">{{ a.optionName.toLowerCase() }}.{{ a.optionContent }}</span>
+                </template>
+                <template v-else>
+                    {{ topic.name }}
+                </template>
             </div>
         </div>
+        <div v-if="topic.newType == 1">
+            <div class="do-topic-content has-title">
+                <!--如果没有标题则不显示边框 和上边距 及背景色-->
+                <div class="l"></div>
+                <div class="r">
+                    <Options
+                            :options="topic.questionResult"
+                            :userAnswer="topic.historyAnswer"
+                            :questionId="topic.questionId"
+                            @selectOption="selectOption"
+                    >
+                    </Options>
+                </div>
 
-        <div class="do-topic-content has-title">
+            </div>
+        </div>
+        <div
+                v-if="topic.newType == 3"
+                v-for="item in topic.a3a4Questions"
+                class="do-topic-content"
+        >
             <!--如果没有标题则不显示边框 和上边距 及背景色-->
             <div class="l"></div>
             <div class="r">
+                <div class="title">
+                    {{ item.index }}. {{ item.name }}
+                </div>
                 <Options
-                        :options='[
-                     {"optionContent": "美国",  "optionName": "A"}, {
-                "optionContent": "英国",
-                     "optionName": "B"
-             }, {"optionContent": "法国", "optionName": "C"}, {
-                 "optionContent": "德国",
-                     "optionName": "D"
-             }, {"optionContent": "中国", "questionId": 37509, "optionName": "E"}
-                    ]'
+                        :options="item.questionResult"
+                        :userAnswer="item.historyAnswer"
+                        :questionId="item.questionId"
+                        @selectOption="selectOption"
                 >
-
                 </Options>
             </div>
-
         </div>
-        <div class="do-topic-content">
-            <!--如果没有标题则不显示边框-->
+        <div
+                v-if="topic.newType == 5"
+                v-for="item in topic.questionArr"
+                class="do-topic-content"
+        >
+            <!--如果没有标题则不显示边框 和上边距 及背景色-->
             <div class="l"></div>
             <div class="r">
                 <div class="title">
-                    10. 李某，男，56岁。近来出现动作缓慢和双手抖动，到医院检查后诊断为帕金森病，
-                    该病临床表现中一般不会出现的是：
+                    {{ item.index }}. {{ item.name }}
                 </div>
                 <Options
-                        :options='[
-                     {"optionContent": "美国",  "optionName": "A"}, {
-                "optionContent": "英国",
-                     "optionName": "B"
-             }, {"optionContent": "法国", "optionName": "C"}, {
-                 "optionContent": "德国",
-                     "optionName": "D"
-             }, {"optionContent": "中国", "questionId": 37509, "optionName": "E"}
-                    ]'
+                        :options='topic.questionResult'
+                        :userAnswer="item.historyAnswer"
+                        :questionId="item.questionId"
+                        @selectOption="selectOption"
                 >
-
                 </Options>
             </div>
-
         </div>
     </div>
 </template>
@@ -63,7 +77,12 @@
     export default {
         name: 'DoTopic',
         props: {
-            msg: String
+            topic: Object
+        },
+        methods: {
+            selectOption(questionId,optionName){
+                alert(optionName+'---'+questionId);
+            }
         },
         components: {Options}
     }
@@ -88,7 +107,10 @@
                 color: #222;
                 margin-left: 12px;
                 flex: 1;
-                p{
+                .question-result{
+                    min-width: 50%;
+                    margin: 8px 0;
+                    display: inline-block;
                     font-size: 16px;
                 }
             }

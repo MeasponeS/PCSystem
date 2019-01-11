@@ -24,10 +24,38 @@
                     height: 84px;
                     display: flex;
                     align-items: center;
-                    justify-content: space-between;
+                    //justify-content: space-between;
                     .do-title{
                         font-size: 18px;
                         color: #222;
+                        margin-right: 18px;
+                    }
+                    .children-topic{
+
+                        flex: 1;
+
+                        ul{
+                            margin: 0;
+                            padding: 0;
+                            display: flex;
+                            li{
+                                list-style-type: none;
+                                width: 24px;
+                                height: 24px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                margin-right: 14px;
+                                cursor: pointer;
+                                color: #969FA9;
+                                border: 1px solid #969FA9;
+                                &:hover{
+                                    color: $--color-primary;
+                                    border: 1px solid $--color-primary;
+                                }
+                            }
+                        }
+
                     }
                     .do-action{
                         margin: 0;

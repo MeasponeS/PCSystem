@@ -21,7 +21,7 @@
                     <p class="nav-act">
                         <a href="javascript:;">收藏</a>
                         <span></span>
-                        <a href="javascript:;" @click="$refs.sidebar.lastChapter()">上一节</a>
+                        <a href="javascript:;" @click="$refs.sidebar.previousChapter()">上一节</a>
                         <span></span>
                         <a href="javascript:;" @click="$refs.sidebar.nextChapter()">下一节</a>
                     </p>

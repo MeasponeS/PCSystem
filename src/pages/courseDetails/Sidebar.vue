@@ -56,7 +56,7 @@
         },
         //
         methods: {
-            lastChapter(){//上
+            previousChapter(){//上
                 let currentCI = this.activeChapterIndex.chapter;
                 let currentSCI = this.activeChapterIndex.subChapter;
                 let collapseIndex = this.collapseIndex;
