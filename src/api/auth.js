@@ -31,3 +31,11 @@ export function sendSMS(params) {
         params: params
     })
 }
+
+export function logOut(params) {
+    return request({
+        url: '/pc/user/logOut',
+        method: 'get',
+        params: params
+    })
+}

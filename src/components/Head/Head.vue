@@ -39,6 +39,7 @@
 
 <script>
     import Config from '../../config/app.js'
+    import {logOut} from '../../api/auth.js'
     import {removeToken} from '../../utils/dataStorage.js'
     export default {
         name: 'Head',
@@ -63,8 +64,11 @@
         },
         methods: {
             outLogin() {
-                removeToken();
-                window.location.reload();
+                logOut().then(r=>{
+                    removeToken();
+                    window.location.reload();
+                }).catch(_=>{});
+
             }
         },
     }

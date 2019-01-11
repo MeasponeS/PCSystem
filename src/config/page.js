@@ -18,6 +18,9 @@ module.exports = {
     topic:{
         title:'习题集'
     },
+    topicDetails:{
+        title:'习题详情页'
+    },
     topicList:{
         title:'习题集列表'
     },
