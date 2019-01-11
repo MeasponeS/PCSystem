@@ -29,7 +29,10 @@
                                     <li @click="nextTopic">下一题</li>
                                 </ul>
                             </div>
-                            <DoTopic :topic="topics[activeQuestionIndex]"></DoTopic>
+                            <DoTopic
+                                    :topic="topics[activeQuestionIndex]"
+                                    @selectOption="selectOption"
+                            ></DoTopic>
                         </div>
                     </div>
                     <div class="right">
@@ -76,6 +79,11 @@
             }
         },
         methods: {
+            selectOption(questionId,optionName){
+                // let thisTopic = this.topics[this.activeQuestionIndex];
+                // if(questionId == thisTopic.questionId)
+                // }
+            },
             lookAnswer(){
                 let topic = this.topics[this.activeQuestionIndex];
                 popupAnswer(this,'ABC','afdsfsdfs');
@@ -101,18 +109,31 @@
                 //说明 do已答 part答了部分 默认未答
                 if(1 == topic.newType)return (topic.historyAnswer.length) === 0 ? '' : 'do';
                 if(3 == topic.newType){
+
+                    let allHasAnswer = true;
+                    let hasPart = false
                     for (let i = 0;i<topic.a3a4Questions.length;i++){
+                        if(topic.a3a4Questions[i].historyAnswer.length == 0){
+                            allHasAnswer = false//完成的情况
+                        }
                         if(topic.a3a4Questions[i].historyAnswer.length != 0){
-                            return 'part'
+                            hasPart = true;
                         }
                     }
+                    return allHasAnswer ? 'do' : (hasPart ?'part' : '');
                 }
                 if(5 == topic.newType){
+                    let allHasAnswer = true;
+                    let hasPart = false
                     for (let i = 0;i<topic.questionArr.length;i++){
+                        if(topic.questionArr[i].historyAnswer.length == 0){
+                            allHasAnswer = false//完成的情况
+                        }
                         if(topic.questionArr[i].historyAnswer.length != 0){
-                            return 'part'
+                            hasPart = true;
                         }
                     }
+                    return allHasAnswer ? 'do' : (hasPart ?'part' : '');
                 }
                 return '';
 

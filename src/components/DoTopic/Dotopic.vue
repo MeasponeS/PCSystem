@@ -81,7 +81,32 @@
         },
         methods: {
             selectOption(questionId,optionName){
-                alert(optionName+'---'+questionId);
+                //////////////////////////////////A1A2
+                if(this.topic.hasOwnProperty('questionId') && (this.topic.questionId == questionId)){
+                    if(this.topic.typeB == 1){
+                        this.$emit("selectOption",questionId,[optionName]);
+                        return;
+                    }else if((this.topic.typeB == 2) || (this.topic.typeB == 4)){
+                        this.$emit("selectOption",questionId,this.multiselect(this.topic.answer,optionName));
+                        return;
+
+
+
+                    }
+                }
+                ///////////////////////////////////A3A4
+
+
+            },
+            multiselect(answerArr,optionName){
+
+                let index = answerArr.indexOf(optionName);
+                if(index != -1){
+                    return answerArr.splice(index,1);
+                }else {
+                    return [optionName,...answerArr];
+                }
+
             }
         },
         components: {Options}
