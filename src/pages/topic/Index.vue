@@ -5,11 +5,11 @@
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container">
                 <div class="title">习题集列表</div>
-                <ul class="topic" v-if="practice.courseList">
+                <ul class="topic" v-if="practice.name">
                     <li>
                         <div class="topic-l">
-                            <h2 class="topic-title">健康管理师</h2>
-                            <span class="topic-sub-title">系列课程习题集</span>
+                            <h2 class="topic-title">{{this.practice.packageName}}</h2>
+                            <span class="topic-sub-title">{{this.practice.name}}</span>
                             <div class="line"></div>
                             <p>总练习人数：39394人</p>
                             <p>总练习次数：102002233次</p>
@@ -86,7 +86,7 @@
         mounted() {
             getList().then(r=>{
                 this.practice = r[0]
-                if(this.practice.courseList.length>0){
+                if(this.practice.name){
                     this.$nextTick(_=>{
                         let myChart = Echarts.init(document.getElementById('echarts'));
                         this.setChartOption(myChart);
