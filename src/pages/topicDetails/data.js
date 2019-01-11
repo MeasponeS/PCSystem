@@ -1,4 +1,4 @@
-let topic = [{
+export default  [{
     "newType": 1,
     "questionId": 40453,
     "trueNum": 3339,
@@ -6,7 +6,7 @@ let topic = [{
     "trueRate": 78.81,
     "index": 1,
     "typeB": 2,
-    "answer": "ABCDE",
+    "answer": ['A','B','C','D','E'],
     "totalNum": 4237,
     "questionResult": [{
         "optionContent": "通过问卷调查进行信息收集，价格相对便宜，使用上简单易行",
@@ -26,7 +26,7 @@ let topic = [{
         "optionName": "D"
     }, {"optionContent": "通过量化、系统的方法来组织和传达疾病预防与健康维护的信息，倾向于强调可以改正的健康危险因素。", "questionId": 40453, "optionName": "E"}],
     "name": "健康风险评估的优点有",
-    "historyAnswer": "",
+    "historyAnswer": [],
     "questionType": "多选"
 }, {
     "newType": 1,
@@ -36,7 +36,7 @@ let topic = [{
     "trueRate": 83.95,
     "index": 2,
     "typeB": 2,
-    "answer": "ABCE",
+    "answer": ['A','B','C','E'],
     "totalNum": 4367,
     "questionResult": [{
         "optionContent": "体检中心、医院",
@@ -52,7 +52,7 @@ let topic = [{
         "optionName": "E"
     }],
     "name": "健康风险评估目前主要被应用的领域有",
-    "historyAnswer": "",
+    "historyAnswer": ['A','B','D'],
     "questionType": "多选"
 }, {
     "newType": 3,
@@ -63,7 +63,7 @@ let topic = [{
         "questionId": 43839,
         "trueNum": 2192,
         "typeB": 2,
-        "answer": "AB",
+        "answer": ['A','B'],
         "analyisis": "健康风险识别一般包括健康体检，健康评估。<br />\r\n<div>\r\n\t<br />\r\n</div>",
         "totalNum": 2764,
         "trueRate": 79.31,
@@ -78,12 +78,12 @@ let topic = [{
         }],
         "name": "健康风险识别一般包括哪两种方法",
         "index": 3,
-        "historyAnswer": ""
+        "historyAnswer": ['A']
     }, {
         "questionId": 43840,
         "trueNum": 2509,
         "typeB": 2,
-        "answer": "ABCDEFG",
+        "answer": ['A','B','C','D','E','F','G'],
         "analyisis": "在进行心血管疾病的综合风险预测时，基本的因素是血压、血胆固醇、吸烟、糖尿病、BMI、年龄、性别",
         "totalNum": 2764,
         "trueRate": 90.77,
@@ -102,12 +102,12 @@ let topic = [{
         }, {"optionContent": "血糖", "questionId": 43840, "optionName": "G"}],
         "name": "请根据心血管疾病风险评估的方法，参与评估的危险因素有哪些？",
         "index": 4,
-        "historyAnswer": ""
+        "historyAnswer": ['A','B','C','D']
     }, {
         "questionId": 43841,
         "trueNum": 2507,
         "typeB": 2,
-        "answer": "ABCDE",
+        "answer": ['A','B','C','D','E'],
         "analyisis": "可改变的危险因素有：血压、吸烟、总胆固醇、血糖、BMI。",
         "totalNum": 2764,
         "trueRate": 90.7,
@@ -126,12 +126,12 @@ let topic = [{
         }],
         "name": "这些危险因素哪些是可以改变危险因素的?",
         "index": 5,
-        "historyAnswer": ""
+        "historyAnswer": ['A','B','C']
     }, {
         "questionId": 43842,
         "trueNum": 2107,
         "typeB": 2,
-        "answer": "ABCDEF",
+        "answer": ['A','B','C','D','E'],
         "analyisis": "健康风险评估的基本模块：健康信息(问卷、体检)、危险度计算、评估报告：危险因素信息，疾病风险评估结果，健康教育、干预建议。",
         "totalNum": 2764,
         "trueRate": 76.23,
@@ -150,7 +150,7 @@ let topic = [{
         }],
         "name": "结合本案例，健康风险评估的基本模块有哪些？",
         "index": 6,
-        "historyAnswer": ""
+        "historyAnswer": ['A','B']
     }],
     "questionType": "多选"
 }, {
@@ -161,7 +161,7 @@ let topic = [{
     "trueRate": 88.89,
     "index": 7,
     "typeB": 1,
-    "answer": "A",
+    "answer": ['A'],
     "totalNum": 2764,
     "questionResult": [{
         "optionContent": "健康危险因素与慢性病发病率及死亡率之间的关系",
@@ -181,7 +181,7 @@ let topic = [{
         "optionName": "E"
     }],
     "name": "健康危险因素评价技术是用来研究",
-    "historyAnswer": "",
+    "historyAnswer": [],
     "questionType": "单选"
 }, {
     "newType": 1,
@@ -191,7 +191,7 @@ let topic = [{
     "trueRate": 94.54,
     "index": 8,
     "typeB": 1,
-    "answer": "D",
+    "answer":['D'],
     "totalNum": 2767,
     "questionResult": [{
         "optionContent": "被评价者不存在任何危险因素",
@@ -211,7 +211,7 @@ let topic = [{
         "optionName": "D"
     }, {"optionContent": "被评价者存在的危险因素已被去除", "questionId": 40938, "optionName": "E"}],
     "name": "个体健康危险因素评价结果为：评价年龄高于实际年龄，说明",
-    "historyAnswer": "",
+    "historyAnswer": [],
     "questionType": "单选"
 }, {
     "newType": 1,
@@ -221,7 +221,7 @@ let topic = [{
     "trueRate": 93.2,
     "index": 9,
     "typeB": 1,
-    "answer": "E",
+    "answer": ['E'],
     "totalNum": 2764,
     "questionResult": [{
         "optionContent": "疾病的发生是无规律的",
@@ -241,7 +241,7 @@ let topic = [{
         "optionName": "D"
     }, {"optionContent": "健康风险评估可以作为健康风险管理的基础之一", "questionId": 43610, "optionName": "E"}],
     "name": "关于健康风险的描述正确的是（ ）",
-    "historyAnswer": "",
+    "historyAnswer": [],
     "questionType": "单选"
 }, {
     "newType": 1,
@@ -251,7 +251,7 @@ let topic = [{
     "trueRate": 87.84,
     "index": 10,
     "typeB": 1,
-    "answer": "D",
+    "answer": ["D"],
     "totalNum": 2764,
     "questionResult": [{"optionContent": "个人行为和生活方式", "questionId": 43649, "optionName": "A"}, {
         "optionContent": "环境因素",
@@ -263,7 +263,7 @@ let topic = [{
         "optionName": "D"
     }, {"optionContent": "医疗卫生服务", "questionId": 43649, "optionName": "E"}],
     "name": "需要收集危险因素资料，根据影响健康的基本的因素考虑，不包括",
-    "historyAnswer": "",
+    "historyAnswer": [],
     "questionType": "单选"
 }, {
     "newType": 3,
@@ -274,7 +274,7 @@ let topic = [{
         "questionId": 43692,
         "trueNum": 1946,
         "typeB": 2,
-        "answer": "BCDE",
+        "answer": ['B','C','D','E'],
         "analyisis": "健康风险评估的目的简单来说，是将健康数据转变为健康信息。具体来讲，健康风险评估的主要目的如下：<br />\r\n1.帮助个体综合认识健康危险因素。<br />\r\n2.鼓励和帮助人们修正不健康的行为。<br />\r\n3.制定个性化的健康干预措施。<br />\r\n4.评价干预措施的有效性。<br />\r\n5.健康管理人群分类。<br />\r\n6.其他目的。<br />",
         "totalNum": 2712,
         "trueRate": 71.76,
@@ -297,12 +297,12 @@ let topic = [{
         }],
         "name": "在对张大妈进行健康管理时，需要对她的健康风险进行评估。那么健康风险评估的目的有哪些？",
         "index": 11,
-        "historyAnswer": ""
+        "historyAnswer": []
     }, {
         "questionId": 43693,
         "trueNum": 2159,
         "typeB": 2,
-        "answer": "ABCDE",
+        "answer": ['A','B','C','D','E'],
         "analyisis": "健康危险因素评价基本步骤：<br />\r\n1、收集资料： <br />\r\n（1）当地年龄别、性别、疾病别发病率和死亡率资料； <br />\r\n（2）危险因素资料：个人行为生活方式、环境因素、生物遗传因素、卫生服务等。 <br />\r\n2、处理资料： <br />\r\n（1）将危险因素转换成危险分数； <br />\r\n（2）计算组合危险分数； <br />\r\n（3）计算存在死亡危险； <br />\r\n（4）计算评价年龄； <br />\r\n（5）计算增长年龄； <br />\r\n（6）计算危险降低程度。",
         "totalNum": 2712,
         "trueRate": 79.61,
@@ -321,12 +321,12 @@ let topic = [{
         }],
         "name": "要对张大妈进行健康危险因素评价，基本步骤包括哪些",
         "index": 12,
-        "historyAnswer": ""
+        "historyAnswer": []
     }, {
         "questionId": 43694,
         "trueNum": 2411,
         "typeB": 2,
-        "answer": "ABCDE",
+        "answer": ['A','B','C','D','E'],
         "analyisis": "收集危险因素资料（5类）  a. 行为生活方式  b. 环境因素  c. 生物遗传因素 d. 医疗服务 e. 疾病史。",
         "totalNum": 2712,
         "trueRate": 88.9,
@@ -345,12 +345,12 @@ let topic = [{
         }],
         "name": "如果进一步收集张大妈的健康危险因素资料，可采用的收集方法有",
         "index": 13,
-        "historyAnswer": ""
+        "historyAnswer": []
     }, {
         "questionId": 43695,
         "trueNum": 2072,
         "typeB": 2,
-        "answer": "ABCE",
+        "answer": ['A','B','C','E'],
         "analyisis": "健康干预措施不包括医患关系的干预。",
         "totalNum": 2712,
         "trueRate": 76.4,
@@ -369,12 +369,12 @@ let topic = [{
         }],
         "name": "若已对张大妈采取了健康干预措施，那么评价该措施的效果应包括",
         "index": 14,
-        "historyAnswer": ""
+        "historyAnswer": []
     }, {
         "questionId": 43696,
         "trueNum": 1949,
         "typeB": 2,
-        "answer": "BCDE",
+        "answer": ['B','C','D'],
         "analyisis": "管理张大妈的健康管理用生活方式管理。",
         "totalNum": 2712,
         "trueRate": 71.87,
@@ -393,7 +393,7 @@ let topic = [{
         }],
         "name": "根据健康管理的基本策略，如果请你对张大妈进行健康管理，下列哪项不是你要用到的策略？",
         "index": 15,
-        "historyAnswer": ""
+        "historyAnswer": []
     }],
     "questionType": "多选"
 }, {
@@ -405,7 +405,7 @@ let topic = [{
         "questionId": 43701,
         "trueNum": 4830,
         "typeB": 2,
-        "answer": "ABCDE",
+        "answer": ['A','B','C','D'],
         "analyisis": "收集主要内容：高血压发病开始年龄，服药情况，血压是否控制在正常水平；血脂检查包括胆固醇，低密度脂蛋白胆固醇，高密度脂蛋白胆固醇，饮食习惯，家族史，吸烟的年限，体力活动，每天吸烟是一等。<br />\r\n<div>\r\n\t<br />\r\n</div>",
         "totalNum": 5292,
         "trueRate": 91.27,
@@ -424,12 +424,12 @@ let topic = [{
         }],
         "name": "根据案例给出的信息，如果为赵先生做健康评估应当收集的主要信息有",
         "index": 16,
-        "historyAnswer": ""
+        "historyAnswer": []
     }, {
         "questionId": 43702,
         "trueNum": 4996,
         "typeB": 2,
-        "answer": "ABCDE",
+        "answer": ['A','B','C','D','E'],
         "analyisis": "危险因素：肥胖（BMI=32），血压145/88mmHg，饮食偏咸，饮酒，吸烟，很少参加体育运动，父亲死于冠心病，母亲曾患高血压病。",
         "totalNum": 5292,
         "trueRate": 94.41,
@@ -444,12 +444,12 @@ let topic = [{
         }, {"optionContent": "少运动", "questionId": 43702, "optionName": "E"}],
         "name": "根据赵先生的情况，他可能存在哪些疾病危险因素",
         "index": 17,
-        "historyAnswer": ""
+        "historyAnswer": ['A']
     }, {
         "questionId": 43703,
         "trueNum": 4780,
         "typeB": 2,
-        "answer": "ABCDE",
+        "answer": ['A','B','C','D','E'],
         "analyisis": "（1）戒烟戒酒\r\n（2）合理饮食，注重控制食盐摄入\r\n低盐食为主，多吃蔬菜、水果、粗杂粮等食物，少吃胆固醇和脂肪含量高的食品，\r\n如肥肉、猪油、油、动物内脏、奶油、油炸食品或鸡蛋。\r\n（3）积极参加体育锻炼\r\n在业余时间平均每周至少活动3 次，每次至少持续20 分钟，养成习惯，活动种\r\n类包括跑步、散步气功、太极拳（剑）等。\r\n（4）减肥\r\n确定减重目标和计划，将BMI 控制在25 以下\r\n（5）重点控制血压\r\n按时服药，定期体检，每周测量血压一次，并做好记录。",
         "totalNum": 5292,
         "trueRate": 90.33,
@@ -472,7 +472,77 @@ let topic = [{
         }, {"optionContent": "按时服药，定期体检", "questionId": 43703, "optionName": "E"}],
         "name": "下面是根据赵先生的情况制定的健康干预方案：（1）限制钠盐摄入量（2）合理膳食（3）限制饮酒及戒酒（4）减轻体重（5）适度的体力活动和体育运动，如果让你根据方案制定简要的实施计划包括哪些内容？",
         "index": 18,
-        "historyAnswer": ""
+        "historyAnswer": []
     }],
     "questionType": "多选"
-}]
+},
+    {
+        newType: 5,
+        questionArr: [
+            {
+                trueNum: 14848,
+                typeB: 1,
+                questionId: 30561,
+                answer: ["E"],
+                analyisis: "第一产程（宫颈扩张期)从有规律宫缩开始至宫口开全。初产妇约需11 &nbsp;- 12小时，经产妇6-8小时。第二产程（胎儿娩出期）从宫颈口开全到胎儿娩出。初产妇需1-2小时。经产妇约需几分钟至1小时。第三产程（胎盘娩出期）从胎儿娩出到胎盘娩出。约需5 -15分钟，一般不超过30分钟。",
+                totalNum: 24755,
+                trueRate: 59.98,
+                name: "初产妇第一产程约需",
+                index: 19,
+                historyAnswer: ['E']
+            },
+            {
+                trueNum: 14143,
+                typeB: 1,
+                questionId: 30562,
+                answer: ["C"],
+                analyisis: "第一产程（宫颈扩张期)从有规律宫缩开始至宫口开全。初产妇约需11 &nbsp;- 12小时，经产妇6-8小时。第二产程（胎儿娩出期）从宫颈口开全到胎儿娩出。初产妇需1-2小时。经产妇约需几分钟至1小时。第三产程（胎盘娩出期）从胎儿娩出到胎盘娩出。约需5 -15分钟，一般不超过30分钟。",
+                totalNum: 24755,
+                trueRate: 57.13,
+                name: "初产妇第二产程约需",
+                index: 20,
+                historyAnswer: []
+            },
+            {
+                trueNum: 15902,
+                typeB: 1,
+                questionId: 30563,
+                answer: ["D"],
+                analyisis: "第一产程（宫颈扩张期)从有规律宫缩开始至宫口开全。初产妇约需11 &nbsp;- 12小时，经产妇6-8小时。第二产程（胎儿娩出期）从宫颈口开全到胎儿娩出。初产妇需1-2小时。经产妇约需几分钟至1小时。第三产程（胎盘娩出期）从胎儿娩出到胎盘娩出。约需5 -15分钟，一般不超过30分钟。",
+                totalNum: 27368,
+                trueRate: 58.1,
+                name: "经产妇第一产程约需",
+                index: 21,
+                historyAnswer: []
+            }
+        ],
+        questionResult: [
+            {
+                optionContent: "5-15分钟",
+                optionName: "A"
+            },
+            {
+                optionContent: "1小时",
+                optionName: "B"
+            },
+            {
+                optionContent: "1-2小时",
+                optionName: "C"
+            },
+            {
+                optionContent: "6-8小时",
+                optionName: "D"
+            },
+            {
+                optionContent: "11-12小时",
+                optionName: "E"
+            }
+        ],
+        name: "题公用备选答案",
+        indexs: [
+            19,
+            20,
+            21
+        ],
+        questionType: "B"
+    }]

@@ -1,6 +1,6 @@
 
 import AnswerPopup from './AnswerPopup.vue'
-export default function popupAnswer(self,answer ,html){
+export default function popupAnswer(self,answer,html){
     const h = self.$createElement;
     self.$msgbox({
         title: '',

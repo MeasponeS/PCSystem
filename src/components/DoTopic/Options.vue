@@ -50,7 +50,8 @@
                 default:function () {
                     return []
                 }
-            }
+            },
+            questionId:String|Number
         },
         data: function () {
             return {
@@ -65,7 +66,8 @@
                 if((this.correctAnswer).length != 0 ){
                     return
                 }
-                this.$emit('selectOption',optionName)
+
+                this.$emit('selectOption',this.questionId,optionName)
             }
         },
 
