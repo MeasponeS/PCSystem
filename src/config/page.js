@@ -18,13 +18,16 @@ module.exports = {
     topic:{
         title:'习题集'
     },
+    topicDetails:{
+        title:'习题详情页'
+    },
     topicList:{
         title:'习题集列表'
     },
     register:{
         title:'注册'
     },
-    info:{
+    personal:{
         title:'个人信息'
     },
     study:{

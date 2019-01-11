@@ -7,7 +7,7 @@
             </ul>
             <div v-if="info" class="login">
               <div class="user-phone">
-                15117875524<i class="el-icon-arrow-down el-icon--right"></i>
+                {{ info.username }}<i class="el-icon-arrow-down el-icon--right"></i>
                   <ul class="dropdown">
                     <!--<li>15117875524</li>-->
                       <li>
@@ -39,6 +39,7 @@
 
 <script>
     import Config from '../../config/app.js'
+    import {logOut} from '../../api/auth.js'
     import {removeToken} from '../../utils/dataStorage.js'
     export default {
         name: 'Head',
@@ -63,8 +64,10 @@
         },
         methods: {
             outLogin() {
-                removeToken();
-                window.location.href = './index.html';
+                logOut().then(r=>{
+                    removeToken();
+                    window.location.href = './index.html';
+                }).catch(_=>{});
             }
         },
     }
@@ -83,7 +86,7 @@
             display: flex;
             height: 100%;
             align-items: center;
-            
+
             .logo {
                 /*width: 184px;*/
                 height: 44px;

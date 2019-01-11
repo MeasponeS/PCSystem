@@ -1,0 +1,121 @@
+@import "../../assets/css/var.scss";
+.main-body{
+    background: #F3F5F7;
+    overflow: hidden;
+    .content{
+        margin: 20px 0;
+        >.left{
+            float: left;
+            width: 832px;
+            box-shadow: 0 0 6px 0 rgba(174, 174, 174, 0.14);
+            background: #fff;
+            .l-top{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+                height: 62px;
+                border-bottom: 2px solid #F3F5F7;
+            }
+            .do{
+                padding: 0 20px 20px;
+                .do-top{
+                    width: 100%;
+                    height: 84px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .do-title{
+                        font-size: 18px;
+                        color: #222;
+                    }
+                    .do-action{
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        li{
+                            list-style-type: none;
+                            padding: 0 15px;
+                            position: relative;
+                            font-size: 14px;
+                            color: #222;
+                            cursor: pointer;
+                            &:after{
+                                content: '';
+                                position: absolute;
+                                width: 1px;
+                                top: 3px;
+                                right: 0;
+                                height: 10px;
+                                background: #969FA9;
+                            }
+                            &:last-child:after{
+                                width: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        >.right{
+            float: right;
+            width: 368px;
+            border-left: 2px solid #F3F5F7;
+            box-shadow: 2px 0 6px 0 rgba(174, 174, 174, 0.14);
+            background: #fff;
+            .r-top{
+                width: 100%;
+                display: flex;
+                height: 62px;
+                border-bottom: 2px solid #F3F5F7;
+                align-items: center;
+                font-size: 18px;
+                color: #222;
+                padding: 0 30px;
+            }
+            .checkpoint{
+                padding: 0 25px 25px;
+                ul{
+                    margin: 0 0 30px 0;
+                    padding: 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    li{
+                        list-style-type: none;
+                        height: 50px;
+                        width: 50%;
+                        border-bottom: 1px solid #F3F5F7;
+                        display: flex;
+                        align-items: center;
+                        color: #222;
+                        cursor: pointer;
+                        font-size: 16px;
+                        &:hover,&.active{
+                            color: $--color-primary;
+                        }
+
+                        span{
+                            width:40px;
+                            height:16px;
+                            margin-right: 10px;
+                            background:#969FA9;
+                            border-radius:2px;
+                            font-size: 12px;
+                            color: #fff;
+                            overflow: hidden;
+                            text-align: center;
+                            line-height: 16px;
+                            &.part{
+                                background: linear-gradient(to right,#52AD30 50%,#969FA9 50%);
+                            }
+                            &.do{
+                                background: #52AD30;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
