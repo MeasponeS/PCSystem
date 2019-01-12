@@ -33,6 +33,7 @@
                 v-if="topic.newType == 3"
                 v-for="item in topic.a3a4Questions"
                 class="do-topic-content"
+                :id="item.index"
         >
             <!--如果没有标题则不显示边框 和上边距 及背景色-->
             <div class="l"></div>
@@ -53,6 +54,7 @@
                 v-if="topic.newType == 5"
                 v-for="item in topic.questionArr"
                 class="do-topic-content"
+                :id="item.index"
         >
             <!--如果没有标题则不显示边框 和上边距 及背景色-->
             <div class="l"></div>
@@ -83,28 +85,43 @@
             selectOption(questionId,optionName){
                 //////////////////////////////////A1A2
                 if(this.topic.hasOwnProperty('questionId') && (this.topic.questionId == questionId)){
-                    if(this.topic.typeB == 1){
-                        this.$emit("selectOption",questionId,[optionName]);
-                        return;
-                    }else if((this.topic.typeB == 2) || (this.topic.typeB == 4)){
-                        this.$emit("selectOption",questionId,this.multiselect(this.topic.answer,optionName));
-                        return;
-
-
-
-                    }
+                        this.$emit("selectOption",questionId,this.getAnswer(this.topic.historyAnswer,optionName,this.topic.typeB));
                 }
                 ///////////////////////////////////A3A4
-
+                if(3 == this.topic.newType){
+                    this.topic.a3a4Questions.forEach(r=>{
+                        if(r.questionId == questionId){
+                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,r.typeB));
+                            return
+                        }
+                    })
+                }
+                ///////////////////////////////////B
+                if(5 == this.topic.newType){
+                    this.topic.questionArr.forEach(r=>{
+                        if(r.questionId == questionId){
+                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,r.typeB));
+                            return
+                        }
+                    })
+                }
 
             },
-            multiselect(answerArr,optionName){
+            getAnswer(answerArr,optionName,typeB){
+                if(typeB == 1){
+                    //单
+                   return [optionName]
 
-                let index = answerArr.indexOf(optionName);
-                if(index != -1){
-                    return answerArr.splice(index,1);
-                }else {
-                    return [optionName,...answerArr];
+                }
+                if((typeB == 2) || (typeB == 4)){
+                    //多
+                    let index = answerArr.indexOf(optionName);
+                    if(index != -1){
+                        answerArr.splice(index,1);
+                        return answerArr.sort();
+                    }else {
+                        return [optionName,...answerArr].sort();
+                    }
                 }
 
             }

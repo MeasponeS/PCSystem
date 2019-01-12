@@ -122,7 +122,8 @@
                             color: $--color-primary;
                         }
 
-                        span{
+                        >.box{
+                            display: inline-block;
                             width:40px;
                             height:16px;
                             margin-right: 10px;
@@ -133,11 +134,31 @@
                             overflow: hidden;
                             text-align: center;
                             line-height: 16px;
+                            .do{
+                                display: none;
+                            }
+                            &.do .do,&.part .do{
+                                display: block;
+                            }
+                            >span{
+                                width:40px;
+                                height:16px;
+                                color: #fff;
+                                overflow: hidden;
+                                text-align: center;
+                                line-height: 16px;
+                            }
                             &.part{
                                 background: linear-gradient(to right,#52AD30 50%,#969FA9 50%);
+                                .no{
+                                    display: none;
+                                }
                             }
                             &.do{
                                 background: #52AD30;
+                                .no{
+                                    display: none;
+                                }
                             }
                         }
 

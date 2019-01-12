@@ -19,7 +19,7 @@
                                 <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ topicTotal }}题</div>
                                 <div class="children-topic">
                                    <ul v-if="topics[activeQuestionIndex].newType != 1">
-                                       <li v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
+                                       <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
                                    </ul>
                                 </div>
                                 <ul class="do-action">
@@ -48,7 +48,10 @@
                                         v-for="(topic,index) in topics"
                                         @click="activeQuestionIndex = index"
                                 >
-                                    <span :class="hasAnswerClass(topic)">已答</span>
+                                    <div :class="hasAnswerClass(topic)" class="box">
+                                        <span class="do">已答</span>
+                                        <span class="no">未答</span>
+                                    </div>
                                     第{{ topicIndex(index) }}题
                                 </li>
                             </ul>
@@ -79,10 +82,39 @@
             }
         },
         methods: {
-            selectOption(questionId,optionName){
-                // let thisTopic = this.topics[this.activeQuestionIndex];
-                // if(questionId == thisTopic.questionId)
-                // }
+            positioning(domId){
+                this.$nextTick(_=>{
+                    let top = document.getElementById(domId).offsetTop
+                    window.scrollTo(0,top - 10);
+                })
+            },
+            selectOption(questionId,answer){
+                let thisTopic = this.topics[this.activeQuestionIndex];
+                //////////////////////////////////A1A2
+                if(thisTopic.hasOwnProperty('questionId') && (thisTopic.questionId == questionId)){
+                    thisTopic.historyAnswer = answer;
+                    return;
+                }
+                ///////////////////////////////////A3A4
+                if(3 == thisTopic.newType){
+                    thisTopic.a3a4Questions.forEach((r,i)=>{
+                        if(r.questionId == questionId){
+                            thisTopic.a3a4Questions[i].historyAnswer = answer;
+                            return
+                        }
+                    });
+                    return;
+                }
+                ///////////////////////////////////B
+                if(5 == thisTopic.newType){
+                    thisTopic.questionArr.forEach((r,i)=>{
+                        if(r.questionId == questionId){
+                            thisTopic.questionArr[i].historyAnswer = answer;
+                            return
+                        }
+                    });
+                    return;
+                }
             },
             lookAnswer(){
                 let topic = this.topics[this.activeQuestionIndex];
