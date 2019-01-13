@@ -18,6 +18,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+    @import "../../assets/css/var.scss";
     .rect-progress{
         display: inline-block;
         width: 40px;
@@ -32,7 +33,9 @@
             left: 0;
             z-index: 2;
             height: 100%;
-            background: #52AD30;
+            /*background: #52AD30;*/
+            background: $--color-primary;
+            transition: width .45s ease-in-out;
         }
         .text{
             position: absolute;

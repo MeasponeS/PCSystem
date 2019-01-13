@@ -118,7 +118,7 @@
                     let index = answerArr.indexOf(optionName);
                     if(index != -1){
                         answerArr.splice(index,1);
-                        return answerArr.sort();
+                        return [...answerArr].sort();
                     }else {
                         return [optionName,...answerArr].sort();
                     }

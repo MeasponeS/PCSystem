@@ -1,35 +1,4 @@
-# 使用方法
+index.js和AnswerPopup.vue 是改版之前的查看答案，因为不满足查看多个答案设计师重新设计了组件，因此重写了组件
 
-``` javascript
-
-const h = this.$createElement;
-this.$msgbox({
-    title: '',
-    message: h('AnswerPopup', null, ''),
-    showCancelButton: false,
-    showConfirmButton:false,
-    showClose:false,
-    customClass:'answer-popup-box'
-    // beforeClose: (action, instance, done) => {
-    //     if (action === 'confirm') {
-    //         instance.confirmButtonLoading = true;
-    //         instance.confirmButtonText = '执行中...';
-    //         setTimeout(() => {
-    //             done();
-    //             setTimeout(() => {
-    //                 instance.confirmButtonLoading = false;
-    //             }, 300);
-    //         }, 3000);
-    //     } else {
-    //         done();
-    //     }
-    // }
-}).then(action => {
-    this.$message({
-        type: 'info',
-        message: 'action: '
-    });
-}).catch(_=>{});
-```
-
+AnswersPopup.vue 多了一个s  注意区分
 

@@ -59,6 +59,10 @@
 
         </div>
         <Footer></Footer>
+        <AnswersPopup v-model="answersPopup"
+                      :topicIndex="topicIndex(activeQuestionIndex,true)"
+                      :topic="topics[activeQuestionIndex]"
+        ></AnswersPopup>
     </div>
 </template>
 
@@ -67,7 +71,7 @@
     import DoTopic from '../../components/DoTopic/Dotopic.vue'
     import RectProgress from '../../components/RectProgress/RectProgress.vue'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
-    import popupAnswer from '../../components/AnswerPopup/index.js'
+    import AnswersPopup from '../../components/AnswerPopup/AnswersPopup.vue'
     import data from './data.js'
     export default {
         name: 'app',
@@ -76,9 +80,13 @@
             return {
                 topics:data,
                 activeQuestionIndex:0,
+                answersPopup:true,
             }
         },
         methods: {
+            lookAnswer(){
+                this.answersPopup = true;
+            },
             positioning(domId){
                 this.$nextTick(_=>{
                     let top = document.getElementById(domId).offsetTop
@@ -113,10 +121,7 @@
                     return;
                 }
             },
-            lookAnswer(){
-                let topic = this.topics[this.activeQuestionIndex];
-                popupAnswer(this,'ABC','afdsfsdfs');
-            },
+
             previousTopic(){
                 if(this.activeQuestionIndex <= 0){
                     this.$message('已经是第一题了');
@@ -205,7 +210,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Breadcrumb,DoTopic,RectProgress}
+        components: {Breadcrumb,DoTopic,RectProgress,AnswersPopup}
     }
 </script>
 
