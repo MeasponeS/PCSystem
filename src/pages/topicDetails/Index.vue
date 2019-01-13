@@ -41,18 +41,14 @@
                         </div>
                         <div class="checkpoint">
                             <ul>
-                                <!--li标签类说明 active当前的题目  >span 类说明 do已答 part答了部分 默认未答 -->
                                 <li
                                         class="li"
                                         :class="{active:activeQuestionIndex == index}"
                                         v-for="(topic,index) in topics"
                                         @click="activeQuestionIndex = index"
                                 >
-                                    <div :class="hasAnswerClass(topic)" class="box">
-                                        <span class="do">已答</span>
-                                        <span class="no">未答</span>
-                                    </div>
-                                    第{{ topicIndex(index) }}题
+                                    <RectProgress :progress="rectProgress(topic)"></RectProgress>
+                                    <span style="margin-left: 10px">第{{ topicIndex(index) }}题</span>
                                 </li>
                             </ul>
                             <el-button type="primary" style="width: 100%">提交&nbsp;&nbsp;第11关</el-button>
@@ -69,6 +65,7 @@
 <script>
     import CommonMixin from '../commonMixin.js'
     import DoTopic from '../../components/DoTopic/Dotopic.vue'
+    import RectProgress from '../../components/RectProgress/RectProgress.vue'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     import popupAnswer from '../../components/AnswerPopup/index.js'
     import data from './data.js'
@@ -137,37 +134,31 @@
                 }
                 this.activeQuestionIndex ++ ;
             },
-            hasAnswerClass(topic){
-                //说明 do已答 part答了部分 默认未答
-                if(1 == topic.newType)return (topic.historyAnswer.length) === 0 ? '' : 'do';
-                if(3 == topic.newType){
+            rectProgress(topic){
 
-                    let allHasAnswer = true;
-                    let hasPart = false
-                    for (let i = 0;i<topic.a3a4Questions.length;i++){
-                        if(topic.a3a4Questions[i].historyAnswer.length == 0){
-                            allHasAnswer = false//完成的情况
-                        }
+                if(1 == topic.newType)return (topic.historyAnswer.length) === 0 ? 0 : 100;
+                let progress = 0;
+                if(3 == topic.newType){
+                    let a3a4Length = topic.a3a4Questions.length;
+                    for (let i = 0 ; i<a3a4Length; i++ ){
                         if(topic.a3a4Questions[i].historyAnswer.length != 0){
-                            hasPart = true;
+                            progress += 100/a3a4Length;
                         }
                     }
-                    return allHasAnswer ? 'do' : (hasPart ?'part' : '');
+                    return progress;
                 }
                 if(5 == topic.newType){
-                    let allHasAnswer = true;
-                    let hasPart = false
-                    for (let i = 0;i<topic.questionArr.length;i++){
-                        if(topic.questionArr[i].historyAnswer.length == 0){
-                            allHasAnswer = false//完成的情况
-                        }
+
+                    let b1Length = topic.questionArr.length;
+                    for (let i = 0;i<b1Length;i++){
+
                         if(topic.questionArr[i].historyAnswer.length != 0){
-                            hasPart = true;
+                            progress += 100/b1Length;
                         }
                     }
-                    return allHasAnswer ? 'do' : (hasPart ?'part' : '');
+                    return progress;
                 }
-                return '';
+                return 0;
 
             },
             topicIndex(index,isVal = false){
@@ -214,7 +205,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Breadcrumb,DoTopic}
+        components: {Breadcrumb,DoTopic,RectProgress}
     }
 </script>
 

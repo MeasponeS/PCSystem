@@ -41,8 +41,7 @@
                         </div>
                     </li>
                 </ul>
-                <!--<EmptyTemplate img-key="Course" msg="当前学堂还没有安排任何课程"></EmptyTemplate>-->
-                <DoTopic style="width: 784px"></DoTopic>
+                <EmptyTemplate img-key="Course" msg="当前学堂还没有安排任何课程"></EmptyTemplate>
             </div>
         </div>
         <Footer></Footer>
@@ -53,7 +52,7 @@
 <script>
     import CommonMixin from '../commonMixin.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-    import DoTopic from '../../components/DoTopic/Dotopic.vue'
+
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -73,7 +72,7 @@
         beforeDestroy: function () {
 
         },
-        components: {EmptyTemplate,DoTopic}
+        components: {EmptyTemplate}
     }
 </script>
 
