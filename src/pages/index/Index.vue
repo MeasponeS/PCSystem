@@ -45,13 +45,18 @@
             </div>
         </div>
         <Footer></Footer>
-
+        <SubMajorPopup :value="true" :subs='[{id:1,name:"护理学（388）"},{id:2,name:"护理学（388）"},{id:3,name:"护理学（388）"}]'>
+            <template slot="choose">
+                主管护师共设置护理学，内科护理、外课护理、妇产科护理、儿科护理、社区护理六个亚专业的考试护理学专业（中级）基础知识和相关专业知识考核内容相同，专业知识和专业实践能力根据报考亚专业的不同，所考核的内容不同（详见职称《考试那些事儿（中级）》）。
+            </template>
+        </SubMajorPopup>
     </div>
 </template>
 
 <script>
     import CommonMixin from '../commonMixin.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
+    import SubMajorPopup from '../../components/SubMajorPopup/SubMajorPopup.vue'
 
     export default {
         name: 'app',
@@ -61,6 +66,7 @@
                 value1: '',
                 NoLearningCard: true,
                 OpenLearningCard: true,
+                ite:[{id:1,name:"护理学（388）"},{id:1,name:"护理学（388）"},{id:1,name:"护理学（388）"}]
             }
         },
         methods: {
@@ -72,7 +78,7 @@
         beforeDestroy: function () {
 
         },
-        components: {EmptyTemplate}
+        components: {EmptyTemplate,SubMajorPopup}
     }
 </script>
 
