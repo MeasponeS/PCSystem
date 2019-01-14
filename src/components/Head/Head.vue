@@ -11,7 +11,7 @@
             </ul>
             <div v-if="info" class="login">
               <div class="user-phone">
-                {{ info.username.slice(0,3) + '****' + info.username.slice(6,10) }}<i class="el-icon-arrow-down el-icon--right"></i>
+                {{ info.username.slice(0,3) + '****' + info.username.slice(6,10) }}<i class="el-icon-caret-bottom el-icon--right" style="color:#BAC1D8"></i>
                   <ul class="dropdown">
                     <li>{{ info.username.slice(0,3) + '****' + info.username.slice(6,10) }}</li>
                       <li>
