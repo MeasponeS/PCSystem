@@ -16,9 +16,7 @@
                             <p>人均练习次数：3233次</p>
                             <p>平均通关关卡：29关</p>
                             <p>通过全部关卡人数：32人</p>
-
                             <el-button @click="practice(item)" style="width: 100%;margin-top: 45px" type="primary">练习</el-button>
-
                         </div>
                         <div class="topic-r">
                             <div class="top">
@@ -61,13 +59,15 @@
         },
         methods: {
             practice(item){
-                authCourse({courseId:item.id}).then(r=>{
-                    // if(0 == r){
-                    //     this.noLearningCardShow = true;
-                    // }else {
-                        window.location.href = './topicList.html?packageId=' + item.packageId +'&courseId=' + item.id
-                    //}
-                }).catch(_=>{})
+                window.location.href = './topicList.html?packageId=' + item.packageId +'&courseId=' + item.id
+
+                // authCourse({courseId:item.id}).then(r=>{
+                //     if(0 == r){
+                //         this.noLearningCardShow = true;
+                //     }else {
+                //         window.location.href = './topicList.html?packageId=' + item.packageId +'&courseId=' + item.id
+                //     }
+                // }).catch(_=>{})
 
             },
             setChartOption(chart){

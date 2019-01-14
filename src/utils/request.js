@@ -52,7 +52,7 @@ service.interceptors.response.use(
                 });
                 if(res.data.resultCode == 402){
                     removeToken();
-                    window.location.reload();
+                    //window.location.reload();
                 }
                 return Promise.reject('error');
             }

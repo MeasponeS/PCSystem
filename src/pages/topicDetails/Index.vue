@@ -30,6 +30,7 @@
                                 </ul>
                             </div>
                             <DoTopic
+                                    :isHistory="topicInfo.status != -1"
                                     :topic="topics[activeQuestionIndex]"
                                     @selectOption="selectOption"
                             ></DoTopic>
@@ -80,7 +81,17 @@
         mixins: [CommonMixin],
         data: function () {
             return {
-                topics:[],//关卡的所有问题
+                topics:[{
+                    "newType": 1,
+                    "questionId": 0,
+                    "analyisis": "",
+                    "index": 1,
+                    "typeB": 1,
+                    "answer": [],
+                    "questionResult": [],
+                    "name": "",
+                    "historyAnswer": [],
+                }],//关卡的所有问题
                 topicInfo:{//关卡的信息
                     packageId:'',
                     courseId:'',
@@ -88,7 +99,7 @@
                     level:'',
                     courseN:'',
                     levelName:'',
-                    status:-1, //默认未答过
+                    status:-1, //默认-1未答过
                 },
                 takeTime:0,//页面停留时间
                 activeQuestionIndex:0,// 问题的索引
@@ -156,7 +167,7 @@
                 })
 
 
-
+                console.log(answer);
                 commitQuestionAnswer(answer).then(r=>{
                     console.log(r);
                 }).catch(_=>{})
@@ -244,7 +255,9 @@
             },
             topicIndex(index,isVal = false){
                 //默认返回当前题目的索引 如 3、4~6  isVal=true 返回[3]、[4,5,6] 用
+
                 let topic = this.topics[index];
+
                 if(1 == topic.newType) return isVal ? [topic.index] : topic.index;
 
                 if(3 == topic.newType){
