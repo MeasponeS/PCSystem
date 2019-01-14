@@ -5,11 +5,11 @@
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container">
                 <div class="title">习题集列表</div>
-                <ul class="topic" v-if="practice.name">
-                    <li>
+                <ul class="topic" v-if="list.length != 0">
+                    <li v-for="item in list">
                         <div class="topic-l">
-                            <h2 class="topic-title">{{this.practice.packageName}}</h2>
-                            <span class="topic-sub-title">{{this.practice.name}}</span>
+                            <h2 class="topic-title">{{item.packageName}}</h2>
+                            <span class="topic-sub-title">{{item.name}}</span>
                             <div class="line"></div>
                             <p>总练习人数：39394人</p>
                             <p>总练习次数：102002233次</p>
@@ -17,13 +17,12 @@
                             <p>平均通关关卡：29关</p>
                             <p>通过全部关卡人数：32人</p>
 
-                            <el-button style="width: 100%;margin-top: 45px" type="primary">练习</el-button>
+                            <el-button @click="practice(item)" style="width: 100%;margin-top: 45px" type="primary">练习</el-button>
+
                         </div>
                         <div class="topic-r">
                             <div class="top">
-                                <div id="echarts" class="echarts">
-
-                                </div>
+                                <div :id="item.packageId" class="echarts"></div>
                             </div>
                             <div class="bottom">
                                 <span>总练习人数：39394人</span>
@@ -37,23 +36,40 @@
             </div>
         </div>
         <Footer></Footer>
+        <NoLearningCard
+                v-model="noLearningCardShow"
+                :phone="ORGINFO.phone"
+        ></NoLearningCard>
     </div>
 </template>
 
 <script>
     import CommonMixin from '../commonMixin.js'
     import Echarts from './echarts.js'
-    import { getList } from '../../api/other.js'
+    import { getTopicList } from '../../api/topic.js'
+    import NoLearningCard from '../../components/NoLearningCard/NoLearningCard.vue'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
+    import {authCourse} from '../../api/auth.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
         data: function () {
             return {
-                practice:[]
+                list:[],
+                noLearningCardShow:false,
             }
         },
         methods: {
+            practice(item){
+                authCourse({courseId:item.id}).then(r=>{
+                    // if(0 == r){
+                    //     this.noLearningCardShow = true;
+                    // }else {
+                        window.location.href = './topicList.html?packageId=' + item.packageId +'&courseId=' + item.id
+                    //}
+                }).catch(_=>{})
+
+            },
             setChartOption(chart){
                 chart.setOption({
                     color:['#31B68F','#F77352','#2B60FF'],
@@ -84,21 +100,15 @@
             }
         },
         mounted() {
-            getList().then(r=>{
-                this.practice = r[0]
-                if(this.practice.name){
-                    this.$nextTick(_=>{
-                        let myChart = Echarts.init(document.getElementById('echarts'));
-                        this.setChartOption(myChart);
-                    })
-                }
-            }).catch(_=>{})
 
+            getTopicList().then(r=>{
+                this.list = r
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
 
         },
-        components: {EmptyTemplate}
+        components: {EmptyTemplate,NoLearningCard}
     }
 </script>
 

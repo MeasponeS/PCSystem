@@ -18,11 +18,3 @@ export function getNotices(params) {
     })
 }
 
-// 获取习题列表
-export function getList(params) {
-    return request({
-        url: 'pc/exercise/getList',
-        method: 'get',
-        params: params
-    })
-}
