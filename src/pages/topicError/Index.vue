@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="topic" :logoUrl="ORGINFO.logo" :info="USERINFO"></Head>
+        <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="main-body" v-if="topics.length != 0">
             <div class="container">
                 <div class="content clearfix">
