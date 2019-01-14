@@ -66,12 +66,14 @@
                 .checkpoint{
                     display: flex;
                     flex-wrap: wrap;
+                    height: 588px;
+                    overflow-y: auto;
                     .li{
-                        width: 166px;
+                        width: 162px;
                         height: 52px;
                         align-items: center;
                         display: flex;
-                        padding: 0 26px;
+                        padding: 0 20px;
                         font-size: 16px;
                         color: #222222;
                         border-bottom: 1px solid #F6F6F6;
@@ -106,7 +108,7 @@
             .topic-list-r{
                 background:#fff;
                 flex: 1;
-                height: 562px;
+                //height: 562px;
                 .li{
                     height: 52px;
                     line-height: 52px;

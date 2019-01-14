@@ -19,6 +19,7 @@
                 <div class="l"></div>
                 <div class="r">
                     <Options
+                            :correctAnswer="isHistory ? topic.answer :[]"
                             :options="topic.questionResult"
                             :userAnswer="topic.historyAnswer"
                             :questionId="topic.questionId"
@@ -42,6 +43,7 @@
                     {{ item.index }}. {{ item.name }}
                 </div>
                 <Options
+                        :correctAnswer="isHistory ? item.answer :[]"
                         :options="item.questionResult"
                         :userAnswer="item.historyAnswer"
                         :questionId="item.questionId"
@@ -63,6 +65,7 @@
                     {{ item.index }}. {{ item.name }}
                 </div>
                 <Options
+                        :correctAnswer="isHistory ? item.answer :[]"
                         :options='topic.questionResult'
                         :userAnswer="item.historyAnswer"
                         :questionId="item.questionId"
@@ -79,7 +82,11 @@
     export default {
         name: 'DoTopic',
         props: {
-            topic: Object
+            topic: Object,
+            isHistory:{
+                type:Boolean,
+                default:false,
+            }
         },
         methods: {
             selectOption(questionId,optionName){

@@ -71,7 +71,10 @@
                 logOut().then(r=>{
                     removeToken();
                     window.location.href = './index.html';
-                }).catch(_=>{});
+                }).catch(_=>{
+                    removeToken();
+                    window.location.href = './index.html'; //token失效也要退出登录
+                });
             }
         },
     }

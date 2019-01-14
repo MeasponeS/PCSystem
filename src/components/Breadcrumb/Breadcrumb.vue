@@ -22,6 +22,11 @@ export default {
         font-size: 18px;
     }
     .breadcrumb-a{
+        display: inline-block;
+        height: 24px;
+        position: relative;
+        top: 5px;
+        line-height: 24px;
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;

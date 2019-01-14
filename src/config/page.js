@@ -24,6 +24,9 @@ module.exports = {
     topicList:{
         title:'习题集列表'
     },
+    topicError:{
+        title:'我的错题集'
+    },
     register:{
         title:'注册'
     },
