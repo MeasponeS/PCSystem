@@ -39,3 +39,12 @@ export function logOut(params) {
         params: params
     })
 }
+
+export function authCourse(params) { //判断课程权限
+    return request({
+        url: '/pc/authCourse',
+        method: 'get',
+        params: params
+    })
+}
+

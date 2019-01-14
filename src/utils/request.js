@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import Config from '../config/app.js'
 import { Notification,Loading  } from 'element-ui';
-import {getToken} from '../utils/dataStorage.js'
+import {getToken,removeToken} from '../utils/dataStorage.js'
 
 const service = Axios.create({
     baseURL: Config.apiUrl + '/' + Config.apiPrefix,
@@ -50,12 +50,19 @@ service.interceptors.response.use(
                     title:res.data.message,
                     type:'error'
                 });
+                if(res.data.resultCode == 402){
+                    removeToken();
+                    window.location.reload();
+                }
                 return Promise.reject('error');
             }
             return res.data.data
         }
     },
     error => {
+        setTimeout(_=>{
+            window.loadingInstance.close();
+        },300)
         Notification({
             title:"请求未响应",
             message:"服务器可能出了点问题",

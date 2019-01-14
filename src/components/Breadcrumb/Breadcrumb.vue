@@ -2,7 +2,7 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item v-for="item in nav">
-        <a :style="'max-width:'+ (item.hasOwnProperty('width')?item.width:'168px') " class="breadcrumb-a" :href="item.url" :title="item.name">{{ item.name }}</a>
+        <a :style="'max-width:'+ (item.hasOwnProperty('width') ? ( item.width + 'px'):'168px') " class="breadcrumb-a" :href="item.url" :title="item.name">{{ item.name }}</a>
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
@@ -15,6 +15,9 @@ export default {
 }
 </script>
 <style lang="scss">
+    .el-breadcrumb{
+        line-height: unset!important;
+    }
     .el-breadcrumb__separator[class*=icon]{
         font-size: 18px;
     }

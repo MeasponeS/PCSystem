@@ -16,3 +16,7 @@ export function initUrlParams() {
     window.URlPARAMS = currentUrlToParams();
 }
 
+export function clone(obj) {
+    let strData = JSON.stringify(obj)
+    return JSON.parse(strData);
+}

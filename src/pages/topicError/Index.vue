@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
-        <div class="main-body">
+        <Head activeUrl="topic" :logoUrl="ORGINFO.logo" :info="USERINFO"></Head>
+        <div class="main-body" v-if="topics.length != 0">
             <div class="container">
                 <div class="content clearfix">
                     <div class="left">
@@ -10,7 +10,7 @@
                                         :nav="[
                             {url:'./topic.html',name:topicInfo.courseN,width:250},
                             {url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:topicInfo.levelName},
-                            {url:'javascript:;',name:'第'+topicInfo.level+'关'}
+                            {url:'javascript:;',name:'错题集'}
                         ]"
                             ></Breadcrumb>
                         </div>
@@ -51,7 +51,6 @@
                                     <span style="margin-left: 10px">第{{ topicIndex(index) }}题</span>
                                 </li>
                             </ul>
-                            <el-button @click="submitAnswer" type="primary" style="width: 100%"> {{ topicInfo.status != -1 ? '再答一次' : '提交&nbsp;&nbsp;第' + topicInfo.level + '关' }}  </el-button>
                         </div>
                     </div>
                 </div>
@@ -73,94 +72,57 @@
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     import AnswersPopup from '../../components/AnswerPopup/AnswersPopup.vue'
     import {getUrlInfo} from '../../utils/dataStorage.js'
-    import {getLevelDetail,commitQuestionAnswer} from '../../api/topic.js'
+    import {getMyWrongQuestion} from '../../api/topic.js'
     //import data from './data.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
         data: function () {
             return {
-                topics:[],//关卡的所有问题
-                topicInfo:{//关卡的信息
-                    packageId:'',
-                    courseId:'',
-                    levelId:'',
-                    level:'',
-                    courseN:'',
-                    levelName:'',
-                    status:-1, //默认未答过
-                },
-                takeTime:0,//页面停留时间
-                activeQuestionIndex:0,// 问题的索引
-                answersPopup:false, //查看答案
+                topics:[],
+                activeQuestionIndex:0,
+                answersPopup:false,
             }
         },
         methods: {
-            clearAllAnswer(){
-                let topics = this.topics;
-                topics.forEach((r,i)=>{
-                    if(1 == r.newType){
-                        topics[i].historyAnswer = [];
-                        return;
-                    }
-                    if(3 == r.newType){
-                        topics[i].a3a4Questions.forEach((q,a)=>{
-                            topics[i].a3a4Questions[a].historyAnswer = [];
-                        })
-                        return;
-                    }
-
-                    if(5 == r.newType){
-                        topics[i].questionArr.forEach((q,a)=>{
-                            topics[i].questionArr[a].historyAnswer = [];
-                        })
-                        return;
-                    }
-                })
-            },
-            submitAnswer(){
-                if(this.topicInfo.status != -1){
-                    this.clearAllAnswer();
-                    this.topicInfo.status = -1 //
-                    return;
-                }
-                let topics = this.topics;
-                let answer = {
-                    "levelId": this.topicInfo.levelId,
-                    "takeTime": this.takeTime,
-                    "coursePackId": this.topicInfo.packageId,
-                    "courseId":this.topicInfo.courseId,
-                    "answers": {}
-                };
-
-                topics.forEach(r=>{
-                    if(1 == r.newType){
-                        answer.answers[r.questionId] = r.historyAnswer.join('');
-                        return;
-                    }
-                    if(3 == r.newType){
-                        r.a3a4Questions.forEach(q=>{
-                            answer.answers[q.questionId] = q.historyAnswer.join('');
-                            return;
-                        })
-                        return;
-                    }
-
-                    if(5 == r.newType){
-                        r.questionArr.forEach(q=>{
-                            answer.answers[q.questionId] = q.historyAnswer.join('');
-                            return;
-                        })
-                        return;
-                    }
-                })
-
-
-
-                commitQuestionAnswer(answer).then(r=>{
-                    console.log(r);
-                }).catch(_=>{})
-            },
+            // submitAnswer(){
+            //     let topics = this.topics;
+            //     let answer = {
+            //         "levelId": this.topicInfo.levelId,
+            //         "takeTime": this.takeTime,
+            //         "coursePackId": this.topicInfo.packageId,
+            //         "courseId":this.topicInfo.courseId,
+            //         "answers": {}
+            //     };
+            //
+            //     topics.forEach(r=>{
+            //         if(1 == r.newType){
+            //             answer.answers[r.questionId] = r.historyAnswer.join('');
+            //             return;
+            //         }
+            //         if(3 == r.newType){
+            //             r.a3a4Questions.forEach(q=>{
+            //                 answer.answers[q.questionId] = q.historyAnswer.join('');
+            //                 return;
+            //             })
+            //             return;
+            //         }
+            //
+            //         if(5 == r.newType){
+            //             r.questionArr.forEach(q=>{
+            //                 answer.answers[q.questionId] = q.historyAnswer.join('');
+            //                 return;
+            //             })
+            //             return;
+            //         }
+            //     })
+            //
+            //
+            //
+            //     // commitQuestionAnswer(answer).then(r=>{
+            //     //     console.log(r);
+            //     // }).catch(_=>{})
+            // },
             lookAnswer(){
                 this.answersPopup = true;
             },
@@ -198,6 +160,7 @@
                     return;
                 }
             },
+
             previousTopic(){
                 if(this.activeQuestionIndex <= 0){
                     this.$message('已经是第一题了');
@@ -263,28 +226,17 @@
                     return topic.indexs[0] + '~' + topic.indexs[topic.indexs.length - 1]
                 }
             },
+
         },
         mounted() {
-            setInterval(_=>{
-                this.takeTime++;
-            },1000);
 
-            this.topicInfo.packageId = getUrlInfo('packageId');
-            this.topicInfo.courseId = getUrlInfo('courseId');
-            this.topicInfo.levelId = getUrlInfo('levelId');
-
-
-            getLevelDetail({
-                packageId:getUrlInfo('packageId'),
+            getMyWrongQuestion({
+                coursePackId:getUrlInfo('packageId'),
                 courseId:getUrlInfo('courseId'),
-                levelId:getUrlInfo('levelId'),
-                isHistory:1,
+
             }).then(r=>{
                 this.topics = r.questions;
-                this.topicInfo.courseN = r.courseN
-                this.topicInfo.levelName = r.levelName
-                this.topicInfo.level = r.sort
-                this.topicInfo.status = r.status
+
             }).catch(_=>{})
         },
         computed: {
