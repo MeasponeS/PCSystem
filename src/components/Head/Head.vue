@@ -1,15 +1,19 @@
 <template>
     <div class="head">
         <div class="container">
-            <img class="logo" :src="logoUrl" alt="">
+            <img class="logo" src="./img/logo.png" alt="">
+            <div class="company">
+                <p>欢迎来到</p>
+                <span>{{companyName}}</span>
+            </div>
             <ul class="nav">
                 <li v-for="(title,url) in nav"><a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a></li>
             </ul>
             <div v-if="info" class="login">
               <div class="user-phone">
-                {{ info.username }}<i class="el-icon-arrow-down el-icon--right"></i>
+                {{ info.username.slice(0,3) + '****' + info.username.slice(6,10) }}<i class="el-icon-arrow-down el-icon--right"></i>
                   <ul class="dropdown">
-                    <!--<li>15117875524</li>-->
+                    <li>{{ info.username.slice(0,3) + '****' + info.username.slice(6,10) }}</li>
                       <li>
                           <a href="./personal.html">个人资料</a>
                       </li>
@@ -48,7 +52,7 @@
                 type: String,
                 default: '',
             },
-            logoUrl: {
+            companyName: {
                 type: String,
                 default: '',
             },
@@ -88,12 +92,25 @@
             align-items: center;
 
             .logo {
-                /*width: 184px;*/
-                height: 44px;
+                /*width: 41px;*/
+                height: 40px;
             }
+        .company{
+            display: inline-block;
+            min-width: 188px;
+            margin-left: 10px;
+            p{
+                font-size: 23px;
+                color: #2B60FF;
+                margin: 0 0 6px 0;
+            }
+            span{
+                font-size: 16px;
+            }
+        }
             .nav {
                 flex: 1;
-                padding-left: 90px;
+                // padding-left: 90px;
                 list-style-type: none;
                 li {
                     float: left;

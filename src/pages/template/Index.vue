@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="index" :logoUrl="ORGINFO.logo" :info="USERINFO"></Head>
+        <Head activeUrl="index" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="container main-body">
             <el-button @click="fn()">默认按钮</el-button>
             <el-button type="primary">主要按钮</el-button>
