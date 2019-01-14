@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head :companyName="ORGINFO.orgName"></Head>
+        <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="container main-body">
             <div class="header">
                 <div @click="type=0" :class="{active:type==0}">课程</div>
