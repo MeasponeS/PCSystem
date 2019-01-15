@@ -103,6 +103,8 @@
             }
             .checkpoint{
                 padding: 0 25px 25px;
+                max-height: 660px;
+                overflow-y: auto;
                 ul{
                     margin: 0 0 30px 0;
                     padding: 0;

@@ -2,35 +2,29 @@
     <div id="app">
         <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="main-body">
-            <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
+            <!--<img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">-->
             <div class="container">
-                <div class="title">习题集列表</div>
-                <ul class="topic" v-if="list.length != 0">
-                    <li v-for="item in list">
-                        <div class="topic-l">
-                            <h2 class="topic-title">{{item.packageName}}</h2>
-                            <span class="topic-sub-title">{{item.name}}</span>
-                            <div class="line"></div>
-                            <p>总练习人数：39394人</p>
-                            <p>总练习次数：102002233次</p>
-                            <p>人均练习次数：3233次</p>
-                            <p>平均通关关卡：29关</p>
-                            <p>通过全部关卡人数：32人</p>
-                            <el-button @click="practice(item)" style="width: 100%;margin-top: 45px" type="primary">练习</el-button>
-                        </div>
-                        <div class="topic-r">
-                            <div class="top">
-                                <div :id="item.packageId" class="echarts"></div>
-                            </div>
-                            <div class="bottom">
-                                <span>总练习人数：39394人</span>
-                                <span>总练习次数：102002233次</span>
-                                <span>人均练习次数：3233次</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <EmptyTemplate msg="暂无习题集" v-else></EmptyTemplate>
+                <!--<div class="title">习题集列表</div>-->
+                <div class="list" v-if="list.length != 0">
+                    <div class="row" v-for="item in list">
+                        <div class="title">{{item.packageName}}</div>
+                        <ul class="topic">
+                            <li>
+                                <h2>健康管理师习题集</h2>
+                                <div class="line"></div>
+                                <p>总练习人数：39394人</p>
+                                <p>总练习次数：102002233次</p>
+                                <p>人均练习次数：3233次</p>
+                                <p>平均通关关卡：29关</p>
+                                <p>通过全部关卡人数：32人</p>
+                                <div class="btn" @click="practice(item)">
+                                    练习
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <EmptyTemplate style="margin-top: 48px" msg="暂无习题集" v-else></EmptyTemplate>
             </div>
         </div>
         <Footer></Footer>
