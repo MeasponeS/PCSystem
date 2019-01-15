@@ -106,6 +106,7 @@
                 font-size: 23px;
                 color: #2B60FF;
                 margin: 0 0 6px 0;
+                font-weight: bold;
             }
             span{
                 font-size: 16px;
@@ -118,6 +119,7 @@
                 li {
                     float: left;
                     margin-right: 46px;
+                    font-weight: bold;
                     a {
                         font-size: 18px;
                         &:hover, &.active {

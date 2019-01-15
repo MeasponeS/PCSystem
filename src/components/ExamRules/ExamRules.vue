@@ -52,6 +52,7 @@
                 height: 0;
             }
             .exam-rules-dialog{
+                border-radius: 5px;
                 margin-top: 0!important;
                 margin: 0;
                 width: 746px;
@@ -72,6 +73,7 @@
                         background: url(./img/考试通知.png) ;
                     }
                     .rules-content{
+                        font-size: 16px;
                         width: 668px;
                         height: 449px;
                         margin: 0 auto;

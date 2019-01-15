@@ -11,14 +11,13 @@
                     <li>
                         <img src="../../assets/img/temp/index.jpg" alt="">
                         <div class="li-r">
-
                             <h2>2019初级护师畅通无忧班</h2>
                             <div class="info">
                                 <el-popover
                                         title=""
                                         width="474"
                                         placement="bottom-end"
-                                        trigger="click"
+                                        trigger="hover"
                                 >
                                     <div class="info-content">
                                         健康管理师国家职业资格考试课程是依据最新健康管理师考试大纲而设计开发的课程，涵盖基础知识及实操技能两大主题，7个课程模块。为了健康管理师从业人员奠定理论基础。
