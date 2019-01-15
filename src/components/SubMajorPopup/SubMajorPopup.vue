@@ -15,6 +15,7 @@
       <el-button @click="value = false">取 消</el-button>
       <el-button type="primary" @click="value = false">确 定</el-button>
   </span>
+  <img @click="$emit('input',false)" class="close" src="../../assets/img/close.png" alt="">
   </el-dialog>
 </template>
 
@@ -43,5 +44,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
   @import "../../assets/css/var.scss";
-
+  .close{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: -56px;
+  }
 </style>
