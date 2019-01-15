@@ -82,8 +82,7 @@
                                 </li>
                             </ul>
 
-
-                            <el-button type="primary" style="width: 100%">加载更多</el-button>
+                            <el-button @click="loadMord" type="primary" style="width: 100%">加载更多</el-button>
                         </div>
                     </div>
                 </div>
@@ -134,6 +133,7 @@
                     packageId:'',
                     courseId:'',
                     courseN:'',
+                    wrongMaxId:0,
                 },
             }
         },
@@ -316,22 +316,35 @@
                     }
                 }
                 this.studyStateToggle = key;
+            },
+            getPage(topicId = null){
+                let p = {
+                    coursePackId:this.topicInfo.packageId,
+                    courseId:this.topicInfo.courseId,
+                };
+                if(topicId){
+                    p.pageId = topicId;
+                }
+                getMyWrongQuestion(p).then(r=>{
+                    this.wrongQuestion.wronTotal += r.wronTotal;
+                    this.topicInfo.wrongMaxId = r.wrongMaxId;
+
+                    this.topicInfo.courseN = r.packName;
+
+                    this.wrongQuestion.studyList.push(...r.studyList);
+                    this.wrongQuestion.preStudyList.push(...r.preStudyList);
+
+                }).catch(_=>{})
+            },
+            loadMord(){
+                this.getPage(this.topicInfo.wrongMaxId)
             }
         },
         mounted() {
             this.topicInfo.packageId = getUrlInfo('packageId');
             this.topicInfo.courseId = getUrlInfo('courseId');
 
-            getMyWrongQuestion({
-                coursePackId:getUrlInfo('packageId'),
-                courseId:getUrlInfo('courseId'),
-            }).then(r=>{
-                this.wrongQuestion = r;
-                this.topicInfo.courseN = r.packName;
-
-                this.studyStateToggle = 'preStudyList';
-                //this.topics = r.preStudyList;
-            }).catch(_=>{})
+            this.getPage();
         },
         computed: {
             topics:function(){
