@@ -3,7 +3,6 @@
         background: #F3F5F7;
         padding-top: 21px;
     }
-    overflow: hidden;
     @import '../../assets/css/var.scss';
     .content{
         width: 1200px;
@@ -49,48 +48,8 @@
                 color:$--color-primary;
                 border-bottom: 2px solid $--color-primary;
             }
-        }
-        .el-icon-arrow-left,.el-icon-arrow-right{
-            position: absolute;
-            top: 234px;
-            width: 44px;
-            font-size: 22px;
-            height: 44px;
-            color:#969FA9;
-            border:1px solid #969FA9;
-            border-radius: 50%;
-            text-align: center;
-            cursor: pointer;
-            z-index: 999;
-        }
-
-        .el-icon-arrow-left:before {
-            content: "\E600";
-            display: block;
-            margin-top: 12px;
-        }
-        .el-icon-arrow-right:before {
-            content: "\E604";
-            display: block;
-            margin-top: 12px;
-        }
-        .courseListOne{
-            .el-icon-arrow-left{
-                left:-84px;
-            }
-            .el-icon-arrow-right{
-                right:-69px;
-            }
-            position: relative;
-            margin-top: 22px;
-            height: 557px;
-            h1{
-                color:#26292F;
-                font-size: 18px;
-                display: inline;
-            }
             .flag{
-                margin-left: 12px;
+                margin-left: 30px;
                 color:$--color-attention;
                 font-size: 16px;
                 font-weight: bold;
@@ -99,35 +58,10 @@
                 border-radius: 3px;
                 background: #fff7e8;
             }
-            .left-leave{
-                margin-left: 0;
-            }
-            .left-enter-active, .left-leave-active {
-                transition: all  .5s;
-            }
-            .left-enter  /* .fade-leave-active below version 2.1.8 */ {
-                margin-left: -1200px;
-                opacity: 0;
-            }
-            .left-leave-to{
-                margin-left: -1200px;
-            }
-            .right-leave{
-                margin-left: 1200px;
-            }
-            .right-enter-active, .right-leave-active {
-                transition: all  .5s;
-            }
-            .right-enter  /* .fade-leave-active below version 2.1.8 */ {
-                margin-left: 1200px;
-                opacity: 0;
-            }
-            .right-leave-to{
-                margin-left: 1200px;
-            }
+        }
+        .courseList{
             .examList{
                 width: 1200px;
-                height: 460px;
                 list-style: none;
                 margin-top: 24px;
                 padding-left: 0;
@@ -150,9 +84,11 @@
                         box-shadow: 1px 2px 20px 4px #EAEFFF;
                     }
                     h1{
+                        margin: 0;
                         font-size: 24px;
                         color: #222;
-                        margin:25px 0 0 16px;
+                        display: inline-block;
+                        margin-left: 21px;
                     }
                     i{
                         font-style: normal;
@@ -160,8 +96,11 @@
                         color:$--color-default;
                         border-radius: 2px;
                         font-size: 14px;
-                        padding: 2;
+                        padding: 2px;
                         margin: 2px 0 5px 6px;
+                    }
+                    .end{
+                        background:$--color-ending;
                     }
                     h4,h5{
                         font-size: 18px;
@@ -175,33 +114,28 @@
                         }
                     }
                     h5{
-                        width:372px;
                         height:47px;
                         background:rgba(252,252,252,1);
                         margin-top: 7px;
+                        display: flex;
+                        position: relative;
+                        justify-content: flex-start;
+                        align-items: center;
                         em{
                             font-style: normal;
                             line-height: 47px;
                             margin-left: 16px;
                         }
                         .el-button{
-                            width: 90px;
+                            position: absolute;
+                            right: 22px;
+                            justify-content: flex-end;
                             height: 32px;
-                            float: right;
-                            margin-top: 7px;
-                            margin-right: 16px;
-                            padding: 0;
-                            span{
-                                line-height: 32px;
-                            }
+                            padding: 7px 13px;
                         }
                         .not{
-                            width: 90px;
-                            margin-top: 7px;
-                            margin-right: 16px;
                             background-color:$--color-ending;
                             border-color: $--color-ending;
-                            padding: 0 12px;
                         }
                     }
                 }
@@ -211,108 +145,6 @@
                 position: absolute;
                 left: 0;
                 top: 29px;
-            }
-        }
-        .courseListTwo,.courseListThree{
-            position: relative;
-            .el-icon-arrow-left{
-                left:-84px;
-            }
-            .el-icon-arrow-right{
-                right:-69px;
-            }
-            h1{
-                color:$--color-ending;
-                font-size: 18px;
-                display: inline;
-            }
-            .flag{
-                margin-left: 12px;
-                color:$--color-attention;
-                font-size: 16px;
-                font-weight: bold;
-                background:rgba(255,247,232,1);
-                border: 1px solid #FFF0D3;
-                padding: 7px 12px;
-                border-radius: 3px;
-            }
-            .examList{
-                width: 1200px;
-                height: 100%;
-                list-style: none;
-                margin-top: 24px;
-                padding-left: 0;
-                display: flex;
-                flex-wrap: wrap;
-                li{
-                    background:#fff;
-                    width: 373px;
-                    height: 187px;
-                    position: relative;
-                    margin-right: 39px;
-                    margin-bottom:41px;
-                    padding-top: 25px;
-                    border:1px solid rgba(249, 249, 249, 1);
-                    box-shadow:0px 0px 6px 0px rgba(174,174,174,0.14);
-                    &:nth-child(3n){
-                        margin-right: 0;
-                    }
-                    &:hover{
-                        box-shadow: 1px 2px 20px 4px #DFE6F8;
-                    }
-                    h1{
-                        font-size: 24px;
-                        color: $--color-ending;
-                        margin:25px 0 0 16px;
-                    }
-                    i{
-                        font-style: normal;
-                        background: $--color-ending;
-                        color:$--color-default;
-                        border-radius: 2px;
-                        margin: 2px 0 5px 6px;
-                        font-size: 14px;
-                        padding: 2;
-                    }
-                    h4,h5{
-                        font-size: 18px;
-                        color:$--color-ending;
-                        font-weight: normal;
-                    }
-                    h4{
-                        margin:20px 0 0 16px;
-                    }
-                    h5{
-                        width:372px;
-                        height:47px;
-                        background:rgba(252,252,252,1);
-                        margin-top: 7px;
-                        em{
-                            font-style: normal;
-                            line-height: 47px;
-                            margin-left: 16px;
-                        }
-                    }
-                    .el-button{
-                        width: 90px;
-                        height: 32px;
-                        float: right;
-                        padding: 0;
-                        margin-top: 7px;
-                        margin-right: 16px;
-                        span{
-                            line-height: 32px;
-                        }
-                    }
-                    .not{
-                        width: 157px;
-                        margin-top: 7px;
-                        margin-right: 16px;
-                        background-color:$--color-ending;
-                        border-color: $--color-ending;
-                        padding: 0 12px;
-                    }
-                }
             }
         }
     }

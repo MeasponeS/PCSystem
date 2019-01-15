@@ -1,6 +1,6 @@
 <template>
     <div class="empty-template">
-        <div class="content">
+        <div class="content_box">
             <img :src="imgs[imgKey]" alt="">
             <p>{{ msg }}</p>
         </div>
@@ -49,7 +49,7 @@
         align-items: center;
         background-color: #fff;
         box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
-        .content{
+        .content_box{
             text-align: center;
             p{
                 margin-top: 30px;

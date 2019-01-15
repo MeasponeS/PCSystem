@@ -9,163 +9,25 @@
                     <div @click="status='notOpened'" :class="{active:status=='notOpened'}">未开放</div>
                     <div class="mid"></div>
                     <div @click="status='opened'" :class="{active:status=='opened'}">已过期</div>
+                    <span class="flag">当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>
                 </div>
                 <div v-show="status=='opening'">
-                    <div class="courseListOne">
-                        <i class="el-icon-arrow-left" @click="show=prevPage()"></i>
-                        <i class="el-icon-arrow-right" @click="show=nextPage()"></i>
-                        <h1>健康管理师课程类</h1>
-                        <span class="flag">当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>
-                        <transition
-                            :name='direction'
-                            >
-                            <ul class="examList" v-if="show=='page1'">
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
-
-                                </li>
-                                <li >
-                                    <h1>1220 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-
-                                </li>
-                            </ul>
-                        </transition>
-                        <transition :name='direction'>
-                            <ul class="examList  examListExtra"  v-if="show=='page2'">
-                                <li>
-                                    <h1>1221 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1221 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1221 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn() >进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1221 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=alertFn()>进入考场</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>进行中</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button class="not" type="primary" @click=open()>未开放</el-button></h5>
-                                </li>
-                            </ul>
-                            </transition>
-
-                        </div>
-                        <div class="courseListTwo">
-                            <i class="el-icon-arrow-left" @click="show=prevPage()"></i>
-                            <i class="el-icon-arrow-right" @click="show=nextPage()"></i>
-                            <h1>主管护师课程类</h1>
-                            <span class="flag">当前您正在学习主管护师系列课程，已完成10%，比其他学员的进度快1.1%</span>
-                            <ul class="examList">
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>已结束</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道(答对18道)</h4>
-                                    <h5><em>考试时长：10分钟</em><a href="examResults.html"><el-button type="primary" >考试详情</el-button></a></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>已结束</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" class="not">您没有参与这场考试</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>已结束</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道(答对18道)</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" @click=open2()>考试详情</el-button></h5>
-
-                                </li>
-                                <li>
-                                    <h1>1220 模拟考试</h1>
-                                    <i>已结束</i>
-                                    <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                    <h4>试题数量：20道</h4>
-                                    <h5><em>考试时长：10分钟</em><el-button type="primary" class="not">您没有参与这场考试</el-button></h5>
-
-                                </li>
-                            </ul>
-                    </div>
-                    <div class="courseListThree">
-                        <h1>主管护师课程类</h1>
-                        <span class="flag">当前您正在学习主管护师系列课程，已完成10%，比其他学员的进度快1.1%</span>
+                    <div class="courseList">
                         <ul class="examList">
-                            <li>
-                                <h1>1220 模拟考试</h1>
-                                <i>已结束</i>
-                                <h4>开始时间：2018.12.29-2019.01.03</h4>
-                                <h4>试题数量：20道</h4>
-                                <h5><em>考试时长：10分钟</em><el-button type="primary" class="not">您没有参与这场考试</el-button></h5>
-
+                            <li v-for="(item,i) in examList" :key='i'>
+                                <h1>{{item.examName}}</h1>
+                                <i :class="{end:item.examStatus == '已结束'}">{{item.examStatus}}</i>
+                                <h4>开始时间：{{item.beginTime}}</h4>
+                                <h4>试题数量：{{item.examCount}}道</h4>
+                                <h5>
+                                    <em>考试时长：{{item.examDuration}}分钟</em>
+                                    <el-button 
+                                        type="primary" 
+                                        @click=alertFn(item)
+                                        :class="{not:item.btnStatus == '您没有参与这场考试'}"
+                                        :disabled="item.btnStatus == '您没有参与这场考试'" 
+                                    >{{item.btnStatus}}</el-button>
+                                </h5>
                             </li>
                         </ul>
                     </div>
@@ -191,40 +53,88 @@
             return {
                 status:'opening',
                 ExamRules:false,
-                n:1,
-                show:'page1',
-                direction:'left'
+                examList:[
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'进行中',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'进入考场'
+                    },
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'进行中',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'进入考场'
+                    },
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'进行中',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'考试详情'
+                    },
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'已结束',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'考试详情'
+                    },
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'已结束',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'考试详情'
+                    },
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'已结束',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'您没有参与这场考试'
+                    },
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'已结束',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'考试详情'
+                    },
+                    {
+                        examName:'1220 模拟考试',
+                        examStatus:'已结束',
+                        beginTime:'2018.12.29-2019.01.03',
+                        examCount:'20',
+                        examDuration:'10',
+                        btnStatus:'您没有参与这场考试'
+                    }
+                ],
             }
         },
         methods: {
-            prevPage(){
-                this.direction = 'left';
-                if(this.n<2){
-                    this.n=1
-                } else {
-                    this.n--
+            
+            alertFn(item){
+                if(item.btnStatus == '进入考场'){
+                    this.ExamRules = !this.ExamRules
+                    return
                 }
-                return 'page'+this.n
-            },
-            nextPage(){
-                this.direction = 'right';
-                if(this.n>1){
-                    this.n=2
+                if(item.examStatus == '已结束') {
+                    window.location.href = './examResults.html'
                 } else {
-                    this.n++
+                    this.open()
                 }
-                return 'page'+this.n
-            },
-            alertFn(){
-                this.ExamRules = !this.ExamRules
             },
             open(){
-                this.$alert('还没有到考试时间', '提示', {
-                confirmButtonText: '确定',
-                type: 'warning'
-                });
-            },
-            open2(){
                 this.$alert('为保证公平公正，请于考试结束时间之后查看成绩', '提示', {
                 confirmButtonText: '确定',
                 type: 'info'
