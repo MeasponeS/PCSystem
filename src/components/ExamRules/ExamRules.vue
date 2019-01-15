@@ -23,7 +23,6 @@
                 </div>
                 <el-button  @click="$emit('input',false)" plain class="primary-btn btn btnLeft">取消</el-button>
                 <a href="examDetails.html"><el-button type="primary" class="btn btnRight">开始考试</el-button></a>
-                <img @click="$emit('input',false)" class="close" src="../../assets/img/close.png" alt="">
             </div>
         </el-dialog>
     </div>
@@ -52,6 +51,7 @@
                 height: 0;
             }
             .exam-rules-dialog{
+                border-radius: 5px;
                 margin-top: 0!important;
                 margin: 0;
                 width: 746px;
@@ -72,12 +72,14 @@
                         background: url(./img/考试通知.png) ;
                     }
                     .rules-content{
+                        font-size: 16px;
                         width: 668px;
                         height: 449px;
                         margin: 0 auto;
                         padding:39px 35px;
                         line-height: 30px;
                         overflow:auto;
+                        color: #333;
                     }
                     .btn{
                         width: 200px;
@@ -90,14 +92,6 @@
                             background: $--color-primary;
                             color: $--color-default;
                         }
-                    }
-                    .close{
-                        cursor: pointer;
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        bottom: -56px;
-                        right:353px;
                     }
                 }
             }

@@ -127,7 +127,7 @@ export default {
             align-items: center;
             width:148px;
             font-size: 14px;
-            color:#969FA9;
+            color:#333;
             height:29px;
             background:rgba(252,252,252,1);
             border:1px solid rgba(238,238,238,1);

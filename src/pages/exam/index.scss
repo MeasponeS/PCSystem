@@ -52,7 +52,6 @@
                 margin-left: 30px;
                 color:$--color-attention;
                 font-size: 16px;
-                font-weight: bold;
                 border: 1px solid #FFF0D3;
                 padding: 7px 12px;
                 border-radius: 3px;
@@ -137,6 +136,14 @@
                             background-color:$--color-ending;
                             border-color: $--color-ending;
                         }
+                    }
+                }
+                .examEnd{
+                    h1,h4,h5{
+                        color:$--color-ending
+                    }
+                    i{
+                        color:$--color-default;
                     }
                 }
 
