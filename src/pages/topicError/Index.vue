@@ -2,7 +2,7 @@
     <div id="app">
         <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="main-body" >
-            <div class="container" v-if="topics.length != 0">
+            <div class="container">
                 <div class="content clearfix">
                     <div class="left">
                         <div class="l-top">
@@ -14,13 +14,13 @@
                             ]"
                             ></Breadcrumb>
                         </div>
-                        <div class="do">
+                        <div class="do" v-if="topics.length != 0">
                             <div class="do-top">
                                 <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ topicTotal }}题</div>
                                 <div class="children-topic">
-                                   <ul v-if="topics[activeQuestionIndex].newType != 1">
-                                       <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
-                                   </ul>
+                                    <ul v-if="topics[activeQuestionIndex].newType != 1">
+                                        <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
+                                    </ul>
                                 </div>
                                 <ul class="do-action">
                                     <li
@@ -39,7 +39,12 @@
                                     :topic="topics[activeQuestionIndex]"
                                     @selectOption="selectOption"
                             ></DoTopic>
+                            <AnswersPopup v-model="answersPopup"
+                                          :topicIndex="topicIndex(activeQuestionIndex,true)"
+                                          :topic="topics[activeQuestionIndex]"
+                            ></AnswersPopup>
                         </div>
+                        <EmptyTemplate msg="暂无习题集" v-else></EmptyTemplate>
                     </div>
                     <div class="right">
                         <div class="r-top">
@@ -49,33 +54,41 @@
                             <div class="toggle">
                                 <span class="tab"
                                       :class="{active:studyStateToggle=='preStudyList'}"
+                                      @click="clickStudy('preStudyList')"
                                 >未学会</span>
                                 <span class="line"></span>
                                 <span class="tab"
                                       :class="{active:studyStateToggle=='studyList'}"
+                                      @click="clickStudy('studyList')"
                                 >已学会</span>
                             </div>
                         </div>
-                        <div class="checkpoint">
-                            <ul>
+                        <div class="checkpoint" >
+                            <ul v-if="topics.length != 0">
                                 <li
                                         class="li"
                                         :class="{active:activeQuestionIndex == index}"
                                         v-for="(topic,index) in topics"
                                         @click="activeQuestionIndex = index"
                                 >
-                                    <RectProgress :progress="rectProgress(topic)"></RectProgress>
+                                    <RectProgress
+                                            :progress="topic.learnStatus == 1 ? 100 : 0 "
+                                            :attr="{
+                                                init:{text:'未学会',color:'#31b68f',progress:0},
+                                                end:{text:'已学会',color:'#31b68f',progress:100}
+                                            }"
+                                    ></RectProgress>
                                     <span style="margin-left: 10px">第{{ topicIndex(index) }}题</span>
                                 </li>
                             </ul>
+
+
+                            <el-button type="primary" style="width: 100%">加载更多</el-button>
                         </div>
                     </div>
                 </div>
             </div>
-            <AnswersPopup v-model="answersPopup"
-                          :topicIndex="topicIndex(activeQuestionIndex,true)"
-                          :topic="topics[activeQuestionIndex]"
-            ></AnswersPopup>
+
         </div>
         <Footer></Footer>
 
@@ -91,6 +104,7 @@
     import {getUrlInfo} from '../../utils/dataStorage.js'
     import {getMyWrongQuestion,wrongQuestionLearnd} from '../../api/topic.js'
     import {userfavor} from '../../api/common.js'
+    import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     //import data from './data.js'
     export default {
         name: 'app',
@@ -103,17 +117,17 @@
                     preStudyList:[]
                 },
                 studyStateToggle:'preStudyList',
-                topics:[{
-                    "newType": 1,
-                    "questionId": 0,
-                    "analyisis": "",
-                    "index": 1,
-                    "typeB": 1,
-                    "answer": [],
-                    "questionResult": [],
-                    "name": "",
-                    "historyAnswer": [],
-                }],//关卡的所有问题,字段只是用来初始化
+                // topics:[{
+                //     "newType": 1,
+                //     "questionId": 0,
+                //     "analyisis": "",
+                //     "index": 1,
+                //     "typeB": 1,
+                //     "answer": [],
+                //     "questionResult": [],
+                //     "name": "",
+                //     "historyAnswer": [],
+                // }],//关卡的所有问题,字段只是用来初始化
                 activeQuestionIndex:0,
                 answersPopup:false,
                 topicInfo:{//关卡的信息
@@ -199,7 +213,6 @@
                     return;
                 }
             },
-
             previousTopic(){
                 if(this.activeQuestionIndex <= 0){
                     this.$message('已经是第一题了');
@@ -285,6 +298,24 @@
                 }).then(r=>{
                     thisTopic.learnStatus = r;
                 }).catch(_=>{})
+            },
+            clickStudy(key){
+                if('studyList' == key){
+                    window.beforePreStudyListIndex = this.activeQuestionIndex;
+                    if(window.beforeStudyListIndex){
+                        this.activeQuestionIndex = window.beforeStudyListIndex;
+                    }else {
+                        this.activeQuestionIndex = 0;
+                    }
+                }else {
+                    window.beforeStudyListIndex = this.activeQuestionIndex;
+                    if(window.beforePreStudyListIndex){
+                        this.activeQuestionIndex = window.beforePreStudyListIndex;
+                    }else {
+                        this.activeQuestionIndex = 0;
+                    }
+                }
+                this.studyStateToggle = key;
             }
         },
         mounted() {
@@ -299,11 +330,28 @@
                 this.topicInfo.courseN = r.packName;
 
                 this.studyStateToggle = 'preStudyList';
-                this.topics = r.preStudyList;
+                //this.topics = r.preStudyList;
             }).catch(_=>{})
         },
         computed: {
+            topics:function(){
+                let question = this.wrongQuestion;
+                // if(question[this.studyStateToggle].length == 0 ){return [{
+                //     "newType": 1,
+                //     "questionId": 0,
+                //     "analyisis": "",
+                //     "index": 1,
+                //     "typeB": 1,
+                //     "answer": [],
+                //     "questionResult": [],
+                //     "name": "",
+                //     "historyAnswer": [],
+                // }]}
 
+                return question[this.studyStateToggle]
+
+
+            },
             topicTotal: function () {
                 let topicLength = this.topics.length;
                 let lastTopic = this.topics[topicLength-1];
@@ -321,7 +369,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Breadcrumb,DoTopic,RectProgress,AnswersPopup}
+        components: {Breadcrumb,DoTopic,RectProgress,AnswersPopup,EmptyTemplate}
     }
 </script>
 
