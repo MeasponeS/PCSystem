@@ -84,6 +84,7 @@
 <script>
     import CommonMixin from '../commonMixin.js'
     import {getLevelList} from '../../api/topic.js'
+    import {objSort} from '../../utils/app.js'
     import {getUrlInfo} from '../../utils/dataStorage.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
 
@@ -133,9 +134,7 @@
                     levels.prestudy.length == 0
                 ){return []}
 
-                return [...levels.finished,...levels.prefinish,...levels.prestudy].sort(function (a,b) {
-                    return ~~(a.sort < b.sort)
-                });
+                return [...levels.finished,...levels.prefinish,...levels.prestudy].sort(objSort('sort',false));
 
             }
         },
