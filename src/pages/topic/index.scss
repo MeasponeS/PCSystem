@@ -26,6 +26,9 @@
                     margin-right: 26px;
                     margin-bottom: 23px;
                     border:1px solid rgba(238, 238, 238, 1);
+                    &:hover{
+                        box-shadow: 1px 1px 24px 7px #DFE6F8;
+                    }
                     &:nth-child(4n + 0){
                         margin-right: 0;
                     }
@@ -67,6 +70,10 @@
                     }
                     &:hover >h2{
                         color: $--color-primary;
+                    }
+                    &:hover >.btn{
+                        background: $--color-primary;
+                        color:$--color-default
                     }
 
 

@@ -137,7 +137,6 @@
             open(){
                 this.$alert('为保证公平公正，请于考试结束时间之后查看成绩', '提示', {
                 confirmButtonText: '确定',
-                type: 'info'
                 });
             }
         },

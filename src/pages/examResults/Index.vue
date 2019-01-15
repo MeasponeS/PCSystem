@@ -15,15 +15,19 @@
             <div class="content">
                 <div class="left">
                 <div class="up">
-                    <div class="chart">
-                        <div class="chart-progress"></div>
-                        <div class="chart-text">
-                            <strong>50%</strong>
-                        </div>
+                    <div class="circle">
+                        <div class="circle-left"></div>
+                        <div class="circle-right"></div>
+                        <div class="circle-bottom-left"></div>
+                        <div class="circle-bottom-right"></div>
+                    </div>
+                    <div class="info">
+                        <h1>50%</h1>
+                        <span>正确率</span>
                     </div>
                     <div class="result">
                         <h1>恭喜，您完成了本次考试！</h1>
-                        <h3>正确：50 错误：50 </h3>
+                        <h3>正确：50    错误：50 </h3>
                     </div>
                 </div>
                 <div class="down">
@@ -120,6 +124,22 @@
         },
         methods: {},
         mounted() {
+            window.onload = function () {
+            var red = 50, total = 100 //红色区域代表的金额和总金额
+            var percent = red / total
+            var right = document.getElementsByClassName('circle-right')[0]
+            var left = document.getElementsByClassName('circle-left')[0]
+            if (percent <= 0.5) {  //红色区域不超过一半
+                right.style.transform = `rotate(${percent * 360}deg)`
+            } else {    //红色区域超过一半的情况，重点部分
+                right.style.transform = `rotate(180deg)`
+                right.style.transition = `opacity 0s step-end 1s, transform 1s linear` //timing-function需要设为linear来达到视觉上的平缓过渡
+                right.style.opacity = 0
+
+                left.style.transition = `transform ${(percent - 0.5) / 0.5}s linear 1s`
+                left.style.transform = `rotate(${percent * 360 - 180}deg)`
+            }
+            }
 
         },
         beforeDestroy: function () {
