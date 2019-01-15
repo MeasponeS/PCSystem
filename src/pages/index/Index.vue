@@ -80,7 +80,6 @@
                 value: true,
                 NoLearningCard: true,
                 OpenLearningCard: true,
-                ite:[{id:1,name:"护理学（388）"},{id:1,name:"护理学（388）"},{id:1,name:"护理学（388）"}]
             }
         },
         methods: {
