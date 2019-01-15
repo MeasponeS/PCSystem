@@ -14,7 +14,7 @@
                 <div v-show="status=='opening'">
                     <div class="courseList">
                         <ul class="examList">
-                            <li v-for="(item,i) in examList" :key='i'>
+                            <li v-for="(item,i) in examList" :key='i' :class="{examEnd:item.examStatus == '已结束'}">
                                 <h1>{{item.examName}}</h1>
                                 <i :class="{end:item.examStatus == '已结束'}">{{item.examStatus}}</i>
                                 <h4>开始时间：{{item.beginTime}}</h4>

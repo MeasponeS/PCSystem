@@ -7,7 +7,7 @@
                 <Breadcrumb class="head"
                         :nav="[
                             {url:'./exam.html',name:'考试'},
-                            {url:'./examDetails',name:'20181221 模拟考试'},
+                            {url:'./examDetails.html',name:'20181221 模拟考试'},
                             {url:'javascript:;',name:'考试结果'}
                         ]"
                     ></Breadcrumb>
@@ -91,7 +91,7 @@
             <div class="right">
                 <h1 class="header">数据参考</h1>
                 <p>当前参与人数：39999人</p>
-                <p>当前正答率67.00%</p>
+                <p>当前正答率：67.00%</p>
                 <p>当前及格率：81%</p>
                 <p>当前及格人数：3726人</p>
                 <p>当前最高分：99分<span>共3人</span></p>

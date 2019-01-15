@@ -139,6 +139,14 @@
                         }
                     }
                 }
+                .examEnd{
+                    h1,h4,h5{
+                        color:$--color-ending
+                    }
+                    i{
+                        color:$--color-default;
+                    }
+                }
 
             }
             .examListExtra{
