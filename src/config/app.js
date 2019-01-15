@@ -1,5 +1,5 @@
 
-const devApiUrl = 'http://192.168.48.98:10003';
+const devApiUrl = 'http://192.168.48.133:10003';
 
 //正式环境变量,注意修改
 const proApiUrl = 'https://testxtapi.hulian120.com';
@@ -11,7 +11,7 @@ export default {
     nodeDevEnv:nodeDevEnv,
     apiUrl : nodeDevEnv ? devApiUrl : proApiUrl,
     apiPrefix : "",
-    timeout:3600,
+    timeout:5000,
     cookiesExpires:7,
     countDown:60,//短信验证码倒计时
     tokenKey:'ACCESS_TOKEN',

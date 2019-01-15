@@ -23,7 +23,7 @@
                                    </ul>
                                 </div>
                                 <ul class="do-action">
-                                    <li>收藏</li>
+                                    <li @click="favor()">{{ (topics[activeQuestionIndex].favor) != 0 ? '收藏':'取消收藏' }} </li>
                                     <li @click="lookAnswer">查看答案</li>
                                     <li @click="previousTopic">上一题</li>
                                     <li @click="nextTopic">下一题</li>
@@ -75,6 +75,7 @@
     import AnswersPopup from '../../components/AnswerPopup/AnswersPopup.vue'
     import {getUrlInfo} from '../../utils/dataStorage.js'
     import {getLevelDetail,commitQuestionAnswer} from '../../api/topic.js'
+    import {userfavor} from '../../api/common.js'
     //import data from './data.js'
     export default {
         name: 'app',
@@ -91,7 +92,7 @@
                     "questionResult": [],
                     "name": "",
                     "historyAnswer": [],
-                }],//关卡的所有问题
+                }],//关卡的所有问题,字段只是用来初始化
                 topicInfo:{//关卡的信息
                     packageId:'',
                     courseId:'',
@@ -143,7 +144,6 @@
                     "courseId":this.topicInfo.courseId,
                     "answers": {}
                 };
-
                 topics.forEach(r=>{
                     if(1 == r.newType){
                         answer.answers[r.questionId] = r.historyAnswer.join('');
@@ -165,11 +165,10 @@
                         return;
                     }
                 })
-
-
-                console.log(answer);
                 commitQuestionAnswer(answer).then(r=>{
-                    console.log(r);
+                    setTimeout(_=>{
+                        window.location.href = `./topicDetails.html?packageId=${r.coursePackId}&courseId=${r.courseId}&levelId=${r.nextLevelId}`
+                    },300)
                 }).catch(_=>{})
             },
             lookAnswer(){
@@ -276,11 +275,34 @@
                     return topic.indexs[0] + '~' + topic.indexs[topic.indexs.length - 1]
                 }
             },
+            initData(r){
+                this.takeTime = 0;
+                setInterval(_=>{
+                    this.takeTime++;
+                },1000);
+
+                this.topics = r.questions;
+                this.topicInfo.courseN = r.courseN
+                this.topicInfo.levelName = r.levelName
+                this.topicInfo.level = r.sort
+                this.topicInfo.status = r.status
+
+            },
+            favor(){
+                let thisTopic = this.topics[this.activeQuestionIndex];
+                userfavor({
+                    type:1,
+                    courseId:this.topicInfo.courseId,
+                    leveId:this.topicInfo.levelId,
+                    isVedio:1,
+                    packageId:this.topicInfo.packageId,
+                    chapterQuestionId:thisTopic.questionId
+                }).then(r=>{
+                    thisTopic.favor = r;
+                }).catch(_=>{})
+            }
         },
         mounted() {
-            setInterval(_=>{
-                this.takeTime++;
-            },1000);
 
             this.topicInfo.packageId = getUrlInfo('packageId');
             this.topicInfo.courseId = getUrlInfo('courseId');
@@ -293,11 +315,7 @@
                 levelId:getUrlInfo('levelId'),
                 isHistory:1,
             }).then(r=>{
-                this.topics = r.questions;
-                this.topicInfo.courseN = r.courseN
-                this.topicInfo.levelName = r.levelName
-                this.topicInfo.level = r.sort
-                this.topicInfo.status = r.status
+                this.initData(r);
             }).catch(_=>{})
         },
         computed: {

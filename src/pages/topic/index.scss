@@ -1,87 +1,75 @@
 @import '../../assets/css/var.scss';
 .main-body{
     background: #F3F5F7;
-    padding-bottom: 36px;
-    .title{
-        height:62px;
-        background:#fff;
-        box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
-        margin: 8px 0;
-        line-height: 62px;
-        padding-left: 22px;
-        color: #26292F;
-        font-size: 18px;
-    }
-    .topic{
-        margin: 0;
-        padding: 0;
-        li{
-            margin-bottom: 8px;
-            height: 518px;
-            list-style-type: none;
-            display: flex;
-            .topic-l{
-                background: #fff;
-                height: 100%;
-                box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
-                width: 382px;
-                margin-right: 8px;
-                padding: 56px 24px 42px;
-                .topic-title{
-                    color: $--color-primary;
-                    font-size: 30px;
-                    margin: 0;
-                    font-weight: normal;
-                }
-                .topic-sub-title{
-                    display: inline-block;
-                    color: #222222;
-                    font-size: 24px;
-                    margin: 18px 0 42px;
-                }
-                .line{
-                    width:37px;
-                    height:4px;
-                    background:$--color-primary;
-                    opacity:0.2;
-                    border-radius:2px;
-                    margin-bottom: 30px;
-                }
-                p{
-                    font-size: 16px;
-                    color: #222;
-                }
+    padding-bottom: 45px;
+    .list{
+        .row{
+            .title{
+                width: 100%;
+                height: 85px;
+                line-height: 88px;
+                color: #222;
+                font-size: 18px;
+                padding: 0 13px;
             }
-            .topic-r{
-                flex: 1;
+            .topic{
                 display: flex;
-                flex-direction: column;
-                .top{
-                    width: 100%;
-                    height: 372px;
-                    box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
+                flex-wrap: wrap;
+                padding: 0;
+                margin: 0;
+                li{
+                    list-style-type: none;
+                    width: 280px;
+                    height: 353px;
                     background: #fff;
-                    padding: 20px;
-                    .echarts{
+                    padding: 30px 24px;
+                    margin-right: 26px;
+                    margin-bottom: 23px;
+                    border:1px solid rgba(238, 238, 238, 1);
+                    &:nth-child(4n + 0){
+                        margin-right: 0;
+                    }
+                    h2{
+                        padding: 0;
+                        margin: 0;
+                        font-size:20px;
+                        font-weight:bold;
+                        color: #222;
+                    }
+                    .line{
+                        width:37px;
+                        height:4px;
+                        background:rgba(43,96,255,1);
+                        opacity:0.2;
+                        margin: 25px 0;
+                        border-radius:2px;
+                    }
+                    p{
+                        font-size: 14px;
+                        color: #666;
+                    }
+                    .btn{
                         width: 100%;
-                        height: 100%;
+                        cursor: pointer;
+                        margin-top: 30px;
+                        height:50px;
+                        line-height: 50px;
+                        text-align: center;
+                        background:rgba(252,252,252,1);
+                        border:1px solid rgba(238,238,238,1);
+                        border-radius:3px;
+                        &:hover{
+                            background: $--color-primary;
+                            color: #fff;
+                            border-color: $--color-primary;
+                            box-shadow:0px 4px 8px 0px rgba(50,129,255,0.51);
+                        }
                     }
-                }
-                .bottom{
-                    margin-top: 8px;
-                    width: 100%;
-                    flex: 1;
-                    background: #fff;
-                    padding: 0 46px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
-                    span{
-                        display: inline-block;
-                        color: #1F2A37;
-                        font-size: 17px;
+                    &:hover >h2{
+                        color: $--color-primary;
                     }
+
+
                 }
             }
         }
