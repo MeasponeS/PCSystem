@@ -1,8 +1,8 @@
 <template>
-    <div class="rect-progress">
-        <div class="bg-progress" :style="'width:' + progress + '%'"></div>
+    <div class="rect-progress" :style="'background: ' + attr.init.color ">
+        <div class="bg-progress" :style="'width:' + progress + '%;' + 'background: ' + attr.end.color"></div>
         <span class="text">
-            {{ progress == 0 ? '未答':'已答' }}
+            {{ progress <= attr.init.progress ? attr.init.text : attr.end.text }}
         </span>
     </div>
 </template>
@@ -11,6 +11,15 @@
     export default {
         name: 'RectProgress',
         props: {
+            attr:{
+                type:Object,
+                default:function () {
+                    return {
+                        init:{text:'未答',color:'#969FA9',progress:0},
+                        end:{text:'已答',color:'#31b68f',progress:100}
+                    }
+                }
+            },
             progress: Number
         }
     }
@@ -23,7 +32,6 @@
         display: inline-block;
         width: 40px;
         height: 16px;
-        background: #969FA9;
         border-radius: 2px;
         overflow: hidden;
         position: relative;
@@ -34,7 +42,6 @@
             z-index: 2;
             height: 100%;
             /*background: #52AD30;*/
-            background: $--color-primary;
             transition: width .45s ease-in-out;
         }
         .text{

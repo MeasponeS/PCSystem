@@ -37,3 +37,11 @@ export function getMyWrongQuestion(params) {
         params: params
     })
 }
+export function wrongQuestionLearnd(params) {//学会和未学会
+    return request({
+        url: '/pc/exercise/MyWrongQuestionLearnd',
+        method: 'get',
+        params: params
+    })
+}
+

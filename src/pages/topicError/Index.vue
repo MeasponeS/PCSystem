@@ -1,17 +1,17 @@
 <template>
     <div id="app">
         <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
-        <div class="main-body" v-if="topics.length != 0">
-            <div class="container">
+        <div class="main-body" >
+            <div class="container" v-if="topics.length != 0">
                 <div class="content clearfix">
                     <div class="left">
                         <div class="l-top">
                             <Breadcrumb
-                                        :nav="[
-                            {url:'./topic.html',name:topicInfo.courseN,width:250},
-                            {url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:topicInfo.levelName},
-                            {url:'javascript:;',name:'错题集'}
-                        ]"
+                                    :nav="[
+                                {url:'./topic.html',name:topicInfo.courseN,width:250},
+                                {url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:'习题集'},
+                                {url:'javascript:;',name:'错题集'}
+                            ]"
                             ></Breadcrumb>
                         </div>
                         <div class="do">
@@ -23,13 +23,19 @@
                                    </ul>
                                 </div>
                                 <ul class="do-action">
-                                    <li>收藏</li>
+                                    <li
+                                            class="mark"
+                                            :class="(topics[activeQuestionIndex].learnStatus) == 1 ? 'yes':'no'"
+                                            @click="learn(topics[activeQuestionIndex].wrongId)"
+                                    >{{ (topics[activeQuestionIndex].learnStatus) == 1 ? '已学会':'未学会' }}</li>
+                                    <li @click="favor()">{{ (topics[activeQuestionIndex].favor) != 0 ? '收藏':'取消收藏' }} </li>
                                     <li @click="lookAnswer">查看答案</li>
                                     <li @click="previousTopic">上一题</li>
                                     <li @click="nextTopic">下一题</li>
                                 </ul>
                             </div>
                             <DoTopic
+                                    :isHistory="true"
                                     :topic="topics[activeQuestionIndex]"
                                     @selectOption="selectOption"
                             ></DoTopic>
@@ -37,7 +43,18 @@
                     </div>
                     <div class="right">
                         <div class="r-top">
-                            第{{ topicInfo.level }}关
+                            <div>
+                                列表
+                            </div>
+                            <div class="toggle">
+                                <span class="tab"
+                                      :class="{active:studyStateToggle=='preStudyList'}"
+                                >未学会</span>
+                                <span class="line"></span>
+                                <span class="tab"
+                                      :class="{active:studyStateToggle=='studyList'}"
+                                >已学会</span>
+                            </div>
                         </div>
                         <div class="checkpoint">
                             <ul>
@@ -72,16 +89,38 @@
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     import AnswersPopup from '../../components/AnswerPopup/AnswersPopup.vue'
     import {getUrlInfo} from '../../utils/dataStorage.js'
-    import {getMyWrongQuestion} from '../../api/topic.js'
+    import {getMyWrongQuestion,wrongQuestionLearnd} from '../../api/topic.js'
+    import {userfavor} from '../../api/common.js'
     //import data from './data.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
         data: function () {
             return {
-                topics:[],
+                wrongQuestion:{
+                    wronTotal:'0',
+                    studyList:[],
+                    preStudyList:[]
+                },
+                studyStateToggle:'preStudyList',
+                topics:[{
+                    "newType": 1,
+                    "questionId": 0,
+                    "analyisis": "",
+                    "index": 1,
+                    "typeB": 1,
+                    "answer": [],
+                    "questionResult": [],
+                    "name": "",
+                    "historyAnswer": [],
+                }],//关卡的所有问题,字段只是用来初始化
                 activeQuestionIndex:0,
                 answersPopup:false,
+                topicInfo:{//关卡的信息
+                    packageId:'',
+                    courseId:'',
+                    courseN:'',
+                },
             }
         },
         methods: {
@@ -226,17 +265,41 @@
                     return topic.indexs[0] + '~' + topic.indexs[topic.indexs.length - 1]
                 }
             },
-
+            favor(){
+                let thisTopic = this.topics[this.activeQuestionIndex];
+                userfavor({
+                    type:1,
+                    courseId:this.topicInfo.courseId,
+                    leveId:thisTopic.levelId,
+                    isVedio:1,
+                    packageId:this.topicInfo.packageId,
+                    chapterQuestionId:thisTopic.questionId
+                }).then(r=>{
+                    thisTopic.favor = r;
+                }).catch(_=>{})
+            },
+            learn(id){
+                let thisTopic = this.topics[this.activeQuestionIndex];
+                wrongQuestionLearnd({
+                    wrongId:id
+                }).then(r=>{
+                    thisTopic.learnStatus = r;
+                }).catch(_=>{})
+            }
         },
         mounted() {
+            this.topicInfo.packageId = getUrlInfo('packageId');
+            this.topicInfo.courseId = getUrlInfo('courseId');
 
             getMyWrongQuestion({
                 coursePackId:getUrlInfo('packageId'),
                 courseId:getUrlInfo('courseId'),
-
             }).then(r=>{
-                this.topics = r.questions;
+                this.wrongQuestion = r;
+                this.topicInfo.courseN = r.packName;
 
+                this.studyStateToggle = 'preStudyList';
+                this.topics = r.preStudyList;
             }).catch(_=>{})
         },
         computed: {

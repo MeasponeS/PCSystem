@@ -27,7 +27,7 @@
                         <div v-show="0==tabActiveIndex" class="checkpoint">
                             <div class="li"
                                   :class=" item.isFinish | displayClass"
-                                  v-for="(item,index) in [...data.levels.finished,...data.levels.prefinish,...data.levels.prestudy]"
+                                  v-for="(item,index) in allLevel"
                                   @click="topicDetails(item.id,index)"
                             >
                                 <span>{{ item.isFinish | displayStatus }}</span>
@@ -121,6 +121,22 @@
                         prestudy: []
                     }
                 }
+            }
+        },
+        computed: {
+
+            allLevel: function () {
+                let levels = this.data.levels;
+                if(
+                    levels.finished.length == 0 &&
+                    levels.prefinish.length == 0 &&
+                    levels.prestudy.length == 0
+                ){return []}
+
+                return [...levels.finished,...levels.prefinish,...levels.prestudy].sort(function (a,b) {
+                    return ~~(a.sort < b.sort)
+                });
+
             }
         },
         methods: {
