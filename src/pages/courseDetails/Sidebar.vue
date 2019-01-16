@@ -41,6 +41,7 @@
    </div>
 </template>
 <script>
+    import { getUrlInfo } from '../../utils/dataStorage.js'
     export default {
         name: 'Sidebar',
         props: {
@@ -53,9 +54,16 @@
                     chapter:0,//当前激活的章节索引
                     subChapter:0,//当前激活的子章节索引
                 },
+                chapterId:'',
+                courseId:''
+
             };
         },
         //
+        mounted(){
+            this.chapterId = getUrlInfo('chapterId');
+            this.courseId = getUrlInfo('courseId');
+        },
         methods: {
             previousChapter(){//上
                 let currentCI = this.activeChapterIndex.chapter;
