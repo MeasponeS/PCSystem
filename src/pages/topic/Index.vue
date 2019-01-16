@@ -37,7 +37,7 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import Echarts from './echarts.js'
+    // import Echarts from './echarts.js'
     import { getTopicList } from '../../api/topic.js'
     import NoLearningCard from '../../components/NoLearningCard/NoLearningCard.vue'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'

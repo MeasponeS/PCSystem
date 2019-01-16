@@ -4,7 +4,6 @@ const devApiUrl = 'http://192.168.48.98:10003';
 //正式环境变量,注意修改
 const proApiUrl = 'https://testxtapi.hulian120.com';
 
-
 const nodeDevEnv = process.env.NODE_ENV=='development' ? true : false;
 
 export default {
