@@ -16,7 +16,7 @@
                         </div>
                         <div class="do" v-if="topics.length != 0">
                             <div class="do-top">
-                                <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ topicTotal }}题</div>
+                                <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ this.wrongQuestion.wronTotal }}题</div>
                                 <div class="children-topic">
                                     <ul v-if="topics[activeQuestionIndex].newType != 1">
                                         <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
@@ -82,7 +82,7 @@
                                 </li>
                             </ul>
 
-                            <el-button @click="loadMord" type="primary" style="width: 100%">加载更多</el-button>
+                            <el-button class="load-more" @click="loadMore" style="width: 100%">加载更多</el-button>
                         </div>
                     </div>
                 </div>
@@ -326,7 +326,7 @@
                     p.pageId = topicId;
                 }
                 getMyWrongQuestion(p).then(r=>{
-                    this.wrongQuestion.wronTotal += r.wronTotal;
+                    this.wrongQuestion.wronTotal = r.wronTotal;
                     this.topicInfo.wrongMaxId = r.wrongMaxId;
 
                     this.topicInfo.courseN = r.packName;
@@ -336,7 +336,7 @@
 
                 }).catch(_=>{})
             },
-            loadMord(){
+            loadMore(){
                 this.getPage(this.topicInfo.wrongMaxId)
             }
         },
@@ -365,19 +365,18 @@
 
 
             },
-            topicTotal: function () {
-                let topicLength = this.topics.length;
-                let lastTopic = this.topics[topicLength-1];
-                if(1 == lastTopic.newType)return lastTopic.index;
-                if(3 == lastTopic.newType){
-                    let a3a4Length = lastTopic.a3a4Questions.length;
-                    return lastTopic.a3a4Questions[a3a4Length-1].index;
-                }
-                if(5 == lastTopic.newType){
-                    return lastTopic.indexs[lastTopic.indexs.length -1];
-                }
-
-            }
+            // topicTotal: function () {
+            //     let topicLength = this.topics.length;
+            //     let lastTopic = this.topics[topicLength-1];
+            //     if(1 == lastTopic.newType)return lastTopic.index;
+            //     if(3 == lastTopic.newType){
+            //         let a3a4Length = lastTopic.a3a4Questions.length;
+            //         return lastTopic.a3a4Questions[a3a4Length-1].index;
+            //     }
+            //     if(5 == lastTopic.newType){
+            //         return lastTopic.indexs[lastTopic.indexs.length -1];
+            //     }
+            // }
         },
         beforeDestroy: function () {
 
