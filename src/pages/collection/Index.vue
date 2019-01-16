@@ -33,7 +33,7 @@
                     >
                         <p>{{item2.name}}</p>
                         <em></em>
-                        <span>取消收藏</span>
+                        <span @click="cancelCol(item2)">取消收藏</span>
                         <img src="./img/jiantouyou.png" alt="">
                     </li>
                 </ul>
@@ -63,7 +63,7 @@
                     >
                         <p>{{item2.name}}</p>
                         <em></em>
-                        <span>取消收藏</span>
+                        <span @click="cancelCol(item2)">取消收藏</span>
                         <img src="./img/jiantouyou.png" alt="">
                     </li>
                 </ul>
@@ -76,6 +76,7 @@
 <script>
     import CommonMixin from '../commonMixin.js'
     import { getUserFavorList } from '../../api/other.js'
+    import { userfavor } from '../../api/common.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate'
     export default {
         name: 'app',
@@ -91,18 +92,45 @@
                 topics:[]
             }
         },
-        methods: {},
+        methods: {
+            initFn(){
+                getUserFavorList({type:0}).then(r=>{
+                    this.lesson = r;
+                    this.lessonShow = this.lesson.packageType.length
+                    this.lessons=this.lesson.packageType[0].name
+                }).catch(_=>{})
+                getUserFavorList({type:1}).then(r=>{
+                    this.topics = r;
+                    this.topicsShow = this.topics.packageType.length
+                    this.lessons=this.topics.packageType[0].name
+                }).catch(_=>{});
+            },
+            cancelCol(item){
+                let data = {
+                    "type":item.type, 
+                    "courseId":item.courseId,
+                    "leveId":item.leveId,
+                    "isVedio":item.isVedio, 
+                    "chapterQuestionId":item.chapterQuestionId,
+                    "packageId":item.packageId,
+                }
+                this.changeCol(data)
+            },
+            changeCol(data){
+                userfavor(data).then(r=>{
+                    if(r === 1){
+                        this.$message({
+                            message: '取消收藏成功',
+                            type:'success',
+                            center: true
+                        });
+                        this.initFn();
+                    }
+                }).catch(_=>{})
+            }
+        },
         mounted() {
-            getUserFavorList({type:0}).then(r=>{
-                this.lesson = r;
-                this.lessonShow = this.lesson.packageType.length
-                this.lessons=this.lesson.packageType[0].name
-            }).catch(_=>{})
-            getUserFavorList({type:1}).then(r=>{
-                this.topics = r;
-                this.topicsShow = this.topics.packageType.length
-                this.lessons=this.topics.packageType[0].name
-            }).catch(_=>{});
+            this.initFn()
         },
         beforeDestroy: function () {
 

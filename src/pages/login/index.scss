@@ -1,7 +1,8 @@
 @import "../../assets/css/var.scss";
 
 .main-body{
-  background: #eee;
+  background: url('./img/bg.png') no-repeat center center;
+  background-color: #EFF7FF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +12,7 @@
     padding: 38px 26px;
     height: 524px;
     background: #fff;
+    margin-bottom: 33px;;
     .top {
       height: 70px;
       width: 100%;
@@ -80,7 +82,7 @@
       }
       span{
         color: #222;
-        font-size: 10px;
+        font-size: 14px;
       }
     }
   }

@@ -1,9 +1,10 @@
 #app{
     @import '../../assets/css/var.scss';
     .back{
-        background: #F5F7F9;
-        padding-top: 120px;
-        padding-bottom:76px;
+        background: url('./img/bg.png') no-repeat center center;
+        background-color: #EFF7FF;
+        padding-top: 30px;
+        padding-bottom:30px;
     }
     .content{
         background: $--color-default;

@@ -58,6 +58,7 @@
 </template>
 
 <script>
+    import { courses } from '../../api/study.js'
     import CommonMixin from '../commonMixin.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     import SubMajorPopup from '../../components/SubMajorPopup/SubMajorPopup.vue'
@@ -90,7 +91,9 @@
             }
         },
         mounted() {
-            
+            courses().then(r=>{
+
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
 
