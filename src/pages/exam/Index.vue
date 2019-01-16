@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Head activeUrl="exam" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
-        <div class="wrapper">
+        <div class="wrapper main-body">
             <div class="content">
                 <div class="examHeader">
                     <div @click="status='opening'" :class="{active:status=='opening'}">开放中</div>
@@ -21,20 +21,25 @@
                                 <h4>试题数量：{{item.examCount}}道</h4>
                                 <h5>
                                     <em>考试时长：{{item.examDuration}}分钟</em>
-                                    <el-button 
-                                        type="primary" 
+                                    <el-button
+                                        type="primary"
                                         @click=alertFn(item)
                                         :class="{not:item.btnStatus == '您没有参与这场考试'}"
-                                        :disabled="item.btnStatus == '您没有参与这场考试'" 
+                                        :disabled="item.btnStatus == '您没有参与这场考试'"
                                     >{{item.btnStatus}}</el-button>
                                 </h5>
                             </li>
                         </ul>
+                        <el-button  class="load-more"  style="width: 100%">加载更多</el-button>
                     </div>
                 </div>
-                <div v-show="status=='notOpened'"></div>
-                <div v-show="status=='opened'"></div>
-                <EmptyTemplate v-if="status != 'opening'" msg="暂无开放中的考试" imgKey="Exam" ></EmptyTemplate>
+                <div v-show="status=='notOpened'">
+
+                </div>
+                <div v-show="status=='opened'">
+
+                </div>
+                <!--<EmptyTemplate v-if="status != 'opening'" msg="暂无开放中的考试" imgKey="Exam" ></EmptyTemplate>-->
             </div>
         </div>
         <Footer></Footer>
@@ -55,7 +60,7 @@
                 ExamRules:false,
                 examList:[
                     {
-                        examName:'1220 模拟考试',
+                        examName:'1220 模大沙发第三方第三方第三方是否第三方第三方拟考试',
                         examStatus:'进行中',
                         beginTime:'2018.12.29-2019.01.03',
                         examCount:'20',
@@ -122,7 +127,7 @@
             }
         },
         methods: {
-            
+
             alertFn(item){
                 if(item.btnStatus == '进入考场'){
                     this.ExamRules = !this.ExamRules

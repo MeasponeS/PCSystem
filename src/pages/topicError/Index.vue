@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
-        <div class="main-body" >
+        <div class="main-body">
             <div class="container">
                 <div class="content clearfix">
                     <div class="left">
@@ -82,15 +82,13 @@
                                 </li>
                             </ul>
 
-                            <el-button class="load-more" @click="loadMore" style="width: 100%">加载更多</el-button>
+                            <el-button v-if="!wrongQuestion.isAllList" class="load-more" @click="loadMore" style="width: 100%">加载更多</el-button>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <Footer></Footer>
-
     </div>
 </template>
 
@@ -111,7 +109,9 @@
         data: function () {
             return {
                 wrongQuestion:{
+                    wrongMinId:0,
                     wronTotal:'0',
+                    isAllList:false,
                     studyList:[],
                     preStudyList:[]
                 },
@@ -133,7 +133,6 @@
                     packageId:'',
                     courseId:'',
                     courseN:'',
-                    wrongMaxId:0,
                 },
             }
         },
@@ -224,7 +223,14 @@
             nextTopic(){
                 let topicLength = this.topics.length;
                 if(this.activeQuestionIndex >= topicLength - 1){
-                    this.$message('已经是最后一题了');
+
+
+                    if(this.wrongQuestion.isAllList){
+                        this.$message('已经是最后一题了');
+                    }else {
+                        this.$message('请点击加载更多数据');
+                    }
+
                     this.activeQuestionIndex = topicLength - 1;
                     return;
                 }
@@ -327,7 +333,8 @@
                 }
                 getMyWrongQuestion(p).then(r=>{
                     this.wrongQuestion.wronTotal = r.wronTotal;
-                    this.topicInfo.wrongMaxId = r.wrongMaxId;
+                    this.wrongQuestion.wrongMinId = r.wrongMinId;
+                    this.wrongQuestion.isAllList = r.isAllList == 1 ? true : false;
 
                     this.topicInfo.courseN = r.packName;
 
@@ -337,7 +344,7 @@
                 }).catch(_=>{})
             },
             loadMore(){
-                this.getPage(this.topicInfo.wrongMaxId)
+                this.getPage(this.wrongQuestion.wrongMinId)
             }
         },
         mounted() {

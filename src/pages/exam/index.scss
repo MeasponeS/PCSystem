@@ -75,7 +75,7 @@
                     margin-bottom:41px;
                     padding-top: 25px;
                     border:1px solid rgba(249, 249, 249, 1);
-                    box-shadow:0px 0px 6px 0px rgba(174,174,174,0.14);
+                    box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
                     &:nth-child(3n){
                         margin-right: 0;
                     }
@@ -87,6 +87,10 @@
                         font-size: 24px;
                         color: #222;
                         display: inline-block;
+                        max-width: 270px;
+                        overflow: hidden;
+                        text-overflow:ellipsis;
+                        white-space: nowrap;
                         margin-left: 21px;
                     }
                     i{
@@ -95,8 +99,14 @@
                         color:$--color-default;
                         border-radius: 2px;
                         font-size: 14px;
-                        padding: 2px;
-                        margin: 2px 0 5px 6px;
+                        display: inline-block;
+                        height: 18px;
+                        text-align: center;
+                        width: 48px;
+                        line-height: 18px;
+                        position: relative;
+                        top: -6px;
+                        margin: 0 0 5px 6px;
                     }
                     .end{
                         background:$--color-ending;
@@ -107,7 +117,7 @@
                         font-weight: normal;
                     }
                     h4{
-                        margin:20px 0 0 16px;
+                        margin:15px 0 0 16px;
                         &:last-child{
                             margin-top:10px;
                         }
@@ -115,7 +125,7 @@
                     h5{
                         height:47px;
                         background:rgba(252,252,252,1);
-                        margin-top: 7px;
+                        margin-top: 12px;
                         display: flex;
                         position: relative;
                         justify-content: flex-start;

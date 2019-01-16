@@ -50,9 +50,11 @@ service.interceptors.response.use(
                     title:res.data.message,
                     type:'error'
                 });
-                if(res.data.resultCode == 402){
+                if(res.data.resultCode == 402){//登录状态失效
                     removeToken();
-                    //window.location.reload();
+                    setTimeout(_=>{
+                        window.location.href = './login.html';
+                    },300)
                 }
                 return Promise.reject('error');
             }
