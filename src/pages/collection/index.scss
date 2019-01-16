@@ -87,6 +87,12 @@
                 align-items: center;
                 padding-left: 17px;
                 margin-bottom: 14px;
+                p{
+                    width: 863px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
                 em{
                     position: absolute;
                     right:153px;

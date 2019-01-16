@@ -5,7 +5,7 @@
            <li
                    :class="collapseIndex== index ? 'open' : 'close'"
                    v-for="(item,index) in chapters"
-
+                    :key="index"
            >
                <div
                    :class="{active : activeChapterIndex.chapter == index}"
@@ -19,6 +19,7 @@
                                v-for="(sub,subIndex) in item.sub"
                                :class="{active : (activeChapterIndex.chapter == index)&&(activeChapterIndex.subChapter == subIndex) }"
                                @click="selectChapter(index,subIndex,item.id,sub.id)"
+                               :key="subIndex"
                        >
                            <div class="sub-chapter">
                                <div class="sub-chapter-content">
