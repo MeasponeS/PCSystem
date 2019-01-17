@@ -24,3 +24,12 @@ export function getEvaluationList(params) {
         params: params
     })
 }
+
+export function commitEvaluationAnswer(params) {
+    return request({
+        url: '/pc/evaluation/commitEvaluationAnswer',
+        method: 'post',
+        data: params
+    })
+}
+
