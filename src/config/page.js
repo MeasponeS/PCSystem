@@ -68,6 +68,10 @@ module.exports = {
         title:'考试详情',
         requiredParameters:{}
     },
+    examHistory:{
+        title:'查看考试结果',
+        requiredParameters:{}
+    },
     collection:{
         title:'我的收藏',
         requiredParameters:{}

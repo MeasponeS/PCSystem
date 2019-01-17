@@ -2,150 +2,187 @@
     <div id="app">
         <Head activeUrl="exam" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="wrapper">
-            <div class="container main-body">
-            <div class="top">
-                <Breadcrumb class="head"
-                        :nav="[
-                            {url:'./exam.html',name:'考试'},
-                            {url:'./examDetails.html',name:'20181221 模拟考试'},
+            <div class="container main-body" v-if="topics.length != 0">
+                <div class="top">
+                    <Breadcrumb class="head"
+                                :nav="[
+                            {url:'./exam.html',name:'20181221 模拟考试'},
                             {url:'javascript:;',name:'考试结果'}
                         ]"
                     ></Breadcrumb>
-            </div>
-            <div class="content">
-                <div class="left">
-                <div class="up">
-                    <div class="circle">
-                        <div class="circle-left"></div>
-                        <div class="circle-right"></div>
-                        <div class="circle-bottom-left"></div>
-                        <div class="circle-bottom-right"></div>
+                </div>
+                <div class="content">
+                    <div class="left">
+                        <div class="up">
+                            <div class="circle">
+                                <div class="circle-left"></div>
+                                <div class="circle-right"></div>
+                                <div class="circle-bottom-left"></div>
+                                <div class="circle-bottom-right"></div>
+                            </div>
+                            <div class="info">
+                                <h1>50%</h1>
+                                <span>正确率</span>
+                            </div>
+                            <div class="result">
+                                <h1>恭喜，您完成了本次考试！</h1>
+                                <h3>正确：50 错误：50 </h3>
+                            </div>
+                        </div>
+                        <div class="down">
+                            <div class="title">
+                                <div :class="{active:status=='all'}" @click="status='all'">全部</div>
+                                <div class="mid"></div>
+                                <div @click="status='right'" :class="{active:status=='right'}">只看正确</div>
+                                <div class="mid"></div>
+                                <div @click="status='wrong'" :class="{active:status=='wrong'}">只看错误</div>
+                            </div>
+                            <ul class="all clearfix" v-show="status=='all'">
+                                <li v-for="(item,index) in topics" @click="examHistory(index)">
+                                    <RectProgress
+                                            :progress="item.erroCount"
+                                            :attr="progressAttr"
+                                    ></RectProgress>
+                                    <span style="margin-left: 10px">第{{ topicIndex(item) }}题</span>
+                                </li>
+                            </ul>
+                            <ul class="all" v-show="status=='right'">
+                                <li><span class="done">已答</span>第1题</li>
+                                <li><span class="done">已答</span>第2题</li>
+                                <li><span class="done">已答</span>第3题</li>
+                                <li><span class="done">已答</span>第4题</li>
+                                <li><span class="done">已答</span>第5题</li>
+                                <li><span class="done">已答</span>第6题</li>
+                                <li><span class="done">已答</span>第7题</li>
+                                <li><span class="done">已答</span>第8题</li>
+                                <li><span class="done">已答</span>第9题</li>
+                                <li><span class="done">已答</span>第10题</li>
+                                <li><span class="done">已答</span>第11题</li>
+                            </ul>
+                            <ul class="all" v-show="status=='wrong'">
+                                <li><span class="undone">未答</span>第12题</li>
+                                <li><span class="undone">未答</span>第13题</li>
+                                <li><span class="undone">未答</span>第14题</li>
+                                <li><span class="undone">未答</span>第15题</li>
+                                <li><span class="undone">未答</span>第16题</li>
+                                <li><span class="undone">未答</span>第12题</li>
+                                <li><span class="undone">未答</span>第13题</li>
+                                <li><span class="undone">未答</span>第14题</li>
+                                <li><span class="undone">未答</span>第15题</li>
+                                <li><span class="undone">未答</span>第16题</li>
+                                <li><span class="undone">未答</span>第17题</li>
+                                <li><span class="undone">未答</span>第18题</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="info">
-                        <h1>50%</h1>
-                        <span>正确率</span>
-                    </div>
-                    <div class="result">
-                        <h1>恭喜，您完成了本次考试！</h1>
-                        <h3>正确：50    错误：50 </h3>
+                    <div class="right">
+                        <h1 class="header">数据参考</h1>
+                        <p>当前参与人数：39999人</p>
+                        <p>当前正答率：67.00%</p>
+                        <p>当前及格率：81%</p>
+                        <p>当前及格人数：3726人</p>
+                        <p>当前最高分：99分<span>共3人</span></p>
+                        <p>当前最低分：0分<span>共20人</span></p>
+                        <a href="./exam.html">
+                            <el-button type="primary" class="btn">完成</el-button>
+                        </a>
                     </div>
                 </div>
-                <div class="down">
-                    <div class="title">
-                        <div :class="{active:status=='all'}" @click="status='all'">全部</div>
-                        <div class="mid"></div>
-                        <div @click="status='right'" :class="{active:status=='right'}">只看正确</div>
-                        <div class="mid"></div>
-                        <div @click="status='wrong'" :class="{active:status=='wrong'}">只看错误</div>
-                    </div>
-                    <ul class="all" v-show="status=='all'">
-                        <li><span  class="done">已答</span>第1题</li>
-                        <li ><span class="done">已答</span>第2题</li>
-                        <li ><span class="done">已答</span>第3题</li>
-                        <li ><span class="done">已答</span>第4题</li>
-                        <li ><span class="done">已答</span>第5题</li>
-                        <li ><span class="done">已答</span>第6题</li>
-                        <li><span class="done">已答</span>第7题</li>
-                        <li ><span class="done">已答</span>第8题</li>
-                        <li ><span class="done">已答</span>第9题</li>
-                        <li><span class="done">已答</span>第10题</li>
-                        <li ><span class="done">已答</span>第11题</li>
-                        <li><span class="undone">未答</span>第12题</li>
-                        <li><span class="undone">未答</span>第13题</li>
-                        <li><span class="undone">未答</span>第14题</li>
-                        <li><span class="undone">未答</span>第15题</li>
-                        <li><span class="undone">未答</span>第16题</li>
-                        <li><span class="undone">未答</span>第12题</li>
-                        <li><span class="undone">未答</span>第13题</li>
-                        <li><span class="undone">未答</span>第14题</li>
-                        <li><span class="undone">未答</span>第15题</li>
-                        <li><span class="undone">未答</span>第16题</li>
-                        <li><span class="undone">未答</span>第17题</li>
-                        <li><span class="undone">未答</span>第18题</li>
-                    </ul>
-                    <ul class="all" v-show="status=='right'">
-                        <li><span  class="done">已答</span>第1题</li>
-                        <li ><span class="done">已答</span>第2题</li>
-                        <li ><span class="done">已答</span>第3题</li>
-                        <li ><span class="done">已答</span>第4题</li>
-                        <li ><span class="done">已答</span>第5题</li>
-                        <li ><span class="done">已答</span>第6题</li>
-                        <li><span class="done">已答</span>第7题</li>
-                        <li ><span class="done">已答</span>第8题</li>
-                        <li ><span class="done">已答</span>第9题</li>
-                        <li><span class="done">已答</span>第10题</li>
-                        <li ><span class="done">已答</span>第11题</li>
-                    </ul>
-                    <ul class="all" v-show="status=='wrong'">
-                        <li><span class="undone">未答</span>第12题</li>
-                        <li><span class="undone">未答</span>第13题</li>
-                        <li><span class="undone">未答</span>第14题</li>
-                        <li><span class="undone">未答</span>第15题</li>
-                        <li><span class="undone">未答</span>第16题</li>
-                        <li><span class="undone">未答</span>第12题</li>
-                        <li><span class="undone">未答</span>第13题</li>
-                        <li><span class="undone">未答</span>第14题</li>
-                        <li><span class="undone">未答</span>第15题</li>
-                        <li><span class="undone">未答</span>第16题</li>
-                        <li><span class="undone">未答</span>第17题</li>
-                        <li><span class="undone">未答</span>第18题</li>
-                    </ul>
-                </div>
             </div>
-            <div class="right">
-                <h1 class="header">数据参考</h1>
-                <p>当前参与人数：39999人</p>
-                <p>当前正答率：67.00%</p>
-                <p>当前及格率：81%</p>
-                <p>当前及格人数：3726人</p>
-                <p>当前最高分：99分<span>共3人</span></p>
-                <p>当前最低分：0分<span>共20人</span></p>
-                <el-button type="primary" class="btn">完成</el-button>
-            </div>
+            <Footer></Footer>
         </div>
-        </div>
-
-        <Footer></Footer>
     </div>
-            </div>
 
 </template>
 
 <script>
     import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+    import {getEvaluationList} from '../../api/exam.js'
+    import RectProgress from '../../components/RectProgress/RectProgress.vue'
+    import {getUrlInfo} from '../../utils/dataStorage.js'
+    import GoodStorage from 'good-storage'
+    import Config from '../../config/app.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
         data: function () {
             return {
-                status:'all'
+                status: 'all',
+                progressAttr:{
+                    init:{text:'正确',color:'#31b68f',progress:0},
+                    end:{text:'错误',color:'#FF5555',progress:100}
+                },
+                topics:[]
             }
         },
-        methods: {},
-        mounted() {
-            window.onload = function () {
-            var red = 50, total = 100 //红色区域代表的金额和总金额
-            var percent = red / total
-            var right = document.getElementsByClassName('circle-right')[0]
-            var left = document.getElementsByClassName('circle-left')[0]
-            if (percent <= 0.5) {  //红色区域不超过一半
-                right.style.transform = `rotate(${percent * 360}deg)`
-            } else {    //红色区域超过一半的情况，重点部分
-                right.style.transform = `rotate(180deg)`
-                right.style.transition = `opacity 0s step-end 1s, transform 1s linear` //timing-function需要设为linear来达到视觉上的平缓过渡
-                right.style.opacity = 0
+        methods: {
+            progress(progress){
+                let red = progress;
+                let total = 100 ;
+                let percent = red / total
+                let right = document.getElementsByClassName('circle-right')[0]
+                let left = document.getElementsByClassName('circle-left')[0]
+                if (percent <= 0.5) {  //红色区域不超过一半
+                    right.style.transform = `rotate(${percent * 360}deg)`
+                } else {    //红色区域超过一半的情况，重点部分
+                    right.style.transform = `rotate(180deg)`
+                    right.style.transition = `opacity 0s step-end 1s, transform 1s linear` //timing-function需要设为linear来达到视觉上的平缓过渡
+                    right.style.opacity = 0
 
-                left.style.transition = `transform ${(percent - 0.5) / 0.5}s linear 1s`
-                left.style.transform = `rotate(${percent * 360 - 180}deg)`
-            }
-            }
+                    left.style.transition = `transform ${(percent - 0.5) / 0.5}s linear 1s`
+                    left.style.transform = `rotate(${percent * 360 - 180}deg)`
+                }
+            },
+            topicIndex(item,isVal = false){
+                //默认返回当前题目的索引 如 3、4~6  isVal=true 返回[3]、[4,5,6] 用
+                let topic = item;
+                if(1 == topic.newType) return isVal ? [topic.index] : topic.index;
+
+                if(3 == topic.newType){
+                    let initIndex = topic.a3a4Questions[0].index;
+                    if(isVal){
+                        let topicIndexs = [];
+                        topic.a3a4Questions.forEach(r=>{
+                            topicIndexs.push(r.index)
+                        })
+                        return topicIndexs;
+                    }
+                    return initIndex + '~' + (initIndex + (topic.a3a4Questions.length - 1));
+                }
+                if(5 == topic.newType){
+                    if(isVal){return topic.indexs}
+                    return topic.indexs[0] + '~' + topic.indexs[topic.indexs.length - 1]
+                }
+            },
+            examHistory(index){
+              window.location.href = `./examHistory.html?type=${this.status}&index=${index}`
+            },
+        },
+        mounted() {
+            getEvaluationList({
+                paperId:getUrlInfo('paperId'),
+                testingId:getUrlInfo('testingId'),
+                isGetHistory:1,
+            }).then(r=>{
+                this.topics = r;
+                GoodStorage.set(Config.storageExamHistoryKey,{
+                    paperId:getUrlInfo('paperId'),
+                    testingId:getUrlInfo('testingId'),
+                    name:'xxx考试',
+                    topics:r,
+                })
+
+            }).catch(_=>{})
+
+
+            //this.progress(99)
 
         },
         beforeDestroy: function () {
 
         },
-        components: {Breadcrumb}
+        components: {Breadcrumb,RectProgress}
     }
 </script>
 

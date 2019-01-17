@@ -222,7 +222,7 @@
             }
         },
         mounted() {
-           
+
             this.status = 'opening';
             this.getList();
 
