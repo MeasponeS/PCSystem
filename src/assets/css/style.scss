@@ -26,8 +26,14 @@ body{
   border-color: $--color-primary-light;
   color: #fff;
 }
-.primary-btn:hover{
-
+.load-more:hover{
+  background: $--color-primary!important;
+  color: #fff!important;
+}
+.load-more:focus {
+  color: #606266!important;
+  border-color: #dcdfe6!important;
+  background-color: #fff!important;
 }
 a:hover {
   cursor: pointer;
