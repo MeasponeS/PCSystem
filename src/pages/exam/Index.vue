@@ -151,7 +151,7 @@
             },
             examDetails(item){
                 //开始是否开放
-                if(item.openScore != 1){//
+                if(item.openScore != 1){//这里需要和白讨论开放答案和开放分数的问题
                     this.$message('为保证公平公正，请于考试结束时间之后查看成绩');
                     return;
                 }

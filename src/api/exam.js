@@ -16,3 +16,11 @@ export function getExam(params) {
         params: params
     })
 }
+
+export function getEvaluationList(params) {
+    return request({
+        url: '/pc/evaluation/getEvaluationList',
+        method: 'get',
+        params: params
+    })
+}
