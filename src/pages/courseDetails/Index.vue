@@ -13,7 +13,7 @@
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
                     <Breadcrumb class="lessson"
                         :nav="[
-                            {url:'./index.html',name:'课程包的名字'},
+                            {url:'./index.html',name:packageName},
                             {url:'./index.html',name:currentCourseName},
                             {url:'javascript:;',name:currentChapterName}
                         ]"
@@ -27,42 +27,35 @@
                     </p>
                 </div>
                 <div class="letf-content">
-                    <h3 class="title">本章节的学习目标</h3>
-                    <p class="html-info">
-                        新华社北京12月25日电 题：砺护国之剑，铸为民之盾——灾难面前彰显的中国力量、中国速度和中国精神<br>
-                        新华社记者齐中熙、叶昊鸣、杨洋<br>
-                        摊开中国地图，960多万平方公里土地上，山河纵横，风光无限。<br>
-                        幅员辽阔的土地养育了中华民族，复杂多样的地质、气候条件也造成灾害频发。我国是世界上自然灾害最为严重的国家之一，灾害种类多，分布地域广，发生频率高，造成损失重。<br>
-                        改革开放40年以来，在中国共产党领导下，中国人民一次次在各种灾害中顽强抗争、守望相助，一次次在废墟中挺直脊梁，彰显出伟大的中国力量、中国速度和中国精神。<br>
-                        中国力量——大灾大难面前，党的各级组织和广大党员、干部始终同人民群众同呼吸、共命运、心连心<br>
-                        走进四川省汶川县，一条条宽敞平坦的道路纵横交错，一幢幢整齐的楼房傲然矗立，一排排羌族特色商店鳞次栉比。谁能想到，10年前，一场里氏8.0级的大地震几乎将这里摧毁。<br>
-                        为了尽快帮助汶川人民恢复家园，党中央提出必须以人民为中心，贯彻“民生优先”原则，“三年重建完成、五任务紧迫，决心坚定。如今的汶川已脱胎换骨，展露新颜。2018年，汶川县退出贫困县序列，实现了脱贫摘帽。<br>
-                        苦难辉煌，砥砺前行。有党作“主心骨”，有全国人民做后盾，灾区干部群众内生动力喷发。<br>
-                        “灾后重建的背后，是广大党员干部以身体和家庭为代价的苦干付出，是心里只有群众唯独没有自己的真情奉献！”汶川县委书记张通荣说。<br>
-                        习近平总书记强调指出，防灾减灾救灾事关人民生命财产安全，事关社会和谐稳定，是衡量执政党领导力、检验政府执行力、评判国家动员力、体现民族凝聚力的一个重要方面。<br>
-                        党的十八大以来，面对各种灾害，在以习近平同志为核心的党中央坚强领导下，各方力量得以迅速集合形成强大合力。在党中央的领导下，中央部委和地方迅速行动，全力抢险救灾；关键时刻，基层党组织身先士卒、挺身而出；社会组织和个人团结协作，并肩战斗，汇聚成一方有难八方支援的时代洪流。
-                    </p>
+                    <p class="html-info" v-html="context"></p>
                 </div>
             </div>
             <div class="right">
                 <p>选择课程<span>(共{{ course.length }}门课程)</span></p>
                 <div class="accordion">
-                    <el-select v-model="currentCourseId" class="select-course" placeholder="请选择课程">
+                    <el-select v-model="currentCourseId" class="select-course" placeholder="请选择课程" @change="getChapters(currentCourseId)">
                         <el-option
                                 v-for="item in course"
                                 :key="item.id"
                                 :label="item.name"
-                                :value="item.id">
+                                :value="item.id+''"
+                            >
                         </el-option>
                     </el-select>
 
                     <div class="now">当前课程章节</div>
-                    <Sidebar
+                    <Sidebar 
+                        v-if="this.chapters[0].sub.length"
                         ref="sidebar"
                         :chapters="chapters"
                         @selectChapter="selectChapter"
                     ></Sidebar>
-
+                    <SidebarTwo
+                        v-else
+                        ref="sidebar"
+                        :chapters="chapters"
+                        @selectChapter="selectChapter"
+                    ></SidebarTwo>
                 </div>
             </div>
         </div>
@@ -74,17 +67,25 @@
     import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     import Sidebar from './Sidebar.vue'
+    import SidebarTwo from './SidebarTwo.vue'
     import { Loading } from 'element-ui';
-    import {course,chapters} from './data.js'
+    import { getUrlInfo } from '../../utils/dataStorage.js'
+    import { chapterContent,courseList,chapterList } from '../../api/study.js'
     export default {
         name: "app",
         mixins: [CommonMixin],
         data: function () {
             return {
-                chapters:chapters,
-                course:course,//课程 包含的全部课程
+                chapters:[],
+                course:[],//课程 包含的全部课程
+                chapterId:'',
+                courseId:'',
                 currentCourseId: '',
+                currentChapter:'',
                 currentChapterId:'',
+                context:'',
+                packageName:'',
+                packageId:''
             };
         },
         // currentCourseName
@@ -114,7 +115,7 @@
                     }
                 });
                 return chapterName;
-            }
+            },
 
         },
         methods: {
@@ -125,23 +126,57 @@
             //
             // },
             selectChapter(data,done){
-
-                let loadingInstance = Loading.service();
-
-                setTimeout(_=>{
-                    done();
-                    this.currentChapterId = data.chapterId;
-                    loadingInstance.close();
-                },600)
+                if(data.subChapterId){
+                    chapterContent({
+                        chapterId:data.subChapterId,
+                        courseId:null
+                    }).then(r => {
+                        this.context = r.contentData
+                        done();
+                        this.currentChapterId = data.chapterId;
+                    }).catch(_ => {})
+                } else {
+                    chapterContent({
+                        chapterId:data.chapterId,
+                        courseId:null
+                    }).then(r => {
+                        this.context = r.contentData
+                        done();
+                        this.currentChapterId = data.chapterId;
+                    }).catch(_ => {})
+                }
+                
             },
+            getChapters(id){
+                chapterList({courseId:id,coursePackId:this.packageId}).then(r=>{
+                    this.chapters = r.chapters;
+                }).catch(_=>{})
+            }
         },
         mounted() {
-            this.currentCourseId = this.course[0].id;
-            this.currentChapterId = this.chapters[0].id;
+            this.chapterId = getUrlInfo('chapterId');
+            this.courseId = getUrlInfo('courseId');
+            this.packageId = getUrlInfo('id');
+            this.packageName = getUrlInfo('name');
+            this.packageName = decodeURI(this.packageName,"UTF-8")
+            this.currentCourseId = this.courseId;
+            this.currentChapterId = this.chapterId;
+            chapterContent({
+                chapterId:this.chapterId,
+                courseId:this.courseId
+            }).then(r => {
+                this.context = r.contentData
+            }).catch(_ => {})
+            courseList({coursePackId:this.packageId}).then(r=>{
+                this.course = r.courseList
+            }).catch(_=>{})
+            chapterList({courseId:this.courseId,coursePackId:this.packageId}).then(r=>{
+                this.chapters = r.chapters;
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
         },
-        components: {Breadcrumb,Sidebar}
+        components: {Breadcrumb,Sidebar,SidebarTwo}
     };
 </script>
 
