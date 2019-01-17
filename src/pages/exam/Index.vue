@@ -8,7 +8,7 @@
                     <div class="mid"></div>
                     <div @click="toggleTab('notOpened')" :class="{active:status=='notOpened'}">未开放</div>
                     <div class="mid"></div>
-                    <div @click="toggleTab('exceed')" :class="{active:status=='exceed'}">已过期</div>
+                    <div @click="toggleTab('exceed')" :class="{active:status=='exceed'}">已结束</div>
                     <span class="flag">当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>
                 </div>
                 <div v-show="status=='opening'">
@@ -149,13 +149,17 @@
 
                 this.examRules = true;
             },
-            examDetails(item){
+            examDetails(item,isOpen = false){
                 //开始是否开放
-                if(item.openScore != 1){//这里需要和白讨论开放答案和开放分数的问题
+                if(isOpen){//这里需要和白讨论开放答案和开放分数的问题
                     this.$message('为保证公平公正，请于考试结束时间之后查看成绩');
                     return;
                 }
-
+                if(item.openScore != 1){
+                    this.$message('成绩未开放');
+                    return;
+                }
+                
                 window.location.href = './examResults.html';
 
             },
