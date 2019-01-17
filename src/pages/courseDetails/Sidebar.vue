@@ -18,7 +18,7 @@
                        <li
                                v-for="(sub,subIndex) in item.sub"
                                :class="{active : (activeChapterIndex.chapter == index)&&(activeChapterIndex.subChapter == subIndex) }"
-                               @click="selectChapter(index,subIndex,item.id,sub.id)"
+                               @click="selectChapter(index,subIndex,item.id,sub)"
                                :key="subIndex"
                        >
                            <div class="sub-chapter">
@@ -28,8 +28,7 @@
                                        <div class="title">{{ index+1 }}.{{ subIndex+1 }}.{{ sub.name }}</div>
                                    </div>
                                    <div class="info">
-                                       <span class="fl">30303人学过</span>
-                                       <span class="fr">43:32:32</span>
+                                       <span class="fl">{{item.studySize}}人学过</span>
                                    </div>
                                </div>
                            </div>
@@ -87,7 +86,7 @@
                 }
 
                 let chapterId = this.chapters[currentCI].id;
-                let subChapterId =this.chapters[currentCI].sub[currentSCI].id;
+                let subChapterId =this.chapters[currentCI].sub[currentSCI];
                 this.selectChapter(currentCI,currentSCI,chapterId,subChapterId,collapseIndex);
             },
             nextChapter(){//下
@@ -115,7 +114,7 @@
                 }
 
                 let chapterId = this.chapters[currentCI].id;
-                let subChapterId =this.chapters[currentCI].sub[currentSCI].id;
+                let subChapterId =this.chapters[currentCI].sub[currentSCI];
                 this.selectChapter(currentCI,currentSCI,chapterId,subChapterId,collapseIndex);
             },
             //用于切换章节

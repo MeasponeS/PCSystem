@@ -31,3 +31,44 @@ export function chapterList(params) {
         params: params
     })
 }
+
+
+export function getCoursePlay(params) {
+    return request({
+        url: '/pc/study/list/getCoursePlay',
+        method: 'get',
+        params: params
+    })
+}
+
+export function checkDistribute(params) {
+    return request({
+        url: '/pc/study/list/checkDistribute',
+        method: 'get',
+        params: params
+    })
+}
+
+export function openStudyCard(params) {
+    return request({
+        url: '/pc/study/list/openStudyCard',
+        method: 'get',
+        params: params
+    })
+}
+
+export function subMajor(params) {
+    return request({
+        url: '/pc/study/list/subMajor',
+        method: 'get',
+        params: params
+    })
+}
+
+export function submajor(params) {
+    return request({
+        url: '/pc/study/select/submajor',
+        method: 'post',
+        data: params
+    })
+}

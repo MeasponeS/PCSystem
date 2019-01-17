@@ -11,10 +11,10 @@
       <p class="header">亚专业选择</p>
       <div class="content"><slot name="choose"></slot></div>
       <p class="choose">选择您报考的亚专业<span>（点击选择）</span></p>
-      <ul><li v-for="item in subs" :key="item.id" @click="selectMajor($event,item)">{{item.name}}</li></ul>
+      <ul><li v-for="item in subs" :key="item.id" @click="selectMajor($event,item)">{{item.name}} </li></ul>
       <div class="btn">
         <el-button @click="$emit('closeDialog')">取消</el-button>
-        <el-button type="primary" @click="submitMajor">确认</el-button>
+        <el-button type="primary" @click="submitMajor()">确认</el-button>
       </div>
       <div class="line"></div>
     </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { submajor } from '../../api/study.js'
 export default {
   name: "SubMajorPopup",
   props: {
@@ -30,7 +31,8 @@ export default {
   },
   data: function() {
     return {
-      id:''
+      id:'',
+      item:''
     };
   },
   computed: {
@@ -47,10 +49,15 @@ export default {
       }
       e.target.className = 'active'
       this.id = item.id
+      this.item = item
     },
-    submitMajor(){
+    submitMajor(item){
       this.$emit('getId',this.id)
       this.$emit('closeDialog')
+      console.log(this.item)
+      submajor({parentPackId:this.item.parentPackId,coursePackId:this.item.packId}).then(r=>{
+        console.log(r)
+      }).catch(_=>{})
     }
   }
 };
@@ -133,6 +140,10 @@ export default {
             border:1px solid rgba(238,238,238,1);
             border-radius:15px;
             margin-bottom: 21px;
+            text-align: center;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
             cursor: pointer;
             &:hover{
               background:rgba(213,224,255,1);

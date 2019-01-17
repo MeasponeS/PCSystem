@@ -31,7 +31,7 @@
                         v-for="(item2,index2) in lesson.packageType[index].userFavorList"
                         :key="index2"
                     >
-                        <p>{{item2.name}}</p>
+                        <p>{{item2.courseName}}</p>
                         <em></em>
                         <span @click="cancelCol(item2)">取消收藏</span>
                         <img src="./img/jiantouyou.png" alt="">
@@ -43,8 +43,8 @@
                     <div 
                         v-for="(item,index) in topics.packageType" 
                         :key="index"
-                        @click="lessons=item.name"
-                        :class="{active:lessons==item.name}"
+                        @click="topic=item.name"
+                        :class="{active:topic==item.name}"
                         v-show="topicsShow"
                     >
                         {{item.name}}
@@ -54,7 +54,7 @@
                 <ul 
                     v-for="(item,index) in topics.packageType"
                     :key="index"
-                    v-show="lessons==item.name"
+                    v-show="topic==item.name"
                     class="content"
                 >
                     <li
@@ -88,6 +88,7 @@
                 lessonShow:'',
                 topicsShow:'',
                 lessons:'',
+                topic:'',
                 lesson:[],
                 topics:[]
             }
@@ -102,7 +103,7 @@
                 getUserFavorList({type:1}).then(r=>{
                     this.topics = r;
                     this.topicsShow = this.topics.packageType.length
-                    this.lessons=this.topics.packageType[0].name
+                    this.topic=this.topics.packageType[0].name
                 }).catch(_=>{});
             },
             cancelCol(item){

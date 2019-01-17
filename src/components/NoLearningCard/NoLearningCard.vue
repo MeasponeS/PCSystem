@@ -2,7 +2,7 @@
     <div class="no-learning-card">
         <el-dialog
                 title="提示"
-                :visible.sync="value"
+                :visible.sync="NoLearningCard"
                 custom-class="no-learning-card-dialog"
                 :show-close="false"
                 :close-on-click-modal="false"
@@ -16,8 +16,7 @@
                     联系电话：{{ phone }}
                 </p>
 
-                <el-button @click="$emit('finish')" type="primary" style="width: 100%">完成</el-button>
-                <img @click="$emit('input',false)" class="close" src="../../assets/img/close.png" alt="">
+                <el-button @click="$emit('input')" type="primary" style="width: 100%">完成</el-button>
             </div>
 
         </el-dialog>
@@ -30,7 +29,7 @@
     export default {
         name: 'NoLearningCard',
         props: {
-            value:Boolean,
+            NoLearningCard:Boolean,
             phone:[String , Number]
         },
     }

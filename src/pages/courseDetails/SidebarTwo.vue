@@ -6,7 +6,7 @@
                    :class="collapseIndex== index ? 'open' : 'close'"
                    v-for="(item,index) in chapters"
                     :key="index"
-                     @click="selectChapter(index,item.id)"
+                     @click="selectChapter(index,item)"
            >
                <div
                    :class="{active : activeChapterIndex.chapter == index}"
@@ -55,7 +55,7 @@
                 if(collapseIndex != currentCI){
                     collapseIndex = currentCI;
                 }
-                let chapterId = this.chapters[currentCI].id;
+                let chapterId = this.chapters[currentCI];
                 this.selectChapter(currentCI,chapterId,collapseIndex);
             },
             nextChapter(){//下
@@ -70,8 +70,7 @@
                 }
                 currentCI ++;
                 collapseIndex++;
-
-                let chapterId = this.chapters[currentCI].id;
+                let chapterId = this.chapters[currentCI];
                 this.selectChapter(currentCI,chapterId,collapseIndex);
             },
             //用于切换章节
@@ -81,9 +80,7 @@
                 if(currentCI == chapterIndex){
                     return;
                 }
-
-
-                this.$emit('selectChapter',{chapterId:chapterId},_=>{
+                this.$emit('selectChapter',{chapterId:chapterId.id},_=>{
                     this.activeChapterIndex.chapter = chapterIndex;
                     if(collapseIndex == null)return;
 

@@ -33,6 +33,7 @@
                                 <el-progress class="val" :percentage="item.finishChapterSize/item.packageType.classHour" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
+                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">亚专业</div>
                                 <el-button type="primary" @click="startLearning(item)">开始学习</el-button>
                                 <el-button class="primary-btn" v-if="item.hasQuestion" @click="enterTopic">进入习题集</el-button>
                             </div>
@@ -63,6 +64,7 @@
                                 <el-progress class="val" :percentage="item.finishChapterSize/item.packageType.classHour" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
+                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">亚专业</div>
                                 <el-button type="primary" @click="startLearning(item)">开始学习</el-button>
                                 <el-button class="primary-btn" v-if="item.hasQuestion" @click="enterTopic">进入习题集</el-button>
                             </div>
@@ -87,7 +89,7 @@
 </template>
 
 <script>
-    import { courses } from '../../api/study.js'
+    import { courses,subMajor } from '../../api/study.js'
     import CommonMixin from '../commonMixin.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     import SubMajorPopup from '../../components/SubMajorPopup/SubMajorPopup.vue'
@@ -97,14 +99,7 @@
         mixins: [CommonMixin],
         data: function () {
             return {
-                list:[
-                    {id:1,name:"护理学（388）"},
-                    {id:2,name:"护理学（388）"},
-                    {id:3,name:"护理学（388）"},
-                    {id:4,name:"护理学（388）"},
-                    {id:5,name:"护理学（388）"},
-                    {id:6,name:"护理学（388）"}
-                ],
+                list:[],
                 id:'',
                 value: false,
                 NoLearningCard: true,
@@ -118,6 +113,13 @@
             closeDialog(){
                 this.value = false;
             },
+            chooseMajor(item){
+                this.value = true
+                subMajor({coursePackId:item.packageType.id}).then(r=>{
+                    console.log(r)
+                    this.list = r.subMajorList
+                }).catch(_=>{})
+            },
             getId(id){
                 this.id = id
             },
@@ -129,6 +131,8 @@
                 if(this.USERINFO){
                     if(item.lastCourseRecords){
                         window.location.href = './courseDetails.html?chapterId=' + item.lastCourseRecords.chapterId +'&courseId=' + item.lastCourseRecords.courseId + '&id='+item.packageType.id+'&name=' + packageName
+                    } else {
+                        window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
                     }
                 } else {
                     window.location.href = './login.html'

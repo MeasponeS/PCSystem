@@ -2,7 +2,7 @@
     <div class="open-learning-card">
         <el-dialog
                 title="提示"
-                :visible.sync="value"
+                :visible.sync="OpenLearningCard"
                 custom-class="open-learning-card-dialog"
                 :show-close="false"
                 :close-on-click-modal="false"
@@ -16,7 +16,7 @@
                 <el-input class="user-input" v-model="userVal.cardPassword" placeholder="请输入健康产业学堂发送的密码">
                     <span class="label" slot="prefix">密码</span>
                 </el-input>
-                <el-button @click="$emit('open',userVal)" type="primary" style="width: 100%;margin-top: 58px">开通</el-button>
+                <el-button @click="openCard()" type="primary" style="width: 100%;margin-top: 58px">开通</el-button>
                 <p class="info">如需购买课程，请联系：{{ phone }}</p>
                 <img @click="$emit('input',false)" class="close" src="../../assets/img/close.png" alt="">
             </div>
@@ -27,10 +27,11 @@
 </template>
 
 <script>
+    import { openStudyCard } from '../../api/study.js'
     export default {
         name: 'OpenLearningCard',
         props: {
-            value:Boolean,
+            OpenLearningCard:Boolean,
             phone:[String , Number]
         },
         data: function () {
@@ -41,6 +42,16 @@
                 }
             }
         },
+        methods:{
+            openCard(){
+                openStudyCard({cardno:this.userVal.cardNo,password:this.userVal.cardPassword}).then(r=>{
+                    this.$message({
+                        message: '开卡成功！',
+                        type: 'success'
+                    });
+                }).catch(_=>{})
+            }
+        }
     }
 </script>
 
