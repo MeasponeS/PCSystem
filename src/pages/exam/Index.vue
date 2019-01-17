@@ -159,7 +159,6 @@
                     this.$message('成绩未开放');
                     return;
                 }
-                
                 window.location.href = './examResults.html';
 
             },
