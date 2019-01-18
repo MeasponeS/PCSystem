@@ -16,7 +16,7 @@
                         </div>
                         <div class="do" v-if="topics.length != 0">
                             <div class="do-top">
-                                <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共 000 题</div>
+                                <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共 {{ examInfo.topicCount }} 题</div>
                                 <div class="children-topic">
                                     <ul v-if="topics[activeQuestionIndex].newType != 1">
                                         <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
@@ -118,7 +118,8 @@
                 examInfo:{
                     paperId:'',
                     testingId:'',
-                    name:'xxx考试',
+                    name:'',
+                    topicCount:''
                 },
             }
         },
@@ -264,6 +265,8 @@
             this.examInfo.paperId = Info.paperId;
             this.examInfo.testingId = Info.testingId;
             this.examInfo.name = Info.name;
+            this.examInfo.topicCount = Info.topicCount;
+
 
             this.list = Info.topics;
 

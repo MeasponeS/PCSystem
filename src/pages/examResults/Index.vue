@@ -172,7 +172,7 @@
                     GoodStorage.set(Config.storageExamHistoryKey,{
                         paperId:getUrlInfo('paperId'),
                         testingId:getUrlInfo('testingId'),
-                        name:this.info.name,
+                        name:this.statistics.testingsname,
                         topicCount:r.erroCount + r.rightCount,
                         topics:r.questions,
                     })

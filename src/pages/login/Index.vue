@@ -46,6 +46,7 @@
     import CommonMixin from '../commonMixin.js'
     import Config from '../../config/app.js'
     import {sendSMS,login} from '../../api/auth.js'
+    import {getUrlInfo} from '../../utils/dataStorage.js'
     import {setToken,saveUserInfo} from '../../utils/dataStorage.js'
     export default {
         name: 'app',
@@ -78,7 +79,13 @@
                     saveUserInfo(r.user_info);
 
                     setTimeout(_=>{
-                        window.location.href = './index.html'
+                        let fromPage = getUrlInfo('from');
+                        if(fromPage){
+                            window.location.href = './'+fromPage+'.html'
+                        }else {
+                            window.location.href = './index.html'
+                        }
+
                     },200)
 
                 }).catch(_=>{})

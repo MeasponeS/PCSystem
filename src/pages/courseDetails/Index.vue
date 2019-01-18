@@ -3,7 +3,8 @@
         <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="container main-body clearfix">
             <NoLearningCard v-model="noLearningCard" :phone="ORGINFO.phone" ></NoLearningCard>
-            <OpenLearningCard :OpenLearningCard="OpenLearningCard" :phone="ORGINFO.phone" @input="closeCard"></OpenLearningCard>
+            <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->
+            <OpenLearningCard v-model="OpenLearningCard" :phone="ORGINFO.phone" ></OpenLearningCard>
             <div class="left">
                 <div class="nav">
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
@@ -134,9 +135,7 @@
 
         },
         methods: {
-            closeCard(){
-                this.OpenLearningCard = false
-            },
+
             selectChapter(data,done){
                 if(this.USERINFO){
                     if(data.subChapterId){ // 是否有子章节

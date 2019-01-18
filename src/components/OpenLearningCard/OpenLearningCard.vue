@@ -2,7 +2,7 @@
     <div class="open-learning-card">
         <el-dialog
                 title="提示"
-                :visible.sync="OpenLearningCard"
+                :visible.sync="value"
                 custom-class="open-learning-card-dialog"
                 :show-close="false"
                 :close-on-click-modal="false"
@@ -31,7 +31,7 @@
     export default {
         name: 'OpenLearningCard',
         props: {
-            OpenLearningCard:Boolean,
+            value:Boolean,
             phone:[String , Number]
         },
         data: function () {
@@ -49,6 +49,7 @@
                         message: '开卡成功！',
                         type: 'success'
                     });
+                    this.$emit('success');
                 }).catch(_=>{})
             }
         }
