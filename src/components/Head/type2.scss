@@ -37,9 +37,7 @@
                     color: #FFF;
                     float: left;
                     margin-right: 46px;
-                    &:hover{
-                        color:#B4BFFF
-                    }
+                    
                     a {
                         font-size: 18px;
                         &:hover, &.active {
@@ -52,13 +50,7 @@
             .no-login {
                 .el-button {
                     padding: 8px 30px;
-                    background: transparent;
-                    color:#fff;
-                    border-color: #fff;
-                    &:hover{
-                        background: #fff;
-                        color:#303868
-                    }
+                    
                 }
                 .primary-btn {
                     margin-left: 24px;

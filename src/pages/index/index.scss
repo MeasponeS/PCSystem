@@ -1,4 +1,8 @@
 #app{
+        .header{
+                position: fixed;
+                top: 0;
+        }
         margin: 0;
         .banner{
                 background: url('./img/底纹.png') no-repeat left bottom;
