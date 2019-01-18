@@ -2,90 +2,65 @@
     <div id="app">
         <Head activeUrl="exam" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="wrapper">
-            <div class="container main-body" v-if="topics.length != 0">
-                <div class="top">
-                    <Breadcrumb class="head"
-                                :nav="[
+            <div class="container main-body" >
+                <div v-if="topics.length != 0">
+                    <div class="top">
+                        <Breadcrumb class="head"
+                                    :nav="[
                             {url:'./exam.html',name:'20181221 模拟考试'},
                             {url:'javascript:;',name:'考试结果'}
                         ]"
-                    ></Breadcrumb>
-                </div>
-                <div class="content">
-                    <div class="left">
-                        <div class="up">
-                            <div class="circle">
-                                <div class="circle-left"></div>
-                                <div class="circle-right"></div>
-                                <div class="circle-bottom-left"></div>
-                                <div class="circle-bottom-right"></div>
-                            </div>
-                            <div class="info">
-                                <h1>50%</h1>
-                                <span>正确率</span>
-                            </div>
-                            <div class="result">
-                                <h1>恭喜，您完成了本次考试！</h1>
-                                <h3>正确：50 错误：50 </h3>
-                            </div>
-                        </div>
-                        <div class="down">
-                            <div class="title">
-                                <div :class="{active:status=='all'}" @click="status='all'">全部</div>
-                                <div class="mid"></div>
-                                <div @click="status='right'" :class="{active:status=='right'}">只看正确</div>
-                                <div class="mid"></div>
-                                <div @click="status='wrong'" :class="{active:status=='wrong'}">只看错误</div>
-                            </div>
-                            <ul class="all clearfix" v-show="status=='all'">
-                                <li v-for="(item,index) in topics" @click="examHistory(index)">
-                                    <RectProgress
-                                            :progress="item.erroCount"
-                                            :attr="progressAttr"
-                                    ></RectProgress>
-                                    <span style="margin-left: 10px">第{{ topicIndex(item) }}题</span>
-                                </li>
-                            </ul>
-                            <ul class="all" v-show="status=='right'">
-                                <li><span class="done">已答</span>第1题</li>
-                                <li><span class="done">已答</span>第2题</li>
-                                <li><span class="done">已答</span>第3题</li>
-                                <li><span class="done">已答</span>第4题</li>
-                                <li><span class="done">已答</span>第5题</li>
-                                <li><span class="done">已答</span>第6题</li>
-                                <li><span class="done">已答</span>第7题</li>
-                                <li><span class="done">已答</span>第8题</li>
-                                <li><span class="done">已答</span>第9题</li>
-                                <li><span class="done">已答</span>第10题</li>
-                                <li><span class="done">已答</span>第11题</li>
-                            </ul>
-                            <ul class="all" v-show="status=='wrong'">
-                                <li><span class="undone">未答</span>第12题</li>
-                                <li><span class="undone">未答</span>第13题</li>
-                                <li><span class="undone">未答</span>第14题</li>
-                                <li><span class="undone">未答</span>第15题</li>
-                                <li><span class="undone">未答</span>第16题</li>
-                                <li><span class="undone">未答</span>第12题</li>
-                                <li><span class="undone">未答</span>第13题</li>
-                                <li><span class="undone">未答</span>第14题</li>
-                                <li><span class="undone">未答</span>第15题</li>
-                                <li><span class="undone">未答</span>第16题</li>
-                                <li><span class="undone">未答</span>第17题</li>
-                                <li><span class="undone">未答</span>第18题</li>
-                            </ul>
-                        </div>
+                        ></Breadcrumb>
                     </div>
-                    <div class="right">
-                        <h1 class="header">数据参考</h1>
-                        <p>当前参与人数：39999人</p>
-                        <p>当前正答率：67.00%</p>
-                        <p>当前及格率：81%</p>
-                        <p>当前及格人数：3726人</p>
-                        <p>当前最高分：99分<span>共3人</span></p>
-                        <p>当前最低分：0分<span>共20人</span></p>
-                        <a href="./exam.html">
-                            <el-button type="primary" class="btn">完成</el-button>
-                        </a>
+                    <div class="content">
+                        <div class="left">
+                            <div class="up">
+                                <div class="circle">
+                                    <div class="circle-left"></div>
+                                    <div class="circle-right"></div>
+                                    <div class="circle-bottom-left"></div>
+                                    <div class="circle-bottom-right"></div>
+                                </div>
+                                <div class="info">
+                                    <h1>50%</h1>
+                                    <span>正确率</span>
+                                </div>
+                                <div class="result">
+                                    <h1>恭喜，您完成了本次考试！</h1>
+                                    <h3>正确：50 错误：50 </h3>
+                                </div>
+                            </div>
+                            <div class="down">
+                                <div class="title">
+                                    <div :class="{active:status=='all'}" @click="status='all'">全部</div>
+                                    <div class="mid"></div>
+                                    <div @click="status='right'" :class="{active:status=='right'}">只看正确</div>
+                                    <div class="mid"></div>
+                                    <div @click="status='wrong'" :class="{active:status=='wrong'}">只看错误</div>
+                                </div>
+                                <ul class="all clearfix">
+                                    <li v-for="(item,index) in topics" @click="examHistory(index)" :key="item.questionId">
+                                        <RectProgress
+                                                :progress="item.erroCount"
+                                                :attr="progressAttr"
+                                        ></RectProgress>
+                                        <span style="margin-left: 10px">第{{ topicIndex(item) }}题</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <h1 class="header">数据参考</h1>
+                            <p>当前参与人数：39999人</p>
+                            <p>当前正答率：67.00%</p>
+                            <p>当前及格率：81%</p>
+                            <p>当前及格人数：3726人</p>
+                            <p>当前最高分：99分<span>共3人</span></p>
+                            <p>当前最低分：0分<span>共20人</span></p>
+                            <a href="./exam.html">
+                                <el-button type="primary" class="btn">完成</el-button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,7 +88,7 @@
                     init:{text:'正确',color:'#31b68f',progress:0},
                     end:{text:'错误',color:'#FF5555',progress:100}
                 },
-                topics:[]
+                list:[]
             }
         },
         methods: {
@@ -165,7 +140,7 @@
                 testingId:getUrlInfo('testingId'),
                 isGetHistory:1,
             }).then(r=>{
-                this.topics = r;
+                this.list = r;
                 GoodStorage.set(Config.storageExamHistoryKey,{
                     paperId:getUrlInfo('paperId'),
                     testingId:getUrlInfo('testingId'),
@@ -178,6 +153,25 @@
 
             //this.progress(99)
 
+        },
+        computed: {
+            topics:function(){
+                this.activeQuestionIndex = 0
+                if(this.list.length == 0) return [];
+                if( 'all' == this.status)return this.list;
+
+                if('right' == this.status ){
+                    return this.list.filter(r=>{
+                        return r.erroCount == 0;
+                    })
+                }
+                if('wrong' == this.status ){
+                    return this.list.filter(r=>{
+                        return r.erroCount > 0;
+                    })
+                }
+
+            },
         },
         beforeDestroy: function () {
 

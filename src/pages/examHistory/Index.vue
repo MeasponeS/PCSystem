@@ -69,6 +69,7 @@
                                         class="li"
                                         :class="{active:activeQuestionIndex == index}"
                                         v-for="(topic,index) in topics"
+                                        :key="topic.questionId"
                                         @click="activeQuestionIndex = index"
                                 >
                                     <RectProgress
@@ -225,6 +226,7 @@
                 }
             },
             clickStudy(key){
+                this.beforeIndex[this.type] = this.activeQuestionIndex;
                 this.type = key;
             },
         },
@@ -235,7 +237,22 @@
 
         computed: {
             topics:function(){
-                return this.list
+
+                this.activeQuestionIndex = this.beforeIndex[this.type];
+
+                if(this.list.length == 0) return [];
+                if( 'all' == this.type)return this.list;
+
+                if('right' == this.type ){
+                    return this.list.filter(r=>{
+                        return r.erroCount == 0;
+                    })
+                }
+                if('wrong' == this.type ){
+                    return this.list.filter(r=>{
+                        return r.erroCount > 0;
+                    })
+                }
             },
         },
         created(){
