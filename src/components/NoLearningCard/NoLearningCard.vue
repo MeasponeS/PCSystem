@@ -26,7 +26,7 @@
 
 <script>
     export default {
-        name: 'NoLearningCard',
+        name: 'noLearningCard',
         props: {
             value:Boolean,
             phone:[String , Number]

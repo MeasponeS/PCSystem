@@ -2,7 +2,7 @@
     <div id="app">
         <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="container main-body clearfix">
-            <NoLearningCard :NoLearningCard="NoLearningCard" :phone="ORGINFO.phone" @input="closeCard"></NoLearningCard>
+            <NoLearningCard :noLearningCard="noLearningCard" :phone="ORGINFO.phone" @input="closeCard"></NoLearningCard>
             <OpenLearningCard :OpenLearningCard="OpenLearningCard" :phone="ORGINFO.phone" @input="closeCard"></OpenLearningCard>
             <div class="left">
                 <div class="nav">
@@ -99,7 +99,7 @@
                 videoUrlCode:'',
                 col:'收藏',
                 hasStudyCard:'',
-                NoLearningCard:false,
+                noLearningCard:false,
                 OpenLearningCard:false
             };
         },
@@ -136,7 +136,7 @@
         methods: {
             closeCard(){
                 this.OpenLearningCard = false
-                this.NoLearningCard = false
+                this.noLearningCard = false
             },
             selectChapter(data,done){
                 if(this.USERINFO){
@@ -165,7 +165,7 @@
                             } else { // 查询是否被分配卡
                                 checkDistribute({packId:this.packageId}).then(r=>{
                                     if(r == 0){
-                                        this.NoLearningCard = true
+                                        this.noLearningCard = true
                                     } else{
                                         this.OpenLearningCard = true
                                     }
@@ -206,7 +206,7 @@
                         } else {
                             checkDistribute({packId:this.packageId}).then(r=>{
                                 if(r == 0){
-                                    this.NoLearningCard = true
+                                    this.noLearningCard = true
                                 } else{
                                     this.OpenLearningCard = true
                                 }
@@ -306,7 +306,7 @@
                     }).catch(_=>{})
                     checkDistribute({packId:this.packageId}).then(r=>{
                         if(r == 0){
-                            this.NoLearningCard = true
+                            this.noLearningCard = true
                         } else{
                             this.OpenLearningCard = true
                         }

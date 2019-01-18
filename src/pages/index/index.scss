@@ -1,4 +1,40 @@
 #app{
-        #div1{display:black;width:110px;height:50px;line-height:50px;white-space:nowrap;overflow:hidden;background-color:#a2a2a2;margin:15px;padding:5px 15px;}
-span{display:inline-block;color:#fff;padding-right:20px;}
+        .banner{
+                width: 1980px;
+                height: 750px;
+                position: relative;
+                background: #303868;
+                img{    
+                        position: absolute;
+                        left: 945px;
+                        height: 246px;
+                        width:594px;
+                        height:475px;
+                }
+        }
+        .serviceObj{
+                width: 100%;
+                height: 750px;
+        }
+        .serviceCon{
+                width: 100%;
+                height: 750px;
+        }
+        .serviceAdv{
+                width: 100%;
+                height: 750px;
+        }
+        .willGet{
+                width: 100%;
+                height: 750px;
+        }
+        .earth{
+                width: 100%;
+                height: 750px;
+        }
+        .startNow{
+                width: 100%;
+                height: 750px;
+        }
+
 }
