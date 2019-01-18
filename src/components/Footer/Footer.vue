@@ -2,9 +2,8 @@
     <div class="footer">
         <div class="container">
             <div>
-                <span>Copyright © 2015 - 2018 hulian120.com. All Rights Reserved.</span>
-                <br>
-                <span>北京健康护航科技有限公司 版权所有 京ICP备14052782号-1 京公网安备11010802016577</span>
+                <span>Copyright © 2015 - 2018 hulian120.com. All Rights Reserved    京ICP备14052782号-1 京公网安备11010802016577</span>
+                
             </div>
         </div>
     </div>
@@ -22,18 +21,18 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     .footer{
-        height: 76px;
+        height: 60px;
         width: 100%;
         background-color: #fff;
         box-shadow:0 0 6px 0 rgba(174,174,174,0.14);
         .container{
             height: 100%;
-            color: #666666;
+            color: #999;
             text-align: center;
             display: flex;
-            font-size: 12px;
+            font-size: 14px;
             justify-content: center;
-            line-height:18px;
+            line-height:60px;
             align-items: center;
         }
     }
