@@ -11,7 +11,7 @@
       <p class="header">亚专业选择</p>
       <div class="content"><slot name="choose"></slot></div>
       <p class="choose">选择您报考的亚专业<span>（点击选择）</span></p>
-      <ul><li v-for="item in subs" :key="item.id" @click="selectMajor($event,item)">{{item.name}} </li></ul>
+      <ul><li v-for="item in subs" :class="{active:isSelectedMajor==item.packId}" :key="item.id" @click="selectMajor($event,item)">{{item.name}} </li></ul>
       <div class="btn">
         <el-button @click="$emit('closeDialog')">取消</el-button>
         <el-button type="primary" @click="submitMajor()">确认</el-button>
@@ -27,16 +27,19 @@ export default {
   name: "SubMajorPopup",
   props: {
     value: Boolean,
-    subs: Array
+    subs: Array,
+    isSelectedMajor:Number,String
   },
   data: function() {
     return {
       id:'',
-      item:''
+      item:'',
     };
   },
   computed: {
     
+  },
+  mounted(){
   },
   watch: {
     
@@ -54,7 +57,6 @@ export default {
     submitMajor(item){
       this.$emit('getId',this.id)
       this.$emit('closeDialog')
-      console.log(this.item)
       submajor({parentPackId:this.item.parentPackId,coursePackId:this.item.packId}).then(r=>{
         console.log(r)
       }).catch(_=>{})

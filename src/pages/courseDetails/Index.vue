@@ -15,7 +15,7 @@
                         ]"
                     ></Breadcrumb>
                     <p class="nav-act">
-                        <a href="javascript:;" @click="addCol" >{{col}}</a>
+                        <a href="javascript:;" v-if="hasStudyCard" @click="addCol" >{{col}}</a>
                         <span v-if="this.chapterId"></span>
                         <a href="javascript:;" v-if="this.chapterId" @click="$refs.sidebar.previousChapter()">上一节</a>
                         <span v-if="this.chapterId"></span>

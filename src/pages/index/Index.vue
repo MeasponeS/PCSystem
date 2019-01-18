@@ -33,7 +33,7 @@
                                 <el-progress class="val" :percentage="item.finishChapterSize/item.packageType.classHour" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
-                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">亚专业</div>
+                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                                 <el-button type="primary" @click="startLearning(item)">开始学习</el-button>
                                 <el-button class="primary-btn" v-if="item.hasQuestion" @click="enterTopic">进入习题集</el-button>
                             </div>
@@ -64,7 +64,7 @@
                                 <el-progress class="val" :percentage="item.finishChapterSize/item.packageType.classHour" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
-                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">亚专业</div>
+                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                                 <el-button type="primary" @click="startLearning(item)">开始学习</el-button>
                                 <el-button class="primary-btn" v-if="item.hasQuestion" @click="enterTopic">进入习题集</el-button>
                             </div>
@@ -80,6 +80,7 @@
             :subs="list"
             @closeDialog="closeDialog"
             @getId="getId"
+            :isSelectedMajor="isSelectedMajor"
         >
             <template slot="choose">
                 主管护师共设置护理学，内科护理、外课护理、妇产科护理、儿科护理、社区护理六个亚专业的考试护理学专业（中级）基础知识和相关专业知识考核内容相同，专业知识和专业实践能力根据报考亚专业的不同，所考核的内容不同（详见职称《考试那些事儿（中级）》）。
@@ -106,7 +107,8 @@
                 OpenLearningCard: true,
                 lastStudy:'',
                 orgList:[],
-                userList:[]
+                userList:[],
+                isSelectedMajor:''
             }
         },
         methods: {
@@ -116,8 +118,11 @@
             chooseMajor(item){
                 this.value = true
                 subMajor({coursePackId:item.packageType.id}).then(r=>{
-                    console.log(r)
                     this.list = r.subMajorList
+                    let subMajor = r.subMajorList.filter((item)=>{
+                        return item.selected == 1
+                    })
+                    this.isSelectedMajor = subMajor[0].packId
                 }).catch(_=>{})
             },
             getId(id){
