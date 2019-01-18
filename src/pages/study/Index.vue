@@ -133,17 +133,14 @@
             },
             startLearning(item){
                 let packageName = encodeURI(item.packageType.name)
-                if(this.USERINFO){
-                    if(item.lastCourseRecords){
-                        window.location.href = './courseDetails.html?chapterId=' + item.lastCourseRecords.chapterId +'&courseId=' + item.lastCourseRecords.courseId + '&id='+item.packageType.id+'&name=' + packageName
-                    } else {
-                        window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
-                    }
+                if(item.lastCourseRecords){
+                    window.location.href = './courseDetails.html?chapterId=' + item.lastCourseRecords.chapterId +'&courseId=' + item.lastCourseRecords.courseId + '&id='+item.packageType.id+'&name=' + packageName
                 } else {
-                    window.location.href = './login.html'
+                    window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
                 }
+                } 
 
-            }
+            
         },
         mounted() {
             courses().then(r=>{

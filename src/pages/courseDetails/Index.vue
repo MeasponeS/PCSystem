@@ -76,7 +76,7 @@
     import Sidebar from './Sidebar.vue'
     import SidebarTwo from './SidebarTwo.vue'
     import { Loading } from 'element-ui';
-    import { getUrlInfo } from '../../utils/dataStorage.js'
+    import { getUrlInfo, getUserInfo } from '../../utils/dataStorage.js'
     import { chapterContent,courseList,chapterList,getCoursePlay,checkDistribute } from '../../api/study.js'
     import { userfavor } from '../../api/common.js'
     export default {
@@ -101,7 +101,7 @@
                 col:'收藏',
                 hasStudyCard:'',
                 noLearningCard:false,
-                OpenLearningCard:false
+                OpenLearningCard:false,
             };
         },
         // currentCourseName
