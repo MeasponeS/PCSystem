@@ -11,7 +11,7 @@
       <p class="header">亚专业选择</p>
       <div class="content"><slot name="choose"></slot></div>
       <p class="choose">选择您报考的亚专业<span>（点击选择）</span></p>
-      <ul><li v-for="item in subs" :class="{active:isSelectedMajor==item.packId}" :key="item.id" @click="selectMajor($event,item)">{{item.name}} </li></ul>
+      <ul><li v-for="item in subs" :class="{active:isSelectedMajor==item.packId}" :key="item.id" @click="selectMajor($event,item)"> <p class="major">{{item.name}}</p>  </li></ul>
       <div class="btn">
         <el-button @click="$emit('closeDialog')">取消</el-button>
         <el-button type="primary" @click="submitMajor()">确认</el-button>
@@ -143,9 +143,12 @@ export default {
             border-radius:15px;
             margin-bottom: 21px;
             text-align: center;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            .major{
+              width: 128px;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
             cursor: pointer;
             &:hover{
               background:rgba(213,224,255,1);

@@ -7,7 +7,7 @@
             <div class="left">
                 <div class="nav">
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
-                    <Breadcrumb class="lessson"
+                    <Breadcrumb v-if="course.length" class="lessson"
                         :nav="[
                             {url:'./index.html',name:packageName},
                             {url:'./index.html',name:currentCourseName},
