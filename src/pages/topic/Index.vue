@@ -29,7 +29,7 @@
         </div>
         <Footer></Footer>
         <NoLearningCard
-                :noLearningCard="noLearningCardShow"
+                v-model="noLearningCardShow"
                 :phone="ORGINFO.phone"
         ></NoLearningCard>
     </div>
