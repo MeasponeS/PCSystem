@@ -19,18 +19,19 @@
             min-width: 188px;
             margin-left: 10px;
             p{
-                font-size: 23px;
-                color: #2B60FF;
+                font-size: 16px;
+                color: #1720FE;
                 margin: 0 0 6px 0;
                 font-weight: bold;
             }
             span{
-                font-size: 16px;
+                color: #222;
+                font-size: 20px;
             }
         }
             .nav {
                 flex: 1;
-               
+
                 list-style-type: none;
                 li {
                     float: left;

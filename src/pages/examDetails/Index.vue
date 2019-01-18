@@ -57,7 +57,7 @@
                             </ul>
                         </div>
                         <div style="padding: 25px">
-                            <el-button @click="submitAnswer(false)" type="primary" style="width: 100%;"> 提交试卷 </el-button>
+                            <el-button @click="confirmSubmitAnswer" type="primary" style="width: 100%;"> 提交试卷 </el-button>
                         </div>
                     </div>
                 </div>
@@ -150,6 +150,15 @@
                         return;
                     }
                 })
+            },
+            confirmSubmitAnswer(){
+                this.$confirm('确认提交答案？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.submitAnswer(false);
+                }).catch(() => {});
             },
             submitAnswer(done = null){
 

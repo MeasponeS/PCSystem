@@ -5,9 +5,9 @@
             <div class="container main-body" >
                 <div v-if="topics.length != 0">
                     <div class="top">
-                        <Breadcrumb class="head"
+                        <Breadcrumb
                                     :nav="[
-                            {url:'./exam.html',name:'20181221 模拟考试'},
+                            {url:'./exam.html',name:this.statistics.testingsname},
                             {url:'javascript:;',name:'考试结果'}
                         ]"
                         ></Breadcrumb>
@@ -22,12 +22,12 @@
                                     <div class="circle-bottom-right"></div>
                                 </div>
                                 <div class="info">
-                                    <h1>50%</h1>
+                                    <h1>{{  info.rightPer }}%</h1>
                                     <span>正确率</span>
                                 </div>
                                 <div class="result">
                                     <h1>恭喜，您完成了本次考试！</h1>
-                                    <h3>正确：50 错误：50 </h3>
+                                    <h3>正确：{{ info.rightCount}} 错误：{{ info.erroCount }} </h3>
                                 </div>
                             </div>
                             <div class="down">
@@ -51,12 +51,12 @@
                         </div>
                         <div class="right">
                             <h1 class="header">数据参考</h1>
-                            <p>当前参与人数：39999人</p>
-                            <p>当前正答率：67.00%</p>
-                            <p>当前及格率：81%</p>
-                            <p>当前及格人数：3726人</p>
-                            <p>当前最高分：99分<span>共3人</span></p>
-                            <p>当前最低分：0分<span>共20人</span></p>
+                            <p>当前参与人数：{{ statistics.testSize }}人</p>
+                            <p>当前正答率：{{ 55 }}%</p>
+                            <p>当前及格率：{{ (statistics.passSize/statistics.testSize) * 100 }}%</p>
+                            <p>当前及格人数：{{ statistics.passSize }}人</p>
+                            <p>当前最高分：{{ statistics.maxScore}}分<span>共{{ statistics.maxScoreUserSize }}人</span></p>
+                            <p>当前最低分：{{ statistics.maxScore }}分<span>共{{ statistics.minScoreUserSize }}人</span></p>
                             <a href="./exam.html">
                                 <el-button type="primary" class="btn">完成</el-button>
                             </a>
@@ -88,7 +88,24 @@
                     init:{text:'正确',color:'#31b68f',progress:0},
                     end:{text:'错误',color:'#FF5555',progress:100}
                 },
-                list:[]
+                list:[],
+                info:{
+                    topicCount:'',
+                    erroCount:'',
+                    rightCount:'',
+                    rightPer:'',
+                },
+                statistics:{
+                    maxScore: 0,
+                    maxScoreUserSize: 0,
+                    minScore: 0,
+                    minScoreUserSize: 0,
+                    passRate: "",
+                    passSize: 0,
+                    testSize: 0,
+                    testingsname: "",
+                    unpassSize: 0
+                }
             }
         },
         methods: {
@@ -141,18 +158,26 @@
                 testingId:getUrlInfo('testingId'),
                 isGetHistory:1,
             }).then(r=>{
-                this.list = r;
+                this.list = r.questions;
+
+
+                    this.info.topicCount = r.erroCount + r.rightCount,
+                    this.info.erroCount = r.erroCount,
+                    this.info.rightCount = r.rightCount,
+                    this.info.rightPer = parseFloat(r.rightPer) * 100,
+
 
                 getEvaluationinfo({testingId:getUrlInfo('testingId')}).then(s=>{
-
-                    console.log(s);
+                    this.statistics = s;
                     GoodStorage.set(Config.storageExamHistoryKey,{
                         paperId:getUrlInfo('paperId'),
                         testingId:getUrlInfo('testingId'),
-                        name:'xxx考试',
-                        topics:r,
+                        name:this.info.name,
+                        topicCount:r.erroCount + r.rightCount,
+                        topics:r.questions,
                     })
 
+                    this.progress(this.info.rightPer);
                 }).catch(_=>{})
             }).catch(_=>{})
 

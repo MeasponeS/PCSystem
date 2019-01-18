@@ -142,6 +142,7 @@
                     testingId:this.selectExam.testingId,
                     isGetHistory:-1,
                 }).then(topic=>{
+
                     GoodStorage.set(Config.storageExamInfoKey,{
                         examInfo:{
                             testingId:this.selectExam.paperId,
@@ -152,7 +153,7 @@
                             timeLength:parseInt(r.hospitalPaper.timeLength) * 60,
                             status:-1, //默认-1未答过   是否显示答案
                         },
-                        topics:topic
+                        topics:topic.questions
                     });
                     setTimeout(_=>{
                         window.location.href = './examDetails.html'
