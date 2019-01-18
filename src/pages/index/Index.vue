@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="index" :companyName="ORGINFO.orgName" :type=type :info="USERINFO"></Head>
+        <Head class="header" activeUrl="index" :companyName="ORGINFO.orgName" :type=type :info="USERINFO"></Head>
         <div >
             <div class="banner">
                 <img src="./img/banner_01.png" alt="">
@@ -53,8 +53,19 @@
             }
         },
         methods: {
+            handleScroll(){
+                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
+                console.log(document.body.offsetHeight)
+                console.log(window.screen.availHeight)
+                if(scrollTop >= 650){
+                    this.type = 1
+                } else {
+                    this.type = 2
+                }
+            }
         },
         mounted() {
+            window.addEventListener('scroll',this.handleScroll)
         },
         beforeDestroy: function () {
 

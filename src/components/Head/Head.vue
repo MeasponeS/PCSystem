@@ -1,6 +1,6 @@
 <template>
-    <div class="head">
-        <div class="container">
+    <div class="head" :id="type==2?'type2':''">
+        <div class="container" >
             <img class="logo" v-if="type == 2" src="./img/hi.png" alt="">
             <img class="logo" v-else src="./img/logo.png" alt="">
             <div class="company">
@@ -12,9 +12,9 @@
             </ul>
             <div v-if="info" class="login">
               <div class="user-phone">
-                {{ info.username.slice(0,3) + '****' + info.username.slice(6,10) }}<i class="el-icon-caret-bottom el-icon--right" style="color:#BAC1D8"></i>
+                {{ info.username.slice(0,3) + '****' + info.username.slice(7,11) }}<i class="el-icon-caret-bottom el-icon--right" style="color:#BAC1D8"></i>
                   <ul class="dropdown">
-                    <li>{{ info.username.slice(0,3) + '****' + info.username.slice(6,10) }}</li>
+                    <li>{{ info.username.slice(0,3) + '****' + info.username.slice(7,11) }}</li>
                       <li>
                           <a href="./personal.html">个人资料</a>
                       </li>
@@ -81,17 +81,9 @@
                     window.location.href = './index.html'; //token失效也要退出登录
                 });
             },
-            handleScroll () {
-                
-            },
+            
         },
         mounted(){
-            window.addEventListener('scroll',this.handleScroll)
-            if(this.type == 2){
-                require('./type2.scss')
-            } else {
-                require('./type1.scss')
-            }
         }
     }
 </script>
@@ -100,6 +92,7 @@
 <style scoped lang="scss">
     @import "../../assets/css/var.scss";
     .head {
+        z-index: 9999;
         height: 100px;
         width: 100%;
         background-color: #fff;
@@ -197,6 +190,49 @@
                     &:hover>.dropdown{
                         display: block;
                     }
+                }
+            }
+        }
+    }
+    #type2{
+        background: transparent;
+        position: fixed;
+        top: 0;
+        z-index: 99999;
+        box-shadow: none;
+        .company{
+            p{
+                font-weight: 400;
+                color:#FFF;
+            }
+            span{
+                color:#FAC238
+            }
+        }
+        .nav{
+            li{
+                color:#fff;
+                font-weight: normal;
+                a{
+                    &:hover{
+                        color:#B4BFFF;
+                        border: none;
+                    }
+                    &.active{
+                        color: #fff;
+                        border-bottom: 2px solid #fff;
+                    }
+                }
+            }
+        }
+        .no-login{
+            .el-button{
+                background: transparent;
+                color:#fff;
+                border-color: #fff;
+                &:hover{
+                    background: #fff;
+                    color:#303868
                 }
             }
         }
