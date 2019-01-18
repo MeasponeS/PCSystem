@@ -4,12 +4,12 @@
             <div class="l">【{{ topic.questionType }}】</div>
             <div class="r">
                 <template v-if="topic.newType == 5">
-                    {{ topic.name }}
+                    <div v-html="topic.name"></div>
                     <br/> <br/>
                     <span class="question-result" v-for="a in topic.questionResult">{{ a.optionName.toLowerCase() }}.{{ a.optionContent }}</span>
                 </template>
                 <template v-else>
-                    {{ topic.name }}
+                    <div v-html="topic.name"></div>
                 </template>
             </div>
         </div>

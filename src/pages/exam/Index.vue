@@ -95,8 +95,10 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import {getRoomListByType,getExam} from '../../api/exam.js'
+    import {getRoomListByType,getExam,getEvaluationList} from '../../api/exam.js'
     import ExamRules from '../../components/ExamRules/ExamRules.vue'
+    import GoodStorage from 'good-storage'
+    import Config from '../../config/app.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     export default {
         name: 'app',
@@ -134,14 +136,38 @@
             }
         },
         methods: {
+            initExam(r){
+                getEvaluationList({
+                    paperId:this.selectExam.paperId,
+                    testingId:this.selectExam.testingId,
+                    isGetHistory:-1,
+                }).then(topic=>{
+                    GoodStorage.set(Config.storageExamInfoKey,{
+                        examInfo:{
+                            testingId:this.selectExam.paperId,
+                            paperId:this.selectExam.testingId,
+                            testingName:r.hospitalPaper.paperName ,
+                            paperSum:r.hospitalPaper.paperSum,
+                            utpId:r.id,
+                            timeLength:parseInt(r.hospitalPaper.timeLength) * 60,
+                            status:-1, //默认-1未答过   是否显示答案
+                        },
+                        topics:topic
+                    });
+                    setTimeout(_=>{
+                        window.location.href = './examDetails.html'
+                    },200)
+
+                }).catch(_=>{})
+            },
             startExam(){
 
                 getExam({testingId:this.selectExam.testingId}).then(r=>{
-                    window.location.href = `./examDetails.html?testingId=${this.selectExam.testingId}&paperId=${this.selectExam.paperId}`
+                    //进入考试，把试题存储
+                    this.initExam(r);
                 }).catch(_=>{
                     //this.$message('进入考试出错！');
                 })
-
             },
             enterExam(item){
                 this.selectExam.testingId = item.id
@@ -159,8 +185,10 @@
                     this.$message('成绩未开放');
                     return;
                 }
-                
-                window.location.href = './examResults.html';
+                //带参数
+                // testingId:this.selectExam.paperId,
+                // paperId:this.selectExam.testingId,
+                window.location.href = `./examResults.html?testingId=${item.id}&paperId=${item.paperId}`;
 
             },
             loadMore(){
