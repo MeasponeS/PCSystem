@@ -9,8 +9,8 @@
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
                     <Breadcrumb class="lessson"
                         :nav="[
-                            {url:'./index.html',name:packageName},
-                            {url:'./index.html',name:currentCourseName},
+                            {url:'./study.html',name:packageName},
+                            {url:'./study.html',name:currentCourseName},
                             {url:'javascript:;',name:currentChapterName?currentChapterName:currentCourseName}
                         ]"
                     ></Breadcrumb>
@@ -23,9 +23,9 @@
                     </p>
                 </div>
                 <div class="letf-content">
-                    <video 
-                        v-if="videoUrl != ''" 
-                        :src="videoUrl" 
+                    <video
+                        v-if="videoUrl != ''"
+                        :src="videoUrl"
                         id="myVideo"
                         width="784"
                         height="400"
@@ -48,7 +48,7 @@
                     </el-select>
 
                     <div class="now"> <span v-if="this.chapterId"> 当前课程章节</span></div>
-                    <Sidebar 
+                    <Sidebar
                         v-if="sub != 0"
                         ref="sidebar"
                         :chapters="chapters"
@@ -215,7 +215,7 @@
                     }
                 } else {
                     window.location.href = './login.html'
-                } 
+                }
             },
             getChapters(id){
                 chapterList({courseId:id,coursePackId:this.packageId}).then(r=>{
@@ -313,8 +313,8 @@
                     }).catch(_=>{})
                 }
             }
-            
-            
+
+
         },
         beforeDestroy: function () {
         },

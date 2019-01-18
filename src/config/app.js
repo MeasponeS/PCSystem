@@ -27,7 +27,8 @@ export default {
     requestRetryDelay:800,
     shortLength:6, // 密码最小长度
     nav:{
-        index:'学习',
+        index:'首页',
+        study:'学习',
         topic:'习题集',
         exam:'考试',
         message:'消息'
