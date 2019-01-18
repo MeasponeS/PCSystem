@@ -1,40 +1,21 @@
 #app{
+        margin: 0;
         .banner{
-                width: 1980px;
-                height: 750px;
-                position: relative;
                 background: #303868;
-                img{    
-                        position: absolute;
-                        left: 945px;
-                        height: 246px;
-                        width:594px;
-                        height:475px;
-                }
         }
-        .serviceObj{
-                width: 100%;
-                height: 750px;
-        }
-        .serviceCon{
-                width: 100%;
-                height: 750px;
-        }
-        .serviceAdv{
-                width: 100%;
-                height: 750px;
-        }
-        .willGet{
-                width: 100%;
-                height: 750px;
-        }
-        .earth{
+        .banner,.serviceObj,.serviceCon,.serviceAdv,.willGet,.earth,.startNow{
                 width: 100%;
                 height: 750px;
         }
         .startNow{
-                width: 100%;
-                height: 750px;
+                img{
+                        height: 331px;
+                        width: auto;
+                }
         }
-
+        .contact{
+                width: 100%;
+                height: 140px;
+                background: url('./img/底部.png') no-repeat center center;
+        }
 }

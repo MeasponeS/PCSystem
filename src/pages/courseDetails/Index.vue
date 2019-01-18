@@ -2,7 +2,7 @@
     <div id="app">
         <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="container main-body clearfix">
-            <NoLearningCard :noLearningCard="noLearningCard" :phone="ORGINFO.phone" @input="closeCard"></NoLearningCard>
+            <NoLearningCard v-model="noLearningCard" :phone="ORGINFO.phone" ></NoLearningCard>
             <OpenLearningCard :OpenLearningCard="OpenLearningCard" :phone="ORGINFO.phone" @input="closeCard"></OpenLearningCard>
             <div class="left">
                 <div class="nav">
@@ -136,7 +136,6 @@
         methods: {
             closeCard(){
                 this.OpenLearningCard = false
-                this.noLearningCard = false
             },
             selectChapter(data,done){
                 if(this.USERINFO){
