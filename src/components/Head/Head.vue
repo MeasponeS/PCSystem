@@ -59,6 +59,10 @@
             info: {
                 type: [Boolean, Object],
                 default: false
+            },
+            type:{
+                type:[Number,String],
+                default:''
             }
         },
         data: function () {
@@ -77,113 +81,119 @@
                 });
             }
         },
+        mounted(){
+            if(this.type == 2){
+                require('./type2.scss')
+            } else {
+                require('./type1.scss')
+            }
+        }
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    @import "../../assets/css/var.scss";
+    // @import "../../assets/css/var.scss";
+    // .head {
+    //     height: 100px;
+    //     width: 100%;
+    //     background-color: #fff;
+    //     box-shadow:-2px 3px 5px 0px rgba(174,174,174,0.14);
+    //     .container {
+    //         display: flex;
+    //         height: 100%;
+    //         align-items: center;
 
-    .head {
-        height: 100px;
-        width: 100%;
-        background-color: #fff;
-        box-shadow:-2px 3px 5px 0px rgba(174,174,174,0.14);
-        .container {
-            display: flex;
-            height: 100%;
-            align-items: center;
-
-            .logo {
-                /*width: 41px;*/
-                height: 40px;
-            }
-        .company{
-            display: inline-block;
-            min-width: 188px;
-            margin-left: 10px;
-            p{
-                font-size: 23px;
-                color: #2B60FF;
-                margin: 0 0 6px 0;
-                font-weight: bold;
-            }
-            span{
-                font-size: 16px;
-            }
-        }
-            .nav {
-                flex: 1;
-                // padding-left: 90px;
-                list-style-type: none;
-                li {
-                    float: left;
-                    margin-right: 46px;
-                    font-weight: bold;
-                    a {
-                        font-size: 18px;
-                        &:hover, &.active {
-                            color: $--color-primary;
-                            border-bottom: 2px solid $--color-primary;
-                        }
-                    }
-                }
-            }
-            .no-login {
-                .el-button {
-                    padding: 8px 30px;
-                }
-                .primary-btn {
-                    margin-left: 24px;
-                }
-            }
-            .login{
-                .user-phone{
-                    cursor: pointer;
-                    padding: 6px 0;
-                    font-size: 18px;
-                    position: relative;
-                    .dropdown{
-                        display: none;
-                        margin: 0;
-                        padding: 0 14px;
-                        position: absolute;
-                        top: -4px;
-                        z-index: 5;
-                        right: 0;
-                        box-shadow: 0 0 6px 0 rgba(174, 174, 174, 0.14);
-                        background: #fff;
-                        width: 164px;
-                        /*height: 258px;*/
-                        border-radius:5px;
-                        border:1px solid #eee;
-                        li{
-                            width: 100%;
-                            height: 50px;
-                            text-align: center;
-                            line-height: 50px;
-                            list-style-type: none;
-                            border-bottom: 1px solid #eee;
-                            color: #666;
-                            font-size: 16px;
-                            &:last-child{
-                                border-bottom:none;
-                            }
-                            &:hover{
-                                color: $--color-primary;
-                            }
-                            a{
-                                display: inline-block;
-                                width: 100%;
-                                height: 100%;
-                            }
-                        }
-                    }
-                    &:hover>.dropdown{
-                        display: block;
-                    }
-                }
-            }
-        }
-    }
+    //         .logo {
+    //             /*width: 41px;*/
+    //             height: 40px;
+    //         }
+    //     .company{
+    //         display: inline-block;
+    //         min-width: 188px;
+    //         margin-left: 10px;
+    //         p{
+    //             font-size: 23px;
+    //             color: #2B60FF;
+    //             margin: 0 0 6px 0;
+    //             font-weight: bold;
+    //         }
+    //         span{
+    //             font-size: 16px;
+    //         }
+    //     }
+    //         .nav {
+    //             flex: 1;
+    //             // padding-left: 90px;
+    //             list-style-type: none;
+    //             li {
+    //                 float: left;
+    //                 margin-right: 46px;
+    //                 font-weight: bold;
+    //                 a {
+    //                     font-size: 18px;
+    //                     &:hover, &.active {
+    //                         color: $--color-primary;
+    //                         border-bottom: 2px solid $--color-primary;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         .no-login {
+    //             .el-button {
+    //                 padding: 8px 30px;
+    //             }
+    //             .primary-btn {
+    //                 margin-left: 24px;
+    //             }
+    //         }
+    //         .login{
+    //             .user-phone{
+    //                 cursor: pointer;
+    //                 padding: 6px 0;
+    //                 font-size: 18px;
+    //                 position: relative;
+    //                 .dropdown{
+    //                     display: none;
+    //                     margin: 0;
+    //                     padding: 0 14px;
+    //                     position: absolute;
+    //                     top: -4px;
+    //                     z-index: 5;
+    //                     right: 0;
+    //                     box-shadow: 0 0 6px 0 rgba(174, 174, 174, 0.14);
+    //                     background: #fff;
+    //                     width: 164px;
+    //                     /*height: 258px;*/
+    //                     border-radius:5px;
+    //                     border:1px solid #eee;
+    //                     li{
+    //                         width: 100%;
+    //                         height: 50px;
+    //                         text-align: center;
+    //                         line-height: 50px;
+    //                         list-style-type: none;
+    //                         border-bottom: 1px solid #eee;
+    //                         color: #666;
+    //                         font-size: 16px;
+    //                         &:last-child{
+    //                             border-bottom:none;
+    //                         }
+    //                         &:hover{
+    //                             color: $--color-primary;
+    //                         }
+    //                         a{
+    //                             display: inline-block;
+    //                             width: 100%;
+    //                             height: 100%;
+    //                         }
+    //                     }
+    //                 }
+    //                 &:hover>.dropdown{
+    //                     display: block;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 </style>

@@ -2,14 +2,6 @@
     <div id="app">
         <Head activeUrl="index" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         
-        <div class="serviceObj"></div>
-        <div class="serviceCon"></div>
-        <div class="serviceAdv"></div>
-        <div class="willGet"></div>
-        <div class="earth"></div>
-        <div class=""></div>
-        <div></div>
-        
         <Footer></Footer>
     </div>
 </template>

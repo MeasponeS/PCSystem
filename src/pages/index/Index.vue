@@ -1,11 +1,37 @@
 <template>
     <div id="app">
-        <Head activeUrl="index" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
-        <div class="container main-body">
-
-            <div id="div1">
-            <span id="span1">天天币专享项</span><span id="span2"></span>
-        </div><span id="span1">天天币专享项目A</span>
+        <Head activeUrl="index" :companyName="ORGINFO.orgName" :type=type :info="USERINFO"></Head>
+        <div class="banner">
+            <img src="./img/banner.png" alt="">
+            <div class="content">
+                <h1> 
+                    赋能教育
+                    <span>·</span>
+                    聚焦健康
+                </h1>
+                <h1>健康产业学堂</h1>
+            </div>
+        </div>      
+        <div class="serviceObj">
+            <img src="./img/矢量智能对象.png" alt="">
+        </div>
+        <div class="serviceCon">
+            <img src="./img/插画.png" alt="">
+        </div>
+        <div class="serviceAdv">
+            <img src="./img/底纹1.png" alt="">
+        </div>
+        <div class="willGet">
+            <img src="./img/插画1.png" alt="">
+            <img src="./img/插画2.png" alt="">
+            <img src="./img/插画3.png" alt="">
+        </div>
+        <div class="earth">
+            <img src="./img/底纹1.png" alt="">
+        </div>
+        <div class="startNow">
+            <img src="./img/phone.png" alt="">
+            <img src="./img/电脑.png" alt="">
         </div>
         <Footer></Footer>
     </div>
@@ -19,6 +45,7 @@
         mixins: [CommonMixin],
         data: function () {
             return {
+                type:2
             }
         },
         methods: {
@@ -31,29 +58,7 @@
             }
         },
         mounted() {
-            var div,span,span2,i,timer;
-        function init(){
-            setInterval(ttb,5);
-        }
-        function ttb(){
-            div = getId('div1');
-            span = getId('span1');
-            span2 = getId('span2');
-            
-            span2.innerHTML = span.innerHTML;
-            if(span.offsetWidth <= div.scrollLeft){
-                div.scrollLeft -= span.offsetWidth;
-                
-            }
-            else {
-                div.scrollLeft++;
-            }
-            
-        }
-        function getId(Id){
-            return document.getElementById(Id);
-        }
-        window.onload = init();
+        
         },
         beforeDestroy: function () {
 
