@@ -1,7 +1,8 @@
 <template>
     <div class="head">
         <div class="container">
-            <img class="logo" src="./img/logo.png" alt="">
+            <img class="logo" v-if="type == 2" src="./img/hi.png" alt="">
+            <img class="logo" v-else src="./img/logo.png" alt="">
             <div class="company">
                 <p>欢迎来到</p>
                 <span>{{companyName}}</span>
@@ -67,7 +68,7 @@
         },
         data: function () {
             return {
-                nav: Config.nav
+                nav: Config.nav,
             }
         },
         methods: {
@@ -79,14 +80,18 @@
                     removeToken();
                     window.location.href = './index.html'; //token失效也要退出登录
                 });
-            }
+            },
+            handleScroll () {
+                if(this.type == 2){
+                    require('./type2.scss')
+                } else {
+                    require('./type1.scss')
+                }
+            },
         },
         mounted(){
-            if(this.type == 2){
-                require('./type2.scss')
-            } else {
-                require('./type1.scss')
-            }
+            window.addEventListener('scroll',this.handleScroll)
+            require('./type2.scss')
         }
     }
 </script>

@@ -3,14 +3,6 @@
         <Head activeUrl="index" :companyName="ORGINFO.orgName" :type=type :info="USERINFO"></Head>
         <div class="banner">
             <img src="./img/banner.png" alt="">
-            <div class="content">
-                <h1> 
-                    赋能教育
-                    <span>·</span>
-                    聚焦健康
-                </h1>
-                <h1>健康产业学堂</h1>
-            </div>
         </div>      
         <div class="serviceObj">
             <img src="./img/矢量智能对象.png" alt="">
@@ -30,8 +22,15 @@
             <img src="./img/底纹1.png" alt="">
         </div>
         <div class="startNow">
-            <img src="./img/phone.png" alt="">
-            <img src="./img/电脑.png" alt="">
+            <img class="phone" src="./img/phone.png" alt="">
+            <span class="erweima"></span>
+            <span class="phoneInfo">微信扫码使用小程序学习</span>
+            <img class="computer" src="./img/电脑.png" alt="">
+            <img class="link" src="./img/链接图标.png" alt="">
+            <span class="study"><a href="./study.html">点击这里</a>，使用网站学习 </span>
+        </div>
+        <div class="contact">
+
         </div>
         <Footer></Footer>
     </div>
@@ -39,7 +38,6 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import { getDictionaryList } from '../../api/personal.js';
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -49,16 +47,17 @@
             }
         },
         methods: {
-            fn(){
-                getDictionaryList({}).then((data)=>{
-                    console.log(data);
-
-                }).catch(_=>{alert(111)})
-
-            }
+            handleScroll () {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                if(scrollTop >= 750){
+                    this.type = 1
+                } else {
+                    this.type = 2
+                }
+            },
         },
         mounted() {
-        
+            window.addEventListener('scroll',this.handleScroll)
         },
         beforeDestroy: function () {
 
