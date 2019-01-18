@@ -33,3 +33,10 @@ export function commitEvaluationAnswer(params) {
     })
 }
 
+export function getEvaluationinfo(params) {
+    return request({
+        url: '/pc/evaluation/getEvaluationinfo',
+        method: 'get',
+        params: params
+    })
+}

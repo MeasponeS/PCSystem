@@ -2,7 +2,7 @@
     <div class="no-learning-card">
         <el-dialog
                 title="提示"
-                :visible.sync="NoLearningCard"
+                :visible.sync="noLearningCard"
                 custom-class="no-learning-card-dialog"
                 :show-close="false"
                 :close-on-click-modal="false"
@@ -29,7 +29,7 @@
     export default {
         name: 'NoLearningCard',
         props: {
-            NoLearningCard:Boolean,
+            noLearningCard:Boolean,
             phone:[String , Number]
         },
     }

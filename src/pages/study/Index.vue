@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="index" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
+        <Head activeUrl="study" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="container-fluid main-body">
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container index-content">
@@ -75,8 +75,8 @@
             </div>
         </div>
         <Footer></Footer>
-        <SubMajorPopup  
-            :value="value" 
+        <SubMajorPopup
+            :value="value"
             :subs="list"
             @closeDialog="closeDialog"
             @getId="getId"

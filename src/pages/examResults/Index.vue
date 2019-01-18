@@ -73,7 +73,7 @@
 <script>
     import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
-    import {getEvaluationList} from '../../api/exam.js'
+    import {getEvaluationList,getEvaluationinfo} from '../../api/exam.js'
     import RectProgress from '../../components/RectProgress/RectProgress.vue'
     import {getUrlInfo} from '../../utils/dataStorage.js'
     import GoodStorage from 'good-storage'
@@ -135,19 +135,25 @@
             },
         },
         mounted() {
+
             getEvaluationList({
                 paperId:getUrlInfo('paperId'),
                 testingId:getUrlInfo('testingId'),
                 isGetHistory:1,
             }).then(r=>{
                 this.list = r;
-                GoodStorage.set(Config.storageExamHistoryKey,{
-                    paperId:getUrlInfo('paperId'),
-                    testingId:getUrlInfo('testingId'),
-                    name:'xxx考试',
-                    topics:r,
-                })
 
+                getEvaluationinfo({testingId:getUrlInfo('testingId')}).then(s=>{
+
+                    console.log(s);
+                    GoodStorage.set(Config.storageExamHistoryKey,{
+                        paperId:getUrlInfo('paperId'),
+                        testingId:getUrlInfo('testingId'),
+                        name:'xxx考试',
+                        topics:r,
+                    })
+
+                }).catch(_=>{})
             }).catch(_=>{})
 
 
@@ -156,7 +162,7 @@
         },
         computed: {
             topics:function(){
-                this.activeQuestionIndex = 0
+                this.activeQuestionIndex = 0;
                 if(this.list.length == 0) return [];
                 if( 'all' == this.status)return this.list;
 
