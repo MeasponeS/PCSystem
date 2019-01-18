@@ -225,6 +225,9 @@
                 }
             }
         }
+        .user-phone{
+            color:#FFF
+        }
         .no-login{
             .el-button{
                 background: transparent;
