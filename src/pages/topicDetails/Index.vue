@@ -133,43 +133,58 @@
             submitAnswer(){
                 if(this.topicInfo.status != -1){
                     this.clearAllAnswer();
-                    this.topicInfo.status = -1 //
+                    this.topicInfo.status = -1;
                     return;
                 }
-                let topics = this.topics;
-                let answer = {
-                    "levelId": this.topicInfo.levelId,
-                    "takeTime": this.takeTime,
-                    "coursePackId": this.topicInfo.packageId,
-                    "courseId":this.topicInfo.courseId,
-                    "answers": {}
-                };
-                topics.forEach(r=>{
-                    if(1 == r.newType){
-                        answer.answers[r.questionId] = r.historyAnswer.join('');
-                        return;
-                    }
-                    if(3 == r.newType){
-                        r.a3a4Questions.forEach(q=>{
-                            answer.answers[q.questionId] = q.historyAnswer.join('');
-                            return;
-                        })
-                        return;
-                    }
 
-                    if(5 == r.newType){
-                        r.questionArr.forEach(q=>{
-                            answer.answers[q.questionId] = q.historyAnswer.join('');
+
+                this.$confirm('确认提交答案?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+
+                    let topics = this.topics;
+                    let answer = {
+                        "levelId": this.topicInfo.levelId,
+                        "takeTime": this.takeTime,
+                        "coursePackId": this.topicInfo.packageId,
+                        "courseId":this.topicInfo.courseId,
+                        "answers": {}
+                    };
+                    topics.forEach(r=>{
+                        if(1 == r.newType){
+                            answer.answers[r.questionId] = r.historyAnswer.join('');
                             return;
-                        })
-                        return;
-                    }
-                })
-                commitQuestionAnswer(answer).then(r=>{
-                    setTimeout(_=>{
-                        window.location.href = `./topicDetails.html?packageId=${r.coursePackId}&courseId=${r.courseId}&levelId=${r.nextLevelId}`
-                    },300)
-                }).catch(_=>{})
+                        }
+                        if(3 == r.newType){
+                            r.a3a4Questions.forEach(q=>{
+                                answer.answers[q.questionId] = q.historyAnswer.join('');
+                                return;
+                            })
+                            return;
+                        }
+
+                        if(5 == r.newType){
+                            r.questionArr.forEach(q=>{
+                                answer.answers[q.questionId] = q.historyAnswer.join('');
+                                return;
+                            })
+                            return;
+                        }
+                    })
+                    commitQuestionAnswer(answer).then(r=>{
+                        setTimeout(_=>{
+                            window.location.href = `./topicDetails.html?packageId=${r.coursePackId}&courseId=${r.courseId}&levelId=${r.nextLevelId}`
+                        },300)
+                    }).catch(_=>{})
+
+
+
+
+
+                }).catch(() => {});
+
             },
             lookAnswer(){
                 this.answersPopup = true;
