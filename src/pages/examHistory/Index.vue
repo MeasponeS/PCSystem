@@ -268,7 +268,9 @@
             this.list = Info.topics;
 
             this.type = getUrlInfo('type');
-            this.activeQuestionIndex = getUrlInfo('index');
+
+            this.beforeIndex[this.type] = getUrlInfo('index');
+
         },
         components: {Breadcrumb,DoTopic,RectProgress,AnswersPopup,EmptyTemplate}
     }
