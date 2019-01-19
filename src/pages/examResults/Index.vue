@@ -52,7 +52,7 @@
                         <div class="right">
                             <h1 class="header">数据参考</h1>
                             <p>当前参与人数：{{ statistics.testSize }}人</p>
-                            <p>当前正答率：{{ 55 }}%</p>
+                            <p>当前正答率：{{ statistics.rightRate }}%</p>
                             <p>当前及格率：{{ statistics.passRate }}%</p>
                             <p>当前及格人数：{{ statistics.passSize }}人</p>
                             <p>当前最高分：{{ statistics.maxScore}}分<span>共{{ statistics.maxScoreUserSize }}人</span></p>
