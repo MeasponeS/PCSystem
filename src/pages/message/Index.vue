@@ -17,16 +17,18 @@
                         <img src="./img/message.png" alt="">
                         <div class="content">
                             <strong>{{ list[currentMsgIndex].noticeTitle }}</strong>
-                            <span>2018.12.19 13:00:00</span>
-                            <p>
-                                这是正文正文文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文这是正文正文正文</p>
-                            <a href="##">这里是可能出现的考场链接、课程链接</a>
+                            <span>{{ list[currentMsgIndex].sendTime }}</span>
+                            <p>{{ list[currentMsgIndex].noticeContent }}</p>
+                            <a
+                                    v-if="list[currentMsgIndex].noticeUrlType != 0"
+                                    @click="clickToPage(list[currentMsgIndex].noticeUrlType)"
+                            >点击前往</a>
                         </div>
                     </div>
                 </div>
                 <div class="rightBottom">
                     <ul>
-                        <li v-for="item in list">
+                        <li v-for="(item,i) in list" @click="readMsg(i,item.isReceive,item.id)">
                             <span :class="(item.isReceive == 1 ? '':'un')+'read'">{{ item.isReceive == 1?'已读':'未读' }}</span>
                             <strong>{{ item.noticeTitle }}</strong>
                             <h4>{{ item.sendTime }}</h4>
@@ -45,8 +47,8 @@
     import CommonMixin from '../commonMixin.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-    import { getNotices } from '../../api/message.js'
-    import {saveMsgCount} from '../../utils/dataStorage.js'
+    import { getNotices ,readMag as readMsgApi } from '../../api/message.js'
+    import {saveMsgCount,incrMsg,decrMsg} from '../../utils/dataStorage.js'
     export default {
         name: "app",
         mixins: [CommonMixin],
@@ -56,12 +58,38 @@
                 currentMsgIndex:0
             };
         },
-        methods: {},
+        methods: {
+            readMsg(index,isReceive,id){
+                if(isReceive == 1){//已阅读。
+
+                    this.currentMsgIndex = index
+                    return;
+                }
+                readMsgApi({id:id}).then(r=>{
+
+                    this.MSGCOUNT = decrMsg();
+                    this.list[index].isReceive = 1;
+                    this.currentMsgIndex = index
+
+                }).catch(_=>{})
+            },
+            clickToPage(type){
+                if(type == 1){
+                    window.location.href = './study.html'
+                }
+                if(type == 2){
+                    window.location.href = './exam.html'
+                }
+            },
+        },
         mounted() {
+
             getNotices().then(r=>{
                 this.MSGCOUNT = saveMsgCount(r.unReadCount);
                 this.list = r.list || [];
-
+                if(this.list.length != 0){
+                    this.readMsg(0,this.list[0].isReceive,this.list[0].id);
+                }
             }).catch(_=>{})
         },
         beforeDestroy: function () {

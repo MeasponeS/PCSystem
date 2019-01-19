@@ -37,9 +37,9 @@
         methods:{
             clickClose(){
                 if(this.hasCloseActive){
-                    window.location.href = './study.html'
+                    this.$emit('clickClose',false);
                 }else{
-                    $emit('input',false)
+                    this.$emit('input',false)
                 }
             }
         }

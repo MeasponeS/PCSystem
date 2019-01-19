@@ -7,3 +7,11 @@ export function getNotices(params) {
         params: params
     })
 }
+
+export function readMag(params) {
+    return request({
+        url: '/pc/report/notice',
+        method: 'get',
+        params: params
+    })
+}
