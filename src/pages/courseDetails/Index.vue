@@ -231,7 +231,7 @@
                 }else{
                     this.videoUrlCode = '0'
                 }
-                let submitId = this.subChapterId || this.chapterId
+                let submitId = this.currentChapterId || 0
                 let data = {
                     type:'0',
                     levelId:'0',

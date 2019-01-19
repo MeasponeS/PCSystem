@@ -49,9 +49,7 @@
                     <el-form-item label="参加工作时间" >
                         <el-date-picker type="month" placeholder="选择日期" v-model="form.workstart" class="inputBox"  value-format="yyyy/MM"></el-date-picker>
                     </el-form-item>
-                    <el-row>
-                        <el-button type="primary" class="button" @click="Preservation">保存</el-button>
-                    </el-row>
+                    <el-button type="primary" class="button" @click="Preservation">保存</el-button>
                 </el-form>
 
             </div>
@@ -83,7 +81,8 @@
                 },
                 eduType:[],
                 jobNames:[],
-                options:[]
+                options:[],
+                contain:''
             }
         },
         methods: {
@@ -92,7 +91,10 @@
             let formData = JSON.parse(JSON.stringify(That.form));
             formData.location = String(That.form.location[1]);
             updateUserInfo(formData).then(function(res){
-              That.$message('信息修改成功!');
+                That.$message({
+                    message: '信息修改成功',
+                    type: 'success'
+                });
             }).catch(_=>{})
           }
         },
