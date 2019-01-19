@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-      <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
+      <Head :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="container main-body">
            <div class="content ">
             <div class="header">

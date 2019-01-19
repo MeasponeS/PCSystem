@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="exam" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
+        <Head activeUrl="exam" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="main-body">
             <div class="container">
                 <div class="content clearfix">

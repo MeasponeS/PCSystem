@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
+        <Head :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="main-body">
             <div class="content">
                 <h1>修改密码</h1>
@@ -11,7 +11,7 @@
                         </el-input>
                         <el-input placeholder="验证码" v-model="msg"></el-input>
                     </div>
-                
+
                 <input type="password" placeholder="设置密码" v-model="password" >
                 <el-button class="button"  type="primary" @click="checkPassword">保存密码</el-button>
             </div>
@@ -84,12 +84,12 @@
                         }
                         this.countDown--;
                     },1000)
-                }).catch(_=>{}) 
+                }).catch(_=>{})
             }
 
         },
         mounted() {
-            
+
         },
         beforeDestroy: function () {
 

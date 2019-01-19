@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
+        <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="main-body">
             <!--<img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">-->
             <div class="container">
@@ -87,7 +87,7 @@
                 authCourse({courseId:item.id}).then(r=>{
                     if(0 == r){//没有权限
                         //判断用户是否已经分配卡
-                        checkDistribute({packId:item.id}).then(ka=>{
+                        checkDistribute({packId:parenPacktId ? parenPacktId : item.id}).then(ka=>{
                             if(0 == ka || '0' == ka){//未分配
                                 this.noLearningCardShow = true;
                                 return;
@@ -100,11 +100,9 @@
                             }
 
                         }).catch(_=>{});
-
-
                     }else {//有权限的情况在看是否有亚专业
 
-                        if(parenPacktId){//有亚专业
+                        if(parenPacktId){//有亚专业 ，注意是否已经选择了
                             this.subMajor.parenPacktId = parenPacktId;
 
                             //临时变量，亚专业选择了之后跳转
@@ -116,7 +114,7 @@
                                 this.subMajor.show = true;
                             }).catch(_=>{})
 
-                        }else {//没有亚专业
+                        }else {//没有亚专业 或者已经选择了压专业
                             window.location.href = './topicList.html?packageId=' + item.packageId +'&courseId=' + item.id
                         }
 

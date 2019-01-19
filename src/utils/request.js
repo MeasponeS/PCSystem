@@ -34,7 +34,7 @@ service.interceptors.response.use(
     response => {//Grade
         setTimeout(_=>{
             window.loadingInstance.close();
-        },300)
+        },100);
 
         const res = response
         if (res.status !== 200) {
@@ -70,7 +70,7 @@ service.interceptors.response.use(
             message:"服务器可能出了点问题",
             type:'error'
         });
-        //return Promise.reject(error)
+        return Promise.reject(error)//千万不能去掉，，，否则请求超时会进入到then方法，导致逻辑错误。
     }
 )
 

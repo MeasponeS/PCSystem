@@ -23,3 +23,11 @@ export function getDictionaryList(params) {
         params: params
     })
 }
+
+export function getNotices(params) {
+    return request({
+        url: '/pc/user/getNotices',
+        method: 'get',
+        params: params
+    })
+}
