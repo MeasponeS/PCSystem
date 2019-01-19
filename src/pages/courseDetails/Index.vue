@@ -139,7 +139,6 @@
                 window.location.href = './study.html'
             },
             selectChapter(data,done){
-                console.log(data.subChapterId)
                 if(data.subChapterId){
                     if(data.subChapterId.vipType == 0){
                         if(data.subChapterId){ // 是否有子章节
