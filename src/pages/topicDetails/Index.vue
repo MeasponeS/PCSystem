@@ -3,7 +3,7 @@
         <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="main-body">
             <div class="container">
-                <div class="content clearfix">
+                <div class="content clearfix" v-if="topics.length != 0">
                     <div class="left">
                         <div class="l-top">
                             <Breadcrumb
@@ -58,12 +58,12 @@
                 </div>
             </div>
             <AnswersPopup v-model="answersPopup"
+                          v-if="topics.length != 0"
                           :topicIndex="topicIndex(activeQuestionIndex,true)"
                           :topic="topics[activeQuestionIndex]"
             ></AnswersPopup>
         </div>
         <Footer></Footer>
-
     </div>
 </template>
 
@@ -82,17 +82,7 @@
         mixins: [CommonMixin],
         data: function () {
             return {
-                topics:[{
-                    "newType": 1,
-                    "questionId": 0,
-                    "analyisis": "",
-                    "index": 1,
-                    "typeB": 1,
-                    "answer": [],
-                    "questionResult": [],
-                    "name": "",
-                    "historyAnswer": [],
-                }],//关卡的所有问题,字段只是用来初始化
+                topics:[],//关卡的所有问题,
                 topicInfo:{//关卡的信息
                     packageId:'',
                     courseId:'',
@@ -301,6 +291,17 @@
                 this.topicInfo.levelName = r.levelName
                 this.topicInfo.level = r.sort
                 this.topicInfo.status = r.status
+
+
+                let questionId = getUrlInfo('questionId');
+                if(questionId){
+                    this.topics.forEach((r,index)=>{
+                        if(r.questionId == questionId){
+                            this.activeQuestionIndex = index;
+                            return;
+                        }
+                    })
+                }
 
             },
             favor(){

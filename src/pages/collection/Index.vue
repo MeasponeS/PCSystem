@@ -9,8 +9,8 @@
             </div>
             <div class="lesson-content" v-show="type==0">
                 <div class="content-header">
-                    <div 
-                        v-for="(item,index) in lesson.packageType" 
+                    <div
+                        v-for="(item,index) in lesson.packageType"
                         :key="index"
                         :show="index"
                         @click="lessons=item.name"
@@ -21,11 +21,11 @@
                     </div>
                 </div>
                 <EmptyTemplate v-show="!lessonShow" msg="暂无收藏的课程" style="box-shadow:0 0 0" ></EmptyTemplate>
-                <ul 
+                <ul
                     v-for="(item,index) in lesson.packageType"
                     :key="index"
                     v-show="lessons==item.name"
-                    class="content" 
+                    class="content"
                 >
                     <li
                         v-for="(item2,index2) in lesson.packageType[index].userFavorList"
@@ -40,8 +40,8 @@
             </div>
             <div class="lesson-content" v-show="type==1">
                 <div class="content-header">
-                    <div 
-                        v-for="(item,index) in topics.packageType" 
+                    <div
+                        v-for="(item,index) in topics.packageType"
                         :key="index"
                         @click="topic=item.name"
                         :class="{active:topic==item.name}"
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <EmptyTemplate v-show="!topicsShow" msg="暂无收藏的习题"  style="box-shadow:0 0 0"></EmptyTemplate>
-                <ul 
+                <ul
                     v-for="(item,index) in topics.packageType"
                     :key="index"
                     v-show="topic==item.name"
@@ -64,7 +64,7 @@
                         <p>{{item2.name}}</p>
                         <em></em>
                         <span @click="cancelCol(item2)">取消收藏</span>
-                        <img src="./img/jiantouyou.png" alt="">
+                        <img @click="toTopicDetails(item2)" src="./img/jiantouyou.png" alt="">
                     </li>
                 </ul>
             </div>
@@ -94,6 +94,9 @@
             }
         },
         methods: {
+            toTopicDetails(item){
+                window.location.href = `./topicDetails.html?packageId=${item.packageId}&courseId=${item.courseId}&levelId=${item.leveId}&questionId=${item.chapterQuestionId}`
+            },
             initFn(){
                 getUserFavorList({type:0}).then(r=>{
                     this.lesson = r;
@@ -108,10 +111,10 @@
             },
             cancelCol(item){
                 let data = {
-                    "type":item.type, 
+                    "type":item.type,
                     "courseId":item.courseId,
                     "leveId":item.leveId,
-                    "isVedio":item.isVedio, 
+                    "isVedio":item.isVedio,
                     "chapterQuestionId":item.chapterQuestionId,
                     "packageId":item.packageId,
                 }

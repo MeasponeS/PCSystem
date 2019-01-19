@@ -37,6 +37,9 @@ module.exports = {
             packageId:'课程包id',
             courseId:'课程id',
             levelId:'关卡id'
+        },
+        optionalParameters:{
+            questionId:'如果传入此参数，会定位到当前习题'
         }
     },
 
