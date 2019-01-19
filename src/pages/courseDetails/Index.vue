@@ -2,7 +2,7 @@
     <div id="app">
         <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
         <div class="container main-body clearfix">
-            <NoLearningCard v-model="noLearningCard" :phone="ORGINFO.phone" ></NoLearningCard>
+            <NoLearningCard v-model="noLearningCard" :hasCloseActive="hasCloseActive" :phone="ORGINFO.phone" ></NoLearningCard>
             <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->
             <OpenLearningCard v-model="OpenLearningCard" :phone="ORGINFO.phone" ></OpenLearningCard>
             <div class="left">
@@ -16,11 +16,11 @@
                         ]"
                     ></Breadcrumb>
                     <p class="nav-act">
-                        <a href="javascript:;" v-if="hasStudyCard" @click="addCol" >{{col}}</a>
-                        <span v-if="this.chapterId"></span>
-                        <a href="javascript:;" v-if="this.chapterId" @click="$refs.sidebar.previousChapter()">上一节</a>
-                        <span v-if="this.chapterId"></span>
-                        <a href="javascript:;" v-if="this.chapterId" @click="$refs.sidebar.nextChapter()">下一节</a>
+                        <a href="javascript:;" v-if="this.courseId" @click="addCol" >{{col}}</a>
+                        <span v-if="this.courseId"></span>
+                        <a href="javascript:;" v-if="this.courseId" @click="$refs.sidebar.previousChapter()">上一节</a>
+                        <span v-if="this.courseId"></span>
+                        <a href="javascript:;" v-if="this.courseId" @click="$refs.sidebar.nextChapter()">下一节</a>
                     </p>
                 </div>
                 <div class="letf-content">
@@ -102,6 +102,7 @@
                 hasStudyCard:'',
                 noLearningCard:false,
                 OpenLearningCard:false,
+                hasCloseActive:true
             };
         },
         // currentCourseName
@@ -259,7 +260,7 @@
                 this.currentChapterId = this.chapterId;
                 chapterContent({
                     chapterId:this.chapterId,
-                    courseId:this.courseId
+                    courseId:null
                 }).then(r => {
                     this.context = r.contentData
                 }).catch(_ => {})
@@ -272,44 +273,87 @@
                     this.sub = r.chapters[0].sub.length
                 }).catch(_=>{})
             } else {
-                if(this.hasStudyCard){
-                    this.packageId = getUrlInfo('id');
-                    this.packageName = getUrlInfo('name');
-                    this.packageName = decodeURI(this.packageName,"UTF-8")
-                    courseList({coursePackId:this.packageId}).then(r=>{
-                        this.course = r.courseList
-                        this.course.map((item)=>{
-                            item.id = item.id + ''
-                            this.currentCourseId = item.id;
-                            if(item.courseType == 1){
-                                chapterContent({
-                                    chapterId:null,
-                                    courseId:item.id
-                                }).then(r => {
-                                    this.context = r.contentData
-                                }).catch(_ => {})
+                this.packageName = getUrlInfo('name');
+                this.packageName = decodeURI(this.packageName,"UTF-8")
+                this.packageId = getUrlInfo('id');
+                courseList({coursePackId:this.packageId}).then(r=>{
+                    this.course = r.courseList 
+                    this.courseId = r.courseList[0].id +'';
+                    this.currentCourseId = r.courseList[0].id +'';
+                    if(r.courseList[0].courseType == 2){
+                        chapterList({courseId:this.currentCourseId,coursePackId:this.packageId}).then(r=>{
+                            this.chapters = r.chapters;
+                            this.hasStudyCard = r.studyCard
+                            if(this.hasStudyCard){
+                                if(r.chapters[0].courseType == 1){  // 下面没有子章节
+                                    chapterContent({
+                                        chapterId:null,
+                                        courseId:this.currentCourseId
+                                    }).then(r => {
+                                        this.context = r.contentData
+                                    }).catch(_ => {})
+                                } else {  // 下面有子章节 courseType = -1
+                                    this.currentChapterId = r.chapters[0].sub[0].id
+                                    this.sub = r.chapters[0].sub.length
+                                    chapterContent({
+                                        chapterId:null,
+                                        courseId:this.currentCourseId
+                                    }).then(r => {
+                                        this.context = r.contentData
+                                    }).catch(_ => {})
+                                }
+                            } else {
+                                if(r.chapters[0].courseType == 1){
+                                    // 没有子章节 接下来判断是否免费
+                                    checkDistribute({packId:this.packageId}).then(r=>{
+                                        if(r == 0){
+                                            this.noLearningCard = true
+                                        } else{
+                                            this.OpenLearningCard = true
+                                        }
+                                    }).catch(_=>{})
+                                } else {
+                                    // 有子章节 判断第一章是否免费
+                                    this.currentChapterId = r.chapters[0].sub[0].id;
+                                    if(r.chapters[0].sub[0].vipType == 0){
+                                        chapterContent({
+                                            chapterId:this.currentChapterId,
+                                            courseId:this.currentCourseId
+                                        }).then(r => {
+                                            this.context = r.contentData
+                                        }).catch(_ => {})
+                                    } else {
+                                        checkDistribute({packId:this.packageId}).then(r=>{
+                                            if(r == 0){
+                                                this.noLearningCard = true
+                                            } else{
+                                                this.OpenLearningCard = true
+                                            }
+                                        }).catch(_=>{})
+                                    }
+                                }
                             }
-                        })
-                    }).catch(_=>{})
-                } else {
-                    this.packageId = getUrlInfo('id');
-                    this.packageName = getUrlInfo('name');
-                    this.packageName = decodeURI(this.packageName,"UTF-8")
-                    courseList({coursePackId:this.packageId}).then(r=>{
-                        this.course = r.courseList
-                        this.course.map((item)=>{
-                            item.id = item.id + ''
-                            this.currentCourseId = item.id;
-                        })
-                    }).catch(_=>{})
-                    checkDistribute({packId:this.packageId}).then(r=>{
-                        if(r == 0){
-                            this.noLearningCard = true
-                        } else{
-                            this.OpenLearningCard = true
+                        }).catch(_=>{})
+                    } else {
+                        if(r.courseList[0].vipType == 1){
+                            checkDistribute({packId:this.packageId}).then(r=>{
+                                if(r == 1){
+                                    this.noLearningCard = true
+                                } else{
+                                    this.OpenLearningCard = true
+                                }
+                            }).catch(_=>{})
+                        } else {
+                            chapterContent({
+                                courseId:this.currentCourseId
+                            }).then(r => {
+                                this.context = r.contentData
+                            }).catch(_ => {})
                         }
-                    }).catch(_=>{})
-                }
+                    }
+                    
+                }).catch(_=>{})
+                
             }
 
 

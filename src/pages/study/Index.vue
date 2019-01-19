@@ -5,7 +5,7 @@
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container index-content">
                 <div class="top">
-                    我的课程 <span v-if="USERINFO && this.userList!=''">上次学到：{{this.lastStudy.courseName}}     {{this.lastStudy.updateTime}}</span>
+                    我的课程 <span v-if="this.userList && this.lastStudy">上次学到：{{this.lastStudy.courseName}}     {{this.lastStudy.updateTime}}</span>
                 </div>
                 <ul class="list">
                     <li v-for="(item,index) in userList" :key="index">
@@ -138,7 +138,7 @@
                 } else {
                     window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
                 }
-                } 
+            } 
 
             
         },

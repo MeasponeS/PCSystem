@@ -111,13 +111,12 @@
             min-width: 188px;
             margin-left: 10px;
             p{
-                font-size: 23px;
+                font-size: 16px;
                 color: #2B60FF;
                 margin: 0 0 6px 0;
-                font-weight: bold;
             }
             span{
-                font-size: 16px;
+                font-size: 20px;
             }
         }
             .nav {

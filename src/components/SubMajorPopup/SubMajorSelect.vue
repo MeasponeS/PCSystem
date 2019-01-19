@@ -130,9 +130,7 @@ export default {
           li{
             float: left;
             margin: 0 13px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            line-height: 27px;
             width:148px;
             font-size: 14px;
             color:#333;

@@ -28,7 +28,9 @@ export default {
   props: {
     value: Boolean,
     subs: Array,
-    isSelectedMajor:Number,String
+    isSelectedMajor:{
+      type:[String,Number],
+    }
   },
   data: function() {
     return {

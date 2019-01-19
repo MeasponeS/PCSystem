@@ -15,8 +15,7 @@
                     <br>
                     联系电话：{{ phone }}
                 </p>
-
-                <el-button @click="$emit('input',false)" type="primary" style="width: 100%">完成</el-button>
+                <el-button @click="clickClose" type="primary" style="width: 100%">完成</el-button>
             </div>
 
         </el-dialog>
@@ -29,8 +28,21 @@
         name: 'noLearningCard',
         props: {
             value:Boolean,
-            phone:[String , Number]
+            phone:[String , Number],
+            hasCloseActive:{
+                type:Boolean,
+                default:false,
+            }
         },
+        methods:{
+            clickClose(){
+                if(this.hasCloseActive){
+                    window.location.href = './study.html'
+                }else{
+                    $emit('input',false)
+                }
+            }
+        }
     }
 </script>
 

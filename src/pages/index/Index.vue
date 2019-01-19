@@ -55,8 +55,6 @@
         methods: {
             handleScroll(){
                 let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
-                console.log(document.body.offsetHeight)
-                console.log(window.screen.availHeight)
                 if(scrollTop >= 650){
                     this.type = 1
                 } else {
