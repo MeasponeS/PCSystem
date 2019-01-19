@@ -295,12 +295,12 @@
 
                 let questionId = getUrlInfo('questionId');
                 if(questionId){
-                    this.topics.forEach((r,index)=>{
-                        if(r.questionId == questionId){
-                            this.activeQuestionIndex = index;
+                    for (let i = 0; i < this.topics.length ; i++) {
+                        if(this.topics[i].questionId == questionId){
+                            this.activeQuestionIndex = i;
                             return;
                         }
-                    })
+                    }
                 }
 
             },
