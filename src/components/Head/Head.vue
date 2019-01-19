@@ -1,5 +1,5 @@
 <template>
-    <div class="head" :id="type==2?'type2':''">
+    <div class="head" :id="type== 2 ?'type2' : ''">
         <div class="container" >
             <img class="logo" v-if="type == 2" src="./img/hi.png" alt="">
             <img class="logo" v-else src="./img/logo.png" alt="">
@@ -8,7 +8,11 @@
                 <span>{{companyName}}</span>
             </div>
             <ul class="nav">
-                <li v-for="(title,url) in nav"><a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a></li>
+                <li v-for="(title,url) in nav">
+                    <a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a>
+                    <span class="msg-count" v-if="url == 'message' && msgCount != 0">{{ msgCount <= 9 ? msgCount : '9+' }}</span>
+                </li>
+
             </ul>
             <div v-if="info" class="login">
               <div class="user-phone">
@@ -64,6 +68,10 @@
             type:{
                 type:[Number,String],
                 default:''
+            },
+            msgCount:{
+                type:[Number,String],
+                default:0
             }
         },
         data: function () {
@@ -81,7 +89,7 @@
                     window.location.href = './index.html'; //token失效也要退出登录
                 });
             },
-            
+
         },
         mounted(){
         }
@@ -128,12 +136,28 @@
                     float: left;
                     margin-right: 46px;
                     font-weight: bold;
+                    position: relative;
                     a {
                         font-size: 18px;
                         &:hover, &.active {
                             color: $--color-primary;
                             border-bottom: 2px solid $--color-primary;
                         }
+                    }
+                    .msg-count{
+                        font-size: 12px;
+                        display: flex;
+                        position: absolute;
+                        top: -12px;
+                        right: -20px;
+                        align-items: center;
+                        justify-content: center;
+                        width: 20px;
+                        height: 20px;
+                        font-weight: normal;
+                        border-radius: 50%;
+                        background: #FF5555 ;
+                        color: #fff;
                     }
                 }
             }

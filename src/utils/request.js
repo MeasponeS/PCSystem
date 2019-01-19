@@ -34,7 +34,7 @@ service.interceptors.response.use(
     response => {//Grade
         setTimeout(_=>{
             window.loadingInstance.close();
-        },300)
+        },100);
 
         const res = response
         if (res.status !== 200) {

@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <Head activeUrl="index" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
-        
+        <Head activeUrl="index" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
+
         <Footer></Footer>
     </div>
 </template>
@@ -26,7 +26,7 @@
             }
         },
         mounted() {
-            
+
         },
         beforeDestroy: function () {
 

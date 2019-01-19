@@ -1,10 +1,10 @@
 <template>
     <div id="app">
-        <Head class="header" activeUrl="index" :companyName="ORGINFO.orgName" :type=type :info="USERINFO"></Head>
+        <Head class="header" activeUrl="index" :companyName="ORGINFO.orgName" :type=type :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div >
             <div class="banner">
                 <img src="./img/banner_01.png" alt="">
-            </div>      
+            </div>
             <div class="serviceObj">
                 <img src="./img/1_02.png" alt="">
             </div>
@@ -37,7 +37,7 @@
                 <img class="dianhua" src="./img/dianhua-2.png" alt="">
             </div>
         </div>
-        
+
         <Footer></Footer>
     </div>
 </template>
@@ -54,7 +54,7 @@
         },
         methods: {
             handleScroll(){
-                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
+                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                 console.log(document.body.offsetHeight)
                 console.log(window.screen.availHeight)
                 if(scrollTop >= 650){

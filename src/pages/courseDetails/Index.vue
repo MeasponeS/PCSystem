@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
+        <Head :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="container main-body clearfix">
             <NoLearningCard v-model="noLearningCard" :phone="ORGINFO.phone" ></NoLearningCard>
             <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->

@@ -1,10 +1,11 @@
-import {getOrgInfo,saveOrgInfo,getToken,getUserInfo} from '../utils/dataStorage.js'
+import {getOrgInfo,saveOrgInfo,getToken,getUserInfo,getMsgCount} from '../utils/dataStorage.js'
 import {getOrgCodeByDomain} from '../api/common.js'
 export default {
     data: function () {
         return {
             ORGINFO:{},
-            USERINFO:false
+            USERINFO:false,
+            MSGCOUNT: 0,
         }
     },
     create(){
@@ -17,6 +18,7 @@ export default {
         let orgInfo = getOrgInfo();
         let userToken = getToken();
         let userInfo = getUserInfo();
+        let msgCount = getMsgCount();
         if(!orgInfo){
             getOrgCodeByDomain({}).then(r=>{
                 saveOrgInfo(r);
@@ -32,6 +34,12 @@ export default {
         }else{
             this.USERINFO = false
         }
+        if(userToken && msgCount){
+            this.MSGCOUNT = msgCount;
+        }else{
+            this.MSGCOUNT = 0;
+        }
+
 
     },
     beforeDestroy: function () {

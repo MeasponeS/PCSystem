@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="study" :companyName="ORGINFO.orgName" :info="USERINFO"></Head>
+        <Head activeUrl="study" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="container-fluid main-body">
             <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
             <div class="container index-content">
@@ -138,9 +138,9 @@
                 } else {
                     window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
                 }
-                } 
+                }
 
-            
+
         },
         mounted() {
             courses().then(r=>{
