@@ -2,7 +2,7 @@
     <div id="app">
         <Head activeUrl="topic" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="main-body">
-            <!--<img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">-->
+            <Carousel :position="2" />
             <div class="container">
                 <!--<div class="title">习题集列表</div>-->
                 <div class="list" v-if="list.length != 0">
@@ -55,6 +55,7 @@
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     import SubMajorSelect from '../../components/SubMajorPopup/SubMajorSelect.vue'
     import {authCourse} from '../../api/auth.js'
+    import Carousel from '../../components/Carousel/Carousel.vue'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -66,6 +67,7 @@
                 subMajor:{
                     parenPacktId:null,//有亚专业的情况，id值
                     show:false,
+                    isSelect:false,
                     list:[]
                 }
             }
@@ -102,7 +104,7 @@
                         }).catch(_=>{});
                     }else {//有权限的情况在看是否有亚专业
 
-                        if(parenPacktId){//有亚专业 ，注意是否已经选择了
+                        if(parenPacktId && !this.subMajor.isSelect){//有亚专业 ，注意是否已经选择了
                             this.subMajor.parenPacktId = parenPacktId;
 
                             //临时变量，亚专业选择了之后跳转
@@ -136,13 +138,14 @@
 
             getTopicList().then(r=>{
                 this.list = r.list;
+                this.subMajor.isSelect = r.isSelect;
 
             }).catch(_=>{})
         },
         beforeDestroy: function () {
 
         },
-        components: {EmptyTemplate,NoLearningCard,SubMajorSelect,OpenLearningCard}
+        components: {EmptyTemplate,NoLearningCard,SubMajorSelect,OpenLearningCard,Carousel}
     }
 </script>
 

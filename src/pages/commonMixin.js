@@ -40,7 +40,6 @@ export default {
             this.MSGCOUNT = 0;
         }
 
-
     },
     beforeDestroy: function () {
 

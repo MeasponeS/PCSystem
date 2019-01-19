@@ -47,7 +47,7 @@
     import Config from '../../config/app.js'
     import {sendSMS,login} from '../../api/auth.js'
     import {getUrlInfo} from '../../utils/dataStorage.js'
-    import {setToken,saveUserInfo} from '../../utils/dataStorage.js'
+    import {setToken,saveUserInfo,saveMsgCount} from '../../utils/dataStorage.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -78,6 +78,7 @@
                     setToken(r.token)
                     saveUserInfo(r.user_info);
 
+                    saveMsgCount(r.unReadCount);
                     setTimeout(_=>{
                         let fromPage = getUrlInfo('from');
                         if(fromPage){

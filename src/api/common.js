@@ -23,3 +23,10 @@ export function userfavor(params) {
     })
 }
 
+export function getAdvertising(params) {
+    return request({
+        url: '/pc/getAdvertising',
+        method: 'get',
+        params: params
+    })
+}

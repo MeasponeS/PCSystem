@@ -2,7 +2,7 @@
     <div id="app">
         <Head :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="container main-body clearfix">
-            <NoLearningCard v-model="noLearningCard" :hasCloseActive="hasCloseActive" :phone="ORGINFO.phone" ></NoLearningCard>
+            <NoLearningCard v-model="noLearningCard" :hasCloseActive="true" @clickClose="closeCard" :phone="ORGINFO.phone" ></NoLearningCard>
             <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->
             <OpenLearningCard v-model="OpenLearningCard" :phone="ORGINFO.phone" ></OpenLearningCard>
             <div class="left">
@@ -102,7 +102,6 @@
                 hasStudyCard:'',
                 noLearningCard:false,
                 OpenLearningCard:false,
-                hasCloseActive:true
             };
         },
         // currentCourseName
@@ -136,7 +135,9 @@
 
         },
         methods: {
-
+            closeCard(){
+                window.location.href = './study.html'
+            },
             selectChapter(data,done){
                 if(this.USERINFO){
                     if(data.subChapterId){ // 是否有子章节
@@ -277,7 +278,7 @@
                 this.packageName = decodeURI(this.packageName,"UTF-8")
                 this.packageId = getUrlInfo('id');
                 courseList({coursePackId:this.packageId}).then(r=>{
-                    this.course = r.courseList 
+                    this.course = r.courseList
                     this.courseId = r.courseList[0].id +'';
                     this.currentCourseId = r.courseList[0].id +'';
                     if(r.courseList[0].courseType == 2){
@@ -351,9 +352,9 @@
                             }).catch(_ => {})
                         }
                     }
-                    
+
                 }).catch(_=>{})
-                
+
             }
 
 

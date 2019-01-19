@@ -2,13 +2,13 @@
     <div id="app">
         <Head activeUrl="study" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="container-fluid main-body">
-            <img style="width: 100%" src="../../assets/img/temp/banner.jpg" alt="">
+            <Carousel :position="1" />
             <div class="container index-content">
                 <div class="top">
                     我的课程 <span v-if="this.userList && this.lastStudy">上次学到：{{this.lastStudy.courseName}}     {{this.lastStudy.updateTime}}</span>
                 </div>
                 <ul class="list">
-                    <li v-for="(item,index) in userList" :key="index">
+                    <li v-for="(item,index) in userList" :key="item.packageType.id">
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.packageType.name}}</h2>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </li>
-                    <li v-for="(item,index) in orgList" :key="index">
+                    <li v-for="(item,index) in orgList" :key="item.packageType.id">
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.packageType.name}}</h2>
@@ -94,7 +94,7 @@
     import CommonMixin from '../commonMixin.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     import SubMajorPopup from '../../components/SubMajorPopup/SubMajorPopup.vue'
-
+    import Carousel from '../../components/Carousel/Carousel.vue'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -138,7 +138,7 @@
                 } else {
                     window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
                 }
-            } 
+            }
 
         },
         mounted() {
@@ -151,7 +151,7 @@
         beforeDestroy: function () {
 
         },
-        components: {EmptyTemplate,SubMajorPopup}
+        components: {EmptyTemplate,SubMajorPopup,Carousel}
     }
 </script>
 

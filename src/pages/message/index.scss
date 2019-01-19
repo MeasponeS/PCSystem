@@ -95,6 +95,7 @@
                     padding-left: 23px;
                     list-style: none;
                     li{
+                        cursor: pointer;
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
@@ -114,7 +115,6 @@
                             background: $--color-ending;
                         }
                         strong{
-                            cursor: pointer;
                             width: 240px;
                             overflow: hidden;
                             text-overflow:ellipsis;
