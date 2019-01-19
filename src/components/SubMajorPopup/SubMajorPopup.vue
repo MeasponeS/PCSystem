@@ -136,7 +136,7 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            width:148px;
+            width:146px;
             font-size: 14px;
             color:#333;
             height:29px;

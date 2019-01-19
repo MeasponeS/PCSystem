@@ -134,7 +134,6 @@
                 li {
                     float: left;
                     margin-right: 46px;
-                    font-weight: bold;
                     position: relative;
                     a {
                         font-size: 18px;
@@ -238,8 +237,8 @@
                 font-weight: normal;
                 a{
                     &:hover{
-                        color:#B4BFFF;
-                        border: none;
+                        color:#fff;
+                        border-bottom: 2px solid #fff;
                     }
                     &.active{
                         color: #fff;

@@ -41,14 +41,14 @@ service.interceptors.response.use(
             Notification({
                 title:'数据返回出错',
                 message:"请稍后重试",
-                type:'error'
+                type:'warning'
             });
             //return Promise.reject('error')
         } else {
             if(res.data.resultCode != 200){
                 Notification({
                     title:res.data.message,
-                    type:'error'
+                    type:'warning'
                 });
                 if(res.data.resultCode == 402){//登录状态失效
                     removeToken();
@@ -68,7 +68,7 @@ service.interceptors.response.use(
         Notification({
             title:"请求未响应",
             message:"服务器可能出了点问题",
-            type:'error'
+            type:'warning'
         });
         return Promise.reject(error)//千万不能去掉，，，否则请求超时会进入到then方法，导致逻辑错误。
     }

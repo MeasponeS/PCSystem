@@ -133,10 +133,20 @@
             },
             startLearning(item){
                 let packageName = encodeURI(item.packageType.name)
-                if(item.lastCourseRecords){
-                    window.location.href = './courseDetails.html?chapterId=' + item.lastCourseRecords.chapterId +'&courseId=' + item.lastCourseRecords.courseId + '&id='+item.packageType.id+'&name=' + packageName
+                if(item.hasSubmajor == 1){
+                    subMajor({coursePackId:item.packageType.id}).then(r=>{
+                        this.list = r.subMajorList
+                        let subMajor = r.subMajorList.filter((item1)=>{
+                            return item1.selected == 1
+                        })  
+                        window.location.href = './courseDetails.html?id=' + subMajor[0].packId+'&name=' + packageName+'&hasMajor='+'true'
+                    }).catch(_=>{})
                 } else {
-                    window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
+                    if(item.lastCourseRecords){
+                        window.location.href = './courseDetails.html?chapterId=' + item.lastCourseRecords.chapterId +'&courseId=' + item.lastCourseRecords.courseId + '&id='+item.packageType.id+'&name=' + packageName
+                    } else {
+                        window.location.href = './courseDetails.html?id=' + item.packageType.id+'&name=' + packageName
+                    }
                 }
             } 
 
@@ -154,4 +164,3 @@
         components: {EmptyTemplate,SubMajorPopup}
     }
 </script>
-

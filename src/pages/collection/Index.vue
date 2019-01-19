@@ -34,7 +34,7 @@
                         <p>{{item2.courseName}}</p>
                         <em></em>
                         <span @click="cancelCol(item2)">取消收藏</span>
-                        <img src="./img/jiantouyou.png" alt="">
+                        <img src="./img/jiantouyou.png" alt="" @click="goCol(item2)">
                     </li>
                 </ul>
             </div>
@@ -90,7 +90,8 @@
                 lessons:'',
                 topic:'',
                 lesson:[],
-                topics:[]
+                topics:[],
+                course:[]
             }
         },
         methods: {
@@ -102,6 +103,7 @@
                     this.lesson = r;
                     this.lessonShow = this.lesson.packageType.length
                     this.lessons=this.lesson.packageType[0].name
+                    this.course = r.packageType[0]
                 }).catch(_=>{})
                 getUserFavorList({type:1}).then(r=>{
                     this.topics = r;
@@ -131,6 +133,10 @@
                         this.initFn();
                     }
                 }).catch(_=>{})
+            },
+            goCol(item){
+                let packageName = encodeURI(this.course.name)
+                window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.courseId + '&id='+this.course.id+'&name=' + packageName
             }
         },
         mounted() {
