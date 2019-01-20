@@ -141,40 +141,30 @@
             selectChapter(data,done){
                 if(data.subChapterId){
                     if(data.subChapterId.vipType == 0){
-                        if(data.subChapterId){ // 是否有子章节
-                            if(data.subChapterId.vipType == 1){ // 本小姐是否免费
-                                if(this.hasStudyCard){   // 是否有学习卡
-                                    this.subChapterId = data.subChapterId.id
-                                    if(data.subChapterId.courseType == 1){  // 是否有章节
-                                        chapterContent({
-                                            chapterId:data.subChapterId.id,
-                                            courseId:null
-                                        }).then(r => {
-                                            this.context = r.contentData
-                                            this.videoUrl = r.videoUrl
-                                            done();
-                                            this.currentChapterId = data.chapterId;
-                                        }).catch(_ => {})
-                                    } else {
-                                        getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
-                                            this.context = r.context
-                                            this.videoUrl = r.videoPath
-                                            done()
-                                            this.currentChapterId = data.chapterId;
-                                        }).catch(_=>{})
-                                    }
-                                } else { // 查询是否被分配卡
-                                    checkDistribute({packId:this.packageId}).then(r=>{
-                                        if(r == 0){
-                                            this.noLearningCard = true
-                                        } else{
-                                            this.OpenLearningCard = true
-                                        }
-                                    }).catch(_=>{})
-                                }
-                            } else {
+                        this.subChapterId = data.subChapterId.id
+                        if(data.subChapterId.courseType == 1){
+                            chapterContent({
+                                chapterId:data.subChapterId.id,
+                                courseId:null
+                            }).then(r => {
+                                this.context = r.contentData
+                                this.videoUrl = r.videoUrl
+                                done();
+                                this.currentChapterId = data.chapterId;
+                            }).catch(_ => {})
+                        } else {
+                            getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
+                                this.context = r.context
+                                this.videoUrl = r.videoPath
+                                done()
+                                this.currentChapterId = data.chapterId;
+                            }).catch(_=>{})
+                        }
+                    } else {
+                        if(this.USERINFO){
+                            if(this.hasStudyCard){   // 是否有学习卡
                                 this.subChapterId = data.subChapterId.id
-                                if(data.subChapterId.courseType == 1){
+                                if(data.subChapterId.courseType == 1){  // 是否为视频课程
                                     chapterContent({
                                         chapterId:data.subChapterId.id,
                                         courseId:null
@@ -192,19 +182,7 @@
                                         this.currentChapterId = data.chapterId;
                                     }).catch(_=>{})
                                 }
-                            }
-                        } else {
-                            if(this.hasStudyCard){
-                                chapterContent({
-                                    chapterId:data.chapterId,
-                                    courseId:null
-                                }).then(r => {
-                                    this.context = r.contentData
-                                    this.videoUrl = r.videoUrl
-                                    done();
-                                    this.currentChapterId = data.chapterId;
-                                }).catch(_ => {})
-                            } else {
+                            } else { // 查询是否被分配卡
                                 checkDistribute({packId:this.packageId}).then(r=>{
                                     if(r == 0){
                                         this.noLearningCard = true
@@ -213,9 +191,9 @@
                                     }
                                 }).catch(_=>{})
                             }
+                        } else {
+                            window.location.href = './login.html'
                         }
-                    } else {
-                        window.location.href = './login.html'
                     }
                 } else {
                     if(this.hasStudyCard){

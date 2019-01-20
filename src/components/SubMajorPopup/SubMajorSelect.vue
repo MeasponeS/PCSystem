@@ -29,7 +29,7 @@ export default {
     value: Boolean,
     subs: Array,
     selectedHistoryPackId:{
-        type:Number,
+        type:[Number,String],
         default:0,
     }
   },

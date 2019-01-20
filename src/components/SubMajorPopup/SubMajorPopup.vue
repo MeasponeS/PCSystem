@@ -14,7 +14,7 @@
       <ul><li v-for="item in subs" :class="{active:isSelectedMajor==item.packId}" :key="item.id" @click="selectMajor($event,item)">{{item.name}}</li></ul>
       <div class="btn">
         <el-button @click="$emit('closeDialog')">取消</el-button>
-        <el-button type="primary" @click="submitMajor()">确认</el-button>
+        <el-button type="primary" @click="submitMajor(item)">确认</el-button>
       </div>
       <div class="line"></div>
     </div>
@@ -57,10 +57,11 @@ export default {
       this.item = item
     },
     submitMajor(item){
-      this.$emit('getId',this.id)
+      console.log(item)
+      this.$emit('getId',item)
       this.$emit('closeDialog')
       submajor({parentPackId:this.item.parentPackId,coursePackId:this.item.packId}).then(r=>{
-        console.log(r)
+        
       }).catch(_=>{})
     }
   }

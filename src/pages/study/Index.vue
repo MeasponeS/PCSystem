@@ -75,25 +75,24 @@
             </div>
         </div>
         <Footer></Footer>
-        <SubMajorPopup
-            :value="value"
-            :subs="list"
-            @closeDialog="closeDialog"
-            @getId="getId"
-            :isSelectedMajor="isSelectedMajor"
+        <SubMajorSelect
+            v-model="subMajor.show"
+            :subs="subMajor.list"
+            @select="selectSubMajor"
+            :selectedHistoryPackId="subMajor.isSelect"
         >
-            <template slot="choose">
-                主管护师共设置护理学，内科护理、外课护理、妇产科护理、儿科护理、社区护理六个亚专业的考试护理学专业（中级）基础知识和相关专业知识考核内容相同，专业知识和专业实践能力根据报考亚专业的不同，所考核的内容不同（详见职称《考试那些事儿（中级）》）。
-            </template>
-        </SubMajorPopup>
+        <template slot="choose">
+            主管护师共设置护理学，内科护理、外课护理、妇产科护理、儿科护理、社区护理六个亚专业的考试护理学专业（中级）基础知识和相关专业知识考核内容相同，专业知识和专业实践能力根据报考亚专业的不同，所考核的内容不同（详见职称《考试那些事儿（中级）》）。
+        </template>
+        </SubMajorSelect>
     </div>
 </template>
 
 <script>
-    import { courses,subMajor } from '../../api/study.js'
+    import { courses,subMajor,submajor } from '../../api/study.js'
     import CommonMixin from '../commonMixin.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-    import SubMajorPopup from '../../components/SubMajorPopup/SubMajorPopup.vue'
+    import SubMajorSelect from '../../components/SubMajorPopup/SubMajorSelect.vue'
     import Carousel from '../../components/Carousel/Carousel.vue'
     export default {
         name: 'app',
@@ -102,13 +101,18 @@
             return {
                 list:[],
                 id:'',
-                value: false,
                 NoLearningCard: true,
                 OpenLearningCard: true,
                 lastStudy:'',
                 orgList:[],
                 userList:[],
-                isSelectedMajor:''
+                isSelectedMajor:'',
+                subMajor:{
+                    parenPacktId:null,//有亚专业的情况，id值
+                    show:false,
+                    isSelect:'',
+                    list:[]
+                }
             }
         },
         methods: {
@@ -116,30 +120,42 @@
                 this.value = false;
             },
             chooseMajor(item){
-                this.value = true
                 subMajor({coursePackId:item.packageType.id}).then(r=>{
-                    this.list = r.subMajorList
+                    this.subMajor.list = r.subMajorList
                     let subMajor = r.subMajorList.filter((item)=>{
                         return item.selected == 1
                     })
-                    this.isSelectedMajor = subMajor[0].packId
+                    this.subMajor.isSelect = subMajor[0].packId
                 }).catch(_=>{})
-            },
-            getId(id){
-                this.id = id
+                this.subMajor.parenPacktId = item.packageType.id;
+                this.subMajor.show = true
             },
             enterTopic(){
                 window.location.href = './topic.html'
+            },
+            selectSubMajor(id){
+                submajor({
+                    parentPackId:this.subMajor.parenPacktId,
+                    coursePackId:id
+                }).then(r=>{
+                    this.subMajor.show = false
+                }).catch(_=>{})
             },
             startLearning(item){
                 let packageName = encodeURI(item.packageType.name)
                 if(item.hasSubmajor == 1){
                     subMajor({coursePackId:item.packageType.id}).then(r=>{
-                        this.list = r.subMajorList
+                        this.subMajor.list = r.subMajorList
                         let subMajor = r.subMajorList.filter((item1)=>{
                             return item1.selected == 1
-                        })  
-                        window.location.href = './courseDetails.html?id=' + subMajor[0].packId+'&name=' + packageName+'&hasMajor='+'true'
+                        })
+                        this.subMajor.isSelect = subMajor[0].packId
+                        if(subMajor != ''){
+                           window.location.href = './courseDetails.html?id='+subMajor[0].packId+'&name=' + subMajor[0].name
+                        }else {
+                            this.subMajor.show = true
+                            this.subMajor.parenPacktId = item.packageType.id;
+                        }
                     }).catch(_=>{})
                 } else {
                     if(item.lastCourseRecords){
@@ -161,6 +177,6 @@
         beforeDestroy: function () {
 
         },
-        components: {EmptyTemplate,SubMajorPopup,Carousel}
+        components: {EmptyTemplate,SubMajorSelect,Carousel}
     }
 </script>
