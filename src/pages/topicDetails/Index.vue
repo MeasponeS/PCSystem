@@ -53,6 +53,8 @@
                                     <span style="margin-left: 10px">第{{ topicIndex(index) }}题</span>
                                 </li>
                             </ul>
+                        </div>
+                        <div style="padding: 25px">
                             <el-button @click="submitAnswer" type="primary" style="width: 100%"> {{ topicInfo.status != -1 ? '再答一次' : '提交&nbsp;&nbsp;第' + topicInfo.level + '关' }}  </el-button>
                         </div>
                     </div>
@@ -143,8 +145,6 @@
                     this.topicInfo.status = -1;
                     return;
                 }
-
-
                 this.$confirm('确认提交答案?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',

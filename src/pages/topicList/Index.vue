@@ -67,11 +67,11 @@
                     </div>
                     <div class="topic-list-r">
                         <div class="top">数据参考</div>
-                        <div class="li">总练习人数： 0人</div>
-                        <div class="li">总练习次数： 0次</div>
-                        <div class="li">人均练习次数： 0次</div>
-                        <div class="li">平均通关关卡： 0关</div>
-                        <div class="li">通过全部关卡人数： 0人</div>
+                        <div class="li">总练习人数： {{ staticInfo.totalUserCount }}人</div>
+                        <div class="li">总练习次数： {{ staticInfo.totalTimeCount }}次</div>
+                        <div class="li">人均练习次数： {{ staticInfo.avgTimeCount }}次</div>
+                        <div class="li">平均通关关卡： {{ staticInfo.avgPassCount }}关</div>
+                        <div class="li">通过全部关卡人数： {{ staticInfo.passAllSize }}人</div>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import {getLevelList} from '../../api/topic.js'
+    import {getLevelList,getCourseStaticInfo} from '../../api/topic.js'
     import {objSort} from '../../utils/app.js'
     import {getUrlInfo} from '../../utils/dataStorage.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
@@ -112,6 +112,13 @@
         },
         data: function () {
             return {
+                staticInfo:{
+                    avgPassCount: 0,
+                    avgTimeCount: 0,
+                    passAllSize: 0,
+                    totalTimeCount: 0,
+                    totalUserCount: 0,
+                },
                 tabActiveIndex: 0,
                 data: {
                     course: {},
@@ -152,6 +159,13 @@
             }).then(r => {
                 this.data = r;
             }).catch(_ => {})
+
+            getCourseStaticInfo({
+                packageId: getUrlInfo('packageId'),
+                courseId: getUrlInfo('courseId'),
+            }).then(r=>{
+                this.staticInfo = r;
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
         },

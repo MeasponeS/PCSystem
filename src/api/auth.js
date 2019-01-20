@@ -26,7 +26,7 @@ export function forgotPassword(params) {
 
 export function sendSMS(params) {
     return request({
-        url: '/pc/user/sendsms',
+        url: '/pc/sendsms',
         method: 'get',
         params: params
     })

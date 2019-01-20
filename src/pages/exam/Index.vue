@@ -51,7 +51,7 @@
                                     <el-button
                                             type="primary"
                                             @click="$message('还没有到考试开始时间')"
-                                    >进入考场</el-button>
+                                    >未开放</el-button>
                                 </h5>
                             </li>
                         </ul>
