@@ -95,7 +95,7 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import {getRoomListByType,getExam,getEvaluationList} from '../../api/exam.js'
+    import {getRoomListByType,getExam,getEvaluationList,getStudyInfo} from '../../api/exam.js'
     import ExamRules from '../../components/ExamRules/ExamRules.vue'
     import GoodStorage from 'good-storage'
     import Config from '../../config/app.js'
@@ -241,6 +241,9 @@
             this.status = 'opening';
             this.getList();
 
+            getStudyInfo().then(r=>{
+                console.log(r)
+            }).catch(r=>{})
         },
         beforeDestroy: function () {
 

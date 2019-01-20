@@ -40,3 +40,11 @@ export function getEvaluationinfo(params) {
         params: params
     })
 }
+
+export function getStudyInfo(params) {
+    return request({
+        url: '/pc/evaluation/getStudyInfo',
+        method: 'get',
+        params: params
+    })
+}
