@@ -8,7 +8,6 @@ export default {
                 coursePackId:'',
                 courseId:'',
                 chapterId:'',
-
                 videoTime:0,
                 type:1,//1会让课程观看时间添加60s,2会让视频观看时间添加60s
                 reportType:1, //1观看课程次数加1，2观看视频次数加1
@@ -87,8 +86,9 @@ export default {
         ReportRequest(){
             let newReportData = clone(this.ReportData);
             newReportData.orgId = this.ORGINFO.id;
+            newReportData.takeTime = 60;
             if(newReportData.type == 1){
-                newReportData.takeTime = 60;
+                
             }else {
                 newReportData.videoTime = 60;
 
@@ -105,9 +105,9 @@ export default {
         this.initResidenceTime();
      
 
-        // setInterval(_=>{
-        //     this.ReportRequest();
-        // },1000 * 60)
+        setInterval(_=>{
+            this.ReportRequest();
+        },1000 * 10)
     },
     beforeDestroy: function () {
 

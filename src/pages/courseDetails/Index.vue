@@ -30,7 +30,6 @@
                         id="myVideo"
                         preload
                         width="784"
-                        height="400"
                         
                         controls="true" 
                         controlslist="nodownload"

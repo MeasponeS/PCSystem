@@ -136,11 +136,10 @@
             },
             goCol(item){
                 console.log(item)
-                let packageName = encodeURI(this.course.name)
                 if(item.courseId == item.chapterQuestionId){
-                    window.location.href = './courseDetails.html?courseId='  + item.id + '&id='+this.course.id+'&name=' + packageName+'&type='+1
+                    window.location.href = './courseDetails.html?courseId='  + item.courseId + '&id='+this.course.id+'&name=' + packageName+'&type='+1
                 } else {
-                    window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.id + '&id='+this.course.id+'&name=' + packageName+'&type='+1
+                    window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.courseId + '&id='+this.course.id+'&name=' + packageName+'&type='+1
                 }
                 
             }

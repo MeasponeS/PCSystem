@@ -12,6 +12,7 @@
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.packageType.name}}</h2>
+                            <!-- <h2>{{item.hasSubmajor?subName:item.packageType.name}}</h2> -->
                             <div class="info">
                                 <el-popover
                                         title=""
@@ -106,6 +107,9 @@
                 lastStudy:'',
                 orgList:[],
                 userList:[],
+                subName:'',
+                orgMajor:'',
+                userMajor:'',
                 subMajor:{
                     parenPacktId:null,//有亚专业的情况，id值
                     show:false,
@@ -172,6 +176,31 @@
                 this.orgList = r.orgCourseInformationList;
                 this.userList = r.userCourseInformationList;
             }).catch(_=>{})
+            // this.orgMajor = this.orgList.filter((item)=>{
+            //     return item.hasSubmajor == 1
+            // })
+            // this.userMajor = this.userList.filter((item)=>{
+            //     return item.hasSubmajor == 1
+            // })
+            // subMajor({coursePackId:this.orgMajor.packageType.id}).then(r=>{
+            //     let subMajor = r.subMajorList.filter((item)=>{
+            //         return item.selected == 1
+            //     })
+            //     if(subMajor != ''){
+            //         this.subName = subMajor[0].name
+            //         this.subMajor.isSelect = subMajor[0].packId
+            //     } 
+            // }).catch(_=>{})
+            // subMajor({coursePackId:this.userMajor.packageType.id}).then(r=>{
+            //     this.subMajor.list = r.subMajorList
+            //     let subMajor = r.subMajorList.filter((item)=>{
+            //         return item.selected == 1
+            //     })
+            //     if(subMajor != ''){
+            //         this.subMajor.isSelect = subMajor[0].packId
+            //         this.subName = subMajor[0].name
+            //     }
+            // }).catch(_=>{})
         },
         beforeDestroy: function () {
 
