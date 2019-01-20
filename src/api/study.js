@@ -72,3 +72,11 @@ export function submajor(params) {
         data: params
     })
 }
+
+export function report(params) {
+    return request({
+        url: 'pc/report/course',
+        method: 'post',
+        data: params
+    })
+}

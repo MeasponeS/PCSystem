@@ -17,7 +17,7 @@
                     <div v-if="3 == topic.newType">
                         <span
                                 @click="activeQuestionIndex = index"
-                                class="tab"
+                                class="tab "
                                 :class="{active:activeQuestionIndex == index}"
                                 v-for="(topic,index) in topic.a3a4Questions"
                         >{{ topic.index }}</span>

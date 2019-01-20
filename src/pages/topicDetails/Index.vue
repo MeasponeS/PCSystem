@@ -6,12 +6,13 @@
                 <div class="content clearfix" v-if="topics.length != 0">
                     <div class="left">
                         <div class="l-top">
+                            <!--注释是面包屑中间节点，去掉-->
+                            <!--{url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:topicInfo.levelName},-->
                             <Breadcrumb
                                         :nav="[
-                            {url:'./topic.html',name:topicInfo.courseN,width:250},
-                            {url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:topicInfo.levelName},
-                            {url:'javascript:;',name:'第'+topicInfo.level+'关'}
-                        ]"
+                                            {url:'./topic.html',name:topicInfo.courseN,width:250},
+                                            {url:'javascript:;',name:'第'+topicInfo.level+'关'}
+                                        ]"
                             ></Breadcrumb>
                         </div>
                         <div class="do">
@@ -19,7 +20,7 @@
                                 <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ topicTotal }}题</div>
                                 <div class="children-topic">
                                    <ul v-if="topics[activeQuestionIndex].newType != 1">
-                                       <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
+                                       <li :class="{active:isA3A4B1Done(i)}" @click="positioning(index)" v-for="(index,i) in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
                                    </ul>
                                 </div>
                                 <ul class="do-action">
@@ -98,6 +99,21 @@
             }
         },
         methods: {
+            isA3A4B1Done(i){
+                let topic = this.topics[this.activeQuestionIndex];
+                if(3 == topic.newType){
+                    if(topic.a3a4Questions[i].historyAnswer.length != 0){
+                        return true;
+                    }
+                    return false
+                }
+                if(5 == topic.newType){
+                    if(topic.questionArr[i].historyAnswer.length != 0){
+                        return true;
+                    }
+                    return false
+                }
+            },
             clearAllAnswer(){
                 let topics = this.topics;
                 topics.forEach((r,i)=>{
@@ -123,6 +139,7 @@
             submitAnswer(){
                 if(this.topicInfo.status != -1){
                     this.clearAllAnswer();
+                    this.activeQuestionIndex = 0;
                     this.topicInfo.status = -1;
                     return;
                 }
