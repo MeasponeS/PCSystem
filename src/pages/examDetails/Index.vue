@@ -115,10 +115,9 @@
         },
         methods: {
             isA3A4B1Done(i){
-
                 let topic = this.topics[this.activeQuestionIndex];
                 if(3 == topic.newType){
-                    console.log(topic.a3a4Questions[i])
+
                     if(topic.a3a4Questions[i].historyAnswer.length != 0){
                         return true;
                     }
@@ -146,28 +145,28 @@
                     });
                 });
             },
-            clearAllAnswer(){
-                let topics = this.topics;
-                topics.forEach((r,i)=>{
-                    if(1 == r.newType){
-                        topics[i].historyAnswer = [];
-                        return;
-                    }
-                    if(3 == r.newType){
-                        topics[i].a3a4Questions.forEach((q,a)=>{
-                            topics[i].a3a4Questions[a].historyAnswer = [];
-                        })
-                        return;
-                    }
-
-                    if(5 == r.newType){
-                        topics[i].questionArr.forEach((q,a)=>{
-                            topics[i].questionArr[a].historyAnswer = [];
-                        })
-                        return;
-                    }
-                })
-            },
+            // clearAllAnswer(){
+            //     let topics = this.topics;
+            //     topics.forEach((r,i)=>{
+            //         if(1 == r.newType){
+            //             topics[i].historyAnswer = [];
+            //             return;
+            //         }
+            //         if(3 == r.newType){
+            //             topics[i].a3a4Questions.forEach((q,a)=>{
+            //                 topics[i].a3a4Questions[a].historyAnswer = [];
+            //             })
+            //             return;
+            //         }
+            //
+            //         if(5 == r.newType){
+            //             topics[i].questionArr.forEach((q,a)=>{
+            //                 topics[i].questionArr[a].historyAnswer = [];
+            //             })
+            //             return;
+            //         }
+            //     })
+            // },
             confirmSubmitAnswer(){
                 this.$confirm('确认提交答案？', '提示', {
                     confirmButtonText: '确定',
@@ -234,6 +233,7 @@
                 })
             },
             selectOption(questionId,answer){
+
                 let thisTopic = this.topics[this.activeQuestionIndex];
                 //////////////////////////////////A1A2
                 if(thisTopic.hasOwnProperty('questionId') && (thisTopic.questionId == questionId)){
@@ -279,7 +279,6 @@
                 this.activeQuestionIndex ++ ;
             },
             rectProgress(topic){
-
                 if(1 == topic.newType)return (topic.historyAnswer.length) === 0 ? 0 : 100;
                 let progress = 0;
                 if(3 == topic.newType){
@@ -331,12 +330,12 @@
         },
         created(){
             let examInfo = GoodStorage.get(Config.storageExamInfoKey);
+
             if(!examInfo) {
                 //alert('考试数据丢失');
                 window.location.href = './exam.html';
                 return;
             }
-
             // examInfo.topics.forEach((r,i)=>{
             //     if(1 == r.newType) {
             //         if(!examInfo.topics[i].hasOwnProperty('historyAnswer')){
@@ -400,10 +399,8 @@
             },5000);
         },
         computed: {
-
             topicTotal: function () {
                 return this.examInfo.paperSum
-
             }
         },
         beforeDestroy: function () {

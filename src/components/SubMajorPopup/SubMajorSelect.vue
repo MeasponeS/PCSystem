@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    width="405px"
+    width="460px"
     :visible.sync="value"
     custom-class="subMajorPopup"
     :show-close="false"
@@ -123,7 +123,7 @@ export default {
           }
         }
         ul{
-          width: 352px;
+          width: 410px;
           list-style: none;
           padding: 0;
           overflow: hidden;
@@ -131,7 +131,7 @@ export default {
             float: left;
             margin: 0 13px;
             line-height: 27px;
-            width:148px;
+            width:178px;
             font-size: 14px;
             color:#333;
             height:29px;
@@ -141,7 +141,7 @@ export default {
             margin-bottom: 21px;
             text-align: center;
             .major{
-              width: 128px;
+              width: 176px;
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow: hidden;

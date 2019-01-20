@@ -45,3 +45,10 @@ export function wrongQuestionLearnd(params) {//学会和未学会
     })
 }
 
+export function getCourseStaticInfo(params) {
+    return request({
+        url: 'pc/exercise/getCourseStaticInfo',
+        method: 'get',
+        params: params
+    })
+}

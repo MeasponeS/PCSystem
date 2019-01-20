@@ -12,7 +12,7 @@
                         <el-input placeholder="验证码" v-model="msg"></el-input>
                     </div>
 
-                <input type="password" placeholder="设置密码" v-model="password" >
+                <el-input type="password" placeholder="设置密码" v-model="password" ></el-input>
                 <el-button class="button"  type="primary" @click="checkPassword">保存密码</el-button>
             </div>
         </div>

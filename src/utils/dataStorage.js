@@ -106,3 +106,7 @@ export function incrMsg() {
 export function getMsgCount() {
     return Storage.get(Config.storageMsgUnReadCountKey);
 }
+
+export function isLogin() {
+    return getToken() && getUserInfo()
+}

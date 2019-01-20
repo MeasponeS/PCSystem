@@ -98,7 +98,7 @@
                 if(3 == this.topic.newType){
                     this.topic.a3a4Questions.forEach(r=>{
                         if(r.questionId == questionId){
-                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,r.typeB));
+                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,this.topic.typeB));
                             return
                         }
                     })
@@ -107,7 +107,7 @@
                 if(5 == this.topic.newType){
                     this.topic.questionArr.forEach(r=>{
                         if(r.questionId == questionId){
-                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,r.typeB));
+                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,this.topic.typeB));
                             return
                         }
                     })

@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Head activeUrl="'message'" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
+        <Head activeUrl="message" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="wrapper" >
             <div class="container main-body" v-if="list.length != 0">
                 <div class="leftTop">
