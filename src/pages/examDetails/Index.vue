@@ -23,7 +23,7 @@
                                 <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ topicTotal }}题</div>
                                 <div class="children-topic">
                                    <ul v-if="topics[activeQuestionIndex].newType != 1">
-                                       <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
+                                       <li :class="{active:isA3A4B1Done(i)}" @click="positioning(index)" v-for="(index,i) in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
                                    </ul>
                                 </div>
                                 <ul class="do-action">
@@ -114,6 +114,23 @@
             }
         },
         methods: {
+            isA3A4B1Done(i){
+
+                let topic = this.topics[this.activeQuestionIndex];
+                if(3 == topic.newType){
+                    console.log(topic.a3a4Questions[i])
+                    if(topic.a3a4Questions[i].historyAnswer.length != 0){
+                        return true;
+                    }
+                    return false
+                }
+                if(5 == topic.newType){
+                    if(topic.questionArr[i].historyAnswer.length != 0){
+                        return true;
+                    }
+                    return false
+                }
+            },
             compelSubmitAnswer(){
 
                 this.submitAnswer(_=>{
@@ -320,36 +337,36 @@
                 return;
             }
 
-            examInfo.topics.forEach((r,i)=>{
-                if(1 == r.newType) {
-                    if(!examInfo.topics[i].hasOwnProperty('historyAnswer')){
-                        examInfo.topics[i].historyAnswer = []
-                        examInfo.topics[i].answer = []
-                    }
-                    return
-                };
-                if(3 == r.newType){
-                        r.a3a4Questions.forEach((p,i2)=>{
-                            if(!examInfo.topics[i].a3a4Questions[i2].hasOwnProperty('historyAnswer')){
-                                examInfo.topics[i].a3a4Questions[i2].historyAnswer = []
-                                examInfo.topics[i].a3a4Questions[i2].answer = []
-                            }
-                            return
-                        })
-                        return ;
-
-                }
-                if(5 == r.newType){
-                    r.questionArr.forEach((p,i2)=>{
-                        if(!examInfo.topics[i].a3a4Questions[i2].hasOwnProperty('historyAnswer')){
-                            examInfo.topics[i].a3a4Questions[i2].historyAnswer = []
-                            examInfo.topics[i].a3a4Questions[i2].answer = []
-                        }
-                        return
-                    })
-                    return;
-                }
-            })
+            // examInfo.topics.forEach((r,i)=>{
+            //     if(1 == r.newType) {
+            //         if(!examInfo.topics[i].hasOwnProperty('historyAnswer')){
+            //             examInfo.topics[i].historyAnswer = []
+            //             examInfo.topics[i].answer = []
+            //         }
+            //         return
+            //     };
+            //     if(3 == r.newType){
+            //             r.a3a4Questions.forEach((p,i2)=>{
+            //                 if(!examInfo.topics[i].a3a4Questions[i2].hasOwnProperty('historyAnswer')){
+            //                     examInfo.topics[i].a3a4Questions[i2].historyAnswer = []
+            //                     examInfo.topics[i].a3a4Questions[i2].answer = []
+            //                 }
+            //                 return
+            //             })
+            //             return ;
+            //
+            //     }
+            //     if(5 == r.newType){
+            //         r.questionArr.forEach((p,i2)=>{
+            //             if(!examInfo.topics[i].a3a4Questions[i2].hasOwnProperty('historyAnswer')){
+            //                 examInfo.topics[i].a3a4Questions[i2].historyAnswer = []
+            //                 examInfo.topics[i].a3a4Questions[i2].answer = []
+            //             }
+            //             return
+            //         })
+            //         return;
+            //     }
+            // })
 
             this.topics = examInfo.topics;
             let info = examInfo.examInfo;
@@ -375,13 +392,11 @@
             self.takeTime = 0;
             setInterval(_=>{
                 self.takeTime += 5;
-
                 GoodStorage.set(Config.storageExamInfoKey,{
                     examInfo:self.examInfo,
                     topics:self.topics,
                     takeTime:self.takeTime,
                 });
-
             },5000);
         },
         computed: {

@@ -1,47 +1,49 @@
 <template>
-    <div class="head" :id="type== 2 ?'type2' : ''">
-        <div class="container" >
-            <img class="logo" v-if="type == 2" src="./img/hi.png" alt="">
-            <img class="logo" v-else src="./img/logo.png" alt="">
-            <div class="company">
-                <p>欢迎来到</p>
-                <span>{{companyName}}</span>
-            </div>
-            <ul class="nav">
-                <li v-for="(title,url) in nav">
-                    <a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a>
-                    <span class="msg-count" v-if="url == 'message' && msgCount != 0">{{ msgCount <= 9 ? msgCount : '9+' }}</span>
-                </li>
+    <div class="head-warp">
+        <div class="head" :id="type== 2 ?'type2' : ''">
+            <div class="container" >
+                <img class="logo" v-if="type == 2" src="./img/hi.png" alt="">
+                <img class="logo" v-else src="./img/logo.png" alt="">
+                <div class="company">
+                    <p>欢迎来到</p>
+                    <span>{{companyName}}</span>
+                </div>
+                <ul class="nav">
+                    <li v-for="(title,url) in nav">
+                        <a :class="{active:activeUrl == url}" :href="'./'+ url +'.html'">{{ title }}</a>
+                        <span class="msg-count" v-if="url == 'message' && msgCount != 0">{{ msgCount <= 9 ? msgCount : '9+' }}</span>
+                    </li>
 
-            </ul>
-            <div v-if="info" class="login">
-              <div class="user-phone">
-                {{ info.username.slice(0,3) + '****' + info.username.slice(7,11) }}<i class="el-icon-caret-bottom el-icon--right" style="color:#BAC1D8"></i>
-                  <ul class="dropdown">
-                    <li>{{ info.username.slice(0,3) + '****' + info.username.slice(7,11) }}</li>
-                      <li>
-                          <a href="./personal.html">个人资料</a>
-                      </li>
-                      <li>
-                          <a href="./changePassword.html">修改密码</a>
-                      </li>
-                      <li>
-                          <a href="./collection.html">我的收藏</a>
-                      </li>
-                      <li @click="outLogin">退出账号</li>
-                  </ul>
-              </div>
-            </div>
-            <div v-else class="no-login">
-                <a href="./login.html">
-                    <el-button type="primary">登录</el-button>
-                </a>
-                <a href="./register.html">
-                    <el-button class="primary-btn">注册</el-button>
-                </a>
+                </ul>
+                <div v-if="info" class="login">
+                    <div class="user-phone">
+                        {{ info.username.slice(0,3) + '****' + info.username.slice(7,11) }}<i class="el-icon-caret-bottom el-icon--right" style="color:#BAC1D8"></i>
+                        <ul class="dropdown">
+                            <li>{{ info.username.slice(0,3) + '****' + info.username.slice(7,11) }}</li>
+                            <li>
+                                <a href="./personal.html">个人资料</a>
+                            </li>
+                            <li>
+                                <a href="./changePassword.html">修改密码</a>
+                            </li>
+                            <li>
+                                <a href="./collection.html">我的收藏</a>
+                            </li>
+                            <li @click="outLogin">退出账号</li>
+                        </ul>
+                    </div>
+                </div>
+                <div v-else class="no-login">
+                    <a href="./login.html">
+                        <el-button type="primary">登录</el-button>
+                    </a>
+                    <a href="./register.html">
+                        <el-button class="primary-btn">注册</el-button>
+                    </a>
+
+                </div>
 
             </div>
-
         </div>
     </div>
 </template>
@@ -99,8 +101,15 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     @import "../../assets/css/var.scss";
+    .head-warp{
+        width: 100%;
+        height: 100px;
+    }
     .head {
-        z-index: 9999;
+        z-index: 99;
+        position: fixed;
+        top: 0;
+        left: 0;
         height: 100px;
         width: 100%;
         background-color: #fff;

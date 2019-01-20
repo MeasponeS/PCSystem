@@ -1,5 +1,5 @@
 <template>
-    <div class="carousel" >
+    <div class="carousel" :style="carousel.length == 0?'display: none':''">
         <el-carousel :height="( 410/1920 ) * clientWidth + 'px'">
             <el-carousel-item v-for="item in carousel" :key="item.id">
                 <a :href="item.url" target="_blank">

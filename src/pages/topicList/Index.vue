@@ -72,7 +72,6 @@
                         <div class="li">人均练习次数： 0次</div>
                         <div class="li">平均通关关卡： 0关</div>
                         <div class="li">通过全部关卡人数： 0人</div>
-
                     </div>
                 </div>
             </div>

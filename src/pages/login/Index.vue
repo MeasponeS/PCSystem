@@ -34,7 +34,7 @@
                 <a href="./forgotPassword.html" class="forget-password">忘记密码</a>
                 <div class="protocol">
                     <span class="radio" :class="{active:protocolActive}" @click="protocolActive = !protocolActive"></span>
-                    <span>我已阅读并接受《用户协议》</span>
+                    <span>我已阅读并接受《 <a href="https://static.hulian120.com/web/app/agreement/normalAgree/useragreement.html" target="_blank">用户协议</a>》</span>
                 </div>
             </div>
         </div>
@@ -77,7 +77,6 @@
                 }).then(r=>{
                     setToken(r.token)
                     saveUserInfo(r.user_info);
-
                     saveMsgCount(r.unReadCount);
                     setTimeout(_=>{
                         let fromPage = getUrlInfo('from');

@@ -61,7 +61,7 @@
                                 cursor: pointer;
                                 color: #969FA9;
                                 border: 1px solid #969FA9;
-                                &:hover{
+                                &.active{
                                     color: $--color-primary;
                                     border: 1px solid $--color-primary;
                                 }

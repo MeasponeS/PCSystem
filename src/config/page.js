@@ -5,7 +5,7 @@ module.exports = {
         requiredParameters:{}
     },
     index:{
-        title:'学习',
+        title:'首页',
         requiredParameters:{}
     },
     template:{

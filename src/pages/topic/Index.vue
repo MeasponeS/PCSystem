@@ -77,10 +77,11 @@
                 window.location.reload();
             },
             practice(item,parenPacktId){
+                let self = this;
                 //逻辑梳理
                 //1.没有登录直接去登录
                 //window.location.href = './topicList.html?packageId=' + item.packageId +'&courseId=' + item.id
-                if(!this.USERINFO){
+                if(!self.USERINFO){
                     window.location.href = './login.html?from=topic';
                     return;
                 }
@@ -91,29 +92,28 @@
                         //判断用户是否已经分配卡
                         checkDistribute({packId:parenPacktId ? parenPacktId : item.id}).then(ka=>{
                             if(0 == ka || '0' == ka){//未分配
-                                this.noLearningCardShow = true;
+                                self.noLearningCardShow = true;
                                 return;
                             }
                             if(1==ka || '1' ==ka){//已经分配
 
-                                this.openLearningCardShow = true;
+                                self.openLearningCardShow = true;
                                 //这里弹出开卡界面;
                                 return;
                             }
 
                         }).catch(_=>{});
                     }else {//有权限的情况在看是否有亚专业
-
-                        if(parenPacktId && !this.subMajor.isSelect){//有亚专业 ，注意是否已经选择了
-                            this.subMajor.parenPacktId = parenPacktId;
+                        if(parenPacktId && !self.subMajor.isSelect){//有亚专业 ，注意是否已经选择了
+                            self.subMajor.parenPacktId = parenPacktId;
 
                             //临时变量，亚专业选择了之后跳转
                             window.GpackageId = item.packageId;
                             window.GcourseId = item.id;
                             //////////////
                             subMajor({coursePackId:parenPacktId}).then(item=>{
-                                this.subMajor.list = item.subMajorList;
-                                this.subMajor.show = true;
+                                self.subMajor.list = item.subMajorList;
+                                self.subMajor.show = true;
                             }).catch(_=>{})
 
                         }else {//没有亚专业 或者已经选择了压专业
@@ -138,7 +138,7 @@
 
             getTopicList().then(r=>{
                 this.list = r.list;
-                this.subMajor.isSelect = r.isSelect;
+                this.subMajor.isSelect = r.iSelect;
 
             }).catch(_=>{})
         },

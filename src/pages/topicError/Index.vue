@@ -19,7 +19,7 @@
                                 <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ this.wrongQuestion.wronTotal }}题</div>
                                 <div class="children-topic">
                                     <ul v-if="topics[activeQuestionIndex].newType != 1">
-                                        <li @click="positioning(index)" v-for="index in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
+                                        <li :class="{active:isA3A4B1Done(i)}"  @click="positioning(index)" v-for="(index,i) in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
                                     </ul>
                                 </div>
                                 <ul class="do-action">
@@ -137,6 +137,21 @@
             }
         },
         methods: {
+            isA3A4B1Done(i){
+                let topic = this.topics[this.activeQuestionIndex];
+                if(3 == topic.newType){
+                    if(topic.a3a4Questions[i].historyAnswer.length != 0){
+                        return true;
+                    }
+                    return false
+                }
+                if(5 == topic.newType){
+                    if(topic.questionArr[i].historyAnswer.length != 0){
+                        return true;
+                    }
+                    return false
+                }
+            },
             // submitAnswer(){
             //     let topics = this.topics;
             //     let answer = {
@@ -181,7 +196,7 @@
             positioning(domId){
                 this.$nextTick(_=>{
                     let top = document.getElementById(domId).offsetTop
-                    window.scrollTo(0,top - 10);
+                    window.scrollTo(0,top - 1);
                 })
             },
             selectOption(questionId,answer){
