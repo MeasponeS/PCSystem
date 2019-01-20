@@ -142,7 +142,20 @@
                     testingId:this.selectExam.testingId,
                     isGetHistory:-1,
                 }).then(topic=>{
-
+                    // localStorage.setItem(Config.storageExamInfoKey,JSON.stringify(
+                    //     {
+                    //         examInfo:{
+                    //             testingId:this.selectExam.paperId,
+                    //             paperId:this.selectExam.testingId,
+                    //             testingName:r.hospitalPaper.paperName ,
+                    //             paperSum:r.hospitalPaper.paperSum,
+                    //             utpId:r.id,
+                    //             timeLength:parseInt(r.hospitalPaper.timeLength) * 60,
+                    //             status:-1, //默认-1未答过   是否显示答案
+                    //         },
+                    //         topics:topic.questions
+                    //     }
+                    // ))
                     GoodStorage.set(Config.storageExamInfoKey,{
                         examInfo:{
                             testingId:this.selectExam.paperId,
@@ -155,6 +168,7 @@
                         },
                         topics:topic.questions
                     });
+
                     setTimeout(_=>{
                         window.location.href = './examDetails.html'
                     },200)
