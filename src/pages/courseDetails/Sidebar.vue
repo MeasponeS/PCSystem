@@ -28,7 +28,7 @@
                                        <div class="title">{{ index+1 }}.{{ subIndex+1 }}.{{ sub.name }}</div>
                                    </div>
                                    <div class="info">
-                                       <span class="fl">{{item.studySize}}人学过</span>
+                                       <span class="fl">{{sub.studySize}}人学过</span>
                                    </div>
                                </div>
                            </div>
@@ -45,6 +45,7 @@
         name: 'Sidebar',
         props: {
             chapters: Array,
+            activeAry:String,
         },
         data: function () {
             return {
@@ -62,13 +63,14 @@
         mounted(){
             this.chapterId = getUrlInfo('chapterId');
             this.courseId = getUrlInfo('courseId');
+            this.collapseIndex = this.activeAry
+            this.activeChapterIndex.chapter = this.activeAry
         },
         methods: {
             previousChapter(){//上
                 let currentCI = this.activeChapterIndex.chapter;
                 let currentSCI = this.activeChapterIndex.subChapter;
                 let collapseIndex = this.collapseIndex;
-
                 if(currentCI == 0 &&  currentSCI == 0){
                     this.$message('已经是第一章了');
                     return;

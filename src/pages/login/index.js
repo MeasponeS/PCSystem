@@ -3,9 +3,9 @@ import App from './Index.vue'
 import './index.scss'
 import '../common.js'
 import '../components.js'
-import {getToken} from '../../utils/dataStorage.js'
+import {getToken,getUserInfo} from '../../utils/dataStorage.js'
 
-if(getToken()){
+if(getToken() && getUserInfo()){
     window.location.href = './index.html'
 }
 
