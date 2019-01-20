@@ -105,9 +105,9 @@ export default {
         this.initResidenceTime();
      
 
-        setInterval(_=>{
-            this.ReportRequest();
-        },1000 * 10)
+        // setInterval(_=>{
+        //     this.ReportRequest();
+        // },1000 * 60)
     },
     beforeDestroy: function () {
 

@@ -102,6 +102,8 @@
           let This = this;
           getUserInfo().then(function(res){
             This.form = res;
+            This.form.education += ''
+            This.form.title += ''
             This.form.location = [res.code.split('-')[0],res.code];
           }).catch(_=>{}),
           getDictionaryList().then(function(res){
