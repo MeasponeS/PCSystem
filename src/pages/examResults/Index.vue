@@ -104,7 +104,8 @@
                     passSize: 0,
                     testSize: 0,
                     testingsname: "",
-                    unpassSize: 0
+                    unpassSize: 0,
+                    openAnswer:'',
                 }
             }
         },
@@ -148,7 +149,12 @@
                 }
             },
             examHistory(index){
-              window.location.href = `./examHistory.html?type=${this.status}&index=${index}`
+                if(this.statistics.openAnswer != 1){
+                    this.$message("考试答案不开放");
+                    return;
+                }else {
+                    window.location.href = `./examHistory.html?type=${this.status}&index=${index}`
+                }
             },
         },
         mounted() {
