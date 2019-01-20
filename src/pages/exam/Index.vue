@@ -9,7 +9,7 @@
                     <div @click="toggleTab('notOpened')" :class="{active:status=='notOpened'}">未开放</div>
                     <div class="mid"></div>
                     <div @click="toggleTab('exceed')" :class="{active:status=='exceed'}">已结束</div>
-                    <!--<span class="flag">当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>-->
+                    <span class="flag">当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>
                 </div>
                 <div v-show="status=='opening'">
                     <div class="courseList" v-if="examInfo.opening.list.length != 0">

@@ -54,7 +54,7 @@ service.interceptors.response.use(
                     removeToken();
                     setTimeout(_=>{
                         window.location.href = './login.html';
-                    },300)
+                    },2000)
                 }
                 return Promise.reject('error');
             }
