@@ -57,10 +57,10 @@
                                 </el-popover>
                             </div>
                             <div class="course">
-                                共{{item.packageType.classHour}}课时 <span>|</span> {{item.studySize}}人已学
+                                共{{item.packageType.classHour}}小节 <span>|</span> {{item.studySize}}人已学
                             </div>
                             <div class="progress">
-                                <span>目前已完成{{item.finishChapterSize}}个课时，加油！</span>
+                                <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
                                 <el-progress class="val" :percentage="item.finishChapterSize/item.packageType.classHour" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
@@ -106,7 +106,6 @@
                 lastStudy:'',
                 orgList:[],
                 userList:[],
-                isSelectedMajor:'',
                 subMajor:{
                     parenPacktId:null,//有亚专业的情况，id值
                     show:false,

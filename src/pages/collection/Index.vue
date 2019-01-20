@@ -31,7 +31,7 @@
                         v-for="(item2,index2) in lesson.packageType[index].userFavorList"
                         :key="index2"
                     >
-                        <p>{{item2.name}}</p>
+                        <p>{{item2.name||item2.courseName}}</p>
                         <em></em>
                         <span @click="cancelCol(item2)">取消收藏</span>
                         <img src="./img/jiantouyou.png" alt="" @click="goCol(item2)">
@@ -135,8 +135,14 @@
                 }).catch(_=>{})
             },
             goCol(item){
+                console.log(item)
                 let packageName = encodeURI(this.course.name)
-                window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.courseId + '&id='+this.course.id+'&name=' + packageName+'&type='+1
+                if(item.courseId == item.chapterQuestionId){
+                    window.location.href = './courseDetails.html?courseId='  + item.id + '&id='+this.course.id+'&name=' + packageName+'&type='+1
+                } else {
+                    window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.id + '&id='+this.course.id+'&name=' + packageName+'&type='+1
+                }
+                
             }
         },
         mounted() {

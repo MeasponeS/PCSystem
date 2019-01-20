@@ -4,7 +4,7 @@
         <div class="container main-body clearfix">
             <NoLearningCard v-model="noLearningCard" :hasCloseActive="true" @clickClose="closeCard" :phone="ORGINFO.phone" ></NoLearningCard>
             <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->
-            <OpenLearningCard v-model="OpenLearningCard" :phone="ORGINFO.phone" ></OpenLearningCard>
+            <OpenLearningCard v-model="OpenLearningCard" @success="success" :phone="ORGINFO.phone" ></OpenLearningCard>
             <div class="left">
                 <div class="nav">
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
@@ -12,7 +12,7 @@
                         :nav="[
                             {url:'./study.html',name:packageName},
                             {url:'./study.html',name:currentCourseName},
-                            {url:'javascript:;',name:currentChapterName?currentChapterName:currentCourseName}
+                            {url:'javascript:;',name:currentChapterName}
                         ]"
                     ></Breadcrumb>
                     <p class="nav-act">
@@ -28,6 +28,7 @@
                         v-if="videoUrl != ''"
                         :src="videoUrl"
                         id="myVideo"
+                        preload
                         width="784"
                         height="400"
                         controls="true" 
@@ -73,6 +74,7 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
+    import report from './report.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     import NoLearningCard from '../../components/NoLearningCard/NoLearningCard.vue'
     import OpenLearningCard from '../../components/OpenLearningCard/OpenLearningCard.vue'
@@ -84,7 +86,7 @@
     import { userfavor } from '../../api/common.js'
     export default {
         name: "app",
-        mixins: [CommonMixin],
+        mixins: [CommonMixin,report],
         data: function () {
             return {
                 chapters:[],
@@ -128,7 +130,7 @@
                 if(this.chapters.length == 0 || !this.currentChapterId){
                     return '';
                 }
-                let chapterName = '';
+                let chapterName = this.currentCourseName;
                 this.chapters.forEach(r=>{
                     if(r.id == this.currentChapterId){
                         chapterName = r.name;
@@ -140,6 +142,10 @@
 
         },
         methods: {
+            success(){
+                this.OpenLearningCard = false;
+                window.location.href = './study.html'
+            },
             closeCard(){
                 window.location.href = './study.html'
             },
@@ -152,6 +158,7 @@
                                 chapterId:data.subChapterId.id,
                                 courseId:this.currentCourseId
                             }).then(r => {
+                                this.report(this.packageId,this.currentCourseId,data.subChapterId.id)
                                 this.context = r.contentData
                                 this.videoUrl = r.videoUrl
                                 if(r.isfavor == 0){
@@ -184,6 +191,7 @@
                                         chapterId:data.subChapterId.id,
                                         courseId:this.currentCourseId
                                     }).then(r => {
+                                        this.report(this.packageId,this.currentCourseId,data.subChapterId.id)
                                         this.context = r.contentData
                                         this.videoUrl = r.videoUrl
                                         if(r.isfavor == 0){
@@ -228,6 +236,7 @@
                         }).then(r => {
                             this.context = r.contentData
                             this.videoUrl = r.videoUrl
+                            this.report(this.packageId,this.currentCourseId,data.chapterId)
                             if(r.isfavor == 0){
                                 this.col = '取消收藏'
                             } else {
@@ -262,13 +271,19 @@
                 }else{
                     this.videoUrlCode = '0'
                 }
-                let submitId = this.subChapterId || this.currentChapterId
+                let submitId = this.subChapterId || this.chapterId
+                let type = '0'
+                if(!submitId){
+                    type = '2'
+                } else {
+                    type = '0'
+                }
                 let data = {
-                    type:'0',
+                    type:type,
                     leveId:'0',
                     courseId:this.currentCourseId,
                     isVedio:this.videoUrlCode,
-                    chapterQuestionId:submitId,
+                    chapterQuestionId:(this.subChapterId || this.currentChapterId) || '0',
                     packageId:this.packageId
                 }
                 userfavor(data).then(r=>{
@@ -284,7 +299,7 @@
         mounted() {
             this.type = getUrlInfo('type');
             this.chapterId = getUrlInfo('chapterId');
-            this.courseId = getUrlInfo('courseId');
+            this.courseId = getUrlInfo('courseId') ;
             this.packageId = getUrlInfo('id');
             this.packageName = getUrlInfo('name');
             this.packageName = decodeURI(this.packageName,"UTF-8")
@@ -296,6 +311,7 @@
                     chapterId:this.currentChapterId,
                     courseId:this.currentCourseId
                 }).then(r => {
+                    this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
                     if(r.isfavor == 0){
                         this.col = '取消收藏'
@@ -318,6 +334,7 @@
                     chapterId:this.chapterId,
                     courseId:this.currentCourseId
                 }).then(r => {
+                    this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
                     if(r.isfavor == 0){
                         this.col = '取消收藏'
@@ -348,6 +365,7 @@
                                         chapterId:null,
                                         courseId:this.currentCourseId
                                     }).then(r => {
+                                        this.report(this.packageId,this.currentCourseId,null)
                                         this.context = r.contentData
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
@@ -362,6 +380,7 @@
                                         chapterId:null,
                                         courseId:this.currentCourseId
                                     }).then(r => {
+                                        this.report(this.packageId,this.currentCourseId,null)
                                         this.context = r.contentData
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
@@ -392,6 +411,7 @@
                                             chapterId:this.currentChapterId,
                                             courseId:this.currentCourseId
                                         }).then(r => {
+                                            this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                                             this.context = r.contentData
                                             if(r.isfavor == 0){
                                                 this.col = '取消收藏'
@@ -424,6 +444,7 @@
                             chapterContent({
                                 courseId:this.currentCourseId
                             }).then(r => {
+                                this.report(this.packageId,this.currentCourseId,null)
                                 this.context = r.contentData
                                 if(r.isfavor == 0){
                                     this.col = '取消收藏'
