@@ -45,7 +45,6 @@
         name: 'Sidebar',
         props: {
             chapters: Array,
-            activeAry:String,
         },
         data: function () {
             return {
@@ -54,19 +53,37 @@
                     chapter:0,//当前激活的章节索引
                     subChapter:0,//当前激活的子章节索引
                 },
-                chapterId:'',
-                courseId:''
+                // chapterId:'',
+                // courseId:''
 
             };
         },
         //
         mounted(){
-            this.chapterId = getUrlInfo('chapterId');
-            this.courseId = getUrlInfo('courseId');
-            this.collapseIndex = this.activeAry
-            this.activeChapterIndex.chapter = this.activeAry
+
+            // this.chapterId = getUrlInfo('chapterId');
+            // this.courseId = getUrlInfo('courseId');
+            // this.collapseIndex = this.activeAry
+            // this.activeChapterIndex.chapter = this.activeAry
         },
         methods: {
+            position(chapterId = false ,subChapterId = false){
+                if(!chapterId || !subChapterId) return;
+                for (let i = 0; i < this.chapters.length ; i++) {
+                    let chapter = this.chapters[i];
+                    if(chapter.id == chapterId){
+                        this.collapseIndex = i;
+                        this.activeChapterIndex.chapter = i;
+                        for (let j = 0; j < chapter.sub; j++) {
+                            let subChapter = chapter.sub[j];
+                            if(subChapter.id == subChapterId){
+                                this.activeChapterIndex.subChapter = j;
+                                return;
+                            }
+                        }
+                    }
+                }
+            },
             previousChapter(){//上
                 let currentCI = this.activeChapterIndex.chapter;
                 let currentSCI = this.activeChapterIndex.subChapter;
@@ -127,7 +144,6 @@
                 if(currentCI == chapterIndex && currentSCI == subChapterIndex){
                     return;
                 }
-
 
                 this.$emit('selectChapter',{chapterId:chapterId,subChapterId:subChapterId},_=>{
                     this.activeChapterIndex.chapter = chapterIndex;
