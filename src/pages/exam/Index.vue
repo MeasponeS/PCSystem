@@ -10,13 +10,13 @@
                     <div class="mid"></div>
                     <div @click="toggleTab('exceed')" :class="{active:status=='exceed'}">已结束</div>
 
-                    <span class="flag">
-                        <RollNotice autoplay="3000" :height="17">
-                            <RollNoticeItem>当前您正在学习健康管理师系列课程，已完成10%，比其他学员的平均进度快1.1%</RollNoticeItem>
-                            <RollNoticeItem>当前您正在学习是的撒啥系列课程，已完成40%，比其他学员的平均进度快6.1%</RollNoticeItem>
-                            <RollNoticeItem>京东服饰 早春新品低至7折圣诞快乐似懂非懂是防腐剂</RollNoticeItem>
-                        </RollNotice>
-                    </span>
+                    <!--<span class="flag">-->
+                        <!--<RollNotice autoplay="3000" :height="17">-->
+                            <!--<RollNoticeItem>当前您正在学习健康管理师系列课程，已完成10%，比其他学员的平均进度快1.1%</RollNoticeItem>-->
+                            <!--<RollNoticeItem>当前您正在学习是的撒啥系列课程，已完成40%，比其他学员的平均进度快6.1%</RollNoticeItem>-->
+                            <!--<RollNoticeItem>京东服饰 早春新品低至7折圣诞快乐似懂非懂是防腐剂</RollNoticeItem>-->
+                        <!--</RollNotice>-->
+                    <!--</span>-->
                 </div>
                 <div v-show="status=='opening'">
                     <div class="courseList" v-if="examInfo.opening.list.length != 0">
@@ -107,7 +107,7 @@
     import GoodStorage from 'good-storage'
     import Config from '../../config/app.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-    import {RollNotice, RollNoticeItem} from 'vue-ydui/dist/lib.px/rollnotice';
+    // import {RollNotice, RollNoticeItem} from 'vue-ydui/dist/lib.px/rollnotice';
     const storageExamTabStatusKey = 'examTabStatus';
     export default {
         name: 'app',
@@ -264,7 +264,12 @@
         beforeDestroy: function () {
 
         },
-        components: {ExamRules,EmptyTemplate,RollNotice,RollNoticeItem}
+        components: {
+            ExamRules,
+            EmptyTemplate,
+            // RollNotice,
+            // RollNoticeItem
+        }
     }
 </script>
 

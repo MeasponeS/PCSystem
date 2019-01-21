@@ -105,12 +105,8 @@
 
                         }).catch(_=>{});
                     }else {//有权限的情况在看是否有亚专业
-                        if(parenPacktId && !self.subMajor.isSelect){//有亚专业 ，注意是否已经选择了
+                        if(parenPacktId && !self.subMajor.isSelect){//有亚专业 ，并且没有选择
                             self.subMajor.parenPacktId = parenPacktId;
-
-                            //临时变量，亚专业选择了之后跳转
-                            window.GpackageId = item.packageId;
-                            window.GcourseId = item.id;
                             //////////////
                             subMajor({coursePackId:parenPacktId}).then(item=>{
                                 self.subMajor.list = item.subMajorList;
@@ -130,8 +126,9 @@
                     parentPackId:this.subMajor.parenPacktId,
                     coursePackId:id
                 }).then(r=>{
-                    //选择亚专业刷新页面，用户就不用再次选择专业了。
-                    window.location.href = './topicList.html?packageId=' + window.GpackageId +'&courseId=' + window.GcourseId
+                    //选择亚专业刷新页面，。
+                    window.location.reload();
+                    //window.location.href = './topicList.html?packageId=' + window.GpackageId +'&courseId=' + window.GcourseId
                 }).catch(_=>{})
             }
         },

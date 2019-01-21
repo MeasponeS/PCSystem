@@ -2,7 +2,7 @@
     <div class="carousel" :style="carousel.length == 0?'display: none':''">
         <el-carousel :height="( 410/1920 ) * clientWidth + 'px'">
             <el-carousel-item v-for="item in carousel" :key="item.id">
-                <div @click="clickImg(item)">
+                <div @click="clickImg(item)" style="cursor: pointer">
                     <img style="width: 100%" :src="item.pic" alt="">
                 </div>
             </el-carousel-item>
