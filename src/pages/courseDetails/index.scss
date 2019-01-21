@@ -4,6 +4,7 @@
     .main-body {
         padding-top: 20px;
         padding-bottom: 20px;
+        position: relative;
         .left {
             float: left;
             width: 826px;
@@ -14,6 +15,7 @@
                 height: 62px;
                 line-height: 62px;
                 display: flex;
+                background: #fff;
                 align-items: center;
                 border-bottom: 3px solid #F5F7F9;
                 .lessson {
@@ -35,6 +37,13 @@
                         background-color: #969FA9;
                     }
                 }
+            }
+            .navB{
+                z-index: 9999;
+                width: 787px;
+                position: fixed;
+                top: 100px;
+                left: 19.7%;
             }
             .letf-content {
                 .title {
@@ -88,6 +97,11 @@
                     border-top: 1px solid #E5E5E5;
                 }
             }
+        }
+        .rightB{
+            position: fixed;
+            top: 100px;
+            right: 150px;
         }
     }
 }

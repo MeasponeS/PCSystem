@@ -113,7 +113,7 @@ export default {
 
         setInterval(_=>{
             this.ReportRequest();
-        },1000 * 10)
+        },1000 * 60)
     },
     beforeDestroy: function () {
 

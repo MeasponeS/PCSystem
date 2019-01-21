@@ -43,7 +43,7 @@
                     </el-form-item>
                     <el-form-item label="职称" class="f2">
                         <el-select v-model="form.title" placeholder="请选择职称" class="inputBox">
-                            <el-option v-for="item in jobNames" :key="item.id" :label="item.name" :value="item.code"></el-option>
+                            <el-option v-for="item in jobNames" :key="item.id" :label="item.name" :value="item.id"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="参加工作时间" >
@@ -108,7 +108,10 @@
           }).catch(_=>{}),
           getDictionaryList().then(function(res){
             This.eduType = res.eduType;
-            This.jobNames = res.jobNames;
+            This.jobNames = res.jobNames
+            This.jobNames.forEach(i => {
+                i.id+=''
+            });
             res.provinceCityList.map(function(item,index){
               This.options.push({'value': item.parent.code,'label': item.parent.name,'children': [] });
               item.childList.map(function(list,i){

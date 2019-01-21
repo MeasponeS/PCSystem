@@ -6,7 +6,7 @@
             <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->
             <OpenLearningCard v-model="OpenLearningCard" @success="success" :phone="ORGINFO.phone" ></OpenLearningCard>
             <div class="left">
-                <div class="nav">
+                <div class="nav" :class="{navB:scrollTop == 1}">
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
                     <Breadcrumb v-if="course.length" class="lessson"
                         :nav="[
@@ -37,7 +37,7 @@
                     <p class="html-info" v-html="context"></p>
                 </div>
             </div>
-            <div class="right">
+            <div class="right" :class="{rightB:scrollTop == 1}">
                 <p>选择课程<span>(共{{ course.length }}门课程)</span></p>
                 <div class="accordion">
                     <el-select v-model="currentCourseId" class="select-course" placeholder="请选择课程" @change="getChapters(currentCourseId)">
@@ -109,6 +109,7 @@
                 OpenLearningCard:false,
                 type:'',
                 activeAry:'',
+                scrollTop:0
             };
         },
         // currentCourseName
@@ -293,10 +294,23 @@
                         this.col = '收藏'
                     }
                 }).catch(_=>{})
-
+            },
+            handleScroll(){
+                let t = document.documentElement.scrollTop || document.body.scrollTop
+                if(t>=30){
+                    this.scrollTop = 1
+                } else {
+                    this.scrollTop = 0
+                }
             }
         },
         mounted() {
+            window.addEventListener('scroll', this.handleScroll)
+            document.oncontextmenu = function(e) {
+                if(e.target.nodeName == 'VIDEO'){
+                    return false
+                } 
+            }
             this.type = getUrlInfo('type');
             this.chapterId = getUrlInfo('chapterId');
             this.courseId = getUrlInfo('courseId') ;

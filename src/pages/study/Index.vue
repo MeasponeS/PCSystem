@@ -30,7 +30,7 @@
                             </div>
                             <div class="progress">
                                 <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
-                                <el-progress class="val" :percentage="item.finishChapterSize/item.chapterSize" :show-text="false"></el-progress>
+                                <el-progress class="val" :percentage="computedProgress(item.finishChapterSize,item.chapterSize)" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
                                 <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="progress">
                                 <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
-                                <el-progress class="val" :percentage="item.finishChapterSize/item.chapterSize" :show-text="false"></el-progress>
+                                <el-progress class="val" :percentage="computedProgress(item.finishChapterSize,item.chapterSize)" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
                                 <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
@@ -115,6 +115,13 @@
             }
         },
         methods: {
+            computedProgress(finishChapterSize,chapterSize){
+                if(finishChapterSize && chapterSize){
+                    let p = parseInt((finishChapterSize/chapterSize) * 100)
+                    return  p ? p: 0;
+                }
+                return 0;
+            },
             goLastStudy(){
                 window.location.href= './courseDetails.html?chapterId='+this.lastStudy.chapterId +'&courseId=' + this.lastStudy.courseId +'&id='+this.lastStudy.coursePackId  + '&name=' + this.lastStudy.packageName
             },
