@@ -171,8 +171,7 @@
                     this.info.topicCount = r.erroCount + r.rightCount,
                     this.info.erroCount = r.erroCount,
                     this.info.rightCount = r.rightCount,
-                    this.info.rightPer = parseFloat(r.rightPer) * 100,
-
+                    this.info.rightPer = r.rightPer,
 
                 getEvaluationinfo({testingId:getUrlInfo('testingId')}).then(s=>{
                     this.statistics = s;
