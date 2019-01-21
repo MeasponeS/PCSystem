@@ -3,7 +3,7 @@
         <Head activeUrl="exam" :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="wrapper">
             <div class="container main-body" >
-                <div v-if="topics.length != 0">
+                <div>
                     <div class="top">
                         <Breadcrumb
                                     :nav="[
@@ -38,7 +38,7 @@
                                     <div class="mid"></div>
                                     <div @click="status='wrong'" :class="{active:status=='wrong'}">只看错误</div>
                                 </div>
-                                <ul class="all clearfix">
+                                <ul class="all clearfix" v-if="topics.length != 0">
                                     <li v-for="(item,index) in topics" @click="examHistory(index)" :key="item.questionId">
                                         <RectProgress
                                                 :progress="item.erroCount"
@@ -47,6 +47,7 @@
                                         <span style="margin-left: 10px">第{{ topicIndex(item) }}题</span>
                                     </li>
                                 </ul>
+                                <div v-else class="null-data"> 暂无数据 </div>
                             </div>
                         </div>
                         <div class="right">
