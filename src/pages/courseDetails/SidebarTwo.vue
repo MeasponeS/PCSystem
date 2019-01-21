@@ -95,9 +95,12 @@
     .course-details-sidebar{
         &.chapter-list {
             width: 100%;
+            
             >ul{
                 margin: 0;
                 padding: 0;
+                 height: 500px;
+                overflow: auto;
                 >li{
                     list-style-type: none;
                     //overflow: hidden;
