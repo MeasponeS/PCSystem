@@ -18,9 +18,9 @@
                     <p class="nav-act">
                         <a href="javascript:;"  @click="addCol" >{{col}}</a>
                         <span ></span>
-                        <a href="javascript:;" :disabled="course[0].courseType == 1" @click="$refs.sidebar.previousChapter()">上一节</a>
+                        <a href="javascript:;"  @click="prevPage">上一节</a>
                         <span ></span>
-                        <a href="javascript:;" :aria-disabled="course[0].courseType == 1" @click="$refs.sidebar.nextChapter()">下一节</a>
+                        <a href="javascript:;"  @click="nextPage">下一节</a>
                     </p>
                 </div>
                 <div class="letf-content">
@@ -55,13 +55,11 @@
                         v-if="sub != 0"
                         ref="sidebar"
                         :chapters="chapters"
-                        :activeAry = "activeAry"
                         @selectChapter="selectChapter"
                     ></Sidebar>
                     <SidebarTwo
                         v-else
                         ref="sidebarTwo"
-                        :activeAry = "activeAry"
                         :chapters="chapters"
                         @selectChapter="selectChapter"
                     ></SidebarTwo>
@@ -108,7 +106,6 @@
                 noLearningCard:false,
                 OpenLearningCard:false,
                 type:'',
-                activeAry:'',
                 scrollTop:0
             };
         },
@@ -143,6 +140,30 @@
 
         },
         methods: {
+            nextPage(){
+                if(this.course[0].courseType == 1){
+                    this.$message('已经是最后一章了');
+                }else {
+                    if(this.subChapterId){
+                        this.$refs.sidebar.nextChapter()
+                    } else {
+                        this.$refs.sidebarTwo.nextChapter()
+                    }
+                    
+                }
+            },
+            prevPage(){
+                if(this.course[0].courseType == 1){
+                    this.$refs.sidebarTwo.previousChapter()
+                    
+                }else {
+                    if(this.subChapterId){
+                        this.$refs.sidebar.previousChapter()
+                    } else {
+                        this.$refs.sidebarTwo.previousChapter()
+                    }
+                }
+            },
             success(){
                 this.OpenLearningCard = false;
                 window.location.href = './study.html'
@@ -335,7 +356,6 @@
             if(this.type == 1){
                 this.currentCourseId = this.courseId;
                 this.currentChapterId = this.chapterId;
-                this.activeAry = this.chapterId
                 chapterContent({
                     chapterId:this.currentChapterId,
                     courseId:this.currentCourseId

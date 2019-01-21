@@ -5,7 +5,7 @@
         }
         margin: 0;
         .banner{
-                background: url('./img/底纹上.png') no-repeat left bottom;
+                background: url('./img/dws.png') no-repeat left bottom;
                 background-color: #303868;
         }
         .banner,.serviceObj,.serviceCon,.serviceAdv,.willGet,.earth{
@@ -36,12 +36,22 @@
                                 text-decoration: underline;
                         }
                 }
+                @media screen and (min-width:1500px) and (max-width:1700px) {
+                        .study{
+                                left:56%
+                        }
+                }
+                @media screen and (min-width:1701px)  {
+                        .study{
+                                left:57%
+                        }
+                }
         }
         .contact{
                 width: 100%;
                 height: 140px;
                 position: relative;
-                background: url('./img/底纹.png') no-repeat center center;
+                background: url('./img/dw.png') no-repeat center center;
                 span{
                         font-size: 18px;
                         color:#fff;
