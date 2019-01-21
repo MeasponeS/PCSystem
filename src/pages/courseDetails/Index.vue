@@ -16,11 +16,11 @@
                         ]"
                     ></Breadcrumb>
                     <p class="nav-act">
-                        <a href="javascript:;" v-if="this.courseId" @click="addCol" >{{col}}</a>
-                        <span v-if="this.courseId"></span>
-                        <a href="javascript:;" v-if="this.courseId" @click="$refs.sidebar.previousChapter()">上一节</a>
-                        <span v-if="this.courseId"></span>
-                        <a href="javascript:;" v-if="this.courseId" @click="$refs.sidebar.nextChapter()">下一节</a>
+                        <a href="javascript:;"  @click="addCol" >{{col}}</a>
+                        <span ></span>
+                        <a href="javascript:;" :disabled="course[0].courseType == 1" @click="$refs.sidebar.previousChapter()">上一节</a>
+                        <span ></span>
+                        <a href="javascript:;" :aria-disabled="course[0].courseType == 1" @click="$refs.sidebar.nextChapter()">下一节</a>
                     </p>
                 </div>
                 <div class="letf-content">
@@ -60,7 +60,7 @@
                     ></Sidebar>
                     <SidebarTwo
                         v-else
-                        ref="sidebar"
+                        ref="sidebarTwo"
                         :activeAry = "activeAry"
                         :chapters="chapters"
                         @selectChapter="selectChapter"
@@ -318,6 +318,7 @@
             },
         },
         mounted() {
+            let self = this;
             window.addEventListener('scroll', this.handleScroll)
             document.oncontextmenu = function(e) {
                 if(e.target.nodeName == 'VIDEO'){
@@ -330,6 +331,7 @@
             this.packageId = getUrlInfo('id');
             this.packageName = getUrlInfo('name');
             this.packageName = decodeURI(this.packageName,"UTF-8")
+            
             if(this.type == 1){
                 this.currentCourseId = this.courseId;
                 this.currentChapterId = this.chapterId;
@@ -353,6 +355,30 @@
                     this.chapters = r.chapters;
                     this.hasStudyCard = r.studyCard;
                     this.sub = r.chapters[0].sub.length
+                    if(this.sub == 0){
+                        for(let i = 0;i < r.chapters.length;i++){
+                            let have = ''
+                            if(r.chapters[i].id == self.chapterId){
+                                have = r.chapters[i]
+                                setTimeout(_=>{
+                                    self.$refs.sidebarTwo.position(have.id)
+                                },100)
+                            }
+                        }
+                    } else {
+                        for(let i = 0;i < r.chapters.length;i++){
+                            for(let j = 0;j<r.chapters[i].sub.length;j++){
+                                let have = ''
+                                if(r.chapters[i].sub[j].id == this.chapterId){
+                                    have = r.chapters[i]
+                                    setTimeout(_=>{
+                                        self.$refs.sidebar.position(have.id ,this.chapterId)
+                                    },100)
+                                }
+                            }
+                        }
+                    }
+                    
                 }).catch(_=>{})
             } else if(getUrlInfo('chapterId') && getUrlInfo('courseId') ){
                 this.currentCourseId = this.courseId;
@@ -376,6 +402,18 @@
                     this.chapters = r.chapters;
                     this.hasStudyCard = r.studyCard;
                     this.sub = r.chapters[0].sub.length
+                    for(let i = 0;i < r.chapters.length;i++){
+                        for(let j = 0;j<r.chapters[i].sub.length;j++){
+                            let have = ''
+                            if(r.chapters[i].sub[j].id == this.chapterId){
+                                have = r.chapters[i]
+                                setTimeout(_=>{
+                                    console.log(self.$refs.sidebar)
+                                    self.$refs.sidebar.position(have.id ,this.chapterId)
+                                },100)
+                            }
+                        }
+                    }
                 }).catch(_=>{})
             }else{
                 courseList({coursePackId:this.packageId}).then(r=>{
@@ -386,6 +424,16 @@
                         chapterList({courseId:this.currentCourseId,coursePackId:this.packageId}).then(r=>{
                             this.chapters = r.chapters;
                             this.hasStudyCard = r.studyCard;
+                            for(let i = 0;i < r.chapters.length;i++){
+                                let have = ''
+                                if(r.chapters[i]== this.chapterId){
+                                    have = r.chapters[i]
+                                    console.log(have)
+                                    setTimeout(_=>{
+                                        self.$refs.sidebarTwo.position(have.id)
+                                    },100)
+                                }
+                            }
                             if(this.hasStudyCard){
                                 if(r.chapters[0].courseType == 1){  // 下面没有子章节
                                     chapterContent({
@@ -403,6 +451,18 @@
                                 } else {  // 下面有子章节 courseType = -1
                                     this.currentChapterId = r.chapters[0].sub[0].id
                                     this.sub = r.chapters[0].sub.length
+                                    for(let i = 0;i < r.chapters.length;i++){
+                                        for(let j = 0;j<r.chapters[i].sub.length;j++){
+                                            let have = ''
+                                            if(r.chapters[i].sub[j].id == this.chapterId){
+                                                have = r.chapters[i]
+                                                setTimeout(_=>{
+                                                    console.log(self.$refs.sidebar)
+                                                    self.$refs.sidebar.position(have.id ,this.chapterId)
+                                                },100)
+                                            }
+                                        }
+                                    }
                                     chapterContent({
                                         chapterId:null,
                                         courseId:this.currentCourseId
@@ -432,6 +492,18 @@
                                     chapterList({courseId:this.courseId,coursePackId:this.packageId}).then(r=>{
                                         this.chapters = r.chapters;
                                         this.sub = r.chapters[0].sub.length
+                                        for(let i = 0;i < r.chapters.length;i++){
+                                            for(let j = 0;j<r.chapters[i].sub.length;j++){
+                                                let have = ''
+                                                if(r.chapters[i].sub[j].id == this.chapterId){
+                                                    have = r.chapters[i]
+                                                    setTimeout(_=>{
+                                                        console.log(self.$refs.sidebar)
+                                                        self.$refs.sidebar.position(have.id ,this.chapterId)
+                                                    },100)
+                                                }
+                                            }
+                                        }
                                     }).catch(_=>{})
                                     if(r.chapters[0].sub[0].vipType == 0){
                                         chapterContent({

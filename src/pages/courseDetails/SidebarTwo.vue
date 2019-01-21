@@ -31,17 +31,24 @@
                 activeChapterIndex:{
                     chapter:0,//当前激活的章节索引
                 },
-                chapterId:'',
-                courseId:''
 
             };
         },
         //
         mounted(){
-            this.chapterId = getUrlInfo('chapterId');
-            this.courseId = getUrlInfo('courseId');
         },
         methods: {
+            position(chapterId = false){
+                if(!chapterId ) return;
+                chapterId += ''
+                for (let i = 0; i < this.chapters.length ; i++) {
+                    let chapter = this.chapters[i];
+                    if(chapter.id == chapterId){
+                        this.collapseIndex = i;
+                        this.activeChapterIndex.chapter = i;
+                    }
+                }
+            },
             previousChapter(){//上
                 let currentCI = this.activeChapterIndex.chapter;
                 let collapseIndex = this.collapseIndex;

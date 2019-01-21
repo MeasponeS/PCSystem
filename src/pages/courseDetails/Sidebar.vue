@@ -69,12 +69,14 @@
         methods: {
             position(chapterId = false ,subChapterId = false){
                 if(!chapterId || !subChapterId) return;
+                chapterId += ''
+                subChapterId += ''
                 for (let i = 0; i < this.chapters.length ; i++) {
                     let chapter = this.chapters[i];
                     if(chapter.id == chapterId){
                         this.collapseIndex = i;
                         this.activeChapterIndex.chapter = i;
-                        for (let j = 0; j < chapter.sub; j++) {
+                        for (let j = 0; j < chapter.sub.length; j++) {
                             let subChapter = chapter.sub[j];
                             if(subChapter.id == subChapterId){
                                 this.activeChapterIndex.subChapter = j;
@@ -112,7 +114,6 @@
                 let currentCI = this.activeChapterIndex.chapter;
                 let currentSCI = this.activeChapterIndex.subChapter;
                 let collapseIndex = this.collapseIndex;
-
                 if(
                     currentCI + 1 == this.chapters.length &&
                     currentSCI + 1 == (this.chapters[currentCI].sub).length
@@ -120,7 +121,6 @@
                     this.$message('已经是最后一章了');
                     return;
                 }
-
                 if(currentSCI == ((this.chapters[currentCI].sub).length)-1){
                     currentCI ++;
                     collapseIndex++;
@@ -131,7 +131,6 @@
                     }
                     currentSCI ++;
                 }
-
                 let chapterId = this.chapters[currentCI].id;
                 let subChapterId =this.chapters[currentCI].sub[currentSCI];
                 this.selectChapter(currentCI,currentSCI,chapterId,subChapterId,collapseIndex);
@@ -144,7 +143,6 @@
                 if(currentCI == chapterIndex && currentSCI == subChapterIndex){
                     return;
                 }
-
                 this.$emit('selectChapter',{chapterId:chapterId,subChapterId:subChapterId},_=>{
                     this.activeChapterIndex.chapter = chapterIndex;
                     this.activeChapterIndex.subChapter = subChapterIndex;
@@ -153,7 +151,6 @@
                     this.collapseIndex = collapseIndex;
                     //滚动条
                     setTimeout(_=>{
-
                         let sidebarLi = document.querySelectorAll('#sidebar>ul>li');
                         let activeSidebar = sidebarLi[chapterIndex].querySelectorAll('ul');
                         activeSidebar[0].scroll(0,(subChapterIndex)*75);

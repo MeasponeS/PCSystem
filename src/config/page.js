@@ -17,7 +17,7 @@ module.exports = {
         requiredParameters:{}
     },
     message:{
-        title:'消息首页',
+        title:'消息',
         requiredParameters:{}
     },
     topic:{
