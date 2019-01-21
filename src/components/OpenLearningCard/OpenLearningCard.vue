@@ -44,6 +44,12 @@
         },
         methods:{
             openCard(){
+
+                if(this.userVal.cardNo.length  < 4 || this.userVal.cardPassword.length < 4){
+                    this.$message('请填写正确的卡号密码');
+                    return
+                }
+
                 openStudyCard({cardno:this.userVal.cardNo,password:this.userVal.cardPassword}).then(r=>{
                     this.$message({
                         message: '开卡成功！',
