@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Head class="header" activeUrl="index" :companyName="ORGINFO.orgName" :type=type :info="USERINFO" :msgCount="MSGCOUNT"></Head>
-        <div >
+        <div style="min-width: 1200px">
             <div class="banner">
                 <img src="./img/banner_01.png" alt="">
             </div>
@@ -20,9 +20,11 @@
             <div class="earth">
                 <img src="./img/5_02.png" alt="">
             </div>
-            <div class="startNow">
-                <img class="erweima" :src="ORGINFO.wxCode" alt="" :style="'left:'+leftLONG()+'px'">
-                <span class="study" :style="'left:'+rightLONG()+'px'"><a href="./study.html">点击这里</a>，使用网站学习 </span>
+
+            <div class="startNow" id="img">
+                <img src="./img/xu.png" alt="" style="width: 100%">
+                <img class="erweima" :src="ORGINFO.wxCode" alt="" :style="'left:'+leftLONG()+'px;width:'+ewmWidth()+'px'">
+                <span class="study"><a href="./study.html">点击这里</a>，使用网站学习 </span>
             </div>
             <div class="contact">
                 <img class="ren" src="./img/ren.png" alt="">
@@ -39,7 +41,7 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    let imageSize = 0.315
+
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -60,15 +62,21 @@
                 }
             },
             leftLONG(){
+                let imageSize = 0.3232828282828283
                 let clientWidth = document.body.clientWidth;
                 if(clientWidth <=1200){
                     return 1200 * imageSize;
                 }
                 return clientWidth * imageSize;
             },
-            rightLONG(){
-                return document.body.clientWidth * 0.57;
-            },
+            ewmWidth(){
+                let imageSize = 0.07474747474747474
+                let clientWidth = document.body.clientWidth;
+                if(clientWidth <=1200){
+                    return 1200 * imageSize
+                }
+                return clientWidth * imageSize
+            }
         },
         mounted() {
             window.addEventListener('scroll',this.handleScroll)
