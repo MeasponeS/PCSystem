@@ -9,7 +9,14 @@
                     <div @click="toggleTab('notOpened')" :class="{active:status=='notOpened'}">未开放</div>
                     <div class="mid"></div>
                     <div @click="toggleTab('exceed')" :class="{active:status=='exceed'}">已结束</div>
-                    <span class="flag">当前您正在学习健康管理师系列课程，已完成10%，比其他学员的进度快1.1%</span>
+
+                    <span class="flag">
+                        <RollNotice autoplay="2000" :height="17">
+                        <RollNoticeItem><span style="color:#F00;"> 荐 </span>荣耀V9 3月超级钜惠！</RollNoticeItem>
+                        <RollNoticeItem><span style="color:#F00;"> 荐 </span>3.23京东超级品牌日格力盛典</RollNoticeItem>
+                        <RollNoticeItem><span style="color:#F00;"> 荐 </span>京东服饰 早春新品低至7折</RollNoticeItem>
+                    </RollNotice>
+                    </span>
                 </div>
                 <div v-show="status=='opening'">
                     <div class="courseList" v-if="examInfo.opening.list.length != 0">
@@ -100,7 +107,7 @@
     import GoodStorage from 'good-storage'
     import Config from '../../config/app.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-
+    import {RollNotice, RollNoticeItem} from 'vue-ydui/dist/lib.px/rollnotice';
     const storageExamTabStatusKey = 'examTabStatus';
     export default {
         name: 'app',
@@ -257,7 +264,7 @@
         beforeDestroy: function () {
 
         },
-        components: {ExamRules,EmptyTemplate}
+        components: {ExamRules,EmptyTemplate,RollNotice,RollNoticeItem}
     }
 </script>
 
