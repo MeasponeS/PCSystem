@@ -6,7 +6,7 @@
             <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->
             <OpenLearningCard v-model="OpenLearningCard" @success="success" :phone="ORGINFO.phone" ></OpenLearningCard>
             <div class="left">
-                <div class="nav" :class="{navB:scrollTop == 1}" :style="'left:'+rightLONG()+'px'">
+                <div class="nav" :class="{navB:scrollTop == 1}" :style="'left:'+leftLONG()+'px'">
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
                     <Breadcrumb v-if="course.length" class="lessson"
                         :nav="[
@@ -306,6 +306,12 @@
             rightLONG(){
                 if(document.body.clientWidth>=1200){
                    return ( document.body.clientWidth -1200) / 2
+                }
+                return 0
+            },
+            leftLONG(){
+                if(document.body.clientWidth>=1200){
+                   return ( document.body.clientWidth -1200) / 2 + 21
                 }
                 return 0
             },
