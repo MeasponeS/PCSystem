@@ -34,7 +34,7 @@
                         <p>{{item2.name||item2.courseName}}</p>
                         <em></em>
                         <span @click="cancelCol(item2)">取消收藏</span>
-                        <img src="./img/jiantouyou.png" alt="" @click="goCol(item2)">
+                        <img src="./img/jiantouyou.png" alt="" @click="goCol(item,item2)">
                     </li>
                 </ul>
             </div>
@@ -134,12 +134,12 @@
                     }
                 }).catch(_=>{})
             },
-            goCol(item){
-                console.log(item)
+            goCol(item2,item){
+                let packageName = item.packageName
                 if(item.courseId == item.chapterQuestionId){
-                    window.location.href = './courseDetails.html?courseId='  + item.courseId + '&id='+this.course.id+'&name=' + packageName+'&type='+1
+                    window.location.href = './courseDetails.html?courseId='  + item.courseId + '&id='+item2.id+'&name=' + packageName+'&type='+1
                 } else {
-                    window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.courseId + '&id='+this.course.id+'&name=' + packageName+'&type='+1
+                    window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.courseId + '&id='+item2.id+'&name=' + packageName+'&type='+1
                 }
                 
             }

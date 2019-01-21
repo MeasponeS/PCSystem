@@ -5,13 +5,13 @@
             <Carousel :position="1" />
             <div class="container index-content">
                 <div class="top">
-                    我的课程 <span v-if="this.userList && this.lastStudy">上次学到：{{this.lastStudy.courseName}}     {{this.lastStudy.updateTime}}</span>
+                    我的课程 <span v-if="this.userList && this.lastStudy" @click="goLastStudy">上次学到：{{this.lastStudy.courseName}}     {{this.lastStudy.updateTime}}</span>
                 </div>
                 <ul class="list">
                     <li v-for="(item,index) in userList" :key="item.packageType.id">
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
-                            <h2>{{item.packageType.name}}</h2>
+                            <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
                             <!-- <h2>{{item.hasSubmajor?subName:item.packageType.name}}</h2> -->
                             <div class="info">
                                 <el-popover
@@ -27,10 +27,10 @@
                                 </el-popover>
                             </div>
                             <div class="course">
-                                共{{item.packageType.classHour}}课时 <span>|</span> {{item.studySize}}人已学
+                                共{{item.chapterSize}}小节(含习题) <span>|</span> {{item.studySize}}人已学
                             </div>
                             <div class="progress">
-                                <span>目前已完成{{item.finishChapterSize}}个课时，加油！</span>
+                                <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
                                 <el-progress class="val" :percentage="item.finishChapterSize/item.packageType.classHour" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
@@ -43,7 +43,7 @@
                     <li v-for="(item,index) in orgList" :key="item.packageType.id">
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
-                            <h2>{{item.packageType.name}}</h2>
+                            <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
                             <div class="info">
                                 <el-popover
                                         title=""
@@ -58,11 +58,11 @@
                                 </el-popover>
                             </div>
                             <div class="course">
-                                共{{item.packageType.classHour}}小节 <span>|</span> {{item.studySize}}人已学
+                                共{{item.chapterSize}}小节(含习题) <span>|</span> {{item.studySize}}人已学
                             </div>
                             <div class="progress">
                                 <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
-                                <el-progress class="val" :percentage="item.finishChapterSize/item.packageType.classHour" :show-text="false"></el-progress>
+                                <el-progress class="val" :percentage="item.finishChapterSize/item.chapterSize" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
                                 <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
@@ -101,15 +101,12 @@
         data: function () {
             return {
                 list:[],
-                id:'',
                 NoLearningCard: true,
                 OpenLearningCard: true,
                 lastStudy:'',
                 orgList:[],
                 userList:[],
                 subName:'',
-                orgMajor:'',
-                userMajor:'',
                 subMajor:{
                     parenPacktId:null,//有亚专业的情况，id值
                     show:false,
@@ -119,6 +116,9 @@
             }
         },
         methods: {
+            goLastStudy(){
+                window.location.href= './courseDetails.html?chapterId='+this.lastStudy.chapterId +'&courseId=' + this.lastStudy.courseId +'&id='+this.lastStudy.coursePackId  + '&name=' + this.lastStudy.packageName
+            },
             closeDialog(){
                 this.value = false;
             },
@@ -128,7 +128,10 @@
                     let subMajor = r.subMajorList.filter((item)=>{
                         return item.selected == 1
                     })
-                    this.subMajor.isSelect = subMajor[0].packId
+                    if(subMajor != ''){
+                        this.subName = subMajor[0].name
+                        this.subMajor.isSelect = subMajor[0].packId
+                    }
                 }).catch(_=>{})
                 this.subMajor.parenPacktId = item.packageType.id;
                 this.subMajor.show = true
@@ -152,9 +155,9 @@
                         let subMajor = r.subMajorList.filter((item1)=>{
                             return item1.selected == 1
                         })
-                        this.subMajor.isSelect = subMajor[0].packId
-                        if(subMajor != ''){
-                           window.location.href = './courseDetails.html?id='+subMajor[0].packId+'&name=' + subMajor[0].name
+                        if(subMajor.length != 0){
+                            this.subMajor.isSelect = subMajor[0].packId
+                            window.location.href = './courseDetails.html?id='+subMajor[0].packId+'&name=' + subMajor[0].name
                         }else {
                             this.subMajor.show = true
                             this.subMajor.parenPacktId = item.packageType.id;
@@ -175,7 +178,21 @@
                 this.lastStudy = r.lastStudyRecord;
                 this.orgList = r.orgCourseInformationList;
                 this.userList = r.userCourseInformationList;
+                let courseList = this.userList.concat(this.orgList)
+                courseList = courseList.filter((item)=>{
+                    return item.hasSubmajor == 1
+                })
+                subMajor({coursePackId:courseList[0].packageType.id}).then(r=>{
+                    let subMajor = r.subMajorList.filter((item)=>{
+                        return item.selected == 1
+                    })
+                    if(subMajor != ''){
+                        this.subName = subMajor[0].name
+                        this.subMajor.isSelect = subMajor[0].packId
+                    } 
+                }).catch(_=>{})
             }).catch(_=>{})
+            
             // this.orgMajor = this.orgList.filter((item)=>{
             //     return item.hasSubmajor == 1
             // })

@@ -20,11 +20,17 @@ export default {
     methods: {
         report(packId,couId,chaId){
             this.ResidenceTime = 0;
+            if(chaId){
+                this.ReportData.coursePackId = packId+''
+                this.ReportData.courseId = couId+''
+                this.ReportData.chapterId = chaId+''
+            } else {
+                this.ReportData.coursePackId = packId+''
+                this.ReportData.courseId = couId+''
+                this.ReportData.chapterId = '0'
+            }
             
-            this.ReportData.coursePackId = packId+''
-            this.ReportData.courseId = couId+''
-            this.ReportData.chapterId = chaId+''
-
+            
 
             let myvideo = document.querySelector('video');
 
