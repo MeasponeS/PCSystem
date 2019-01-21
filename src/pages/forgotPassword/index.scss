@@ -38,14 +38,18 @@
             width:355px;
             height:48px;
             padding-left: 17px;
+            font-size: 14px;
             background:rgba(255,255,255,1);
             border:1px solid rgba(229,229,229,1);
             border-radius:4px;
             margin-top: 20px;
-        &:focus{
-            outline: none;
-            border: 1px solid $--color-primary;
+            &:focus{
+                outline: none;
+                border: 1px solid $--color-primary;
+            }
         }
+        ::-webkit-input-placeholder{
+            color:#999
         }
         a{
             position: absolute;

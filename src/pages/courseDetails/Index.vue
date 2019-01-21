@@ -147,7 +147,7 @@
                 window.location.href = './study.html'
             },
             closeCard(){
-                window.location.href = './study.html'
+                //window.location.href = './study.html'
             },
             selectChapter(data,done){
                 if(data.subChapterId){
@@ -161,10 +161,10 @@
                                 this.report(this.packageId,this.currentCourseId,data.subChapterId.id)
                                 this.context = r.contentData
                                 this.videoUrl = r.videoUrl
-                                if(r.isfavor == 0){
-                                    this.col = '取消收藏'
-                                } else {
+                                if(r.isfavor == -1){
                                     this.col = '收藏'
+                                } else {
+                                    this.col = '取消收藏'
                                 }
                                 done();
                                 this.currentChapterId = data.chapterId;
@@ -173,10 +173,10 @@
                             getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
                                 this.context = r.context
                                 this.videoUrl = r.videoPath
-                                if(r.isFavor == 0){
-                                    this.col = '取消收藏'
-                                } else {
+                                if(r.isfavor == -1){
                                     this.col = '收藏'
+                                } else {
+                                    this.col = '取消收藏'
                                 }
                                 done()
                                 this.currentChapterId = data.chapterId;
@@ -194,10 +194,10 @@
                                         this.report(this.packageId,this.currentCourseId,data.subChapterId.id)
                                         this.context = r.contentData
                                         this.videoUrl = r.videoUrl
-                                        if(r.isfavor == 0){
-                                            this.col = '取消收藏'
-                                        } else {
+                                        if(r.isfavor == -1){
                                             this.col = '收藏'
+                                        } else {
+                                            this.col = '取消收藏'
                                         }
                                         done();
                                         this.currentChapterId = data.chapterId;
@@ -206,10 +206,10 @@
                                     getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
                                         this.context = r.context
                                         this.videoUrl = r.videoPath
-                                        if(r.isFavor == 0){
-                                            this.col = '取消收藏'
-                                        } else {
+                                        if(r.isfavor == -1){
                                             this.col = '收藏'
+                                        } else {
+                                            this.col = '取消收藏'
                                         }
                                         done()
                                         this.currentChapterId = data.chapterId;
@@ -237,10 +237,10 @@
                             this.context = r.contentData
                             this.videoUrl = r.videoUrl
                             this.report(this.packageId,this.currentCourseId,data.chapterId)
-                            if(r.isfavor == 0){
-                                this.col = '取消收藏'
-                            } else {
+                            if(r.isfavor == -1){
                                 this.col = '收藏'
+                            } else {
+                                this.col = '取消收藏'
                             }
                             done();
                             this.currentChapterId = data.chapterId;
@@ -313,10 +313,10 @@
                 }).then(r => {
                     this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
-                    if(r.isfavor == 0){
-                        this.col = '取消收藏'
-                    } else {
+                    if(r.isfavor == -1){
                         this.col = '收藏'
+                    } else {
+                        this.col = '取消收藏'
                     }
                 }).catch(_ => {})
                 courseList({coursePackId:this.packageId}).then(r=>{
@@ -336,10 +336,10 @@
                 }).then(r => {
                     this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
-                    if(r.isfavor == 0){
-                        this.col = '取消收藏'
-                    } else {
+                    if(r.isfavor == -1){
                         this.col = '收藏'
+                    } else {
+                        this.col = '取消收藏'
                     }
                 }).catch(_ => {})
                 courseList({coursePackId:this.packageId}).then(r=>{
@@ -367,10 +367,10 @@
                                     }).then(r => {
                                         this.report(this.packageId,this.currentCourseId,null)
                                         this.context = r.contentData
-                                        if(r.isfavor == 0){
-                                            this.col = '取消收藏'
-                                        } else {
+                                        if(r.isfavor == -1){
                                             this.col = '收藏'
+                                        } else {
+                                            this.col = '取消收藏'
                                         }
                                     }).catch(_ => {})
                                 } else {  // 下面有子章节 courseType = -1
@@ -382,10 +382,10 @@
                                     }).then(r => {
                                         this.report(this.packageId,this.currentCourseId,null)
                                         this.context = r.contentData
-                                        if(r.isfavor == 0){
-                                            this.col = '取消收藏'
-                                        } else {
+                                        if(r.isfavor == -1){
                                             this.col = '收藏'
+                                        } else {
+                                            this.col = '取消收藏'
                                         }
                                     }).catch(_ => {})
                                 }
@@ -413,10 +413,10 @@
                                         }).then(r => {
                                             this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                                             this.context = r.contentData
-                                            if(r.isfavor == 0){
-                                                this.col = '取消收藏'
-                                            } else {
+                                            if(r.isfavor == -1){
                                                 this.col = '收藏'
+                                            } else {
+                                                this.col = '取消收藏'
                                             }
                                         }).catch(_ => {})
                                     } else {
@@ -446,10 +446,10 @@
                             }).then(r => {
                                 this.report(this.packageId,this.currentCourseId,null)
                                 this.context = r.contentData
-                                if(r.isfavor == 0){
-                                    this.col = '取消收藏'
-                                } else {
+                                if(r.isfavor == -1){
                                     this.col = '收藏'
+                                } else {
+                                    this.col = '取消收藏'
                                 }
                             }).catch(_ => {})
                         }
