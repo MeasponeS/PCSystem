@@ -20,7 +20,6 @@
                 background-color: #F7F7F7;
         }
         .startNow{
-                z-index: -1;
                 position: relative;
                 height: 750px;
                 background: url('./img/现在开始吧_08.png') no-repeat center center;
@@ -76,7 +75,7 @@
                         position: absolute;
                         left: 44%;
                         bottom: 46%;
-                        border-top: 1px dashed #fff; 
+                        border-top: 1px dashed #fff;
                         &:after{
                                 content:'';
                                 display: inline-block;

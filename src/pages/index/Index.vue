@@ -50,8 +50,10 @@
         },
         methods: {
             handleScroll(){
-                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
-                if(scrollTop >= 650){
+                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                let oneSize = 801/1980;
+
+                if(scrollTop >= document.body.clientWidth * oneSize - 100){
                     this.type = 1
                 } else {
                     this.type = 2
