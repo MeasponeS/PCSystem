@@ -56,11 +56,11 @@ module.exports = {
         requiredParameters:{}
     },
     study:{
-        title:'课程详情',
+        title:'学习',
         requiredParameters:{}
     },
     courseDetails:{
-        title:'课程学习页',
+        title:'课程学习',
         requiredParameters:{}
     },
     examDetails:{
@@ -72,7 +72,7 @@ module.exports = {
         requiredParameters:{}
     },
     examHistory:{
-        title:'查看考试结果',
+        title:'考试结果',
         requiredParameters:{}
     },
     collection:{
@@ -82,5 +82,8 @@ module.exports = {
     changePassword:{
         title:'修改密码',
         requiredParameters:{}
+    },
+    forgotPassword:{
+        title:'忘记密码',
     }
 }
