@@ -2,16 +2,16 @@
     <div class="carousel" :style="carousel.length == 0?'display: none':''">
         <el-carousel :height="( 410/1920 ) * clientWidth + 'px'">
             <el-carousel-item v-for="item in carousel" :key="item.id">
-                <a :href="item.url" target="_blank">
+                <div @click="clickImg(item)">
                     <img style="width: 100%" :src="item.pic" alt="">
-                </a>
+                </div>
             </el-carousel-item>
         </el-carousel>
     </div>
 </template>
 
 <script>
-    import {getAdvertising} from '../../api/common.js'
+    import {getAdvertising,clickAdvertising} from '../../api/common.js'
     export default {
         name: 'Carousel',
         props: {
@@ -21,6 +21,14 @@
             return {
                 clientWidth:1920,
                 carousel:[],
+            }
+        },
+        methods:{
+            clickImg(item){
+                clickAdvertising({id:item.id}).then(()=>{}).catch(_=>{});
+                setTimeout(()=>{
+                    window.open(item.url)
+                },500)
             }
         },
         mounted() {

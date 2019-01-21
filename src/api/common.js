@@ -30,3 +30,11 @@ export function getAdvertising(params) {
         params: params
     })
 }
+
+export function clickAdvertising(params) {
+    return request({
+        url: 'pc/report/clickAdvertising',
+        method: 'get',
+        params: params
+    })
+}

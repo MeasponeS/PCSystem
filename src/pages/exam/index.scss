@@ -29,7 +29,7 @@
             background:rgba(255,255,255,1);
             border:1px solid rgba(249, 249, 249, 1);
             box-shadow:0px 0px 6px 0px rgba(174,174,174,0.14);
-            div{
+            >div{
                 font-size: 18px;
                 font-weight: 400;
                 padding: 6px 0;
@@ -56,6 +56,9 @@
                 padding: 7px 12px;
                 border-radius: 3px;
                 background: #fff7e8;
+                .yd-rollnotice{
+                    background: #fff7e8;
+                }
             }
         }
         .courseList{
