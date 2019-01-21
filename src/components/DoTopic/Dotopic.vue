@@ -142,12 +142,13 @@
             width: 100%;
             padding: 25px 16px 25px 0;
             background: #F5F7F9;
+            align-items: center;
             display: flex;
             border:1px solid #eee;
             .l{
                 text-align: center;
                 width: 77px;
-                font-size: 18px;
+                font-size: 14px;
                 color: #2B60FF;
                 border-right: 1px solid #eee;
             }

@@ -11,11 +11,11 @@
                     <div @click="toggleTab('exceed')" :class="{active:status=='exceed'}">已结束</div>
 
                     <span class="flag">
-                        <RollNotice autoplay="2000" :height="17">
-                        <RollNoticeItem><span style="color:#F00;"> 荐 </span>荣耀V9 3月超级钜惠！</RollNoticeItem>
-                        <RollNoticeItem><span style="color:#F00;"> 荐 </span>3.23京东超级品牌日格力盛典</RollNoticeItem>
-                        <RollNoticeItem><span style="color:#F00;"> 荐 </span>京东服饰 早春新品低至7折</RollNoticeItem>
-                    </RollNotice>
+                        <RollNotice autoplay="3000" :height="17">
+                            <RollNoticeItem>当前您正在学习健康管理师系列课程，已完成10%，比其他学员的平均进度快1.1%</RollNoticeItem>
+                            <RollNoticeItem>当前您正在学习是的撒啥系列课程，已完成40%，比其他学员的平均进度快6.1%</RollNoticeItem>
+                            <RollNoticeItem>京东服饰 早春新品低至7折圣诞快乐似懂非懂是防腐剂</RollNoticeItem>
+                        </RollNotice>
                     </span>
                 </div>
                 <div v-show="status=='opening'">
