@@ -30,8 +30,9 @@
                     <li
                         v-for="(item2,index2) in lesson.packageType[index].userFavorList"
                         :key="index2"
+                        
                     >
-                        <p>{{item2.name||item2.courseName}}</p>
+                        <p @click="goCol(item,item2)">{{item2.name||item2.courseName}}</p>
                         <em></em>
                         <span @click="cancelCol(item2)">取消收藏</span>
                         <img src="./img/jiantouyou.png" alt="" @click="goCol(item,item2)">
@@ -60,8 +61,9 @@
                     <li
                         v-for="(item2,index2) in topics.packageType[index].userFavorList"
                         :key="index2"
+                       
                     >
-                        <p>{{item2.name}}</p>
+                        <p  @click="toTopicDetails(item2)">{{item2.name}}</p>
                         <em></em>
                         <span @click="cancelCol(item2)">取消收藏</span>
                         <img @click="toTopicDetails(item2)" src="./img/jiantouyou.png" alt="">

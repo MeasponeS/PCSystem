@@ -21,13 +21,8 @@
                 <img src="./img/5_02.png" alt="">
             </div>
             <div class="startNow">
-                <img class="start" src="./img/6_03.png" alt="">
-                <img class="phone" src="./img/phone.png" alt="">
-                <img class="erweima" :src="ORGINFO.wxCode" alt="">
-                <span class="phoneInfo">微信扫码<br>使用小程序学习</span>
-                <img class="computer" src="./img/电脑.png" alt="">
-                <img class="link" src="./img/链接图标.png" alt="">
-                <span class="study"><a href="./study.html">点击这里</a>，使用网站学习 </span>
+                <img class="erweima" :src="ORGINFO.wxCode" alt="" :style="'left:'+leftLONG()+'px'">
+                <span class="study" :style="'left:'+rightLONG()+'px'"><a href="./study.html">点击这里</a>，使用网站学习 </span>
             </div>
             <div class="contact">
                 <img class="ren" src="./img/ren.png" alt="">
@@ -44,6 +39,7 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
+    let imageSize = 0.315
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -60,7 +56,17 @@
                 } else {
                     this.type = 2
                 }
-            }
+            },
+            leftLONG(){
+                let clientWidth = document.body.clientWidth;
+                if(clientWidth <=1200){
+                    return 1200 * imageSize;
+                }
+                return clientWidth * imageSize;
+            },
+            rightLONG(){
+                return document.body.clientWidth * 0.57;
+            },
         },
         mounted() {
             window.addEventListener('scroll',this.handleScroll)

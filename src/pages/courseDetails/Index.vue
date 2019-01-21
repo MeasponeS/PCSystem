@@ -149,6 +149,7 @@
             },
             closeCard(){
                 //window.location.href = './study.html'
+                this.noLearningCard = false
             },
             selectChapter(data,done){
                 if(data.subChapterId){

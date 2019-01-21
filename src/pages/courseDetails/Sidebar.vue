@@ -153,6 +153,9 @@
     .course-details-sidebar{
         &.chapter-list {
             width: 100%;
+               
+                 height: 500px;
+                overflow: auto;
             >ul{
                 margin: 0;
                 padding: 0;
