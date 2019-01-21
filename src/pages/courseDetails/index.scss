@@ -41,9 +41,10 @@
             .navB{
                 z-index: 9999;
                 width: 787px;
+                left: 0;
                 position: fixed;
                 top: 100px;
-                left: 19.7%;
+                
             }
             .letf-content {
                 .title {
@@ -101,7 +102,7 @@
         .rightB{
             position: fixed;
             top: 100px;
-            right: 150px;
+           
         }
     }
 }

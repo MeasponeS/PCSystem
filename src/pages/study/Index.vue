@@ -151,6 +151,7 @@
                     coursePackId:id
                 }).then(r=>{
                     this.subMajor.show = false
+                    window.location.href = './study.html'
                 }).catch(_=>{})
             },
             startLearning(item){
@@ -200,32 +201,6 @@
                     }
                 }).catch(_=>{})
             }).catch(_=>{})
-            
-            // this.orgMajor = this.orgList.filter((item)=>{
-            //     return item.hasSubmajor == 1
-            // })
-            // this.userMajor = this.userList.filter((item)=>{
-            //     return item.hasSubmajor == 1
-            // })
-            // subMajor({coursePackId:this.orgMajor.packageType.id}).then(r=>{
-            //     let subMajor = r.subMajorList.filter((item)=>{
-            //         return item.selected == 1
-            //     })
-            //     if(subMajor != ''){
-            //         this.subName = subMajor[0].name
-            //         this.subMajor.isSelect = subMajor[0].packId
-            //     } 
-            // }).catch(_=>{})
-            // subMajor({coursePackId:this.userMajor.packageType.id}).then(r=>{
-            //     this.subMajor.list = r.subMajorList
-            //     let subMajor = r.subMajorList.filter((item)=>{
-            //         return item.selected == 1
-            //     })
-            //     if(subMajor != ''){
-            //         this.subMajor.isSelect = subMajor[0].packId
-            //         this.subName = subMajor[0].name
-            //     }
-            // }).catch(_=>{})
         },
         beforeDestroy: function () {
 
