@@ -77,6 +77,7 @@
                 window.location.reload();
             },
             practice(item,parenPacktId){
+                console.log(item)
                 let self = this;
                 //逻辑梳理
                 //1.没有登录直接去登录
@@ -90,7 +91,7 @@
                 authCourse({courseId:item.id}).then(r=>{
                     if(0 == r){//没有权限
                         //判断用户是否已经分配卡
-                        checkDistribute({packId:parenPacktId ? parenPacktId : item.id}).then(ka=>{
+                        checkDistribute({packId:parenPacktId ? parenPacktId : item.packageId}).then(ka=>{
                             if(0 == ka || '0' == ka){//未分配
                                 self.noLearningCardShow = true;
                                 return;

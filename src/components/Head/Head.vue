@@ -227,9 +227,6 @@
     }
     #type2{
         background: transparent;
-        position: fixed;
-        top: 0;
-        z-index: 99999;
         box-shadow: none;
         .company{
             p{

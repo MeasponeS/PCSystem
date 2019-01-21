@@ -100,6 +100,8 @@
     import GoodStorage from 'good-storage'
     import Config from '../../config/app.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
+
+    const storageExamTabStatusKey = 'examTabStatus';
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -134,6 +136,13 @@
                     paperId:''
                 }
             }
+        },
+        created(){
+            let status = GoodStorage.session.get(storageExamTabStatusKey);
+            if(status){
+                this.status = status;
+            }
+
         },
         methods: {
             initExam(r){
@@ -212,6 +221,7 @@
             },
             toggleTab(key){
                 this.status = key;
+                GoodStorage.session.set(storageExamTabStatusKey,key);
                 if(
                     this.examInfo[key].list.length == 0 &&
                     this.examInfo[key].isAllList == false
@@ -238,7 +248,6 @@
         },
         mounted() {
 
-            this.status = 'opening';
             this.getList();
 
             getStudyInfo().then(r=>{
