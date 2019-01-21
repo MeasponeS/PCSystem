@@ -1,6 +1,7 @@
 <template>
   <el-dialog
     width="460px"
+    @opened="id = selectedHistoryPackId"
     :visible.sync="value"
     custom-class="subMajorPopup"
     :show-close="false"
@@ -39,12 +40,10 @@ export default {
     };
   },
   computed: {
-    selectId:function () {
-        return this.id;
-    }
+
   },
   mounted(){
-      this.id = this.selectedHistoryPackId
+      // this.id = this.selectedHistoryPackId
   },
   watch: {
 
