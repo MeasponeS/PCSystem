@@ -10,9 +10,9 @@
                         <el-input placeholder="手机号" v-model="mobile">
                             <span class="get-mag" slot="suffix" @click="getCode">{{ this.countDown != initCountDown ? this.countDown : '获取验证码' }}</span>
                         </el-input>
-                        <el-input placeholder="验证码" v-model="msg"></el-input>
+                        <el-input placeholder="验证码" v-model="msg" autocomplete = "off"></el-input>
                     </div>
-                <el-input type="password" placeholder="设置密码" v-model="password"></el-input>
+                <el-input type="password" placeholder="设置密码" v-model="password" autocomplete = "off"></el-input>
                 <el-button class="button"  type="primary" @click="checkPassword">保存密码</el-button>
             </div>
         </div>
