@@ -1,53 +1,27 @@
 import {report} from '../../api/study.js'
-import {clone} from '../../utils/app.js'
 export default {
     data: function () {
         return {
-            ResidenceTime:0,//页面停留时间
-            ReportData:{
-                coursePackId:'',
-                courseId:'',
-                chapterId:'',
-                videoTime:0,
-                type:1,//1会让课程观看时间添加60s,2会让视频观看时间添加60s
-                reportType:1, //1观看课程次数加1，2观看视频次数加1
-            }//报告要上传的值
+            ResidenceTime:0,
         }
     },
     create(){
 
     },
     methods: {
-        report(packId,couId,chaId){
+        initResidenceTime() {
             this.ResidenceTime = 0;
-            if(chaId){
-                this.ReportData.coursePackId = packId+''
-                this.ReportData.courseId = couId+''
-                this.ReportData.chapterId = chaId+''
-            } else {
-                this.ReportData.coursePackId = packId+''
-                this.ReportData.courseId = couId+''
-                this.ReportData.chapterId = '0'
-            }
-            
-            
-
-            let myvideo = document.querySelector('video');
-
-            if(myvideo){
-                this.ReportData.type = 2   
-                this.ReportData.reportType = 2
-            }else{
-                this.ReportData.type = 1 
-                this.ReportData.reportType = 1
-            }
-
+            if(window.residenceTimeInterval){clearInterval(window.residenceTimeInterval)}
+            window.residenceTimeInterval = setInterval(() => {
+                this.ResidenceTime++;
+            }, 1000)
         },
+
         computeFinish(){
 
             let myvideo = document.querySelector('video');
             if(myvideo && myvideo.duration){
-                
+
                 let m = parseInt(myvideo.duration/60);
                 let residenceTime = this.ResidenceTime;
 
@@ -83,37 +57,66 @@ export default {
             }
 
         },
-        initResidenceTime(){
-            this.ResidenceTime = 0;
-            setInterval(()=>{
-                this.ResidenceTime ++;
-            },1000)
+
+        videoReport(){
+            if(window.reportInterval){clearInterval(window.reportInterval)}
+            this.initResidenceTime();
+            report({
+                orgId : this.ORGINFO.id,
+                reportType:2,
+                coursePackId:coursePackId,
+                courseId:courseId,
+                chapterId:chapterId ? chapterId : -1,
+                takeTime:0,
+                videoTime:0,
+                status:0,
+            }).then(_=>{}).catch(_=>{})
+
+            window.reportInterval = setInterval(()=>{
+                report({
+                    orgId : this.ORGINFO.id,
+                    reportType:0,
+                    coursePackId:coursePackId,
+                    courseId:courseId,
+                    chapterId:chapterId ? chapterId : -1,
+                    takeTime:60,
+                    videoTime:60,
+                    status:this.computeFinish(),
+                }).then(_=>{}).catch(_=>{})
+            },1000 * 60)
         },
-        ReportRequest(){
-            let newReportData = clone(this.ReportData);
-            newReportData.orgId = this.ORGINFO.id;
-            newReportData.takeTime = 60;
-            if(newReportData.type == 1){
-                
-            }else {
-                newReportData.videoTime = 60;
+        noVideoReport(coursePackId,courseId,chapterId){
+            if(window.reportInterval){clearInterval(window.reportInterval)}
+            this.initResidenceTime();
+            report({
+                orgId : this.ORGINFO.id,
+                reportType:1,
+                coursePackId:coursePackId,
+                courseId:courseId,
+                chapterId:chapterId ? chapterId : -1,
+                takeTime:0,
+                videoTime:0,
+                status:1,
+            }).then(_=>{}).catch(_=>{})
 
-                newReportData.status = this.computeFinish();
+            window.reportInterval = setInterval(()=>{
+                report({
+                    orgId : this.ORGINFO.id,
+                    reportType:0,
+                    coursePackId:coursePackId,
+                    courseId:courseId,
+                    chapterId:chapterId ? chapterId : -1,
+                    takeTime:60,
+                    videoTime:0,
+                    status:1,
+                }).then(_=>{}).catch(_=>{})
+            },1000 * 60)
 
-            }
-            
-            newReportData.status = this.computeFinish();
+        },
 
-            report(newReportData).then(_=>{}).catch(_=>{})
-        }
     },
     mounted() {
-        this.initResidenceTime();
-     
 
-        setInterval(_=>{
-            this.ReportRequest();
-        },1000 * 60)
     },
     beforeDestroy: function () {
 
