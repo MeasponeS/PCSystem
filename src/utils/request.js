@@ -15,7 +15,7 @@ service.defaults.retryDelay = Config.requestRetryDelay;
 
 service.interceptors.request.use(
     config => {
-        window.loadingInstance = Loading.service();
+        // window.loadingInstance = Loading.service();
 
         let noParameters = config.url.indexOf('?')  == -1;
         //config.headers['X-Token'] = getToken() //
@@ -32,9 +32,9 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
     response => {//Grade
-        setTimeout(_=>{
-            window.loadingInstance.close();
-        },100);
+        // setTimeout(_=>{
+        //     window.loadingInstance.close();
+        // },100);
 
         const res = response
         if (res.status !== 200) {
@@ -62,9 +62,9 @@ service.interceptors.response.use(
         }
     },
     error => {
-        setTimeout(_=>{
-            window.loadingInstance.close();
-        },300)
+        // setTimeout(_=>{
+        //     window.loadingInstance.close();
+        // },300)
         Notification({
             title:"请求未响应",
             message:"服务器可能出了点问题",
