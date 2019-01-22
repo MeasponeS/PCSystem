@@ -32,7 +32,7 @@ module.exports = {
         }
     },
     topicDetails:{
-        title:'习题详情页',
+        title:'习题详情',
         requiredParameters:{
             packageId:'课程包id',
             courseId:'课程id',

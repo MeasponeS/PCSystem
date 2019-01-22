@@ -36,7 +36,7 @@
                     <div class="html-info" v-html="context"></div>
                 </div>
             </div>
-            <div class="right" :class="{rightB:scrollTop == 1}" :style="'right:'+rightLONG()+'px'">
+            <div class="right" >
                 <p>选择课程<span>(共{{ course.length }}门课程)</span></p>
                 <div class="accordion">
                     <el-select v-model="currentCourseId" class="select-course" placeholder="请选择课程" @change="getChapters(currentCourseId)">
@@ -328,12 +328,6 @@
                     this.scrollTop = 0
                 }
             },
-            rightLONG(){
-                if(document.body.clientWidth>=1200){
-                   return ( document.body.clientWidth -1200) / 2
-                }
-                return 0
-            },
             leftLONG(){
                 if(document.body.clientWidth>=1200){
                    return ( document.body.clientWidth -1200) / 2 + 21
@@ -427,15 +421,26 @@
                     this.chapters = r.chapters;
                     this.hasStudyCard = r.studyCard;
                     this.sub = r.chapters[0].sub.length
-                    for(let i = 0;i < r.chapters.length;i++){
-                        for(let j = 0;j<r.chapters[i].sub.length;j++){
+                    if(this.sub == 0){
+                        for(let i = 0;i < r.chapters.length;i++){
                             let have = ''
-                            if(r.chapters[i].sub[j].id == this.chapterId){
+                            if(r.chapters[i].id == self.chapterId){
                                 have = r.chapters[i]
                                 setTimeout(_=>{
-                                    console.log(self.$refs.sidebar)
-                                    self.$refs.sidebar.position(have.id ,this.chapterId)
+                                    self.$refs.sidebarTwo.position(have.id)
                                 },100)
+                            }
+                        }
+                    } else {
+                        for(let i = 0;i < r.chapters.length;i++){
+                            for(let j = 0;j<r.chapters[i].sub.length;j++){
+                                let have = ''
+                                if(r.chapters[i].sub[j].id == this.chapterId){
+                                    have = r.chapters[i]
+                                    setTimeout(_=>{
+                                        self.$refs.sidebar.position(have.id ,this.chapterId)
+                                    },100)
+                                }
                             }
                         }
                     }

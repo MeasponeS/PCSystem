@@ -19,7 +19,7 @@ export default {
         line-height: unset!important;
     }
     .el-breadcrumb__separator[class*=icon]{
-        font-size: 18px;
+        font-size: 14px;
     }
     .breadcrumb-a{
         display: inline-block;
@@ -31,7 +31,7 @@ export default {
         text-overflow:ellipsis;
         white-space: nowrap;
         color: #26292F;
-        font-size: 18px;
+        font-size: 14px;
         cursor: pointer;
         &:hover,&[href='javascript:;']{
             color: #4F7FFB!important;
