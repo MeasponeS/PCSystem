@@ -17,7 +17,7 @@
                                 <p>人均练习次数：{{ subItem.staticInfo.avgTimeCount || 0  }}次</p>
                                 <p>平均通关关卡：{{ subItem.staticInfo.avgPassCount || 0  }}关</p>
                                 <p>通过全部关卡人数：{{ subItem.staticInfo.passAllSize || 0  }}人</p>
-                                <div class="btn" @click="practice(subItem,item.parenPacktId)">
+                                <div class="btn" @click="practice(subItem,item.parenPacktId,item.subId)">
                                     练习
                                 </div>
                             </li>
@@ -76,7 +76,7 @@
             openLearningCardSuccess(){
                 window.location.reload();
             },
-            practice(item,parenPacktId){
+            practice(item,parenPacktId,subId = null){
 
                 let self = this;
                 //逻辑梳理
@@ -114,7 +114,9 @@
                             }).catch(_=>{})
 
                         }else {//没有亚专业 或者已经选择了压专业
-                            window.location.href = './topicList.html?packageId=' + item.packageId +'&courseId=' + item.id
+
+
+                            window.location.href = './topicList.html?packageId=' + (subId ? subId : item.packageId) +'&courseId=' + item.id
                         }
 
                     }

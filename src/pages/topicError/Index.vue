@@ -27,7 +27,7 @@
                                             class="mark"
                                             :class="(topics[activeQuestionIndex].learnStatus) == 1 ? 'yes':'no'"
                                             @click="learn(topics[activeQuestionIndex].wrongId)"
-                                    >{{ (topics[activeQuestionIndex].learnStatus) == 1 ? '已学会':'未学会' }}</li>
+                                    >已学会</li>
                                     <li @click="favor()">{{ (topics[activeQuestionIndex].favor) != 0 ? '收藏':'取消收藏' }} </li>
                                     <li @click="lookAnswer">查看答案</li>
                                     <li @click="previousTopic">上一题</li>
