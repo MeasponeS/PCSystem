@@ -174,8 +174,8 @@
                     // ))
                     GoodStorage.set(Config.storageExamInfoKey,{
                         examInfo:{
-                            testingId:this.selectExam.paperId,
-                            paperId:this.selectExam.testingId,
+                            testingId:this.selectExam.testingId,
+                            paperId:this.selectExam.paperId,
                             testingName:r.hospitalPaper.paperName ,
                             paperSum:r.hospitalPaper.paperSum,
                             utpId:r.id,
