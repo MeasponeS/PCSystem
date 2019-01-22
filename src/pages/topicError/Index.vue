@@ -64,25 +64,27 @@
                             </div>
                         </div>
                         <div class="checkpoint" >
-                            <ul v-if="topics.length != 0">
-                                <li
-                                        class="li"
-                                        :class="{active:activeQuestionIndex == index}"
-                                        v-for="(topic,index) in topics"
-                                        @click="activeQuestionIndex = index"
-                                >
-                                    <RectProgress
-                                            :progress="topic.learnStatus == 1 ? 100 : 0 "
-                                            :attr="{
+                            <div v-if="topics.length != 0">
+                                <ul>
+                                    <li
+                                            class="li"
+                                            :class="{active:activeQuestionIndex == index}"
+                                            v-for="(topic,index) in topics"
+                                            @click="activeQuestionIndex = index"
+                                    >
+                                        <RectProgress
+                                                :progress="topic.learnStatus == 1 ? 100 : 0 "
+                                                :attr="{
                                                 init:{text:'未学会',color:'#31b68f',progress:0},
                                                 end:{text:'已学会',color:'#31b68f',progress:100}
                                             }"
-                                    ></RectProgress>
-                                    <span style="margin-left: 10px">第{{ topicIndex(index) }}题</span>
-                                </li>
-                            </ul>
-
-                            <el-button v-if="!wrongQuestion.isAllList" class="load-more" @click="loadMore" style="width: 100%">加载更多</el-button>
+                                        ></RectProgress>
+                                        <span style="margin-left: 10px">第{{ topicIndex(index) }}题</span>
+                                    </li>
+                                </ul>
+                                <el-button v-if="!wrongQuestion.isAllList" class="load-more" @click="loadMore" style="width: 100%">加载更多</el-button>
+                            </div>
+                            <div v-else style="width: 100%;height: 100px;line-height: 100px;text-align: center">暂无数据</div>
                         </div>
                     </div>
                 </div>
