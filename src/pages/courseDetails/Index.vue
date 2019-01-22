@@ -144,7 +144,7 @@
                 if(this.course[0].courseType == 1){
                     this.$message('已经是最后一章了');
                 }else {
-                    if(this.subChapterId){
+                    if(this.chapters[0].courseType == -1){
                         this.$refs.sidebar.nextChapter()
                     } else {
                         this.$refs.sidebarTwo.nextChapter()
@@ -157,7 +157,7 @@
                     this.$refs.sidebarTwo.previousChapter()
                     
                 }else {
-                    if(this.subChapterId){
+                    if(this.chapters[0].courseType == -1){
                         this.$refs.sidebar.previousChapter()
                     } else {
                         this.$refs.sidebarTwo.previousChapter()
@@ -362,6 +362,7 @@
                 }).then(r => {
                     this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
+                    this.videoUrl = r.videoUrl
                     if(r.isfavor == -1){
                         this.col = '收藏'
                     } else {
@@ -409,6 +410,7 @@
                 }).then(r => {
                     this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
+                    this.videoUrl = r.videoUrl
                     if(r.isfavor == -1){
                         this.col = '收藏'
                     } else {
@@ -462,6 +464,7 @@
                                     }).then(r => {
                                         this.report(this.packageId,this.currentCourseId,null)
                                         this.context = r.contentData
+                                        this.videoUrl = r.videoUrl
                                         if(r.isfavor == -1){
                                             this.col = '收藏'
                                         } else {
@@ -489,6 +492,7 @@
                                     }).then(r => {
                                         this.report(this.packageId,this.currentCourseId,null)
                                         this.context = r.contentData
+                                        this.videoUrl = r.videoUrl
                                         if(r.isfavor == -1){
                                             this.col = '收藏'
                                         } else {
@@ -532,6 +536,7 @@
                                         }).then(r => {
                                             this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                                             this.context = r.contentData
+                                            this.videoUrl = r.videoUrl
                                             if(r.isfavor == -1){
                                                 this.col = '收藏'
                                             } else {
@@ -565,6 +570,7 @@
                             }).then(r => {
                                 this.report(this.packageId,this.currentCourseId,null)
                                 this.context = r.contentData
+                                this.videoUrl = r.videoUrl
                                 if(r.isfavor == -1){
                                     this.col = '收藏'
                                 } else {
