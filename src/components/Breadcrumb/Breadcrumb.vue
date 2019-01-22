@@ -2,7 +2,7 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item v-for="item in nav">
-        <a :style="'max-width:'+ (item.hasOwnProperty('width') ? ( item.width + 'px'):'168px') " class="breadcrumb-a" :href="item.url" :title="item.name">{{ item.name }}</a>
+        <a :style="'max-width:'+ (item.hasOwnProperty('width') ? ( item.width + 'px'):'168px') " class="breadcrumb-a" disabled :title="item.name">{{ item.name }}</a>
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
@@ -17,6 +17,15 @@ export default {
 <style lang="scss">
     .el-breadcrumb{
         line-height: 60px;
+        span{
+            span{
+                a{
+                    font-weight: normal;
+                    color:#9D9D9D;
+                }
+                
+            }
+        }
     }
     .el-breadcrumb__separator[class*=icon]{
         font-size: 14px;
@@ -26,11 +35,12 @@ export default {
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
-        color: #26292F;
+        font-weight: 100;
+        color: #9D9D9D!important;
         font-size: 14px;
         cursor: pointer;
         &:hover,&[href='javascript:;']{
-            color: #4F7FFB!important;
+            color: #9D9D9D!important;
         }
 
     }

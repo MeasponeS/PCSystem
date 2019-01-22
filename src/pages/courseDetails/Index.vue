@@ -203,6 +203,11 @@
                             getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
                                 this.context = r.context
                                 this.videoUrl = r.videoPath
+                                if(r.videoUrl){
+                                    this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                } else {
+                                    this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                }
                                 if(r.isfavor == -1){
                                     this.col = '收藏'
                                 } else {
@@ -240,6 +245,11 @@
                                     getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
                                         this.context = r.context
                                         this.videoUrl = r.videoPath
+                                        if(r.videoUrl){
+                                            this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                        } else {
+                                            this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                        }
                                         if(r.isfavor == -1){
                                             this.col = '收藏'
                                         } else {
