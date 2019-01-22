@@ -31,6 +31,7 @@
         <NoLearningCard
                 v-model="noLearningCardShow"
                 :phone="ORGINFO.phone"
+                @openCard="openLearningCardShow = true "
         ></NoLearningCard>
 
         <SubMajorSelect
@@ -77,7 +78,7 @@
                 window.location.reload();
             },
             practice(item,parenPacktId){
-                console.log(item)
+
                 let self = this;
                 //逻辑梳理
                 //1.没有登录直接去登录

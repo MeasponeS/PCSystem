@@ -1,5 +1,5 @@
 
-const devApiUrl = 'http://192.168.49.47:10003';
+const devApiUrl = 'http://192.168.48.133:10003';
 
 //正式环境变量,注意修改
 const proApiUrl = 'https://pctestapi.hulian120.com';
@@ -17,11 +17,6 @@ export default {
     storageUserKey:'JKCYXTPC_USER_STORAGE',
     storageOrgInfoKey:'JKCYXTPC_ORGINFO_STORAGE',
     storageExamInfoKey:'JKCYXTPC_EXAMINFO_STORAGE',//
-    //{  testingId:'',  用于临时存储用户的考试答案。防止考试中途退出。提交答案就删除
-    //   paperId:'',
-    //   time:'',考试剩余时间
-    //  topics:[]
-    // }
     storageExamHistoryKey:'JKCYXTPC_EXAMHISTORY_STORAGE',//
     storageMsgUnReadCountKey:'JKCYXTPC_MSG_UNREAD_COUNT',
     requestRetry:4,

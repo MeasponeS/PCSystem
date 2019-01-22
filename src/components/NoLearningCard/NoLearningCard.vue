@@ -16,7 +16,7 @@
                     联系电话：{{ phone }}
                 </p>
                 <el-button class="btn" @click="clickClose" type="primary" style="width: 100%">完成</el-button>
-                <a href="##" @click="$emit('openCard')">已购买学习卡？点此激活</a>
+                <a href="javascript:;" @click="$emit('openCard')">已购买学习卡？点此激活</a>
             </div>
 
         </el-dialog>

@@ -65,7 +65,7 @@
                     {{ item.index }}. {{ item.name }}
                 </div>
                 <Options
-                        :correctAnswer="isHistory ? item.answer :[]"
+                        :correctAnswer="isHistory ? item.answer : []"
                         :options='topic.questionResult'
                         :userAnswer="item.historyAnswer"
                         :questionId="item.questionId"
@@ -118,7 +118,6 @@
                 if(typeB == 1){
                     //单
                    return [optionName]
-
                 }
                 if((typeB == 2) || (typeB == 4)){
                     //多
