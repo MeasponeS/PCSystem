@@ -17,11 +17,6 @@ export default {
     storageUserKey:'JKCYXTPC_USER_STORAGE',
     storageOrgInfoKey:'JKCYXTPC_ORGINFO_STORAGE',
     storageExamInfoKey:'JKCYXTPC_EXAMINFO_STORAGE',//
-    //{  testingId:'',  用于临时存储用户的考试答案。防止考试中途退出。提交答案就删除
-    //   paperId:'',
-    //   time:'',考试剩余时间
-    //  topics:[]
-    // }
     storageExamHistoryKey:'JKCYXTPC_EXAMHISTORY_STORAGE',//
     storageMsgUnReadCountKey:'JKCYXTPC_MSG_UNREAD_COUNT',
     requestRetry:4,

@@ -21,9 +21,9 @@
                 <img src="./img/5_02.png" alt="">
             </div>
 
-            <div class="startNow" id="img">
+            <div class="startNow">
                 <img src="./img/xu.png" alt="" style="width: 100%">
-                <img class="erweima" :src="ORGINFO.wxCode" alt="" :style="'left:'+leftLONG()+'px;width:'+ewmWidth()+'px'">
+                <img class="erweima" :src="ORGINFO.wxCode">
                 <span class="study"><a href="./study.html">点击这里</a>，使用网站学习 </span>
             </div>
             <div class="contact">
@@ -61,22 +61,6 @@
                     this.type = 2
                 }
             },
-            leftLONG(){
-                let imageSize = 0.3232828282828283
-                let clientWidth = document.body.clientWidth;
-                if(clientWidth <=1200){
-                    return 1200 * imageSize;
-                }
-                return clientWidth * imageSize;
-            },
-            ewmWidth(){
-                let imageSize = 0.07474747474747474
-                let clientWidth = document.body.clientWidth;
-                if(clientWidth <=1200){
-                    return 1200 * imageSize
-                }
-                return clientWidth * imageSize
-            }
         },
         mounted() {
             window.addEventListener('scroll',this.handleScroll)
