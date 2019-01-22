@@ -1,5 +1,5 @@
 
-const devApiUrl = 'http://192.168.48.98:10003';
+const devApiUrl = 'http://192.168.49.47:10003';
 
 //正式环境变量,注意修改
 const proApiUrl = 'https://pctestapi.hulian120.com';
