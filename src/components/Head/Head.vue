@@ -107,10 +107,10 @@
     }
     .head {
         z-index: 99;
-        position: fixed;
-        top: 0;
-        left: 0;
         height: 100px;
+        position:fixed ;
+        left: 0;
+        top: 0;
         width: 100%;
         background-color: #fff;
         box-shadow:-2px 3px 5px 0px rgba(174,174,174,0.14);
@@ -228,6 +228,9 @@
     #type2{
         background: transparent;
         box-shadow: none;
+        position: relative;
+        left: 0;
+        top: 0;
         .company{
             p{
                 font-weight: 400;
