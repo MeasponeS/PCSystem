@@ -58,7 +58,7 @@ export default {
 
         },
 
-        videoReport(){
+        videoReport(coursePackId,courseId,chapterId){
             if(window.reportInterval){clearInterval(window.reportInterval)}
             this.initResidenceTime();
             report({

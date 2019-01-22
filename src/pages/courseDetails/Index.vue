@@ -184,9 +184,13 @@
                                 chapterId:data.subChapterId.id,
                                 courseId:this.currentCourseId
                             }).then(r => {
-                                this.report(this.packageId,this.currentCourseId,data.subChapterId.id)
                                 this.context = r.contentData
                                 this.videoUrl = r.videoUrl
+                                if(r.videoUrl){
+                                    this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                } else {
+                                    this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                }
                                 if(r.isfavor == -1){
                                     this.col = '收藏'
                                 } else {
@@ -217,7 +221,11 @@
                                         chapterId:data.subChapterId.id,
                                         courseId:this.currentCourseId
                                     }).then(r => {
-                                        this.report(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                        if(r.videoUrl){
+                                            this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                        } else {
+                                            this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                        }
                                         this.context = r.contentData
                                         this.videoUrl = r.videoUrl
                                         if(r.isfavor == -1){
@@ -262,7 +270,11 @@
                         }).then(r => {
                             this.context = r.contentData
                             this.videoUrl = r.videoUrl
-                            this.report(this.packageId,this.currentCourseId,data.chapterId)
+                            if(r.videoUrl){
+                                    this.videoReport(this.packageId,this.currentCourseId,data.chapterId)
+                                } else {
+                                    this.noVideoReport(this.packageId,this.currentCourseId,data.chapterId)
+                                }
                             if(r.isfavor == -1){
                                 this.col = '收藏'
                             } else {
@@ -357,9 +369,13 @@
                     chapterId:this.currentChapterId,
                     courseId:this.currentCourseId
                 }).then(r => {
-                    this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
                     this.videoUrl = r.videoUrl
+                    if(r.videoUrl){
+                        self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                    } else {
+                        self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                    }
                     if(r.isfavor == -1){
                         this.col = '收藏'
                     } else {
@@ -408,9 +424,13 @@
                     chapterId:this.chapterId,
                     courseId:this.currentCourseId
                 }).then(r => {
-                    this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                     this.context = r.contentData
                     this.videoUrl = r.videoUrl
+                    if(r.videoUrl){
+                        self.videoReport(this.packageId,this.currentCourseId,this.chapterId)
+                    } else {
+                        self.noVideoReport(this.packageId,this.currentCourseId,this.this.chapterId)
+                    }
                     if(r.isfavor == -1){
                         this.col = '收藏'
                     } else {
@@ -473,7 +493,11 @@
                                         chapterId:null,
                                         courseId:this.currentCourseId
                                     }).then(r => {
-                                        this.report(this.packageId,this.currentCourseId,null)
+                                        if(r.videoUrl){
+                                            self.videoReport(this.packageId,this.currentCourseId,false)
+                                        } else {
+                                            self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                        }
                                         this.context = r.contentData
                                         this.videoUrl = r.videoUrl
                                         if(r.isfavor == -1){
@@ -501,9 +525,13 @@
                                         chapterId:null,
                                         courseId:this.currentCourseId
                                     }).then(r => {
-                                        this.report(this.packageId,this.currentCourseId,null)
                                         this.context = r.contentData
                                         this.videoUrl = r.videoUrl
+                                        if(r.videoUrl){
+                                            self.videoReport(this.packageId,this.currentCourseId,false)
+                                        } else {
+                                            self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                        }
                                         if(r.isfavor == -1){
                                             this.col = '收藏'
                                         } else {
@@ -545,9 +573,13 @@
                                             chapterId:this.currentChapterId,
                                             courseId:this.currentCourseId
                                         }).then(r => {
-                                            this.report(this.packageId,this.currentCourseId,this.currentChapterId)
                                             this.context = r.contentData
                                             this.videoUrl = r.videoUrl
+                                            if(r.videoUrl){
+                                                self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                                            } else {
+                                                self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                                            }
                                             if(r.isfavor == -1){
                                                 this.col = '收藏'
                                             } else {
@@ -579,9 +611,13 @@
                             chapterContent({
                                 courseId:this.currentCourseId
                             }).then(r => {
-                                this.report(this.packageId,this.currentCourseId,null)
                                 this.context = r.contentData
                                 this.videoUrl = r.videoUrl
+                                if(r.videoUrl){
+                                    self.videoReport(this.packageId,this.currentCourseId,false)
+                                } else {
+                                    self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                }
                                 if(r.isfavor == -1){
                                     this.col = '收藏'
                                 } else {
