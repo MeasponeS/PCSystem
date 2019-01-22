@@ -368,36 +368,39 @@
                 }).catch(_ => {})
                 courseList({coursePackId:this.packageId}).then(r=>{
                     this.course = r.courseList
-                }).catch(_=>{})
-                chapterList({courseId:this.currentCourseId,coursePackId:this.packageId}).then(r=>{
-                    this.chapters = r.chapters;
-                    this.hasStudyCard = r.studyCard;
-                    this.sub = r.chapters[0].sub.length
-                    if(this.sub == 0){
-                        for(let i = 0;i < r.chapters.length;i++){
-                            let have = ''
-                            if(r.chapters[i].id == self.chapterId){
-                                have = r.chapters[i]
-                                setTimeout(_=>{
-                                    self.$refs.sidebarTwo.position(have.id)
-                                },100)
-                            }
-                        }
-                    } else {
-                        for(let i = 0;i < r.chapters.length;i++){
-                            for(let j = 0;j<r.chapters[i].sub.length;j++){
-                                let have = ''
-                                if(r.chapters[i].sub[j].id == this.chapterId){
-                                    have = r.chapters[i]
-                                    setTimeout(_=>{
-                                        self.$refs.sidebar.position(have.id ,this.chapterId)
-                                    },100)
+                    if(this.course[0].courseType != 1){
+                        chapterList({courseId:this.currentCourseId,coursePackId:this.packageId}).then(r=>{
+                            this.chapters = r.chapters;
+                            this.hasStudyCard = r.studyCard;
+                            this.sub = r.chapters[0].sub.length
+                            if(this.sub == 0){
+                                for(let i = 0;i < r.chapters.length;i++){
+                                    let have = ''
+                                    if(r.chapters[i].id == self.chapterId){
+                                        have = r.chapters[i]
+                                        setTimeout(_=>{
+                                            self.$refs.sidebarTwo.position(have.id)
+                                        },100)
+                                    }
+                                }
+                            } else {
+                                for(let i = 0;i < r.chapters.length;i++){
+                                    for(let j = 0;j<r.chapters[i].sub.length;j++){
+                                        let have = ''
+                                        if(r.chapters[i].sub[j].id == this.chapterId){
+                                            have = r.chapters[i]
+                                            setTimeout(_=>{
+                                                self.$refs.sidebar.position(have.id ,this.chapterId)
+                                            },100)
+                                        }
+                                    }
                                 }
                             }
-                        }
+                            
+                        }).catch(_=>{})
                     }
-                    
                 }).catch(_=>{})
+                
             } else if(getUrlInfo('chapterId') && getUrlInfo('courseId') ){
                 this.currentCourseId = this.courseId;
                 this.currentChapterId = this.chapterId;

@@ -16,17 +16,13 @@ export default {
 </script>
 <style lang="scss">
     .el-breadcrumb{
-        line-height: unset!important;
+        line-height: 60px;
     }
     .el-breadcrumb__separator[class*=icon]{
         font-size: 14px;
     }
     .breadcrumb-a{
         display: inline-block;
-        height: 24px;
-        position: relative;
-        top: 5px;
-        line-height: 24px;
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
