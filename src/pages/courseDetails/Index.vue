@@ -25,7 +25,7 @@
                 </div>
                 <div class="letf-content">
                     <video
-                        v-if="videoUrl != ''"
+                        v-if="videoUrl"
                         :src="videoUrl"
                         id="myVideo"
                         preload
@@ -33,7 +33,7 @@
                         controls="true" 
                         controlslist="nodownload"
                     ></video>
-                    <p class="html-info" v-html="context"></p>
+                    <div class="html-info" v-html="context"></div>
                 </div>
             </div>
             <div class="right" :class="{rightB:scrollTop == 1}" :style="'right:'+rightLONG()+'px'">
@@ -102,7 +102,7 @@
                 videoUrlCode:'',
                 col:'收藏',
                 hasStudyCard:'',
-                noLearningCard:true,
+                noLearningCard:false,
                 OpenLearningCard:false,
                 type:'',
                 scrollTop:0

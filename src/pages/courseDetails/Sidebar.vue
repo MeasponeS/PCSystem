@@ -9,7 +9,7 @@
            >
                <div
                    :class="{active : activeChapterIndex.chapter == index}"
-                    class="chapter" @click="collapseIndex = index"
+                    class="chapter" @click="collapseIndex == index?collapseIndex = -1:collapseIndex = index"
                >
                    {{ index+1 }}. {{ item.name }}
                </div>
