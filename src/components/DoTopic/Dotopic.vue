@@ -129,6 +129,7 @@
                         return [optionName,...answerArr].sort();
                     }
                 }
+                return [optionName]
 
             }
         },

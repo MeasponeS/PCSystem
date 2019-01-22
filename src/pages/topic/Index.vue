@@ -33,7 +33,6 @@
                 :phone="ORGINFO.phone"
                 @openCard="openLearningCardShow = true "
         ></NoLearningCard>
-
         <SubMajorSelect
                 v-model="subMajor.show"
                 :subs="subMajor.list"
