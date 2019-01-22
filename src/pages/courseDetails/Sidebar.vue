@@ -223,7 +223,7 @@
                         padding: 0;
                         overflow: hidden;
                         >ul{
-                            height: 300px;
+                            height: 400px;
                             overflow: auto;
                             padding: 0;
                             margin: 0;
@@ -239,7 +239,7 @@
                                 }
                                 .sub-chapter{
                                     border-left: 2px solid #9BB4FF;
-                                    height: 75px;
+                                    height: 65px;
                                     margin-left: 28px;
                                     position: relative;
                                     &:before{
@@ -254,7 +254,7 @@
                                     }
                                     .sub-chapter-content{
                                         height: 100%;
-                                        padding: 18px 24px;
+                                        padding: 13px 24px;
                                         margin-left: 30px;
                                         border-top: 1px solid #E5E5E5;
                                         .top{

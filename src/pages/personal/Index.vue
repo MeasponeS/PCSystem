@@ -21,7 +21,7 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item label="电子邮箱">
-                        <el-input type="email" v-model="form.email" class="inputBox"></el-input>
+                        <el-input type="email" v-model="form.email" class="inputBox"  @blur="checkEmail"></el-input>
                     </el-form-item>
                     <el-form-item label="所在地">
                         <el-cascader
@@ -86,17 +86,30 @@
             }
         },
         methods: {
-          Preservation(){
-            let That = this;
-            let formData = JSON.parse(JSON.stringify(That.form));
-            formData.location = String(That.form.location[1]);
-            updateUserInfo(formData).then(function(res){
-                That.$message({
-                    message: '信息修改成功',
-                    type: 'success'
-                });
-            }).catch(_=>{})
-          }
+            checkEmail(){
+                let myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+                if(!myreg.test(this.form.email)){
+                    this.$message('请输入有效的邮箱地址')
+                    return false
+                }
+                return true
+            },
+            Preservation(){
+                if(this.checkEmail()){
+                    let That = this;
+                    let formData = JSON.parse(JSON.stringify(That.form));
+                    formData.location = String(That.form.location[1]);
+                    updateUserInfo(formData).then(function(res){
+                        That.$message({
+                            message: '信息修改成功',
+                            type: 'success'
+                        });
+                    }).catch(_=>{})
+                } else {
+                     this.$message('请输入有效的邮箱地址')
+                }
+                
+            }
         },
         mounted() {
           let This = this;
