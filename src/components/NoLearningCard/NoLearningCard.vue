@@ -51,6 +51,7 @@
 <style lang="scss">
     @import "../../assets/css/var.scss";
     .no-learning-card{
+        z-index: 9999;
         .el-dialog__wrapper{
             display: flex;
             justify-content: center;

@@ -83,7 +83,7 @@ export default {
                     videoTime:60,
                     status:this.computeFinish(),
                 }).then(_=>{}).catch(_=>{})
-            },1000 * 60)
+            },1000 * 10)
         },
         noVideoReport(coursePackId,courseId,chapterId){
             if(window.reportInterval){clearInterval(window.reportInterval)}
@@ -110,7 +110,7 @@ export default {
                     videoTime:0,
                     status:1,
                 }).then(_=>{}).catch(_=>{})
-            },1000 * 60)
+            },1000 * 10)
 
         },
 
