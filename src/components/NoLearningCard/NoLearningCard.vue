@@ -15,7 +15,8 @@
                     <br>
                     联系电话：{{ phone }}
                 </p>
-                <el-button @click="clickClose" type="primary" style="width: 100%">完成</el-button>
+                <el-button class="btn" @click="clickClose" type="primary" style="width: 100%">完成</el-button>
+                <a href="##" @click="$emit('openCard')">已购买学习卡？点此激活</a>
             </div>
 
         </el-dialog>
@@ -62,7 +63,7 @@
                 margin-top: 0!important;
                 margin: 0;
                 width: 424px;
-                height: 404px;
+                height: 440px;
                 .el-dialog__body{
                     padding: 48px 20px;
                 }
@@ -81,12 +82,14 @@
                         font-size: 20px;
                         margin: 34px 0;
                     }
-                    .close{
-                        cursor: pointer;
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        bottom: -56px;
+                    .btn{
+                        font-size: 18px;
+                    }
+                    a{
+                        font-size:18px;
+                        text-decoration:underline;
+                        color:rgba(77,134,248,1);
+                        line-height:68px;
                     }
                 }
 

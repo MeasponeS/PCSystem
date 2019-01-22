@@ -2,7 +2,7 @@
     <div id="app">
         <Head :companyName="ORGINFO.orgName" :info="USERINFO" :msgCount="MSGCOUNT"></Head>
         <div class="container main-body clearfix">
-            <NoLearningCard v-model="noLearningCard" :hasCloseActive="true" @clickClose="closeCard" :phone="ORGINFO.phone" ></NoLearningCard>
+            <NoLearningCard v-model="noLearningCard" @openCard="openCard" :hasCloseActive="true" @clickClose="closeCard" :phone="ORGINFO.phone" ></NoLearningCard>
             <!--@success=""  下面组件有修改  开卡成功 报success 事件 -->
             <OpenLearningCard v-model="OpenLearningCard" @success="success" :phone="ORGINFO.phone" ></OpenLearningCard>
             <div class="left">
@@ -30,7 +30,6 @@
                         id="myVideo"
                         preload
                         width="784"
-                        
                         controls="true" 
                         controlslist="nodownload"
                     ></video>
@@ -103,7 +102,7 @@
                 videoUrlCode:'',
                 col:'收藏',
                 hasStudyCard:'',
-                noLearningCard:false,
+                noLearningCard:true,
                 OpenLearningCard:false,
                 type:'',
                 scrollTop:0
@@ -140,6 +139,10 @@
 
         },
         methods: {
+            openCard(){
+                this.OpenLearningCard = true;
+                this.noLearningCard = false;
+            },
             nextPage(){
                 if(this.course[0].courseType == 1){
                     this.$message('已经是最后一章了');
