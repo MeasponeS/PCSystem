@@ -1,4 +1,5 @@
 #app {
+    font-size: 16px;
     .header {
         position: absolute;
         top: 0;
@@ -22,16 +23,16 @@
     .startNow {
         position: relative;
         .erweima {
-            width: 6rem;
+            width: 1.2rem;
             position: absolute;
-            left: 31.5rem;
-            bottom: 13rem;
+            left: 6.3rem;
+            bottom: 2.6rem;
         }
         .study {
             position: absolute;
-            left: 54.5rem;
-            bottom: 12rem;
-            font-size: .8rem;
+            left: 10.71rem;
+            bottom: 2.4rem;
+            font-size: 0.18rem;
             a {
                 color: #3A77FF;
                 cursor: pointer;
@@ -79,7 +80,7 @@
             left: 60%;
         }
         .line {
-            width: 10rem;
+            width: 2rem;
             height: 1px;
             position: absolute;
             left: 44%;
