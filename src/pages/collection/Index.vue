@@ -34,7 +34,7 @@
                     >
                         <p @click="goCol(item,item2)">{{item2.name||item2.courseName}}</p>
                         <em></em>
-                        <span @click="cancelCol(item2)">取消收藏</span>
+                        <span  class="cancel" @click="cancelCol(item2)">取消收藏</span>
                         <img src="./img/jiantouyou.png" alt="" @click="goCol(item,item2)">
                     </li>
                 </ul>
