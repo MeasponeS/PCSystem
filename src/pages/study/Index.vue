@@ -192,7 +192,7 @@
                     return item.hasSubmajor == 1
                 })
                 if(this.USERINFO){
-                    subMajor({coursePackId:courseList[0].packageType.id}).then(r=>{
+                    subMajor({coursePackId:courseList1[0].packageType.id}).then(r=>{
                         let subMajor = r.subMajorList.filter((item)=>{
                             return item.selected == 1
                         })
