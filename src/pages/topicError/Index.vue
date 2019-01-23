@@ -117,14 +117,14 @@
                         minId:0,//当前分页最后一条，用于加载更多时的回传
                         total:0,//总数
                         beforeIndex:0,//之前看到哪题的索引
-                        isAllList:false,//是否已经加载完毕
+                        isAllList:true,//是否已经加载完毕
                         list:[]
                     },//未学会
                     studyList:{
                         minId:0,
                         total:0,
                         beforeIndex:0,
-                        isAllList:false,
+                        isAllList:true,
                         list:[]
                     },//已学会
                 },
