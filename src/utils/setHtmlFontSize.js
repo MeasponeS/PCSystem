@@ -1,13 +1,13 @@
 import Config from '../config/app.js'
 
 // 基准大小
-const baseSize = 20
+const baseSize = 100
 
 function setHtmlFontSize() {
     let clientWidth = document.documentElement.clientWidth;
-    if(clientWidth < 1200)return;
+    if(clientWidth<=1200)clientWidth= 1200;
     const scale = clientWidth / 1920
-    document.documentElement.style.fontSize = baseSize * Math.min(scale, 2) + 'px'
+    document.documentElement.style.fontSize = baseSize * Math.min(scale, 2) + 'px';
 }
 // 初始化
 setHtmlFontSize()
