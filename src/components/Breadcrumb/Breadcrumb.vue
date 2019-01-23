@@ -22,7 +22,7 @@ export default {
                 a{
                     font-weight: normal;
                     color:#9D9D9D;
-                    cursor: auto!important;
+                    cursor: default!important;
                 }
                 
             }

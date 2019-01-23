@@ -93,6 +93,9 @@
                     text-overflow: ellipsis;
                     overflow: hidden;
                     cursor: pointer;
+                    span{
+                        float: left;
+                    }
                 }
                 em{
                     position: absolute;
@@ -101,7 +104,7 @@
                     height:9px;
                     background:rgba(150,159,169,1);
                 }
-                span{
+                .cancel{
                     position: absolute;
                     right:86px;
                     color:#969FA9;
@@ -112,6 +115,11 @@
                     position: absolute;
                     right:16px;
                     cursor: pointer;
+                }
+                #node{
+                    z-index: -999;
+                    position: absolute;
+                    top: -999px;
                 }
             }
         }

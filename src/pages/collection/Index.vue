@@ -63,9 +63,12 @@
                         :key="index2"
                        
                     >
-                        <p  @click="toTopicDetails(item2)">{{item2.name}}</p>
+                        <p  @click="toTopicDetails(item2)">
+                            <span id="marqu" @mouseenter="scrollLeft" @mouseleave="cancelScroll">{{item2.name}}</span>  
+                        </p>
+                        <div id="node">{{item2.name}}</div>
                         <em></em>
-                        <span @click="cancelCol(item2)">取消收藏</span>
+                        <span class="cancel" @click="cancelCol(item2)">取消收藏</span>
                         <img @click="toTopicDetails(item2)" src="./img/jiantouyou.png" alt="">
                     </li>
                 </ul>
@@ -93,10 +96,36 @@
                 topic:'',
                 lesson:[],
                 topics:[],
-                course:[]
+                course:[],
+                text:'',
+                timer:null
             }
         },
         methods: {
+            move(e){
+                let width = e.target.getBoundingClientRect().width 
+                let distance = 0 // 位移距离
+                //设置位移
+                if(width > 800){
+                     this.timer = setInterval(function () { 
+                        distance = distance - 1
+                        // 如果位移超过文字宽度，则回到起点
+                        if (-distance >= width) {
+                            distance = 0
+                        }
+                        e.target.style.transform = 'translateX(' + distance + 'px)'
+                    }, 20) 
+                }
+               
+            },
+            scrollLeft(e){
+                this.text = e.target.innerText + ''
+                this.move(e)
+            },
+            cancelScroll(e){
+                clearInterval(this.timer)
+                e.target.style.transform = 'translateX(0)'
+            },
             toTopicDetails(item){
                 window.location.href = `./topicDetails.html?packageId=${item.packageId}&courseId=${item.courseId}&levelId=${item.leveId}&questionId=${item.chapterQuestionId}`
             },
