@@ -64,7 +64,7 @@
                        
                     >
                         <p  @click="toTopicDetails(item2)">
-                            <span id="marqu" @mouseenter="scrollLeft" @mouseleave="cancelScroll">{{item2.name}}</span>  
+                            <span id="marqu" @mouseenter="scrollLeft" @mouseleave="cancelScroll" v-html="item2.name"></span>  
                         </p>
                         <div id="node">{{item2.name}}</div>
                         <em></em>
