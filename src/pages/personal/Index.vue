@@ -43,7 +43,7 @@
                     </el-form-item>
                     <el-form-item label="职称" class="f2">
                         <el-select v-model="form.title" placeholder="请选择职称" class="inputBox">
-                            <el-option v-for="item in jobNames" :key="item.id" :label="item.name" :value="item.id"></el-option>
+                            <el-option v-for="item in jobNames" :key="item.id" :label="item.name" :value="item.code"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="参加工作时间" >
@@ -108,7 +108,7 @@
                 } else {
                      this.$message('请输入有效的邮箱地址')
                 }
-                
+
             }
         },
         mounted() {
