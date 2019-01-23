@@ -12,6 +12,7 @@
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
+                            <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                             <div class="info">
                                 <el-popover
                                         title=""
@@ -31,7 +32,6 @@
                             <div class="progress">
                                 <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
                                 <el-progress class="val" :percentage="computedProgress(item.finishChapterSize,item.chapterSize)" :show-text="false"></el-progress>
-                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                             </div>
                             
                             <div class="list-btn">

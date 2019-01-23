@@ -54,7 +54,17 @@
                     position: relative;
                     flex: 1;
                     margin-left: 20px;
+                    .subMajor{
+                        position: absolute;
+                        left:0;
+                        bottom: 0;
+                        cursor: pointer;
+                        color:#2B60FF;
+                        font-size:18px;
+                        font-weight: 400;
+                        text-decoration: underline;
 
+                    }
                     h2 {
                         flex: 1;
                         font-weight: 400;
@@ -115,17 +125,7 @@
                         .val {
                             margin-top: 10px;
                         }
-                        .subMajor{
-                            position: absolute;
-                            left:0;
-                            bottom: 0;
-                            cursor: pointer;
-                            color:#2B60FF;
-                            font-size:18px;
-                            font-weight: 400;
-                            text-decoration: underline;
-    
-                        }
+                        
                     }
                 }
             }
