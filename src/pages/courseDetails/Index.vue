@@ -12,7 +12,7 @@
                         :nav="[
                             {url:'./study.html',name:packageName},
                             {url:'./study.html',name:currentCourseName},
-                            {url:'javascript:;',name:currentChapterName}
+                            {url:'javascript:;',name:currentChapterName || currentCourseName}
                         ]"
                     ></Breadcrumb>
                     <p class="nav-act">
