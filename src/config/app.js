@@ -2,7 +2,7 @@
 const devApiUrl = 'http://192.168.49.118:10003';
 
 //正式环境变量,注意修改
-const proApiUrl = 'https://pctestapi.hulian120.com';
+const proApiUrl = 'https://raxtapi.hulian120.com';
 
 const nodeDevEnv = process.env.NODE_ENV=='development' ? true : false;
 
