@@ -14,17 +14,17 @@
                             <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
                             <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                             <div class="info">
-                                <el-popover
-                                        title=""
-                                        width="474"
-                                        placement="bottom-end"
-                                        trigger="hover"
-                                >
-                                    <div class="info-content">
-                                        {{item.packageType.description}}
-                                    </div>
-                                    <div class="info-block" slot="reference">简介</div>
-                                </el-popover>
+                            <el-popover
+                                    title=""
+                                    width="474"
+                                    placement="bottom-end"
+                                    trigger="hover"
+                            >
+                                <div class="info-content">
+                                    {{item.packageType.description}}
+                                </div>
+                                <div class="info-block" slot="reference">简介</div>
+                            </el-popover>
                             </div>
                             <div class="course">
                                 共{{item.chapterSize}}小节(含习题) <span>|</span> {{item.studySize}}人已学
@@ -44,6 +44,7 @@
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
+                            <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                             <div class="info">
                                 <el-popover
                                         title=""
