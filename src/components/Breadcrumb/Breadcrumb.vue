@@ -22,6 +22,7 @@ export default {
                 a{
                     font-weight: normal;
                     color:#9D9D9D;
+                    cursor: auto!important;
                 }
                 
             }
@@ -38,7 +39,6 @@ export default {
         font-weight: 100;
         color: #9D9D9D!important;
         font-size: 14px;
-        cursor: pointer;
         &:hover,&[href='javascript:;']{
             color: #9D9D9D!important;
         }
