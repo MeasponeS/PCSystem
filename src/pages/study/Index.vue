@@ -183,26 +183,33 @@
 
         },
         mounted() {
+  
             courses().then(r=>{
                 this.lastStudy = r.lastStudyRecord;
-                this.orgList = r.orgCourseInformationList;
-                this.userList = r.userCourseInformationList;
-                let courseList = this.userList.concat(this.orgList)
-                courseList = courseList.filter((item)=>{
+                this.orgList = r.orgCourseInformationList || [];
+                this.userList = r.userCourseInformationList || [];
+                let courseList = [...this.userList,...this.orgList]
+                let courseList1 = courseList.filter((item)=>{
                     return item.hasSubmajor == 1
                 })
-                subMajor({coursePackId:courseList[0].packageType.id}).then(r=>{
-                    let subMajor = r.subMajorList.filter((item)=>{
-                        return item.selected == 1
-                    })
-                    if(subMajor != ''){
-                        this.subName = subMajor[0].name
-                        this.subMajor.isSelect = subMajor[0].packId
-                    } else {
-                        this.subName = courseList[0].packageType.name
-                    }
-                }).catch(_=>{})
+                if(this.USERINFO){
+                    subMajor({coursePackId:courseList[0].packageType.id}).then(r=>{
+                        let subMajor = r.subMajorList.filter((item)=>{
+                            return item.selected == 1
+                        })
+                        if(subMajor != ''){
+                            this.subName = subMajor[0].name
+                            this.subMajor.isSelect = subMajor[0].packId
+                        } else {
+                            this.subName = courseList[0].packageType.name
+                        }
+                    }).catch(_=>{})
+                } else {
+                    this.subName = courseList[0].packageType.name
+                }
+                
             }).catch(_=>{})
+            
         },
         beforeDestroy: function () {
 
