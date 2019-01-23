@@ -33,7 +33,7 @@
                                 <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
                                 <el-progress class="val" :percentage="computedProgress(item.finishChapterSize,item.chapterSize)" :show-text="false"></el-progress>
                             </div>
-                            
+
                             <div class="list-btn">
                                 <el-button type="primary" @click="startLearning(item)">开始学习</el-button>
                                 <el-button class="primary-btn" v-if="item.hasQuestion" @click="enterTopic">进入习题集</el-button>
@@ -44,6 +44,7 @@
                         <img :src="item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
+                            <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                             <div class="info">
                                 <el-popover
                                         title=""
@@ -65,7 +66,6 @@
                                 <el-progress class="val" :percentage="computedProgress(item.finishChapterSize,item.chapterSize)" :show-text="false"></el-progress>
                             </div>
                             <div class="list-btn">
-                                <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor">切换亚专业</div>
                                 <el-button type="primary" @click="startLearning(item)">开始学习</el-button>
                                 <el-button class="primary-btn" v-if="item.hasQuestion" @click="enterTopic">进入习题集</el-button>
                             </div>
