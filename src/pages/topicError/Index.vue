@@ -14,9 +14,11 @@
                             ]"
                             ></Breadcrumb>
                         </div>
-                        <div class="do" v-if="topics.length != 0">
+                        <div class="do" v-if="wrongQuestion[studyStateToggle].list.length != 0">
                             <div class="do-top">
-                                <div class="do-title">第{{ topicIndex(activeQuestionIndex) }}题/共{{ this.wrongQuestion.wronTotal }}题</div>
+                                <!--<div class="do-title">第{{ activeQuestionIndex +1 }}题/共{{ wrongQuestion[studyStateToggle].total }}题</div>-->
+                                <div class="do-title">第{{ activeQuestionIndex +1 }}题</div>
+
                                 <div class="children-topic">
                                     <ul v-if="topics[activeQuestionIndex].newType != 1">
                                         <li :class="{active:isA3A4B1Done(i)}"  @click="positioning(index)" v-for="(index,i) in topicIndex(activeQuestionIndex,true)">{{ index }}</li>
@@ -64,8 +66,8 @@
                             </div>
                         </div>
                         <div class="checkpoint" >
-                            <div v-if="topics.length != 0">
-                                <ul>
+                            <div>
+                                <ul v-if="topics.length != 0">
                                     <li
                                             class="li"
                                             :class="{active:activeQuestionIndex == index}"
@@ -79,12 +81,13 @@
                                                 end:{text:'已学会',color:'#31b68f',progress:100}
                                             }"
                                         ></RectProgress>
-                                        <span style="margin-left: 10px">第{{ topicIndex(index) }}题</span>
+                                        <span style="margin-left: 10px">第{{ index + 1 }}题</span>
                                     </li>
                                 </ul>
-                                <el-button v-if="!wrongQuestion.isAllList" class="load-more" @click="loadMore" style="width: 100%">加载更多</el-button>
+                                <div v-else style="width: 100%;height: 100px;line-height: 100px;text-align: center">暂无数据</div>
                             </div>
-                            <div v-else style="width: 100%;height: 100px;line-height: 100px;text-align: center">暂无数据</div>
+                            <el-button v-if="!wrongQuestion[studyStateToggle].isAllList" class="load-more" @click="loadMore" style="width: 100%">加载更多</el-button>
+
                         </div>
                     </div>
                 </div>
@@ -104,31 +107,28 @@
     import {getMyWrongQuestion,wrongQuestionLearnd} from '../../api/topic.js'
     import {userfavor} from '../../api/common.js'
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
-    //import data from './data.js'
     export default {
         name: 'app',
         mixins: [CommonMixin],
         data: function () {
             return {
                 wrongQuestion:{
-                    wrongMinId:0,
-                    wronTotal:'0',
-                    isAllList:false,
-                    studyList:[],
-                    preStudyList:[]
+                    preStudyList:{
+                        minId:0,//当前分页最后一条，用于加载更多时的回传
+                        total:0,//总数
+                        beforeIndex:0,//之前看到哪题的索引
+                        isAllList:false,//是否已经加载完毕
+                        list:[]
+                    },//未学会
+                    studyList:{
+                        minId:0,
+                        total:0,
+                        beforeIndex:0,
+                        isAllList:false,
+                        list:[]
+                    },//已学会
                 },
                 studyStateToggle:'preStudyList',
-                // topics:[{
-                //     "newType": 1,
-                //     "questionId": 0,
-                //     "analyisis": "",
-                //     "index": 1,
-                //     "typeB": 1,
-                //     "answer": [],
-                //     "questionResult": [],
-                //     "name": "",
-                //     "historyAnswer": [],
-                // }],//关卡的所有问题,字段只是用来初始化
                 activeQuestionIndex:0,
                 answersPopup:false,
                 topicInfo:{//关卡的信息
@@ -154,44 +154,6 @@
                     return false
                 }
             },
-            // submitAnswer(){
-            //     let topics = this.topics;
-            //     let answer = {
-            //         "levelId": this.topicInfo.levelId,
-            //         "takeTime": this.takeTime,
-            //         "coursePackId": this.topicInfo.packageId,
-            //         "courseId":this.topicInfo.courseId,
-            //         "answers": {}
-            //     };
-            //
-            //     topics.forEach(r=>{
-            //         if(1 == r.newType){
-            //             answer.answers[r.questionId] = r.historyAnswer.join('');
-            //             return;
-            //         }
-            //         if(3 == r.newType){
-            //             r.a3a4Questions.forEach(q=>{
-            //                 answer.answers[q.questionId] = q.historyAnswer.join('');
-            //                 return;
-            //             })
-            //             return;
-            //         }
-            //
-            //         if(5 == r.newType){
-            //             r.questionArr.forEach(q=>{
-            //                 answer.answers[q.questionId] = q.historyAnswer.join('');
-            //                 return;
-            //             })
-            //             return;
-            //         }
-            //     })
-            //
-            //
-            //
-            //     // commitQuestionAnswer(answer).then(r=>{
-            //     //     console.log(r);
-            //     // }).catch(_=>{})
-            // },
             lookAnswer(){
                 this.answersPopup = true;
             },
@@ -323,45 +285,52 @@
                 }).catch(_=>{})
             },
             clickStudy(key){
-                if('studyList' == key){
-                    window.beforePreStudyListIndex = this.activeQuestionIndex;
-                    if(window.beforeStudyListIndex){
-                        this.activeQuestionIndex = window.beforeStudyListIndex;
-                    }else {
-                        this.activeQuestionIndex = 0;
-                    }
-                }else {
-                    window.beforeStudyListIndex = this.activeQuestionIndex;
-                    if(window.beforePreStudyListIndex){
-                        this.activeQuestionIndex = window.beforePreStudyListIndex;
-                    }else {
-                        this.activeQuestionIndex = 0;
-                    }
-                }
                 this.studyStateToggle = key;
+
+
+                if('studyList' == key){
+                    //当前点击了已学会，先把当前的索引记录在未学会里
+                    this.wrongQuestion.preStudyList.beforeIndex = this.activeQuestionIndex;
+                    this.activeQuestionIndex = this.wrongQuestion.studyList.beforeIndex;
+                }else {
+                    this.wrongQuestion.studyList.beforeIndex = this.activeQuestionIndex;
+                    this.activeQuestionIndex = this.wrongQuestion.preStudyList.beforeIndex;
+                }
+
+                let state = this.studyStateToggle;
+                if(!this.wrongQuestion[state].isAllList && this.wrongQuestion[state].list.length == 0){
+                    this.getPage();
+                }
+
             },
             getPage(topicId = null){
+                const loading = this.$loading({lock: true,});
+
+
+                let state = this.studyStateToggle;
                 let p = {
                     coursePackId:this.topicInfo.packageId,
                     courseId:this.topicInfo.courseId,
+                    type:state == "studyList" ? 1 : 2,
                 };
                 if(topicId){
-                    p.pageId = topicId;
+                    p.wrongMinId = topicId;
                 }
                 getMyWrongQuestion(p).then(r=>{
-                    this.wrongQuestion.wronTotal = r.wronTotal;
-                    this.wrongQuestion.wrongMinId = r.wrongMinId;
-                    this.wrongQuestion.isAllList = r.isAllList == 1 ? true : false;
+                    this.wrongQuestion[state].minId = r.wrongMinId;
+                    this.wrongQuestion[state].total = r.wronTotal;;
+                    this.wrongQuestion[state].isAllList = r.isAllList == 1 ? true : false;
 
                     this.topicInfo.courseN = r.packName;
 
-                    this.wrongQuestion.studyList.push(...r.studyList);
-                    this.wrongQuestion.preStudyList.push(...r.preStudyList);
-
-                }).catch(_=>{})
+                    this.wrongQuestion[state].list.push(...r.list);
+                    loading.close()
+                }).catch(_=>{
+                    loading.close()
+                })
             },
             loadMore(){
-                this.getPage(this.wrongQuestion.wrongMinId)
+                this.getPage(this.wrongQuestion[this.studyStateToggle].minId)
             }
         },
         mounted() {
@@ -372,22 +341,8 @@
         },
         computed: {
             topics:function(){
-                let question = this.wrongQuestion;
-                // if(question[this.studyStateToggle].length == 0 ){return [{
-                //     "newType": 1,
-                //     "questionId": 0,
-                //     "analyisis": "",
-                //     "index": 1,
-                //     "typeB": 1,
-                //     "answer": [],
-                //     "questionResult": [],
-                //     "name": "",
-                //     "historyAnswer": [],
-                // }]}
-
-                return question[this.studyStateToggle]
-
-
+                let question = this.wrongQuestion[this.studyStateToggle];
+                return question.list
             },
             // topicTotal: function () {
             //     let topicLength = this.topics.length;

@@ -57,7 +57,7 @@
                             <p>当前及格率：{{ statistics.passRate }}%</p>
                             <p>当前及格人数：{{ statistics.passSize }}人</p>
                             <p>当前最高分：{{ statistics.maxScore}}分<span>共{{ statistics.maxScoreUserSize }}人</span></p>
-                            <p>当前最低分：{{ statistics.maxScore }}分<span>共{{ statistics.minScoreUserSize }}人</span></p>
+                            <p>当前最低分：{{ statistics.minScore }}分<span>共{{ statistics.minScoreUserSize }}人</span></p>
                             <a href="./exam.html">
                                 <el-button type="primary" class="btn">完成</el-button>
                             </a>

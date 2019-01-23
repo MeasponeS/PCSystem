@@ -66,7 +66,7 @@
                     </div>
                     <EmptyTemplate v-else msg="暂无未开放的考试" imgKey="Exam" ></EmptyTemplate>
                 </div>
-                <div v-show="status=='exceed'">
+                <div v-show="status=='exceed'" class="exceed">
                     <div class="courseList" v-if="examInfo.exceed.list.length != 0">
                         <ul class="examList">
                             <li v-for="(item,i) in examInfo.exceed.list" :key='item.id'>
