@@ -93,17 +93,6 @@
                         position: absolute;
                         bottom: 0;
                         right: 0;
-                        .subMajor{
-                            position: absolute;
-                            left: -586px;
-                            top: 10px;
-                            cursor: pointer;
-                            color:#2B60FF;
-                            font-size:18px;
-                            font-weight: 400;
-                            text-decoration: underline;
-
-                        }
                     }
                     .course {
                         margin-top: 20px;
@@ -125,6 +114,17 @@
                         }
                         .val {
                             margin-top: 10px;
+                        }
+                        .subMajor{
+                            position: absolute;
+                            left:0;
+                            bottom: 0;
+                            cursor: pointer;
+                            color:#2B60FF;
+                            font-size:18px;
+                            font-weight: 400;
+                            text-decoration: underline;
+    
                         }
                     }
                 }

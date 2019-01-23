@@ -167,7 +167,7 @@
             },
             goCol(item2,item){
                 let packageName = item.packageName
-                if(item.courseId == item.chapterQuestionId){
+                if(item.courseId == item.chapterQuestionId || item.chapterQuestionId == 0){
                     window.location.href = './courseDetails.html?courseId='  + item.courseId + '&id='+item2.id+'&name=' + packageName+'&type='+1
                 } else {
                     window.location.href = './courseDetails.html?chapterId=' + item.chapterQuestionId +'&courseId=' + item.courseId + '&id='+item2.id+'&name=' + packageName+'&type='+1
