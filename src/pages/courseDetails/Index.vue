@@ -24,15 +24,21 @@
                     </p>
                 </div>
                 <div class="letf-content">
-                    <video
-                        v-if="videoUrl"
-                        :src="videoUrl"
+                    <div 
+                        class="item" 
+                        v-if="playerOptions.sources[0].src"
                         id="myVideo"
                         preload
                         width="784"
-                        controls="true" 
-                        controlslist="nodownload"
-                    ></video>
+                    >
+                        <div class="player">
+                        <video-player  
+                            class="vjs-custom-skin"
+                            :options="playerOptions"
+                        >
+                        </video-player>
+                        </div>
+                    </div>
                     <div class="html-info" v-html="context"></div>
                 </div>
             </div>
@@ -81,6 +87,9 @@
     import { getUrlInfo, getUserInfo } from '../../utils/dataStorage.js'
     import { chapterContent,courseList,chapterList,getCoursePlay,checkDistribute } from '../../api/study.js'
     import { userfavor } from '../../api/common.js'
+    import '../../../node_modules/vue-video-player/src/custom-theme.css'
+    import { videoPlayer } from 'vue-video-player'
+    import 'video.js/dist/video-js.css'
     export default {
         name: "app",
         mixins: [CommonMixin,report],
@@ -98,14 +107,27 @@
                 sub:'',
                 packageName:'',
                 packageId:'',
-                videoUrl:'',
                 videoUrlCode:'',
                 col:'收藏',
                 hasStudyCard:'',
                 noLearningCard:false,
                 OpenLearningCard:false,
                 type:'',
-                scrollTop:0
+                scrollTop:0,
+                playerOptions: {
+                    width: '784',
+                    autoplay: true,
+                    muted: false,
+                    language: 'zh-cn',
+                    playbackRates: [0.7, 1.0, 1.5, 2.0],
+                    sources: [{
+                        type: "video/mp4",
+                        // mp4
+                        src: ''
+                        // webm
+                        // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+                        }],
+                }
             };
         },
         // currentCourseName
@@ -185,7 +207,8 @@
                                 courseId:this.currentCourseId
                             }).then(r => {
                                 this.context = r.contentData
-                                this.videoUrl = r.videoUrl
+                                this.playerOptions.sources[0].src = ''
+                                this.playerOptions.sources[0].src = r.videoUrl
                                 if(r.videoUrl){
                                     this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                 } else {
@@ -202,8 +225,9 @@
                         } else {
                             getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
                                 this.context = r.context
-                                this.videoUrl = r.videoPath
-                                if(r.videoUrl){
+                                this.playerOptions.sources[0].src = ''
+                                this.playerOptions.sources[0].src = r.videoPath
+                                if(r.videoPath){
                                     this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                 } else {
                                     this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
@@ -232,7 +256,8 @@
                                             this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                         }
                                         this.context = r.contentData
-                                        this.videoUrl = r.videoUrl
+                                        this.playerOptions.sources[0].src = ''
+                                        this.playerOptions.sources[0].src = r.videoUrl
                                         if(r.isfavor == -1){
                                             this.col = '收藏'
                                         } else {
@@ -244,8 +269,9 @@
                                 } else {
                                     getCoursePlay({chapterId:data.subChapterId.id}).then(r=>{
                                         this.context = r.context
-                                        this.videoUrl = r.videoPath
-                                        if(r.videoUrl){
+                                        this.playerOptions.sources[0].src = ''
+                                        this.playerOptions.sources[0].src = r.videoPath
+                                        if(r.videoPath){
                                             this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                         } else {
                                             this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
@@ -279,7 +305,8 @@
                             courseId:this.currentCourseId
                         }).then(r => {
                             this.context = r.contentData
-                            this.videoUrl = r.videoUrl
+                            this.playerOptions.sources[0].src = ''
+                            this.playerOptions.sources[0].src = r.videoUrl
                             if(r.videoUrl){
                                     this.videoReport(this.packageId,this.currentCourseId,data.chapterId)
                                 } else {
@@ -303,7 +330,6 @@
                         }).catch(_=>{})
                     }
                 }
-                
             },
             getChapters(id){
                 chapterList({courseId:id,coursePackId:this.packageId}).then(r=>{
@@ -314,7 +340,7 @@
             },
 
             addCol(){
-                if(this.videoUrl == ''){
+                if(this.playerOptions.sources[0].src == ''){
                     this.videoUrlCode = '1'
                 }else{
                     this.videoUrlCode = '0'
@@ -380,7 +406,8 @@
                     courseId:this.currentCourseId
                 }).then(r => {
                     this.context = r.contentData
-                    this.videoUrl = r.videoUrl
+                    this.playerOptions.sources[0].src = ''
+                    this.playerOptions.sources[0].src = r.videoUrl
                     if(r.videoUrl){
                         self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
                     } else {
@@ -435,7 +462,8 @@
                     courseId:this.currentCourseId
                 }).then(r => {
                     this.context = r.contentData
-                    this.videoUrl = r.videoUrl
+                    this.playerOptions.sources[0].src = ''
+                    this.playerOptions.sources[0].src = r.videoUrl
                     if(r.videoUrl){
                         self.videoReport(this.packageId,this.currentCourseId,this.chapterId)
                     } else {
@@ -509,7 +537,8 @@
                                             self.noVideoReport(this.packageId,this.currentCourseId,false)
                                         }
                                         this.context = r.contentData
-                                        this.videoUrl = r.videoUrl
+                                        this.playerOptions.sources[0].src = ''
+                                        this.playerOptions.sources[0].src = r.videoUrl
                                         if(r.isfavor == -1){
                                             this.col = '收藏'
                                         } else {
@@ -536,7 +565,8 @@
                                         courseId:this.currentCourseId
                                     }).then(r => {
                                         this.context = r.contentData
-                                        this.videoUrl = r.videoUrl
+                                        this.playerOptions.sources[0].src = ''
+                                        this.playerOptions.sources[0].src = r.videoUrl
                                         if(r.videoUrl){
                                             self.videoReport(this.packageId,this.currentCourseId,false)
                                         } else {
@@ -584,7 +614,8 @@
                                             courseId:this.currentCourseId
                                         }).then(r => {
                                             this.context = r.contentData
-                                            this.videoUrl = r.videoUrl
+                                            this.playerOptions.sources[0].src = ''
+                                            this.playerOptions.sources[0].src = r.videoUrl
                                             if(r.videoUrl){
                                                 self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
                                             } else {
@@ -622,7 +653,8 @@
                                 courseId:this.currentCourseId
                             }).then(r => {
                                 this.context = r.contentData
-                                this.videoUrl = r.videoUrl
+                                this.playerOptions.sources[0].src = ''
+                                this.playerOptions.sources[0].src = r.videoUrl
                                 if(r.videoUrl){
                                     self.videoReport(this.packageId,this.currentCourseId,false)
                                 } else {
@@ -645,7 +677,7 @@
         },
         beforeDestroy: function () {
         },
-        components: {Breadcrumb,Sidebar,SidebarTwo,NoLearningCard,OpenLearningCard}
+        components: {Breadcrumb,Sidebar,SidebarTwo,NoLearningCard,OpenLearningCard,videoPlayer}
     };
 </script>
 

@@ -13,7 +13,8 @@
     "good-storage": "^1.1.0",
     "js-cookie": "^2.2.0",
     "normalize.css": "^8.0.0",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
