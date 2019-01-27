@@ -85,7 +85,7 @@
     import SidebarTwo from './SidebarTwo.vue'
     import { Loading } from 'element-ui';
     import { getUrlInfo, getUserInfo } from '../../utils/dataStorage.js'
-    import { chapterContent,courseList,chapterList,getCoursePlay,checkDistribute } from '../../api/study.js'
+    import { chapterContent,courseList,chapterList,getCoursePlay,checkDistribute,getCourseHtml } from '../../api/study.js'
     import { userfavor } from '../../api/common.js'
     import '../../../node_modules/vue-video-player/src/custom-theme.css'
     import { videoPlayer } from 'vue-video-player'
@@ -166,7 +166,15 @@
                 this.noLearningCard = false;
             },
             nextPage(){
-                if(this.course[0].courseType == 1){
+                let typeOne = this.course.filter((item)=>{
+                    return item.courseType == 1
+                })
+                let ids = []
+                for(let i = 0; i< typeOne.length;i++){
+                    ids.push(typeOne[i].id+'')
+                }
+                let findIndex = ids.indexOf(this.currentCourseId)
+                if(findIndex != -1){
                     this.$message('已经是最后一章了');
                 }else {
                     if(this.chapters[0].courseType == -1){
@@ -178,7 +186,15 @@
                 }
             },
             prevPage(){
-                if(this.course[0].courseType == 1){
+                let typeOne = this.course.filter((item)=>{
+                    return item.courseType == 1
+                })
+                let ids = []
+                for(let i = 0; i< typeOne.length;i++){
+                    ids.push(typeOne[i].id+'')
+                }
+                let findIndex = ids.indexOf(this.currentCourseId)
+                if(findIndex != -1){
                     this.$refs.sidebarTwo.previousChapter()
                     
                 }else {
@@ -208,7 +224,6 @@
                                 packId:getUrlInfo('id')
                             }).then(r => {
                                 this.context = r.contentData
-                                this.playerOptions.sources[0].src = ''
                                 this.playerOptions.sources[0].src = r.videoUrl
                                 if(this.USERINFO){
                                     if(r.videoUrl){
@@ -229,7 +244,6 @@
                         } else {
                             getCoursePlay({chapterId:data.subChapterId.id,packId:getUrlInfo('id')}).then(r=>{
                                 this.context = r.context
-                                this.playerOptions.sources[0].src = ''
                                 this.playerOptions.sources[0].src = r.videoPath
                                 if(this.USERINFO){
                                     if(r.videoPath){
@@ -267,7 +281,6 @@
                                         }
                                         
                                         this.context = r.contentData
-                                        this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoUrl
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
@@ -280,7 +293,6 @@
                                 } else {
                                     getCoursePlay({chapterId:data.subChapterId.id,packId:getUrlInfo('id')}).then(r=>{
                                         this.context = r.context
-                                        this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoPath
                                         if(this.USERINFO){
                                             if(r.videoPath){
@@ -320,7 +332,6 @@
                             packId:getUrlInfo('id')
                         }).then(r => {
                             this.context = r.contentData
-                            this.playerOptions.sources[0].src = ''
                             this.playerOptions.sources[0].src = r.videoUrl
                             if(this.USERINFO){
                                 if(r.videoUrl){
@@ -350,11 +361,45 @@
                 }
             },
             getChapters(id){
-                chapterList({courseId:id,coursePackId:this.packageId}).then(r=>{
-                    this.chapters = r.chapters;
-                    this.hasStudyCard = r.studyCard
-                    this.sub = r.chapters[0].sub.length
-                }).catch(_=>{})
+                let typeOne = this.course.filter((item)=>{
+                    return item.courseType == 1
+                })
+                let ids = []
+                for(let i = 0; i< typeOne.length;i++){
+                    ids.push(typeOne[i].id+'')
+                }
+                let findIndex = ids.indexOf(id)
+                if(findIndex != -1){
+                    chapterContent({
+                        chapterId:null,
+                        courseId:ids[findIndex],
+                        packId:this.packageId
+                    }).then(r => {
+                        if(this.USERINFO){
+                            this.chapters = []
+                            this.currentChapterId = ''
+                            this.currentChapter = ''
+                            if(r.videoUrl){
+                                this.videoReport(this.packageId,ids[findIndex],false)
+                            } else {
+                                this.noVideoReport(this.packageId,ids[findIndex],false)
+                            }
+                        }
+                        this.context = r.contentData
+                        this.playerOptions.sources[0].src = r.videoUrl
+                        if(r.isfavor == 0){
+                            this.col = '取消收藏'
+                        } else {
+                            this.col = '收藏'
+                        }
+                    }).catch(_ => {})
+                } else {
+                    chapterList({courseId:id,coursePackId:this.packageId}).then(r=>{
+                        this.chapters = r.chapters;
+                        this.hasStudyCard = r.studyCard
+                        this.sub = r.chapters[0].sub.length
+                    }).catch(_=>{})
+                }
             },
 
             addCol(){
@@ -363,7 +408,7 @@
                 }else{
                     this.videoUrlCode = '0'
                 }
-                let submitId = this.subChapterId || this.chapterId
+                let submitId = this.currentChapter || this.currentChapterId
                 let type = '0'
                 if(!submitId){
                     type = '2'
@@ -425,7 +470,6 @@
                     packId:this.packageId
                 }).then(r => {
                     this.context = r.contentData
-                    this.playerOptions.sources[0].src = ''
                     this.playerOptions.sources[0].src = r.videoUrl
                     if(this.USERINFO){
                         if(r.videoUrl){
@@ -434,7 +478,6 @@
                             self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
                         }
                     }
-                    
                     if(r.isfavor == 0){
                         this.col = '取消收藏'
                     } else {
@@ -443,7 +486,15 @@
                 }).catch(_ => {})
                 courseList({coursePackId:this.packageId}).then(r=>{
                     this.course = r.courseList
-                    if(this.course[0].courseType != 1){
+                    let typeOne = this.course.filter((item)=>{
+                        return item.courseType == 1
+                    })
+                    let ids = []
+                    for(let i = 0; i< typeOne.length;i++){
+                        ids.push(typeOne[i].id+'')
+                    }
+                    let findIndex = ids.indexOf(this.currentCourseId)
+                    if(findIndex == -1){
                         chapterList({courseId:this.currentCourseId,coursePackId:this.packageId}).then(r=>{
                             this.chapters = r.chapters;
                             this.hasStudyCard = r.studyCard;
@@ -473,71 +524,139 @@
                             }
                             
                         }).catch(_=>{})
+                    } else {
+                        chapterContent({
+                            chapterId:null,
+                            courseId:ids[findIndex],
+                            packId:this.packageId
+                        }).then(r => {
+                            if(this.USERINFO){
+                                if(r.videoUrl){
+                                    self.videoReport(this.packageId,ids[findIndex],false)
+                                } else {
+                                    self.noVideoReport(this.packageId,ids[findIndex],false)
+                                }
+                            }
+                            this.chapters = []
+                            this.currentChapterId = ''
+                            this.currentChapter = ''
+                            this.context = r.contentData
+                            this.playerOptions.sources[0].src = r.videoUrl
+                            if(r.isfavor == 0){
+                                this.col = '取消收藏'
+                            } else {
+                                this.col = '收藏'
+                            }
+                        }).catch(_ => {})
                     }
                 }).catch(_=>{})
                 
             } else if(getUrlInfo('chapterId') && getUrlInfo('courseId') ){
                 this.currentCourseId = this.courseId;
                 this.currentChapterId = this.chapterId;
-                chapterContent({
-                    chapterId:this.chapterId,
-                    courseId:this.currentCourseId,
-                    packId:this.packageId
-                }).then(r => {
-                    this.context = r.contentData
-                    this.playerOptions.sources[0].src = ''
-                    this.playerOptions.sources[0].src = r.videoUrl
-                    if(this.USERINFO){
-                        if(r.videoUrl){
-                            self.videoReport(this.packageId,this.currentCourseId,this.chapterId)
-                        } else {
-                            self.noVideoReport(this.packageId,this.currentCourseId,this.this.chapterId)
-                        }
-                    }
-                    
-                    if(r.isfavor == 0){
-                        this.col = '取消收藏'
-                    } else {
-                        this.col = '收藏'
-                    }
-                }).catch(_ => {})
                 courseList({coursePackId:this.packageId}).then(r=>{
                     this.course = r.courseList
-                }).catch(_=>{})
-                chapterList({courseId:this.courseId,coursePackId:this.packageId}).then(r=>{
-                    this.chapters = r.chapters;
-                    this.hasStudyCard = r.studyCard;
-                    this.sub = r.chapters[0].sub.length
-                    if(this.sub == 0){
-                        for(let i = 0;i < r.chapters.length;i++){
-                            let have = ''
-                            if(r.chapters[i].id == self.chapterId){
-                                have = r.chapters[i]
-                                setTimeout(_=>{
-                                    self.$refs.sidebarTwo.position(have.id)
-                                },100)
-                            }
-                        }
-                    } else {
-                        for(let i = 0;i < r.chapters.length;i++){
-                            for(let j = 0;j<r.chapters[i].sub.length;j++){
-                                let have = ''
-                                if(r.chapters[i].sub[j].id == this.chapterId){
-                                    have = r.chapters[i]
-                                    setTimeout(_=>{
-                                        self.$refs.sidebar.position(have.id ,this.chapterId)
-                                    },100)
+                    let typeOne = this.course.filter((item)=>{
+                        return item.courseType == 1
+                    })
+                    let ids = []
+                    for(let i = 0; i< typeOne.length;i++){
+                        ids.push(typeOne[i].id+'')
+                    }
+                    let findIndex = ids.indexOf(this.currentCourseId)
+                    if(findIndex == -1){
+                        chapterList({courseId:this.courseId,coursePackId:this.packageId}).then(r=>{
+                            this.chapters = r.chapters;
+                            this.hasStudyCard = r.studyCard;
+                            this.sub = r.chapters[0].sub.length
+                            if(this.sub == 0){
+                                for(let i = 0;i < r.chapters.length;i++){
+                                    let have = ''
+                                    if(r.chapters[i].id == self.chapterId){
+                                        have = r.chapters[i]
+                                        setTimeout(_=>{
+                                            self.$refs.sidebarTwo.position(have.id)
+                                        },100)
+                                    }
+                                }
+                            } else {
+                                for(let i = 0;i < r.chapters.length;i++){
+                                    for(let j = 0;j<r.chapters[i].sub.length;j++){
+                                        let have = ''
+                                        if(r.chapters[i].sub[j].id == this.chapterId){
+                                            have = r.chapters[i]
+                                            setTimeout(_=>{
+                                                self.$refs.sidebar.position(have.id ,this.chapterId)
+                                            },100)
+                                        }
+                                    }
                                 }
                             }
-                        }
+                        }).catch(_=>{})
+                        chapterContent({
+                            chapterId:this.chapterId,
+                            courseId:this.currentCourseId,
+                            packId:this.packageId
+                        }).then(r => {
+                            this.context = r.contentData
+                            this.playerOptions.sources[0].src = r.videoUrl
+                            if(this.USERINFO){
+                                if(r.videoUrl){
+                                    self.videoReport(this.packageId,this.currentCourseId,this.chapterId)
+                                } else {
+                                    self.noVideoReport(this.packageId,this.currentCourseId,this.this.chapterId)
+                                }
+                            }
+                            
+                            if(r.isfavor == 0){
+                                this.col = '取消收藏'
+                            } else {
+                                this.col = '收藏'
+                            }
+                        }).catch(_ => {})
+                        
+                    } else {
+                        chapterContent({
+                            chapterId:null,
+                            courseId:ids[findIndex],
+                            packId:this.packageId
+                        }).then(r => {
+                            if(this.USERINFO){
+                                if(r.videoUrl){
+                                    self.videoReport(this.packageId,ids[findIndex],false)
+                                } else {
+                                    self.noVideoReport(this.packageId,ids[findIndex],false)
+                                }
+                            }
+                            this.chapters = []
+                            this.currentChapterId = ''
+                            this.currentChapter = ''
+                            this.context = r.contentData
+                            this.playerOptions.sources[0].src = r.videoUrl
+                            if(r.isfavor == 0){
+                                this.col = '取消收藏'
+                            } else {
+                                this.col = '收藏'
+                            }
+                        }).catch(_ => {})
                     }
                 }).catch(_=>{})
+                
+                
             }else{
                 courseList({coursePackId:this.packageId}).then(r=>{
                     this.course = r.courseList
                     this.courseId = r.courseList[0].id +'';
                     this.currentCourseId = r.courseList[0].id +'';
-                    if(r.courseList[0].courseType == 2){
+                    let typeOne = this.course.filter((item)=>{
+                        return item.courseType == 1
+                    })
+                    let ids = []
+                    for(let i = 0; i< typeOne.length;i++){
+                        ids.push(typeOne[i].id+'')
+                    }
+                    let findIndex = ids.indexOf(this.currentCourseId)
+                    if(findIndex == -1){
                         chapterList({courseId:this.currentCourseId,coursePackId:this.packageId}).then(r=>{
                             this.chapters = r.chapters;
                             this.hasStudyCard = r.studyCard;
@@ -545,7 +664,6 @@
                                 let have = ''
                                 if(r.chapters[i]== this.chapterId){
                                     have = r.chapters[i]
-                                    console.log(have)
                                     setTimeout(_=>{
                                         self.$refs.sidebarTwo.position(have.id)
                                     },100)
@@ -567,7 +685,6 @@
                                         }
                                         
                                         this.context = r.contentData
-                                        this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoUrl
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
@@ -584,7 +701,6 @@
                                             if(r.chapters[i].sub[j].id == this.chapterId){
                                                 have = r.chapters[i]
                                                 setTimeout(_=>{
-                                                    console.log(self.$refs.sidebar)
                                                     self.$refs.sidebar.position(have.id ,this.chapterId)
                                                 },100)
                                             }
@@ -596,7 +712,6 @@
                                         packId:this.packageId
                                     }).then(r => {
                                         this.context = r.contentData
-                                        this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoUrl
                                         if(this.USERINFO){
                                             if(r.videoUrl){
@@ -635,7 +750,6 @@
                                                 if(r.chapters[i].sub[j].id == this.chapterId){
                                                     have = r.chapters[i]
                                                     setTimeout(_=>{
-                                                        console.log(self.$refs.sidebar)
                                                         self.$refs.sidebar.position(have.id ,this.chapterId)
                                                     },100)
                                                 }
@@ -649,7 +763,6 @@
                                             packId:this.packageId
                                         }).then(r => {
                                             this.context = r.contentData
-                                            this.playerOptions.sources[0].src = ''
                                             this.playerOptions.sources[0].src = r.videoUrl
                                             if(this.USERINFO){
                                                 if(r.videoUrl){
@@ -688,20 +801,20 @@
                             }).catch(_=>{})
                         } else {
                             chapterContent({
-                                courseId:this.currentCourseId,
+                                chapterId:null,
+                                courseId:ids[findIndex],
                                 packId:this.packageId
                             }).then(r => {
-                                this.context = r.contentData
-                                this.playerOptions.sources[0].src = ''
-                                this.playerOptions.sources[0].src = r.videoUrl
                                 if(this.USERINFO){
                                     if(r.videoUrl){
-                                        self.videoReport(this.packageId,this.currentCourseId,false)
+                                        self.videoReport(this.packageId,ids[findIndex],false)
                                     } else {
-                                        self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                        self.noVideoReport(this.packageId,ids[findIndex],false)
                                     }
                                 }
-                                
+                                this.chapters = []
+                                this.context = r.contentData
+                                this.playerOptions.sources[0].src = r.videoUrl
                                 if(r.isfavor == 0){
                                     this.col = '取消收藏'
                                 } else {

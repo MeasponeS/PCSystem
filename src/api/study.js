@@ -80,3 +80,11 @@ export function report(params) {
         data: params
     })
 }
+
+export function getCourseHtml(params) {
+    return request({
+        url: 'pc/report/course',
+        method: 'get',
+        params: params
+    })
+}
