@@ -210,11 +210,14 @@
                                 this.context = r.contentData
                                 this.playerOptions.sources[0].src = ''
                                 this.playerOptions.sources[0].src = r.videoUrl
-                                if(r.videoUrl){
-                                    this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
-                                } else {
-                                    this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                if(this.USERINFO){
+                                    if(r.videoUrl){
+                                        this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                    } else {
+                                        this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                    }
                                 }
+                                
                                 if(r.isfavor == 0){
                                     this.col = '取消收藏'
                                 } else {
@@ -228,11 +231,14 @@
                                 this.context = r.context
                                 this.playerOptions.sources[0].src = ''
                                 this.playerOptions.sources[0].src = r.videoPath
-                                if(r.videoPath){
-                                    this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
-                                } else {
-                                    this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                if(this.USERINFO){
+                                    if(r.videoPath){
+                                        this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                    } else {
+                                        this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                    }
                                 }
+                                
                                 if(r.isfavor == 0){
                                     this.col = '取消收藏'
                                 } else {
@@ -252,11 +258,14 @@
                                         courseId:this.currentCourseId,
                                         packId:getUrlInfo('id')
                                     }).then(r => {
-                                        if(r.videoUrl){
-                                            this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
-                                        } else {
-                                            this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                        if(this.USERINFO){
+                                            if(r.videoUrl){
+                                                this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                            } else {
+                                                this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                            }
                                         }
+                                        
                                         this.context = r.contentData
                                         this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoUrl
@@ -273,11 +282,14 @@
                                         this.context = r.context
                                         this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoPath
-                                        if(r.videoPath){
-                                            this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
-                                        } else {
-                                            this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                        if(this.USERINFO){
+                                            if(r.videoPath){
+                                                this.videoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                            } else {
+                                                this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
+                                            }
                                         }
+                                        
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
                                         } else {
@@ -310,11 +322,14 @@
                             this.context = r.contentData
                             this.playerOptions.sources[0].src = ''
                             this.playerOptions.sources[0].src = r.videoUrl
-                            if(r.videoUrl){
+                            if(this.USERINFO){
+                                if(r.videoUrl){
                                     this.videoReport(this.packageId,this.currentCourseId,data.chapterId)
                                 } else {
                                     this.noVideoReport(this.packageId,this.currentCourseId,data.chapterId)
                                 }
+                            }
+                            
                             if(r.isfavor == 0){
                                 this.col = '取消收藏'
                             } else {
@@ -412,11 +427,14 @@
                     this.context = r.contentData
                     this.playerOptions.sources[0].src = ''
                     this.playerOptions.sources[0].src = r.videoUrl
-                    if(r.videoUrl){
-                        self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
-                    } else {
-                        self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                    if(this.USERINFO){
+                        if(r.videoUrl){
+                            self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                        } else {
+                            self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                        }
                     }
+                    
                     if(r.isfavor == 0){
                         this.col = '取消收藏'
                     } else {
@@ -469,11 +487,14 @@
                     this.context = r.contentData
                     this.playerOptions.sources[0].src = ''
                     this.playerOptions.sources[0].src = r.videoUrl
-                    if(r.videoUrl){
-                        self.videoReport(this.packageId,this.currentCourseId,this.chapterId)
-                    } else {
-                        self.noVideoReport(this.packageId,this.currentCourseId,this.this.chapterId)
+                    if(this.USERINFO){
+                        if(r.videoUrl){
+                            self.videoReport(this.packageId,this.currentCourseId,this.chapterId)
+                        } else {
+                            self.noVideoReport(this.packageId,this.currentCourseId,this.this.chapterId)
+                        }
                     }
+                    
                     if(r.isfavor == 0){
                         this.col = '取消收藏'
                     } else {
@@ -537,11 +558,14 @@
                                         courseId:this.currentCourseId,
                                         packId:this.packageId
                                     }).then(r => {
-                                        if(r.videoUrl){
-                                            self.videoReport(this.packageId,this.currentCourseId,false)
-                                        } else {
-                                            self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                        if(this.USERINFO){
+                                            if(r.videoUrl){
+                                                self.videoReport(this.packageId,this.currentCourseId,false)
+                                            } else {
+                                                self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                            }
                                         }
+                                        
                                         this.context = r.contentData
                                         this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoUrl
@@ -574,11 +598,14 @@
                                         this.context = r.contentData
                                         this.playerOptions.sources[0].src = ''
                                         this.playerOptions.sources[0].src = r.videoUrl
-                                        if(r.videoUrl){
-                                            self.videoReport(this.packageId,this.currentCourseId,false)
-                                        } else {
-                                            self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                        if(this.USERINFO){
+                                            if(r.videoUrl){
+                                                self.videoReport(this.packageId,this.currentCourseId,false)
+                                            } else {
+                                                self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                            }
                                         }
+                                       
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
                                         } else {
@@ -624,11 +651,14 @@
                                             this.context = r.contentData
                                             this.playerOptions.sources[0].src = ''
                                             this.playerOptions.sources[0].src = r.videoUrl
-                                            if(r.videoUrl){
-                                                self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
-                                            } else {
-                                                self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                                            if(this.USERINFO){
+                                                if(r.videoUrl){
+                                                    self.videoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                                                } else {
+                                                    self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
+                                                }
                                             }
+                                            
                                             if(r.isfavor == 0){
                                                 this.col = '取消收藏'
                                             } else {
@@ -664,11 +694,14 @@
                                 this.context = r.contentData
                                 this.playerOptions.sources[0].src = ''
                                 this.playerOptions.sources[0].src = r.videoUrl
-                                if(r.videoUrl){
-                                    self.videoReport(this.packageId,this.currentCourseId,false)
-                                } else {
-                                    self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                if(this.USERINFO){
+                                    if(r.videoUrl){
+                                        self.videoReport(this.packageId,this.currentCourseId,false)
+                                    } else {
+                                        self.noVideoReport(this.packageId,this.currentCourseId,false)
+                                    }
                                 }
+                                
                                 if(r.isfavor == 0){
                                     this.col = '取消收藏'
                                 } else {

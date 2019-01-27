@@ -182,7 +182,6 @@
 
         },
         mounted() {
-  
             courses().then(r=>{
                 this.lastStudy = r.lastStudyRecord;
                 this.orgList = r.orgCourseInformationList || [];
@@ -200,7 +199,7 @@
                             this.subName = subMajor[0].name
                             this.subMajor.isSelect = subMajor[0].packId
                         } else {
-                            this.subName = courseList[0].packageType.name
+                            this.subName = courseList1[0].packageType.name
                         }
                     }).catch(_=>{})
                 } else {
