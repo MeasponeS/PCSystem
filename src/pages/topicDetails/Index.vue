@@ -33,7 +33,6 @@
                             <DoTopic
                                     :isHistory="topicInfo.status != -1"
                                     :topic="topics[activeQuestionIndex]"
-                                    @selectOption="selectOption"
                             ></DoTopic>
                         </div>
                     </div>
@@ -199,36 +198,8 @@
             positioning(domId){
                 this.$nextTick(_=>{
                     let top = document.getElementById(domId).offsetTop
-                    window.scrollTo(0,top - 10);
+                    window.scrollTo(0,top - 110);
                 })
-            },
-            selectOption(questionId,answer){
-                let thisTopic = this.topics[this.activeQuestionIndex];
-                //////////////////////////////////A1A2
-                if(thisTopic.hasOwnProperty('questionId') && (thisTopic.questionId == questionId)){
-                    thisTopic.historyAnswer = answer;
-                    return;
-                }
-                ///////////////////////////////////A3A4
-                if(3 == thisTopic.newType){
-                    thisTopic.a3a4Questions.forEach((r,i)=>{
-                        if(r.questionId == questionId){
-                            thisTopic.a3a4Questions[i].historyAnswer = answer;
-                            return
-                        }
-                    });
-                    return;
-                }
-                ///////////////////////////////////B
-                if(5 == thisTopic.newType){
-                    thisTopic.questionArr.forEach((r,i)=>{
-                        if(r.questionId == questionId){
-                            thisTopic.questionArr[i].historyAnswer = answer;
-                            return
-                        }
-                    });
-                    return;
-                }
             },
             previousTopic(){
                 if(this.activeQuestionIndex <= 0){

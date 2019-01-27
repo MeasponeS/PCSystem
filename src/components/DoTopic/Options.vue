@@ -2,8 +2,8 @@
     <div class="do-topic-options">
         <ul v-if="options.length>0">
             <!--li 标签类说明 user-answer用户选择  is-answer标准答案-->
-            <li     :class="[
-                        {'user-answer':userAnswer.indexOf(option.optionName) != -1},
+            <li  :class="[
+                        {'user-answer':value.indexOf(option.optionName) != -1},
                         {'is-answer':correctAnswer.indexOf(option.optionName) != -1},
                     ]"
                     v-for="(option,index) in options"
@@ -12,7 +12,7 @@
 
             >
                 <div class="options-val">{{ option.optionName }}</div>
-                <div class="options-text">{{ option.optionContent }}</div>
+                <div class="options-text" v-html="option.optionContent"> </div>
                 <div class="correct-answer-perch"></div>
             </li>
 
@@ -22,13 +22,6 @@
 </template>
 
 <script>
-    // {"optionContent": "美国",  "optionName": "A"}, {
-    //     "optionContent": "英国",
-    //         "optionName": "B"
-    // }, {"optionContent": "法国", "optionName": "C"}, {
-    //     "optionContent": "德国",
-    //         "optionName": "D"
-    // }, {"optionContent": "中国", "questionId": 37509, "optionName": "E"}
     export default {
         name: 'Options',
         props: {
@@ -38,20 +31,17 @@
                     return []
                 }
             },
-
-            userAnswer:{
-                type: Array,
-                default:function () {
-                    return []
-                }
-            },
+            value: Array,
             correctAnswer:{
                 type: Array,
                 default:function () {
                     return []
                 }
             },
-            questionId:String|Number
+            type:{
+                type: Number,
+                default:1//1单选,其他为多选择
+            },
         },
         data: function () {
             return {
@@ -66,8 +56,19 @@
                 if((this.correctAnswer).length != 0 ){
                     return
                 }
+                if (1 == this.type){
+                    this.$emit('input',[optionName]);
+                }else {
 
-                this.$emit('selectOption',this.questionId,optionName)
+                    let index = (this.value).indexOf(optionName);
+                    if(index != -1){
+                        this.value.splice(index,1);
+                        this.$emit('input',[...this.value].sort());
+                    }else {
+                        this.$emit('input',[optionName,...this.value].sort());
+
+                    }
+                }
             }
         },
 
