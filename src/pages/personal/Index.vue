@@ -117,20 +117,30 @@
             This.form = res;
             This.form.education += ''
             This.form.title += ''
+            if(res.title == 'null'){
+                res.title = '1'
+            }
+            if(res.education == 'null'){
+                res.education = '0'
+            }
             This.form.location = [res.code.split('-')[0],res.code];
+            
+            
+            
           }).catch(_=>{}),
           getDictionaryList().then(function(res){
             This.eduType = res.eduType;
+            let obj = {cid: 1, code: "0", id: 0, name: "无"}
+            This.eduType.push(obj)
             This.jobNames = res.jobNames
-            This.jobNames.forEach(i => {
-                i.id+=''
-            });
+            
             res.provinceCityList.map(function(item,index){
               This.options.push({'value': item.parent.code,'label': item.parent.name,'children': [] });
               item.childList.map(function(list,i){
                 This.options[index].children.push({'value' : list.code,'label' : list.name});
               })
             })
+            
           }).catch(_=>{})
         },
         beforeDestroy: function () {
