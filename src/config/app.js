@@ -1,5 +1,5 @@
 
-const devApiUrl = 'http://192.168.49.165:10003';
+const devApiUrl = 'https://raxtapi.hulian120.com';
 
 //正式环境变量,注意修改
 const proApiUrl = 'https://raxtapi.hulian120.com';

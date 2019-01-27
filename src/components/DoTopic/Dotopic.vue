@@ -21,9 +21,9 @@
                     <Options
                             :correctAnswer="isHistory ? topic.answer :[]"
                             :options="topic.questionResult"
-                            :userAnswer="topic.historyAnswer"
+                            :type="topic.typeB"
+                            v-model="topic.historyAnswer"
                             :questionId="topic.questionId"
-                            @selectOption="selectOption"
                     >
                     </Options>
                 </div>
@@ -45,9 +45,9 @@
                 <Options
                         :correctAnswer="isHistory ? item.answer :[]"
                         :options="item.questionResult"
-                        :userAnswer="item.historyAnswer"
+                        :type="topic.typeB"
+                        v-model="item.historyAnswer"
                         :questionId="item.questionId"
-                        @selectOption="selectOption"
                 >
                 </Options>
             </div>
@@ -67,9 +67,9 @@
                 <Options
                         :correctAnswer="isHistory ? item.answer : []"
                         :options='topic.questionResult'
-                        :userAnswer="item.historyAnswer"
+                        :type="topic.typeB"
+                        v-model="item.historyAnswer"
                         :questionId="item.questionId"
-                        @selectOption="selectOption"
                 >
                 </Options>
             </div>
@@ -89,49 +89,6 @@
             }
         },
         methods: {
-            selectOption(questionId,optionName){
-                //////////////////////////////////A1A2
-                if(this.topic.hasOwnProperty('questionId') && (this.topic.questionId == questionId)){
-                        this.$emit("selectOption",questionId,this.getAnswer(this.topic.historyAnswer,optionName,this.topic.typeB));
-                }
-                ///////////////////////////////////A3A4
-                if(3 == this.topic.newType){
-                    this.topic.a3a4Questions.forEach(r=>{
-                        if(r.questionId == questionId){
-                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,this.topic.typeB));
-                            return
-                        }
-                    })
-                }
-                ///////////////////////////////////B
-                if(5 == this.topic.newType){
-                    this.topic.questionArr.forEach(r=>{
-                        if(r.questionId == questionId){
-                            this.$emit("selectOption",questionId,this.getAnswer(r.historyAnswer,optionName,this.topic.typeB));
-                            return
-                        }
-                    })
-                }
-
-            },
-            getAnswer(answerArr,optionName,typeB){
-                if(typeB == 1){
-                    //单
-                   return [optionName]
-                }
-                if((typeB == 2) || (typeB == 4)){
-                    //多
-                    let index = answerArr.indexOf(optionName);
-                    if(index != -1){
-                        answerArr.splice(index,1);
-                        return [...answerArr].sort();
-                    }else {
-                        return [optionName,...answerArr].sort();
-                    }
-                }
-                return [optionName]
-
-            }
         },
         components: {Options}
     }
