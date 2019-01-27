@@ -12,7 +12,7 @@
 
             >
                 <div class="options-val">{{ option.optionName }}</div>
-                <div class="options-text">{{ option.optionContent }}</div>
+                <div class="options-text" v-html="option.optionContent"> </div>
                 <div class="correct-answer-perch"></div>
             </li>
 

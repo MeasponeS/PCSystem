@@ -6,7 +6,10 @@
                 <template v-if="topic.newType == 5">
                     <div v-html="topic.name"></div>
                     <br/> <br/>
-                    <span class="question-result" v-for="a in topic.questionResult">{{ a.optionName.toLowerCase() }}.{{ a.optionContent }}</span>
+                    <span class="question-result" v-for="a in topic.questionResult">
+                        {{ a.optionName.toLowerCase() }}.
+                        <span v-html="a.optionContent"></span>
+                    </span>
                 </template>
                 <template v-else>
                     <div v-html="topic.name"></div>
@@ -40,7 +43,8 @@
             <div class="l"></div>
             <div class="r">
                 <div class="title">
-                    {{ item.index }}. {{ item.name }}
+                    {{ item.index }}.
+                    <span v-html="item.name"></span>
                 </div>
                 <Options
                         :correctAnswer="isHistory ? item.answer :[]"
@@ -62,7 +66,7 @@
             <div class="l"></div>
             <div class="r">
                 <div class="title">
-                    {{ item.index }}. {{ item.name }}
+                    {{ item.index }}. <span v-html="item.name"></span>
                 </div>
                 <Options
                         :correctAnswer="isHistory ? item.answer : []"
