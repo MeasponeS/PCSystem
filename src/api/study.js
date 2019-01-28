@@ -75,6 +75,7 @@ export function submajor(params) {
 
 export function report(params) {
     return request({
+        closeLoading:true,
         url: 'pc/report/course',
         method: 'post',
         data: params
