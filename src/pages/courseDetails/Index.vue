@@ -195,7 +195,7 @@
                 }
                 let findIndex = ids.indexOf(this.currentCourseId)
                 if(findIndex != -1){
-                    this.$refs.sidebarTwo.previousChapter()
+                    this.$message('已经是第一章了');
                     
                 }else {
                     if(this.chapters[0].courseType == -1){
