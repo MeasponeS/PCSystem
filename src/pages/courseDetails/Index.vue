@@ -55,7 +55,7 @@
                         </el-option>
                     </el-select>
 
-                    <div class="now"> <span v-if="this.chapterId"> 当前课程章节</span></div>
+                    <div class="now"> <span> 当前课程章节</span></div>
                     <Sidebar
                         v-if="sub != 0"
                         ref="sidebar"
