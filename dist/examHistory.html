@@ -25,11 +25,12 @@
             top: -7px;
             cursor: pointer;
             margin-left: 46px;
-        }</style><!--[if lte IE 9]><style>.browser-suggest{display: block;}</style><![endif]--><link href=css/chunk-common.a520d540.css rel=preload as=style><link href=css/chunk-vendors.84901864.css rel=preload as=style><link href=css/examHistory.77e9efca.css rel=preload as=style><link href=js/chunk-common.e3f25950.js rel=preload as=script><link href=js/chunk-vendors.48a7a6ce.js rel=preload as=script><link href=js/examHistory.4a1fe204.js rel=preload as=script><link href=css/chunk-vendors.84901864.css rel=stylesheet><link href=css/chunk-common.a520d540.css rel=stylesheet><link href=css/examHistory.77e9efca.css rel=stylesheet></head><body><div class=browser-suggest id=browserSuggest><span><img src=./img/jg.png alt=""> <span>建议使用以下浏览器，以获得最佳体验</span> <a href=https://pc.qq.com/detail/1/detail_2661.html target=_blank><img src=./img/chrome.png alt=""> </a><span>谷歌</span> <a href=https://pc.qq.com/detail/7/detail_22127.html target=_blank><img src=./img/306.png alt=""> </a><span>360</span> <a href=https://browser.360.cn target=_blank><img src=./img/sogou.png alt=""> </a><span>搜狗</span> <img class=close src=./img/close.png onclick=browserSuggestClose() alt=""></span></div><noscript><strong>We're sorry but studyVueCil doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script>var browserSuggestDom = document.getElementById('browserSuggest');
+        }</style><!--[if lte IE 9]><style>.browser-suggest{display: block;}</style><![endif]--><link href=css/chunk-common.ade73d64.css rel=preload as=style><link href=css/chunk-vendors.c2d7d1f8.css rel=preload as=style><link href=css/examHistory.77e9efca.css rel=preload as=style><link href=js/chunk-common.ddbe65c3.js rel=preload as=script><link href=js/chunk-vendors.48a7a6ce.js rel=preload as=script><link href=js/examHistory.4a1fe204.js rel=preload as=script><link href=css/chunk-vendors.c2d7d1f8.css rel=stylesheet><link href=css/chunk-common.ade73d64.css rel=stylesheet><link href=css/examHistory.77e9efca.css rel=stylesheet></head><body><div class=browser-suggest id=browserSuggest><span><img src=./img/jg.png alt=""> <span>建议使用以下浏览器的最新版本，以获得最佳体验：</span> <a href=https://pc.qq.com/detail/1/detail_2661.html target=_blank><img src=./img/chrome.png alt=""> </a><span>谷歌</span> <a href=https://pc.qq.com/detail/7/detail_22127.html target=_blank><img src=./img/306.png alt=""> </a><span>360</span> <a href=https://browser.360.cn target=_blank><img src=./img/sogou.png alt=""> </a><span>搜狗</span> <img class=close src=./img/close.png onclick=browserSuggestClose() alt=""></span></div><noscript><strong>We're sorry but studyVueCil doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script>var browserSuggestDom = document.getElementById('browserSuggest');
+    var ua = navigator.userAgent.toLocaleLowerCase();
 
-
-
+    if(ua.indexOf("chrome") == -1 && ua.indexOf("se") == -1){
+        browserSuggestDom.style.display ="block";
+    }
     function browserSuggestClose() {
-
         browserSuggestDom.style.display ="none";
-    }</script><script src=js/chunk-vendors.48a7a6ce.js></script><script src=js/chunk-common.e3f25950.js></script><script src=js/examHistory.4a1fe204.js></script></body></html>
+    }</script><script src=js/chunk-vendors.48a7a6ce.js></script><script src=js/chunk-common.ddbe65c3.js></script><script src=js/examHistory.4a1fe204.js></script></body></html>
