@@ -109,7 +109,7 @@
                      this.$message('请输入有效的邮箱地址')
                 }
 
-            }
+            },
         },
         mounted() {
           let This = this;

@@ -55,7 +55,7 @@
                         </el-option>
                     </el-select>
 
-                    <div class="now"> <span> 当前课程章节</span></div>
+                    <div class="now"><span v-if="chapters.length != 0"> 当前课程章节</span></div>
                     <Sidebar
                         v-if="sub != 0"
                         ref="sidebar"
@@ -361,6 +361,7 @@
                 }
             },
             getChapters(id){
+                this.chapters = []
                 let typeOne = this.course.filter((item)=>{
                     return item.courseType == 1
                 })
