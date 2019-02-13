@@ -39,40 +39,40 @@
     <!--[if lte IE 9]><style>.browser-suggest{display: block;}</style><![endif]-->
 </head>
 <body>
-<div class="browser-suggest" id="browserSuggest">
-    <span>
-      <img src="./img/jg.png" alt="">
-      <span>建议使用以下浏览器的最新版本，以获得最佳体验：</span>
-       <a href="https://pc.qq.com/detail/1/detail_2661.html" target="_blank">
-         <img src="./img/chrome.png" alt="">
-       </a>
-      <span>谷歌</span>
-      <a  href="https://pc.qq.com/detail/7/detail_22127.html" target="_blank">
-        <img src="./img/306.png" alt="">
-      </a>
-      <span>360</span>
-      <a href="https://browser.360.cn" target="_blank">
-        <img src="./img/sogou.png" alt="">
-      </a>
-      <span>搜狗</span>
-        <img class="close" src="./img/close.png" onclick="browserSuggestClose()" alt="">
-    </span>
-</div>
+<!--<div class="browser-suggest" id="browserSuggest">-->
+    <!--<span>-->
+      <!--<img src="./img/jg.png" alt="">-->
+      <!--<span>建议使用以下浏览器的最新版本，以获得最佳体验：</span>-->
+       <!--<a href="https://pc.qq.com/detail/1/detail_2661.html" target="_blank">-->
+         <!--<img src="./img/chrome.png" alt="">-->
+       <!--</a>-->
+      <!--<span>谷歌</span>-->
+      <!--<a  href="https://pc.qq.com/detail/7/detail_22127.html" target="_blank">-->
+        <!--<img src="./img/306.png" alt="">-->
+      <!--</a>-->
+      <!--<span>360</span>-->
+      <!--<a href="https://browser.360.cn" target="_blank">-->
+        <!--<img src="./img/sogou.png" alt="">-->
+      <!--</a>-->
+      <!--<span>搜狗</span>-->
+        <!--<img class="close" src="./img/close.png" onclick="browserSuggestClose()" alt="">-->
+    <!--</span>-->
+<!--</div>-->
 <noscript>
     <strong>We're sorry but studyVueCil doesn't work properly without JavaScript enabled. Please enable it to
         continue.</strong>
 </noscript>
 <div id="app"></div>
 <script>
-    var browserSuggestDom = document.getElementById('browserSuggest');
-    var ua = navigator.userAgent.toLocaleLowerCase();
-
-    if(ua.indexOf("chrome") == -1 && ua.indexOf("se") == -1){
-        browserSuggestDom.style.display ="block";
-    }
-    function browserSuggestClose() {
-        browserSuggestDom.style.display ="none";
-    }
+    // var browserSuggestDom = document.getElementById('browserSuggest');
+    // var ua = navigator.userAgent.toLocaleLowerCase();
+    //
+    // if(ua.indexOf("chrome") == -1 && ua.indexOf("se") == -1){
+    //     browserSuggestDom.style.display ="block";
+    // }
+    // function browserSuggestClose() {
+    //     browserSuggestDom.style.display ="none";
+    // }
 
 </script>
 <!-- built files will be auto injected -->
