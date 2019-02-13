@@ -42,7 +42,7 @@
 <div class="browser-suggest" id="browserSuggest">
     <span>
       <img src="./img/jg.png" alt="">
-      <span>建议使用以下浏览器，以获得最佳体验</span>
+      <span>建议使用以下浏览器的最新版本，以获得最佳体验：</span>
        <a href="https://pc.qq.com/detail/1/detail_2661.html" target="_blank">
          <img src="./img/chrome.png" alt="">
        </a>
@@ -65,11 +65,12 @@
 <div id="app"></div>
 <script>
     var browserSuggestDom = document.getElementById('browserSuggest');
+    var ua = navigator.userAgent.toLocaleLowerCase();
 
-
-
+    if(ua.indexOf("chrome") == -1 && ua.indexOf("se") == -1){
+        browserSuggestDom.style.display ="block";
+    }
     function browserSuggestClose() {
-
         browserSuggestDom.style.display ="none";
     }
 
