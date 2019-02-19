@@ -2,20 +2,15 @@ import {report} from '../../api/study.js'
 export default {
     data: function () {
         return {
-            ResidenceTime:0,
+            ResidenceTime:0,//视频实打实的播放时间。秒
+            PlayTime:0,//视频实打实的播放时间。秒,60秒上报之后重置为0
         }
     },
     create(){
 
     },
     methods: {
-        initResidenceTime() {
-            this.ResidenceTime = 0;
-            if(window.residenceTimeInterval){clearInterval(window.residenceTimeInterval)}
-            window.residenceTimeInterval = setInterval(() => {
-                this.ResidenceTime++;
-            }, 1000)
-        },
+
 
         computeFinish(){
 
@@ -43,7 +38,7 @@ export default {
                     } else {
                         return 0
                     }
-                } else if( m> 20){
+                } else if( m > 20){
                     if(residenceTime > myvideo.duration*0.8){
                         return 1
                     } else {
@@ -57,10 +52,7 @@ export default {
             }
 
         },
-
         videoReport(coursePackId,courseId,chapterId){
-            if(window.reportInterval){clearInterval(window.reportInterval)}
-            this.initResidenceTime();
             report({
                 orgId : this.ORGINFO.id,
                 reportType:2,
@@ -71,23 +63,37 @@ export default {
                 videoTime:0,
                 status:0,
             }).then(_=>{}).catch(_=>{})
+            this.initResidenceTime(coursePackId,courseId,chapterId);
+        },
+        initResidenceTime(coursePackId,courseId,chapterId) {
+            let self = this;
+            self.ResidenceTime = 0;
+            self.PlayTime = 0;
 
-            window.reportInterval = setInterval(()=>{
-                report({
-                    orgId : this.ORGINFO.id,
-                    reportType:0,
-                    coursePackId:coursePackId,
-                    courseId:courseId,
-                    chapterId:chapterId ? chapterId : -1,
-                    takeTime:60,
-                    videoTime:60,
-                    status:this.computeFinish(),
-                }).then(_=>{}).catch(_=>{})
-            },1000 * 20)
+            if(window.residenceTimeInterval){clearInterval(window.residenceTimeInterval)}
+            window.residenceTimeInterval = setInterval(() => {
+                let myvideo = document.querySelector('video');
+                if(myvideo && !myvideo.paused){//在播放视频
+                    self.ResidenceTime ++;
+                    self.PlayTime ++;
+                }
+                if(self.PlayTime >= 60){//如果播放视频大于等于60S上报
+                    report({
+                        orgId : self.ORGINFO.id,
+                        reportType:0,
+                        coursePackId:coursePackId,
+                        courseId:courseId,
+                        chapterId:chapterId ? chapterId : -1,
+                        takeTime:60,
+                        videoTime:60,
+                        status:self.computeFinish(),
+                    }).then(_=>{
+                        self.PlayTime = 0;
+                    }).catch(_=>{})
+                }
+            }, 1000)
         },
         noVideoReport(coursePackId,courseId,chapterId){
-            if(window.reportInterval){clearInterval(window.reportInterval)}
-            this.initResidenceTime();
             report({
                 orgId : this.ORGINFO.id,
                 reportType:1,
@@ -99,24 +105,31 @@ export default {
                 status:1,
             }).then(_=>{}).catch(_=>{})
 
-            window.reportInterval = setInterval(()=>{
-                report({
-                    orgId : this.ORGINFO.id,
-                    reportType:0,
-                    coursePackId:coursePackId,
-                    courseId:courseId,
-                    chapterId:chapterId ? chapterId : -1,
-                    takeTime:60,
-                    videoTime:0,
-                    status:1,
-                }).then(_=>{}).catch(_=>{})
-            },1000 * 20)
-
         },
 
     },
     mounted() {
+        let hiddenProperty = 'hidden' in document ? 'hidden' :
+            'webkitHidden' in document ? 'webkitHidden' :
+                'mozHidden' in document ? 'mozHidden' :
+                    null;
+        let visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+        let onVisibilityChange = function(){
+            let myvideo = document.querySelector('video');
+            if (document[hiddenProperty]) {
 
+                if(myvideo){
+                    myvideo.pause()
+                }
+                // console.log('页面隐藏:'+ new Date());
+            }else{
+                if(myvideo){
+                    myvideo.play()
+                }
+                // console.log('页面激活：' + new Date())
+            }
+        }
+        document.addEventListener(visibilityChangeEvent, onVisibilityChange);
     },
     beforeDestroy: function () {
 

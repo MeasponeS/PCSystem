@@ -24,15 +24,15 @@
                     </p>
                 </div>
                 <div class="letf-content">
-                    <div 
-                        class="item" 
+                    <div
+                        class="item"
                         v-if="playerOptions.sources[0].src"
                         id="myVideo"
                         preload
                         width="784"
                     >
                         <div class="player">
-                        <video-player  
+                        <video-player
                             class="vjs-custom-skin"
                             :options="playerOptions"
                         >
@@ -161,6 +161,7 @@
 
         },
         methods: {
+
             openCard(){
                 this.OpenLearningCard = true;
                 this.noLearningCard = false;
@@ -182,7 +183,7 @@
                     } else {
                         this.$refs.sidebarTwo.nextChapter()
                     }
-                    
+
                 }
             },
             prevPage(){
@@ -196,7 +197,7 @@
                 let findIndex = ids.indexOf(this.currentCourseId)
                 if(findIndex != -1){
                     this.$message('已经是第一章了');
-                    
+
                 }else {
                     if(this.chapters[0].courseType == -1){
                         this.$refs.sidebar.previousChapter()
@@ -232,7 +233,7 @@
                                         this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                     }
                                 }
-                                
+
                                 if(r.isfavor == 0){
                                     this.col = '取消收藏'
                                 } else {
@@ -252,7 +253,7 @@
                                         this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                     }
                                 }
-                                
+
                                 if(r.isfavor == 0){
                                     this.col = '取消收藏'
                                 } else {
@@ -279,7 +280,7 @@
                                                 this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                             }
                                         }
-                                        
+
                                         this.context = r.contentData
                                         this.playerOptions.sources[0].src = r.videoUrl
                                         if(r.isfavor == 0){
@@ -301,7 +302,7 @@
                                                 this.noVideoReport(this.packageId,this.currentCourseId,data.subChapterId.id)
                                             }
                                         }
-                                        
+
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
                                         } else {
@@ -340,7 +341,7 @@
                                     this.noVideoReport(this.packageId,this.currentCourseId,data.chapterId)
                                 }
                             }
-                            
+
                             if(r.isfavor == 0){
                                 this.col = '取消收藏'
                             } else {
@@ -453,7 +454,7 @@
             document.oncontextmenu = function(e) {
                 if(e.target.nodeName == 'VIDEO'){
                     return false
-                } 
+                }
             }
             this.type = getUrlInfo('type');
             this.chapterId = getUrlInfo('chapterId');
@@ -461,7 +462,7 @@
             this.packageId = getUrlInfo('id');
             this.packageName = getUrlInfo('name');
             this.packageName = decodeURI(this.packageName,"UTF-8")
-            
+
             if(this.type == 1){
                 this.currentCourseId = this.courseId;
                 this.currentChapterId = this.chapterId;
@@ -523,7 +524,7 @@
                                     }
                                 }
                             }
-                            
+
                         }).catch(_=>{})
                     } else {
                         chapterContent({
@@ -551,7 +552,7 @@
                         }).catch(_ => {})
                     }
                 }).catch(_=>{})
-                
+
             } else if(getUrlInfo('chapterId') && getUrlInfo('courseId') ){
                 this.currentCourseId = this.courseId;
                 this.currentChapterId = this.chapterId;
@@ -608,14 +609,14 @@
                                     self.noVideoReport(this.packageId,this.currentCourseId,this.this.chapterId)
                                 }
                             }
-                            
+
                             if(r.isfavor == 0){
                                 this.col = '取消收藏'
                             } else {
                                 this.col = '收藏'
                             }
                         }).catch(_ => {})
-                        
+
                     } else {
                         chapterContent({
                             chapterId:null,
@@ -642,8 +643,8 @@
                         }).catch(_ => {})
                     }
                 }).catch(_=>{})
-                
-                
+
+
             }else{
                 courseList({coursePackId:this.packageId}).then(r=>{
                     this.course = r.courseList
@@ -684,7 +685,7 @@
                                                 self.noVideoReport(this.packageId,this.currentCourseId,false)
                                             }
                                         }
-                                        
+
                                         this.context = r.contentData
                                         this.playerOptions.sources[0].src = r.videoUrl
                                         if(r.isfavor == 0){
@@ -721,7 +722,7 @@
                                                 self.noVideoReport(this.packageId,this.currentCourseId,false)
                                             }
                                         }
-                                       
+
                                         if(r.isfavor == 0){
                                             this.col = '取消收藏'
                                         } else {
@@ -772,7 +773,7 @@
                                                     self.noVideoReport(this.packageId,this.currentCourseId,this.currentChapterId)
                                                 }
                                             }
-                                            
+
                                             if(r.isfavor == 0){
                                                 this.col = '取消收藏'
                                             } else {

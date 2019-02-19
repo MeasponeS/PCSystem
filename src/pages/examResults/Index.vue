@@ -22,12 +22,11 @@
                                     <div class="circle-bottom-right"></div>
                                 </div>
                                 <div class="info">
-                                    <h1>{{  info.rightPer }}%</h1>
-                                    <span>正确率</span>
+                                    <h1>{{  info.rightCount || 0 }}分</h1>
                                 </div>
                                 <div class="result">
                                     <h1>恭喜，您完成了本次考试！</h1>
-                                    <h3>正确：{{ info.rightCount}} 错误：{{ info.erroCount }} </h3>
+                                    <h3>正确：{{ info.rightCount || 0}} 错误：{{ info.erroCount || 0 }} <span class="passed-score">本场及格线：{{ info.passedScore || 0 }}分</span> </h3>
                                 </div>
                             </div>
                             <div class="down">
@@ -95,6 +94,8 @@
                     erroCount:'',
                     rightCount:'',
                     rightPer:'',
+                    passedScorePer:'',
+                    passedScore:''
                 },
                 statistics:{
                     maxScore: 0,
@@ -151,7 +152,7 @@
             },
             examHistory(index){
                 if(this.statistics.openAnswer != 1){
-                    this.$message("考试答案不开放");
+                    this.$message("本场考试不开放答案");
                     return;
                 }else {
                     window.location.href = `./examHistory.html?type=${this.status}&index=${index}`
@@ -168,10 +169,13 @@
                 this.list = r.questions;
 
 
-                    this.info.topicCount = r.erroCount + r.rightCount,
-                    this.info.erroCount = r.erroCount,
-                    this.info.rightCount = r.rightCount,
-                    this.info.rightPer = r.rightPer,
+                    this.info.topicCount = r.erroCount + r.rightCount
+                    this.info.erroCount = r.erroCount
+                    this.info.rightCount = r.rightCount
+                    this.info.rightPer = r.rightPer
+
+                    this.info.passedScorePer = r.passedScorePer
+                    this.info.passedScore = r.passedScore
 
                 getEvaluationinfo({testingId:getUrlInfo('testingId')}).then(s=>{
                     this.statistics = s;
@@ -183,7 +187,8 @@
                         topics:r.questions,
                     })
 
-                    this.progress(this.info.rightPer);
+                    this.progress(this.info.passedScorePer);
+
                 }).catch(_=>{})
             }).catch(_=>{})
 

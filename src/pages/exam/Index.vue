@@ -31,7 +31,7 @@
                                     <el-button
                                         v-if="item.userTestStartTime"
                                         type="primary"
-                                        @click=examDetails(item,true)
+                                        @click=examDetails(item)
                                     >查看详情</el-button>
                                     <el-button
                                             v-else
@@ -57,7 +57,7 @@
                                     <em>考试时长：{{item.testTime}}分钟</em>
                                     <el-button
                                             type="primary"
-                                            @click="$message('还没有到考试开始时间')"
+                                            @click="$message('考试时间未到')"
                                     >未开放</el-button>
                                 </h5>
                             </li>
@@ -206,12 +206,13 @@
 
                 this.examRules = true;
             },
-            examDetails(item,isOpen = false){
-                //开始是否开放
-                if(isOpen){//这里需要和白讨论开放答案和开放分数的问题
-                    this.$message('为保证公平公正，请于考试结束时间之后查看成绩');
-                    return;
-                }
+            examDetails(item){
+                // console.log(item);
+                // //开始是否开放
+                // if(isOpen){//这里需要和白讨论开放答案和开放分数的问题
+                //     this.$message('为保证公平公正，请于考试结束时间之后查看成绩');
+                //     return;
+                // }
                 if(item.openScore != 1){
                     this.$message('成绩未开放');
                     return;

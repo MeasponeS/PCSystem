@@ -87,8 +87,10 @@
                 }
                 .info{
                     position: absolute;
-                    top: 53px;
-                    left: 73px;
+                    top: 67px;
+                    text-align: center;
+                    width: 97px;
+                    left: 49px;
                     h1{
                         font-size: 30px;
                         color:#31B68F;
@@ -112,6 +114,17 @@
                         color: #222;
                         font-weight: normal;
                         margin-top: 52px;
+                        .passed-score{
+                            display: inline-block;
+                            padding: 2px 8px;
+                            font-size: 18px;
+                            text-align: center;
+                            background:#F8AE36;
+                            margin-left: 28px;
+                            color: #fff;
+                            border:1px solid rgba(248,174,54,1);
+                            border-radius:3px;
+                        }
                     }
 
                 }
