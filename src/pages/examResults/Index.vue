@@ -94,7 +94,6 @@
                     erroCount:'',
                     rightCount:'',
                     rightPer:'',
-                    passedScorePer:'',
                     passedScore:''
                 },
                 statistics:{
@@ -174,7 +173,6 @@
                     this.info.rightCount = r.rightCount
                     this.info.rightPer = r.rightPer
 
-                    this.info.passedScorePer = r.passedScorePer
                     this.info.passedScore = r.passedScore
 
                 getEvaluationinfo({testingId:getUrlInfo('testingId')}).then(s=>{
@@ -187,7 +185,7 @@
                         topics:r.questions,
                     })
 
-                    this.progress(this.info.passedScorePer);
+                    this.progress(this.info.rightPer);
 
                 }).catch(_=>{})
             }).catch(_=>{})
