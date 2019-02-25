@@ -4,6 +4,10 @@ module.exports = {
         title:'登录',
         requiredParameters:{}
     },
+    home:{
+        title:'首页',
+        requiredParameters:{}
+    },
     index:{
         title:'首页',
         requiredParameters:{}
