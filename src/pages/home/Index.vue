@@ -9,8 +9,6 @@
   export default {
     data() {
       return {
-        // videojs options
-
       }
     },
     mounted() {
@@ -26,6 +24,9 @@
   }
 </script>
 <style lang="scss">
+    body{
+        background: #474a95;
+    }
     .home-img{
         width: 100%;
         overflow: hidden;

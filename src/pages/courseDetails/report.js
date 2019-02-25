@@ -76,6 +76,7 @@ export default {
                 if(myvideo && !myvideo.paused){//在播放视频
                     self.ResidenceTime ++;
                     self.PlayTime ++;
+                    console.log(self.PlayTime);
                 }
                 if(self.PlayTime >= 60){//如果播放视频大于等于60S上报
                     report({

@@ -12,7 +12,7 @@
                         <el-input v-model="form.phone" class="inputBox" disabled></el-input>
                     </el-form-item>
                     <el-form-item label="真实姓名">
-                        <el-input v-model="form.realname" class="inputBox"></el-input>
+                        <el-input v-model="form.realname" class="inputBox" :disabled="form.canChange == 0"></el-input>
                     </el-form-item>
                     <el-form-item label="性别" class="f2">
                         <el-select v-model="form.gender" placeholder="请选择性别" class="inputBox">
@@ -69,6 +69,7 @@
             return {
                 form:{
                     phone:'',
+                    canChange:0,
                     realname:'',
                     gender:'',
                     email:'',
@@ -98,7 +99,7 @@
                 if(this.checkEmail()){
                     let That = this;
                     let formData = JSON.parse(JSON.stringify(That.form));
-                    formData.location = String(That.form.location[1]);
+                    formData.location = Array.isArray(That.form.location) ? That.form.location[1]:'';
                     updateUserInfo(formData).then(function(res){
                         That.$message({
                             message: '信息修改成功',
@@ -124,23 +125,23 @@
                 res.education = '0'
             }
             This.form.location = [res.code.split('-')[0],res.code];
-            
-            
-            
+
+
+
           }).catch(_=>{}),
           getDictionaryList().then(function(res){
             This.eduType = res.eduType;
             let obj = {cid: 1, code: "0", id: 0, name: "无"}
             This.eduType.push(obj)
             This.jobNames = res.jobNames
-            
+
             res.provinceCityList.map(function(item,index){
               This.options.push({'value': item.parent.code,'label': item.parent.name,'children': [] });
               item.childList.map(function(list,i){
                 This.options[index].children.push({'value' : list.code,'label' : list.name});
               })
             })
-            
+
           }).catch(_=>{})
         },
         beforeDestroy: function () {
