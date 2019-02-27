@@ -17,29 +17,29 @@ export default {
             let myvideo = document.querySelector('video');
             if(myvideo && myvideo.duration){
 
-                let m = parseInt(myvideo.duration/60);
+                let m = myvideo.duration/60;
                 let residenceTime = this.ResidenceTime;
 
                 if(m < 10){
-                    if(residenceTime > myvideo.duration*0.5){
+                    if(residenceTime > myvideo.duration * 0.5){
                         return 1
                     } else {
                         return 0
                     }
                 } else if( 10<m<15){
-                    if(residenceTime > myvideo.duration*0.6){
+                    if(residenceTime > myvideo.duration * 0.6){
                         return 1
                     } else {
                         return 0
                     }
                 } else if( 15<m<20){
-                    if(residenceTime > myvideo.duration*0.7){
+                    if(residenceTime > myvideo.duration * 0.7){
                         return 1
                     } else {
                         return 0
                     }
                 } else if( m > 20){
-                    if(residenceTime > myvideo.duration*0.8){
+                    if(residenceTime > myvideo.duration * 0.8){
                         return 1
                     } else {
                         return 0
@@ -53,6 +53,7 @@ export default {
 
         },
         videoReport(coursePackId,courseId,chapterId){
+
             report({
                 orgId : this.ORGINFO.id,
                 reportType:2,
@@ -76,7 +77,7 @@ export default {
                 if(myvideo && !myvideo.paused){//在播放视频
                     self.ResidenceTime ++;
                     self.PlayTime ++;
-                    console.log(self.PlayTime);
+                    console.log(self.ResidenceTime);
                 }
                 if(self.PlayTime >= 60){//如果播放视频大于等于60S上报
                     report({
