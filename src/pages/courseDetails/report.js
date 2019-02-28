@@ -54,8 +54,6 @@ export default {
                         return 0
                     }
                 }
-                this.videoTime = videoDuration
-
             } else {
                 return 1
             }
