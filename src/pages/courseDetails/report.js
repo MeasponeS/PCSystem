@@ -15,37 +15,46 @@ export default {
         computeFinish(){
 
             let myvideo = document.querySelector('video');
+            let videoDuration = myvideo.duration;
             if(myvideo && myvideo.duration){
 
-                let m = myvideo.duration/60;
+                let m = parseInt(videoDuration/60);
                 let residenceTime = this.ResidenceTime;
 
                 if(m < 10){
-                    if(residenceTime > myvideo.duration * 0.5){
+                    let finishTime =videoDuration * 0.5;
+
+                    if(residenceTime > finishTime){
                         return 1
                     } else {
                         return 0
                     }
-                } else if( 10<m<15){
-                    if(residenceTime > myvideo.duration * 0.6){
+                } else if( 10 <= m && m < 15){
+                    let finishTime = videoDuration * 0.6;
+
+                    if(residenceTime > finishTime){
                         return 1
                     } else {
                         return 0
                     }
-                } else if( 15<m<20){
-                    if(residenceTime > myvideo.duration * 0.7){
+                } else if( 15 <= m && m <20){
+                    let finishTime = videoDuration * 0.7;
+
+                    if(residenceTime > finishTime){
                         return 1
                     } else {
                         return 0
                     }
-                } else if( m > 20){
-                    if(residenceTime > myvideo.duration * 0.8){
+                } else if( m >= 20){
+                    let finishTime = videoDuration * 0.8;
+
+                    if(residenceTime > finishTime){
                         return 1
                     } else {
                         return 0
                     }
                 }
-                this.videoTime = myvideo.duration
+                this.videoTime = videoDuration
 
             } else {
                 return 1
@@ -77,7 +86,6 @@ export default {
                 if(myvideo && !myvideo.paused){//在播放视频
                     self.ResidenceTime ++;
                     self.PlayTime ++;
-                    console.log(self.ResidenceTime);
                 }
                 if(self.PlayTime >= 60){//如果播放视频大于等于60S上报
                     report({
