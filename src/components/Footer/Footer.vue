@@ -2,8 +2,8 @@
     <div class="footer">
         <div class="container">
             <div>
-                <span>Copyright © 2018 - 2019 jiankangxuetang.com.All Rights Reserved. 京ICP备14052782号-1 京公网安备11010802016577</span>
-                
+                <span>Copyright © 2015 - 2018 hulian120.com.All Rights Reserved. 京ICP备14052782号-1 京公网安备11010802016577</span>
+
             </div>
         </div>
     </div>
