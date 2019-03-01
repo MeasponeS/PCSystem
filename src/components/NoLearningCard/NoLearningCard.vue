@@ -10,11 +10,10 @@
             <span slot="title"></span>
             <div class="dialog-content">
                 <img class="kf" src="./img/kf.png" alt="">
-                <p class="info">
-                    您还没有获得学习卡，请联系客服进行购买
-                    <br>
-                    联系电话：{{ phone }}
-                </p>
+                <div class="infoS">
+                    <p>您还没有获得学习卡，请联系客服进行购买</p>
+                    <p>联系电话：{{ phone }}</p>
+                </div>
                 <el-button class="btn" @click="clickClose" type="primary" style="width: 100%">完成</el-button>
                 <a href="javascript:;" @click="$emit('openCard')">已购买学习卡？点此激活</a>
             </div>
@@ -76,12 +75,11 @@
                         width: 178px;
                         height: 138px;
                     }
-                    .info{
-                        line-height: 36px;
+                    .infoS{
                         text-align: center;
                         color: #333;
                         font-size: 20px;
-                        margin: 34px 0;
+                        margin: 14px 0;
                     }
                     .btn{
                         font-size: 18px;
