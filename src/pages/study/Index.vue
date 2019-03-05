@@ -9,7 +9,7 @@
                 </div>
                 <ul class="list">
                     <li v-for="(item,index) in userList" :key="item.packageType.id">
-                        <img :src="item.packageType.coverPicUrl" alt="">
+                        <img :src="(item.packageType.hasOwnProperty('coverPicUrlPc') && item.packageType.coverPicUrlPc )  ? item.packageType.coverPicUrlPc :  item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
                             <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor==1">切换亚专业</div>
@@ -33,7 +33,7 @@
                                 <span>目前已完成{{item.finishChapterSize}}个小节，加油！</span>
                                 <el-progress class="val" :percentage="computedProgress(item.finishChapterSize,item.chapterSize)" :show-text="false"></el-progress>
                             </div>
-                            
+
                             <div class="list-btn">
                                 <el-button type="primary" @click="startLearning(item)">开始学习</el-button>
                                 <el-button class="primary-btn" v-if="item.hasQuestion" @click="enterTopic">进入习题集</el-button>
@@ -41,7 +41,7 @@
                         </div>
                     </li>
                     <li v-for="(item,index) in orgList" :key="item.packageType.id">
-                        <img :src="item.packageType.coverPicUrl" alt="">
+                        <img :src="(item.packageType.hasOwnProperty('coverPicUrlPc') && item.packageType.coverPicUrlPc )  ? item.packageType.coverPicUrlPc :  item.packageType.coverPicUrl" alt="">
                         <div class="li-r">
                             <h2>{{item.hasSubmajor == 1? subName:item.packageType.name}}</h2>
                             <div class="subMajor" @click="chooseMajor(item)" v-if="item.hasSubmajor==1">切换亚专业</div>
@@ -205,9 +205,9 @@
                 } else {
                     this.subName = courseList1[0].packageType.name
                 }
-                
+
             }).catch(_=>{})
-            
+
         },
         beforeDestroy: function () {
 
