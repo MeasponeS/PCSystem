@@ -10,8 +10,8 @@
                             <!--{url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:topicInfo.levelName},-->
                             <Breadcrumb
                                         :nav="[
-                                            {url:type == 2?'./collection.html':'./topic.html',name:type == 2 ? '收藏列表' : '习题集列表'},
-                                            {url:'javascript:;',name:type == 2?'收藏详情':topicInfo.courseN,width:250}
+                                            {url:type == 2?'./collection.html':'./topicList.html?packageId=' +topicInfo.packageId +'&courseId=' + topicInfo.courseId,name:type == 2 ? '收藏列表' : topicInfo.courseN},
+                                            {url:'javascript:;',name:type == 2?'收藏详情':'习题详情'}
                                         ]"
                             ></Breadcrumb>
                         </div>
