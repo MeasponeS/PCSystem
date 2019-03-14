@@ -7,7 +7,7 @@
                     <div class="top">
                         <Breadcrumb
                                     :nav="[
-                            {url:'./exam.html',name:this.statistics.testingsname},
+                            {url:'./exam.html',name:'考试列表'},
                             {url:'javascript:;',name:'考试结果'}
                         ]"
                         ></Breadcrumb>

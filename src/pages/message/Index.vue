@@ -4,12 +4,6 @@
         <div class="wrapper" >
             <div class="container main-body" v-if="list.length != 0">
                 <div class="leftTop">
-                    <Breadcrumb class="message"
-                                :nav="[
-                            {url:'./message.html',name:'消息列表'},
-                            {url:'javascript:;',name:'消息详情'}
-                        ]"
-                    ></Breadcrumb>
                 </div>
                 <div class="rightTop">消息列表</div>
                 <div class="leftBottom">
@@ -45,7 +39,6 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     import { getNotices ,readMag as readMsgApi } from '../../api/message.js'
     import {saveMsgCount,incrMsg,decrMsg} from '../../utils/dataStorage.js'
@@ -94,7 +87,7 @@
         },
         beforeDestroy: function () {
         },
-        components: {Breadcrumb, EmptyTemplate}
+        components: { EmptyTemplate}
     };
 </script>
 

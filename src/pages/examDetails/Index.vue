@@ -9,7 +9,7 @@
                             <div>
                                 <Breadcrumb
                                         :nav="[
-                            {url:'./exam.html',name:'考试',width:250},
+                            {url:'./exam.html',name:'考试列表',width:250},
                             {url:'javascript:;',name:examInfo.testingName,width:250}
                         ]"
                                 ></Breadcrumb>

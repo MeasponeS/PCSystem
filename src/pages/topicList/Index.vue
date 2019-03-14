@@ -6,8 +6,8 @@
                 <div class="nav">
                     <Breadcrumb
                             :nav="[
-                            {url:'./topic.html',name:data.course.name,width:500},
-                            {url:'javascript:;',name:'习题集'}
+                            {url:'./topic.html',name:'习题集列表'},
+                            {url:'javascript:;',name:data.course.name,width:500}
                         ]"
                     ></Breadcrumb>
                 </div>

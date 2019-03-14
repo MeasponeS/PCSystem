@@ -8,8 +8,7 @@
                         <div class="l-top">
                             <Breadcrumb
                                     :nav="[
-                                {url:'./topic.html',name:topicInfo.courseN,width:250},
-                                {url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:'习题集'},
+                                {url:'./topicList.html?packageId=' +topicInfo.packageId +'&courseId=' + topicInfo.courseId,name:topicInfo.courseN},
                                 {url:'javascript:;',name:'错题集'}
                             ]"
                             ></Breadcrumb>

@@ -10,9 +10,8 @@
                     <!--{url:course.name,message:currentCourseName,login:'本章节的学习目标'}-->
                     <Breadcrumb v-if="course.length" class="lessson"
                         :nav="[
-                            {url:'./study.html',name:packageName},
-                            {url:'./study.html',name:currentCourseName},
-                            {url:'javascript:;',name:currentChapterName || currentCourseName}
+                            {url:type == 1?'./collection.html':'./study.html',name:type == 1 ? '收藏列表' : '课程列表'},
+                            {url:'javascript:;',name:type == 1?'收藏详情':packageName}
                         ]"
                     ></Breadcrumb>
                     <p class="nav-act">
@@ -112,7 +111,7 @@
                 hasStudyCard:'',
                 noLearningCard:false,
                 OpenLearningCard:false,
-                type:'',
+                type:'', //  自收藏页跳转于此url会携带type
                 scrollTop:0,
                 playerOptions: {
                     width: '784',

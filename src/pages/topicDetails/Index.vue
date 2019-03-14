@@ -10,8 +10,8 @@
                             <!--{url:`./topicList.html?packageId=${topicInfo.packageId}&courseId=${topicInfo.courseId}`,name:topicInfo.levelName},-->
                             <Breadcrumb
                                         :nav="[
-                                            {url:'./topic.html',name:topicInfo.courseN,width:250},
-                                            {url:'javascript:;',name:'第'+topicInfo.level+'关'}
+                                            {url:type == 2?'./collection.html':'./topic.html',name:type == 2 ? '收藏列表' : '习题集列表'},
+                                            {url:'javascript:;',name:type == 2?'收藏详情':topicInfo.courseN,width:250}
                                         ]"
                             ></Breadcrumb>
                         </div>
@@ -97,6 +97,7 @@
                 takeTime:0,//页面停留时间
                 activeQuestionIndex:0,// 问题的索引
                 answersPopup:false, //查看答案
+                type:'', //  自收藏页跳转于此url会携带type
             }
         },
         methods: {
@@ -311,7 +312,7 @@
             this.topicInfo.packageId = getUrlInfo('packageId');
             this.topicInfo.courseId = getUrlInfo('courseId');
             this.topicInfo.levelId = getUrlInfo('levelId');
-
+            this.type = getUrlInfo('type');
 
             getLevelDetail({
                 packageId:getUrlInfo('packageId'),

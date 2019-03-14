@@ -8,7 +8,7 @@ export function getUserInfo(params) {
     })
 }
 
-export function updateUserInfo(params) {
+export function updateUs (params) {
     return request({
         url: '/pc/user/updateUserInfo',
         method: 'post',

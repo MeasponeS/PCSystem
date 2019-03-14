@@ -6,7 +6,11 @@
             <div class="container index-content">
                 <div class="top">
                     我的课程 <span v-if="this.userList && this.lastStudy" @click="goLastStudy">上次学到：{{this.lastStudy.courseName}}     {{this.lastStudy.updateTime}}</span>
+                    <em class="openCard" @click="openCard = true">
+                        激活课程
+                    </em>
                 </div>
+
                 <ul class="list">
                     <li v-for="(item,index) in userList" :key="item.packageType.id">
                         <img :src="(item.packageType.hasOwnProperty('coverPicUrlPc') && item.packageType.coverPicUrlPc )  ? item.packageType.coverPicUrlPc :  item.packageType.coverPicUrl" alt="">
@@ -86,6 +90,12 @@
             主管护师共设置护理学，内科护理、外课护理、妇产科护理、儿科护理、社区护理六个亚专业的考试护理学专业（中级）基础知识和相关专业知识考核内容相同，专业知识和专业实践能力根据报考亚专业的不同，所考核的内容不同（详见职称《考试那些事儿（中级）》）。
         </template>
         </SubMajorSelect>
+        <OpenLearningCard
+                :value="openCard"
+                :phone="ORGINFO.phone"
+                @input="openCard = false"
+                @success="reloadPage"
+        ></OpenLearningCard>
     </div>
 </template>
 
@@ -95,6 +105,7 @@
     import EmptyTemplate from '../../components/EmptyTemplate/EmptyTemplate.vue'
     import SubMajorSelect from '../../components/SubMajorPopup/SubMajorSelect.vue'
     import Carousel from '../../components/Carousel/Carousel.vue'
+    import OpenLearningCard from '../../components/OpenLearningCard/OpenLearningCard.vue'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -106,6 +117,7 @@
                 lastStudy:'',
                 orgList:[],
                 userList:[],
+                openCard:false,  // 激活课程弹框
                 subName:'',
                 subMajor:{
                     parenPacktId:null,//有亚专业的情况，id值
@@ -116,6 +128,9 @@
             }
         },
         methods: {
+            reloadPage(){
+                window.location.reload()
+            },
             computedProgress(finishChapterSize,chapterSize){
                 if(finishChapterSize && chapterSize){
                     let p = parseInt((finishChapterSize/chapterSize) * 100)
@@ -212,6 +227,6 @@
         beforeDestroy: function () {
 
         },
-        components: {EmptyTemplate,SubMajorSelect,Carousel}
+        components: {EmptyTemplate,SubMajorSelect,Carousel,OpenLearningCard}
     }
 </script>

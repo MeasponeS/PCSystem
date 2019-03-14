@@ -140,10 +140,10 @@
                         }
                     }
                     &.close .chapter:after{
-                        background-image: url("./img/open.png");
+                        background-image: url("./img/c.png");
                     }
                     &.open .chapter:after{
-                        background-image: url("./img/open.png");
+                        background-image: url("./img/c.png");
                     }
                 }
             }

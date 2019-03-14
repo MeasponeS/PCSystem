@@ -17,6 +17,7 @@ export function userfavor(params) {
     // "packageId":"127",
 
     return request({
+        closeLoading:true,
         url: '/pc/user/userfavor',
         method: 'post',
         data: params

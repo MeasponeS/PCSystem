@@ -127,7 +127,7 @@
                 e.target.style.transform = 'translateX(0)'
             },
             toTopicDetails(item){
-                window.location.href = `./topicDetails.html?packageId=${item.packageId}&courseId=${item.courseId}&levelId=${item.leveId}&questionId=${item.chapterQuestionId}`
+                window.location.href = `./topicDetails.html?packageId=${item.packageId}&courseId=${item.courseId}&levelId=${item.leveId}&questionId=${item.chapterQuestionId}&type=2`
             },
             initFn(){
                 getUserFavorList({type:0}).then(r=>{

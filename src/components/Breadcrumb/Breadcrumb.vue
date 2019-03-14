@@ -2,7 +2,11 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item v-for="item in nav">
-        <a :style="'max-width:'+ (item.hasOwnProperty('width') ? ( item.width + 'px'):'168px') " class="breadcrumb-a" disabled :title="item.name">{{ item.name }}</a>
+        <a :style="'max-width:'+ (item.hasOwnProperty('width') ? ( item.width + 'px'):'168px')"
+           class="breadcrumb-a"
+           :title="item.name"
+           :href="item.url"
+        >{{ item.name }}</a>
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
@@ -21,10 +25,19 @@ export default {
             span{
                 a{
                     font-weight: normal;
-                    color:#9D9D9D;
-                    cursor: default!important;
+                    color: #434343;
+                    &:hover{
+                        color: #2B60FF;
+                    }
                 }
-                
+            }
+            &:last-child{
+                span{
+                    a{
+                        cursor: default!important;
+                        color: #868686!important;
+                    }
+                }
             }
         }
     }
@@ -37,11 +50,6 @@ export default {
         text-overflow:ellipsis;
         white-space: nowrap;
         font-weight: 100;
-        color: #9D9D9D!important;
         font-size: 14px;
-        &:hover,&[href='javascript:;']{
-            color: #9D9D9D!important;
-        }
-
     }
 </style>

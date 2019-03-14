@@ -22,6 +22,7 @@
             color: #26292F;
             font-size: 18px;
             border-bottom: 2px solid #F3F5F7;
+            position: relative;
             span {
                 color: #FF8F2B;
                 font-size: 16px;
@@ -30,6 +31,14 @@
                 background: #FFF7E8;
                 border:1px solid #FFF0D3;
                 border-radius: 2px;
+            }
+            em{
+                font-style: normal;
+                font-size: 16px;
+                color:#2B60FF ;
+                cursor: pointer;
+                position: absolute;
+                right: 30px;
             }
         }
         .list {
