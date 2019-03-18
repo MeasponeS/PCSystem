@@ -28,7 +28,7 @@
             </div>
             <div class="contact">
                 <img class="ren" src="./img/ren.png" alt="">
-                <span class="renName">机构联系人：{{ORGINFO.contacts}}</span>
+                <span class="renName">联系人：{{ORGINFO.contacts}}</span>
                 <div class="line"></div>
                 <span class="renPhone">联系电话：{{ORGINFO.phone}}</span>
                 <img class="dianhua" src="./img/dianhua-2.png" alt="">
