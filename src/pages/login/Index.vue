@@ -34,7 +34,7 @@
                 <a href="./forgotPassword.html" class="forget-password">忘记密码</a>
                 <div class="protocol">
                     <span class="radio" :class="{active:protocolActive}" @click="protocolActive = !protocolActive"></span>
-                    <span>我已阅读并接受《 <a href="https://static.hulian120.com/web/app/agreement/normalAgree/useragreement.html" target="_blank">用户协议</a>》</span>
+                    <span>我已阅读并接受《 <a href="./agreements.html">用户协议</a>》</span>
                 </div>
             </div>
         </div>

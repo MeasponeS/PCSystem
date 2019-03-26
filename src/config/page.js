@@ -89,5 +89,8 @@ module.exports = {
     },
     forgotPassword:{
         title:'忘记密码',
+    },
+    agreements:{
+        title:'用户协议'
     }
 }
