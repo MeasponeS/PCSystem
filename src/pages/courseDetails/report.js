@@ -2,7 +2,7 @@ import {report} from '../../api/study.js'
 export default {
     data: function () {
         return {
-            ResidenceTime:0,//视频实打实的播放时间。秒
+            ResidenceTime:0,
             PlayTime:0,//视频实打实的播放时间。秒,60秒上报之后重置为0
         }
     },
@@ -10,8 +10,6 @@ export default {
 
     },
     methods: {
-
-
         computeFinish(){
 
             let myvideo = document.querySelector('video');
@@ -114,7 +112,6 @@ export default {
             }).then(_=>{}).catch(_=>{})
 
         },
-
     },
     mounted() {
         let hiddenProperty = 'hidden' in document ? 'hidden' :
@@ -125,7 +122,6 @@ export default {
         let onVisibilityChange = function(){
             let myvideo = document.querySelector('video');
             if (document[hiddenProperty]) {
-
                 if(myvideo){
                     myvideo.pause()
                 }
