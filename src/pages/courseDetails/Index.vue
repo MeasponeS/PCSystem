@@ -77,7 +77,7 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
-    import report from './report.js'
+    import report from './report2.js'
     import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.vue'
     import NoLearningCard from '../../components/NoLearningCard/NoLearningCard.vue'
     import OpenLearningCard from '../../components/OpenLearningCard/OpenLearningCard.vue'

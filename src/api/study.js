@@ -82,6 +82,15 @@ export function report(params) {
     })
 }
 
+export function reportRecord(params) {
+    return request({
+        closeLoading:true,
+        url: 'pc/report/courseRecord',
+        method: 'post',
+        data: params
+    })
+}
+
 export function getCourseHtml(params) {
     return request({
         url: 'pc/report/course',

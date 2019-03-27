@@ -1,4 +1,4 @@
-const devApiUrl = 'http://192.168.48.133:10003';
+const devApiUrl = 'http://192.168.49.155:10003';
 
 //正式环境变量,注意修改
 const proApiUrl = 'http://hlwxtapi.jkhh.com';
