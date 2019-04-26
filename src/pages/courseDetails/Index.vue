@@ -41,7 +41,7 @@
                     <div class="html-info" v-html="context"></div>
                 </div>
             </div>
-            <div class="right" >
+            <div class="right">
                 <p>选择课程<span>(共{{ course.length }}门课程)</span></p>
                 <div class="accordion">
                     <el-select v-model="currentCourseId" class="select-course" placeholder="请选择课程" @change="getChapters(currentCourseId)">
